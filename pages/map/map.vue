@@ -80,6 +80,8 @@
 				current:0,
 				//图鉴类型
 				dexType:"fish",
+				//已收集
+				checked:false,
 				list: [
 					{
 						name: '鱼类'
