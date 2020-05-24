@@ -1,0 +1,1 @@
+<view><uni-card vue-id="725b5140-1" bind:__l="__l" vue-slots="{{['default']}}">this is mysite</uni-card></view>

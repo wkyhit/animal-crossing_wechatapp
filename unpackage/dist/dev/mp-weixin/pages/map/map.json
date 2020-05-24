@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "u-tabs": "/node-modules/uview-ui/components/u-tabs/u-tabs",
+    "u-search": "/node-modules/uview-ui/components/u-search/u-search",
+    "u-cell-group": "/node-modules/uview-ui/components/u-cell-group/u-cell-group",
+    "u-cell-item": "/node-modules/uview-ui/components/u-cell-item/u-cell-item",
+    "u-button": "/node-modules/uview-ui/components/u-button/u-button",
+    "u-switch": "/node-modules/uview-ui/components/u-switch/u-switch",
+    "u-divider": "/node-modules/uview-ui/components/u-divider/u-divider",
+    "u-number-box": "/node-modules/uview-ui/components/u-number-box/u-number-box"
+  }
+}
