@@ -1,0 +1,1 @@
+<view><uni-card vue-id="1b6f9780-1" bind:__l="__l" vue-slots="{{['default']}}">this is market</uni-card></view>

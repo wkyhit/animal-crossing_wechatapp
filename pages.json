@@ -5,7 +5,7 @@
 	"pages": [{
 		"path": "pages/index/index",
 		"style": {
-			"navigationBarTitleText": "uni-ui基础项目"
+			"navigationBarTitleText": "动森助手"
 		}
 	}    ,{
             "path" : "pages/map/map",
@@ -23,10 +23,30 @@
             "path" : "pages/map/mapDetail/mapDetail",
             "style" : {}
         }
+        ,{
+            "path" : "pages/strategy/strategy",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/strategy/strategy_detail/strategy_detail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/Message/Message",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/market/market",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/circle_friends/circle_friends",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "动森助手",
 		"navigationBarBackgroundColor": "#007AFF",
 		"backgroundColor": "#FFFFFF",
 		"usingComponents": {

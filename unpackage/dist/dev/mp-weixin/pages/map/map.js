@@ -94,28 +94,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uTabs: function() {
-    return Promise.all(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 115))
+    return Promise.all(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 142))
   },
   uSearch: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 122))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 149))
   },
   uCellGroup: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-group/u-cell-group */ "node-modules/uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-group/u-cell-group.vue */ 129))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-group/u-cell-group */ "node-modules/uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-group/u-cell-group.vue */ 156))
   },
   uCellItem: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-item/u-cell-item */ "node-modules/uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-item/u-cell-item.vue */ 136))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-item/u-cell-item */ "node-modules/uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-item/u-cell-item.vue */ 163))
   },
   uButton: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 143))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 170))
   },
   uSwitch: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-switch/u-switch */ "node-modules/uview-ui/components/u-switch/u-switch").then(__webpack_require__.bind(null, /*! uview-ui/components/u-switch/u-switch.vue */ 150))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-switch/u-switch */ "node-modules/uview-ui/components/u-switch/u-switch").then(__webpack_require__.bind(null, /*! uview-ui/components/u-switch/u-switch.vue */ 177))
   },
   uDivider: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-divider/u-divider */ "node-modules/uview-ui/components/u-divider/u-divider").then(__webpack_require__.bind(null, /*! uview-ui/components/u-divider/u-divider.vue */ 157))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-divider/u-divider */ "node-modules/uview-ui/components/u-divider/u-divider").then(__webpack_require__.bind(null, /*! uview-ui/components/u-divider/u-divider.vue */ 184))
   },
   uNumberBox: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-number-box/u-number-box */ "node-modules/uview-ui/components/u-number-box/u-number-box").then(__webpack_require__.bind(null, /*! uview-ui/components/u-number-box/u-number-box.vue */ 164))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-number-box/u-number-box */ "node-modules/uview-ui/components/u-number-box/u-number-box").then(__webpack_require__.bind(null, /*! uview-ui/components/u-number-box/u-number-box.vue */ 191))
   }
 }
 var render = function() {
@@ -230,6 +230,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {var _ref;
@@ -254,9 +255,10 @@ var _default =
 
 
     0), _defineProperty(_ref, "dataList",
-    [{ name: "蝌蚪", price: "120", des: "出现在池塘" }, { name: "青蛙", price: "520", des: "出现在池塘" }, { name: "鲸鱼", price: "12000", des: "出现在池塘" }]), _defineProperty(_ref, "dataList1",
-    [{ name: "凤蝶", price: "120", des: "出现在树上" }, { name: "亚历山大蝶", price: "520", des: "出现在树上" }, { name: "幻蝶", price: "12000", des: "出现在树上" }]), _defineProperty(_ref, "artWork",
-    [{ name: "冲浪图", number: "1" }, { name: "星夜", number: "0" }, { name: "富春山居图", number: "2" }, { name: "清明上河图", number: "3" }]), _ref;
+    [{ name: "蝌蚪", price: "120", des: "出现在池塘", checked: false }, { name: "青蛙", price: "520", des: "出现在池塘", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }]), _defineProperty(_ref, "dataList1",
+    [{ name: "凤蝶", price: "120", des: "出现在树上", checked: false }, { name: "亚历山大蝶", price: "520", des: "出现在树上", checked: false }, { name: "幻蝶", price: "12000", des: "出现在树上", checked: false }]), _defineProperty(_ref, "artWork",
+    [{ name: "冲浪图", number: "1" }, { name: "星夜", number: "0" }, { name: "富春山居图", number: "2" }, { name: "清明上河图", number: "3" }]), _defineProperty(_ref, "fossil",
+    [{ name: "暴龙", number: "1" }, { name: "梁龙", number: "1" }, { name: "角龙", number: "0" }, { name: "腕龙", number: "3" }]), _ref;
 
   },
   methods: {
@@ -269,11 +271,12 @@ var _default =
       console.log('当前值为: ' + e.value);
     },
     // 点击查看图鉴详情
-    onClickMoreInfo: function onClickMoreInfo(dex_type) {
+    onClickMoreInfo: function onClickMoreInfo(dex_type, name) {
       this.dexType = dex_type;
+      // console.log(name)
       if (dex_type === "fish") {
         uni.navigateTo({
-          url: '/pages/map/mapDetail/mapDetail' });
+          url: '/pages/map/mapDetail/mapDetail?name=' + name });
 
       } else if (dex_type === "bug") {
         uni.navigateTo({

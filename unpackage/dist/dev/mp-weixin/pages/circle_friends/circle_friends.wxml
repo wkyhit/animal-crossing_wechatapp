@@ -1,0 +1,1 @@
+<view><uni-card vue-id="54ccbc80-1" bind:__l="__l" vue-slots="{{['default']}}">this is 森友圈</uni-card></view>

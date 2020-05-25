@@ -7,7 +7,7 @@
 		</uni-card>
 		<uni-card class="info_card">
 			<u-cell-group>
-				<u-cell-item icon="setting-fill" title="名称" :arrow="false" value="白斑狗鱼"></u-cell-item>
+				<u-cell-item icon="setting-fill" title="名称" :arrow="false" :value="name"></u-cell-item>
 				<u-cell-item icon="integral-fill" title="价格" :arrow="false" value="3000"></u-cell-item>
 				<u-cell-item icon="integral-fill" title="出现月份" :arrow="false"></u-cell-item>
 				<u-cell-item icon="integral-fill" title="时间段" :arrow="false"></u-cell-item>
@@ -34,7 +34,12 @@
 				hemisphere:'sh',
 				index:0,
 				inspectData:'undefined',
+				name:""
 			};
+		},
+		onLoad(option){
+			this.name = option.name
+			console.log(option.name)
 		}
 	}
 </script>

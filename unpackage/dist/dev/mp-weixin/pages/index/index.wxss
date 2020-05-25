@@ -26,26 +26,46 @@
 /* 文章场景相关 */
 .content.data-v-ecd2b05c {
   position: relative;
-  background-color: #6699ff;
+  background: url("https://i0.hdslb.com/bfs/article/1bbad7cad546d3499317ea4607960f7465970140.jpg@1320w_2346h.webp");
+  background-size: 750rpx 1200rpx;
   height: 1200rpx;
 }
 .card.data-v-ecd2b05c {
   position: absolute;
-  width: 750rpx;
-  height: 900rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  width: 680rpx;
+  height: 720rpx;
   left: 0;
   top: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
+  -webkit-transform: translate(5%, 35%);
+          transform: translate(5%, 35%);
+}
+.wrap.data-v-ecd2b05c {
+  background-color: rgba(255, 255, 255, 0.7);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 15px;
+          border-radius: 15px;
+  padding: 40rpx;
+}
+.grid_icon.data-v-ecd2b05c {
+  margin-top: 30rpx;
+  background-color: rgba(255, 255, 255, 0.6);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
 }
 .grid-text.data-v-ecd2b05c {
   font-size: 28rpx;
   margin-top: 4rpx;
   color: #909399;
-}
-.wrap.data-v-ecd2b05c {
-  padding: 40rpx;
 }
 .uni-card.data-v-ecd2b05c {
   margin: 20rpx 20rpx;

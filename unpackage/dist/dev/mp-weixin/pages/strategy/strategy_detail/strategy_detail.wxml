@@ -1,0 +1,1 @@
+<view><scroll-view><uni-card vue-id="67bc4104-1" bind:__l="__l" vue-slots="{{['default']}}"><button data-event-opts="{{[['tap',[['getToken',['$event']]]]]}}" bindtap="__e">点击请求token</button></uni-card></scroll-view></view>

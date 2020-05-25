@@ -4,12 +4,17 @@
     "pages/map/map",
     "pages/mysite/mysite",
     "pages/radishPrice/radishPrice",
-    "pages/map/mapDetail/mapDetail"
+    "pages/map/mapDetail/mapDetail",
+    "pages/strategy/strategy",
+    "pages/strategy/strategy_detail/strategy_detail",
+    "pages/Message/Message",
+    "pages/market/market",
+    "pages/circle_friends/circle_friends"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "uni-app",
+    "navigationBarTitleText": "动森助手",
     "navigationBarBackgroundColor": "#007AFF",
     "backgroundColor": "#FFFFFF"
   },

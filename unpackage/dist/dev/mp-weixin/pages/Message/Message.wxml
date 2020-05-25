@@ -1,0 +1,1 @@
+<view><uni-card vue-id="4fa8d620-1" bind:__l="__l" vue-slots="{{['default']}}">this is message page!</uni-card></view>

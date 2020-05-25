@@ -1,26 +1,29 @@
 <template>
 	<view class="content">
-		<u-tabs :list="list" :is-scroll="false" :current="current" @change="changeMap"></u-tabs>
-		<u-search placeholder="输入名称可模糊搜索" v-model="keyword" :clearabled="true" shape="round" :show-action="true" action-text="搜索" :animation="true"></u-search>
+		<view class="topBar">
+			<u-tabs :list="list" :is-scroll="false" :current="current" @change="changeMap"></u-tabs>
+			<u-search placeholder="输入名称可模糊搜索" v-model="keyword" :clearabled="true" shape="round" :show-action="true" action-text="搜索" :animation="true"></u-search>
+		</view>
+		
 		<!-- 鱼类图鉴列表 -->
-		<scroll-view  v-if="current==0" class="list">
-			<u-cell-group v-for="(item,index) in dataList" :key="index">
-				<u-cell-item  icon="setting-fill" :title="item.name" :arrow="false" >
-					<view class="item">
-						<!-- <p class="name">{{item.name}}</p> -->
-						<p class="description">{{item.des}}</p>	
-						<p class="price">{{item.price}}</p>
-						<p></p>
-					</view>
-					<view class="collection">
-						<u-button class="btn_detail" type="primary" size="mini" @click="onClickMoreInfo('bug')">详情</u-button>
-						<p>已收集</p>
-						<u-switch class="sw_button" slot="right-icon" v-model="checked"></u-switch>
-					</view>
-				</u-cell-item>
-			</u-cell-group>
-			<u-divider>鱼类图鉴完</u-divider>
-		</scroll-view>
+			<scroll-view  v-if="current==0" class="list">
+				<u-cell-group v-for="(item,index) in dataList" :key="index">
+					<u-cell-item  icon="setting-fill" :title="item.name" :arrow="false" >
+						<view class="item">
+							<!-- <p class="name">{{item.name}}</p> -->
+							<p class="description">{{item.des}}</p>	
+							<p class="price">{{item.price}}</p>
+							<p></p>
+						</view>
+						<view class="collection">
+							<u-button class="btn_detail" type="primary" size="mini" @click="onClickMoreInfo('fish',item.name)">详情</u-button>
+							<p>已收集</p>
+							<u-switch class="sw_button" slot="right-icon" v-model="item.checked"></u-switch>
+						</view>
+					</u-cell-item>
+				</u-cell-group>
+				<u-divider>鱼类图鉴完</u-divider>
+			</scroll-view>
 		<!-- 虫类图鉴列表 -->
 		<scroll-view  v-if="current==1" class="list">
 			<u-cell-group v-for="(item,index) in dataList1" :key="index">
@@ -33,7 +36,7 @@
 					</view>
 					<view class="collection">
 						<p>已收集</p>
-						<u-switch class="sw_button" slot="right-icon" v-model="checked"></u-switch>
+						<u-switch class="sw_button" slot="right-icon" v-model="item.checked"></u-switch>
 					</view>
 				</u-cell-item>
 			</u-cell-group>
@@ -41,8 +44,8 @@
 		</scroll-view>
 		
 		<!-- 化石图鉴列表 -->
-		<scroll-view  v-if="current==2" class="list">
-			<u-cell-group v-for="(item,index) in dataList1" :key="index">
+		<scroll-view  v-if="current==2" class="list" style="margin-top: 150rpx;">
+			<u-cell-group v-for="(item,index) in fossil" :key="index">
 				<u-cell-item  icon="setting-fill" :title="item.name" :arrow="false">
 					<view class="item">
 						<!-- <p class="name">{{item.name}}</p> -->
@@ -50,8 +53,6 @@
 						<p></p>
 					</view>
 					<view class="collection">
-						<p>已收集</p>
-						<u-switch class="sw_button" slot="right-icon" v-model="checked"></u-switch>
 						<u-number-box :value="0" @change="valChange"></u-number-box>
 					</view>
 				</u-cell-item>
@@ -59,7 +60,7 @@
 			<u-divider>化石图鉴完</u-divider>
 		</scroll-view>
 		<!-- 艺术品图鉴列表 -->
-		<scroll-view  v-if="current==3" class="list">
+		<scroll-view  v-if="current==3" class="list" style="margin-top: 150rpx;">
 			<u-cell-group v-for="(item,index) in artWork" :key="index">
 				<u-cell-item  icon="setting-fill" :title="item.name" :arrow="false">
 					<view class="collection">
@@ -97,9 +98,10 @@
 					},
 				],
 				current: 0,
-				dataList:[{name:"蝌蚪",price:"120",des:"出现在池塘"},{name:"青蛙",price:"520",des:"出现在池塘"},{name:"鲸鱼",price:"12000",des:"出现在池塘"}],
-				dataList1:[{name:"凤蝶",price:"120",des:"出现在树上"},{name:"亚历山大蝶",price:"520",des:"出现在树上"},{name:"幻蝶",price:"12000",des:"出现在树上"}],
-				artWork:[{name:"冲浪图",number:"1"},{name:"星夜",number:"0"},{name:"富春山居图",number:"2"},{name:"清明上河图",number:"3"}]
+				dataList:[{name:"蝌蚪",price:"120",des:"出现在池塘",checked: false},{name:"青蛙",price:"520",des:"出现在池塘",checked: false},{name:"鲸鱼",price:"12000",des:"出现在海洋",checked: false},{name:"鲸鱼",price:"12000",des:"出现在海洋",checked: false},{name:"鲸鱼",price:"12000",des:"出现在海洋",checked: false},{name:"鲸鱼",price:"12000",des:"出现在海洋",checked: false},{name:"鲸鱼",price:"12000",des:"出现在海洋",checked: false},{name:"鲸鱼",price:"12000",des:"出现在海洋",checked: false},{name:"鲸鱼",price:"12000",des:"出现在海洋",checked: false},{name:"鲸鱼",price:"12000",des:"出现在海洋",checked: false}],
+				dataList1:[{name:"凤蝶",price:"120",des:"出现在树上",checked: false},{name:"亚历山大蝶",price:"520",des:"出现在树上",checked: false},{name:"幻蝶",price:"12000",des:"出现在树上",checked: false}],
+				artWork:[{name:"冲浪图",number:"1"},{name:"星夜",number:"0"},{name:"富春山居图",number:"2"},{name:"清明上河图",number:"3"}],
+				fossil:[{name:"暴龙",number:"1"},{name:"梁龙",number:"1"},{name:"角龙",number:"0"},{name:"腕龙",number:"3"}]
 			};
 		},
 		methods:{
@@ -112,11 +114,12 @@
 				console.log('当前值为: ' + e.value)
 			},
 			// 点击查看图鉴详情
-			onClickMoreInfo(dex_type){
+			onClickMoreInfo(dex_type,name){
 				this.dexType = dex_type;
+				// console.log(name)
 				if(dex_type === "fish"){
 					uni.navigateTo({
-					    url: '/pages/map/mapDetail/mapDetail'
+					    url: '/pages/map/mapDetail/mapDetail?name='+name
 					});
 				}else if(dex_type === "bug"){
 					uni.navigateTo({
@@ -131,9 +134,17 @@
 </script>
 
 <style scoped lang="scss">
+	// 顶部导航栏
+	.topBar{
+		//保证导航栏滚动时不消失
+		position: fixed;
+		top: 0;
+		z-index: 99;
+		width: 100%;
+	}
 	// 图鉴列表整体样式
 	.list{
-		margin-top: 10rpx;
+		margin-top: 145rpx;
 	}
 	// 图鉴单项行样式
 	.item{
