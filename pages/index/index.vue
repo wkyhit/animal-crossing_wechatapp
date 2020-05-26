@@ -47,7 +47,7 @@
 										<view class="grid-text">攻略</view>
 									</u-grid-item>
 								</navigator>
-								<navigator url="/pages/radishPrice/radishPrice"  hover-class="navigator-hover">
+								<navigator url="/pages/turnip-prices/turnip-prices"  hover-class="navigator-hover">
 									<u-grid-item bg-color="rgba(255,255,255,0.6);">
 										<u-icon name="hourglass" :size="46"></u-icon>
 										<view class="grid-text">大头菜预测</view>

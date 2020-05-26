@@ -9,7 +9,8 @@
     "pages/strategy/strategy_detail/strategy_detail",
     "pages/Message/Message",
     "pages/market/market",
-    "pages/circle_friends/circle_friends"
+    "pages/circle_friends/circle_friends",
+    "pages/turnip-prices/turnip-prices"
   ],
   "subPackages": [],
   "window": {

@@ -42,7 +42,11 @@
         ,{
             "path" : "pages/circle_friends/circle_friends",
             "style" : {}
-        }
+        },{
+			"path" : "pages/turnip-prices/turnip-prices",
+			"style" : {}
+		}
+		
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

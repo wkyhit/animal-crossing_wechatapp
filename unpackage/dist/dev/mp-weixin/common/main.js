@@ -16,6 +16,62 @@ _vue.default.config.productionTip = false;
 
 _App.default.mpType = 'app';
 
+_vue.default.mixin({
+  methods: {
+    setData: function setData(obj, callback) {
+      var that = this;
+      var handleData = function handleData(tepData, tepKey, afterKey) {
+        tepKey = tepKey.split('.');
+        tepKey.forEach(function (item) {
+          if (tepData[item] === null || tepData[item] === undefined) {
+            var reg = /^[0-9]+$/;
+            tepData[item] = reg.test(afterKey) ? [] : {};
+            tepData = tepData[item];
+          } else {
+            tepData = tepData[item];
+          }
+        });
+        return tepData;
+      };
+      var isFn = function isFn(value) {
+        return typeof value == 'function' || false;
+      };
+      Object.keys(obj).forEach(function (key) {
+        var val = obj[key];
+        key = key.replace(/\]/g, '').replace(/\[/g, '.');
+        var front, after;
+        var index_after = key.lastIndexOf('.');
+        if (index_after != -1) {
+          after = key.slice(index_after + 1);
+          front = handleData(that, key.slice(0, index_after), after);
+        } else {
+          after = key;
+          front = that;
+        }
+        if (front.$data && front.$data[after] === undefined) {
+          Object.defineProperty(front, after, {
+            get: function get() {
+              return front.$data[after];
+            },
+            set: function set(newValue) {
+              front.$data[after] = newValue;
+              that.$forceUpdate();
+            },
+            enumerable: true,
+            configurable: true });
+
+          front[after] = val;
+        } else {
+          that.$set(front, after, val);
+        }
+      });
+      // this.$forceUpdate();
+      isFn(callback) && this.$nextTick(callback);
+    } } });
+
+
+
+
 var app = new _vue.default(_objectSpread({},
 _App.default));
 

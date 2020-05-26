@@ -1,0 +1,224 @@
+/* pages/turnip-prices/turnip-prices.wxss */
+.tips{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0.1em 1em;
+    padding: 0.1em 0.1em;
+    font-size: small;
+    flex: 1 1 100%;
+    color: gray;
+}
+
+.tips i{
+    margin: 0.3em 0;
+}
+
+.property{
+    box-sizing: border-box;
+    border: 1px gainsboro solid;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    margin: 1em 1em;
+    flex-wrap: wrap;
+}
+
+.property-name{
+    box-sizing: border-box;
+    margin: 0.1em 1em;
+    padding: 0.1em 0.1em;
+    font-size: small;
+    line-height: 2em;
+}
+
+.flex-line{
+    flex: 1 1 100%;
+}
+
+.dp-flex{
+    display: flex;
+}
+
+.radio-container{
+    height: 100%;
+    display: flex;
+}
+
+.radio-container radio{
+    display: none;
+}
+
+.radio{
+    box-sizing: border-box;
+    margin: 0.3em 0.2em;
+    padding: 0.2em 1em;
+    background: white;
+    border: 1px solid gray;
+    border-radius: 20px;
+    height: 1.8em;
+}
+
+.radio.checked{
+    background: #7687DB;
+    border: 1px solid #7687DB;
+}
+
+.radio .text{
+    box-sizing: border-box;
+    line-height: 1.2em;
+    font-size: 14px;
+    color: gray;
+}
+
+.radio.checked .text{
+    color: white;
+}
+
+.picker{
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+.arrow{
+    box-sizing: border-box;
+    padding: 0.1em 0.1em;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+.input{
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin: 0.2em 0.2em;
+    padding: 0.1em 0.1em;
+    color: black;
+    border: 1px solid #dddddd;
+    text-align: center;
+}
+
+.week-day-price-record{
+    margin: 0.1em 1em;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.week-day-price-record .week-day{
+    flex: 1 1 20%;
+    padding: 0.5em;
+    font-size: 14px;
+    font-weight: 200;
+    text-align: center;
+}
+
+.week-day-price-record input{
+    flex: 1 1 30%;
+    margin: 0.1em 0.2em;
+    padding: 0.3em 0.3em;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.smallbtn{
+    box-sizing: border-box;
+    margin: 0.3em 1em;
+    padding: 0.25em;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: small;
+    border:  0.1em solid #dddddd;
+    flex: 1 1;
+}
+
+.btn{
+    box-sizing: border-box;
+    margin:1em 1em;
+    padding:0.5em;
+    border-radius: 10px;
+    text-align: center;
+    color:#333333;
+    font-weight: bold;
+    font-size: small;
+    border:  0.1em solid #dddddd;
+    flex: 1 1 1em;
+}
+
+.results-output scroll-view{
+    position: relative;
+    margin: 0.1em 0.2em;
+}
+
+.tr {
+  display: flex;
+  width: 80em;
+  justify-content: center;
+  height: 2rem;
+  align-items: center;
+}
+.th {
+  justify-content: center;
+  display: flex;
+  height: 2rem;
+  align-items: center;
+  text-align: center;
+  flex: 1 1 3em;
+  border: 0.1px solid rgb(226,227,231);
+}
+.td {
+  text-align: center;
+  flex: 1 1 3em;
+  border: 0.1px solid rgb(226,227,231);
+  height: 2rem;
+  line-height: 2rem;
+  color: gray;
+}
+.bg-w{
+  background: white;
+}
+.bg-dlb{
+  background: rgb(244, 245, 250);
+}
+.bg-lb{
+  background: rgb(251, 252, 254);
+}
+
+.pos-fixed{
+  position: fixed;
+  top: 0;
+}
+
+.color-gray{
+  color: gray;
+}
+
+.color-w{
+  color:white;
+}
+
+.color-lb{
+  color:rgb(151, 163, 223);
+}
+
+.help{
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(182, 182, 182, 0.288);
+  z-index: 100;
+}
+
+.margin-large{
+  margin: 10em 1em;
+}
+
+.adContainer {
+  width: 100%;
+}
