@@ -1,1 +1,1 @@
-<view><uni-card vue-id="4fa8d620-1" bind:__l="__l" vue-slots="{{['default']}}">this is message page!</uni-card></view>
+<view class="content"><view class="message-content"><block wx:for="{{messages}}" wx:for-item="msg" wx:for-index="index" wx:key="index"><view class="message-text">{{msg}}</view></block></view><view class="send-box"><input data-event-opts="{{[['input',[['__set_model',['','message','$event',[]]]]]]}}" value="{{message}}" bindinput="__e"/><text data-event-opts="{{[['tap',[['sendMessage',['$event']]]]]}}" bindtap="__e">发送</text></view></view>

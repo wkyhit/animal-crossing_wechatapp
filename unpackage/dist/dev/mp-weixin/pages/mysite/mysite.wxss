@@ -30,7 +30,8 @@ page {
 }
 .content {
   position: relative;
-  background-color: blue;
+  background-color: wh;
+  height: 1000rpx;
 }
 .info_card {
   height: 400rpx;
@@ -51,7 +52,6 @@ page {
   padding: 15rpx;
 }
 .info_card .info_card_top {
-  background-color: red;
   height: 350rpx;
   width: 100%;
   padding: 15rpx;
@@ -63,9 +63,9 @@ page {
           justify-content: flex-start;
 }
 .info_card .info_card_top .portrait {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  -webkit-box-flex: 1.5;
+  -webkit-flex: 1.5;
+          flex: 1.5;
 }
 .info_card .info_card_top .info_card_top_right {
   -webkit-box-flex: 2;
@@ -101,6 +101,9 @@ page {
 .info_card .info_card_bottom {
   height: 100rpx;
   width: 100%;
-  background-color: yellow;
+  background-image: url(https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1608273396,2211497957&fm=26&gp=0.jpg);
+}
+.info_card .table {
+  background-color: red;
 }
 

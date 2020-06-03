@@ -1,6 +1,6 @@
 <template>
 	<view class="content" >
-		<uni-nav-bar class="navbar"  background-color="transparent" :shadow="false"	>
+		<uni-nav-bar class="navbar"  background-color="transparent" :shadow="false" :border="false"	>
 			<view slot="right" @click="onClickToMsg">
 				<u-icon name="chat" color="#2979ff" size="40"></u-icon>
 				<u-badge :is-dot="false" type="warning" count="20" ></u-badge>
@@ -13,7 +13,7 @@
 					</view>
 					<view class="grid_icon">
 						<u-grid :col="3" border >
-								<navigator url="/pages/mysite/mysite" open-type="switchTab" hover-class="navigator-hover">
+								<navigator url="/pages/mysite/mysite" hover-class="navigator-hover">
 										<u-grid-item bg-color="rgba(255,255,255,0.6);">
 											<u-icon name="home" :size="46"></u-icon>
 											<view class="grid-text">个人护照</view>
@@ -106,7 +106,7 @@
 	page{
 		// background-color: blue;
 	// 	background-image: url(../../static/bg/animal_pic.jpg);
-	}
+	}	
 	.content{
 		position: relative;
 		// background-color: rgb(102, 153, 255);

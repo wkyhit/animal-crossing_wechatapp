@@ -1,66 +1,56 @@
 import Vue from 'vue'
 import App from './App'
 import uView from "uview-ui";
+import { myRequest } from './util/api.js'
+//引入goEasy
+import GoEasy from 'goeasy';
 
+//路由请求封装
+Vue.prototype.$myRequest = myRequest
 Vue.use(uView);
 Vue.config.productionTip = false
 
 App.mpType = 'app'
 
-Vue.mixin({
-	methods: {
-		setData: function(obj, callback) {
-			let that = this;
-			const handleData = (tepData, tepKey, afterKey) => {
-				tepKey = tepKey.split('.');
-				tepKey.forEach(item => {
-					if (tepData[item] === null || tepData[item] === undefined) {
-						let reg = /^[0-9]+$/;
-						tepData[item] = reg.test(afterKey) ? [] : {};
-						tepData = tepData[item];
-					} else {
-						tepData = tepData[item];
-					}
-				});
-				return tepData;
-			};
-			const isFn = function(value) {
-				return typeof value == 'function' || false;
-			};
-			Object.keys(obj).forEach(function(key) {
-				let val = obj[key];
-				key = key.replace(/\]/g, '').replace(/\[/g, '.');
-				let front, after;
-				let index_after = key.lastIndexOf('.');
-				if (index_after != -1) {
-					after = key.slice(index_after + 1);
-					front = handleData(that, key.slice(0, index_after), after);
-				} else {
-					after = key;
-					front = that;
-				}
-				if (front.$data && front.$data[after] === undefined) {
-					Object.defineProperty(front, after, {
-						get() {
-							return front.$data[after];
-						},
-						set(newValue) {
-							front.$data[after] = newValue;
-							that.$forceUpdate();
-						},
-						enumerable: true,
-						configurable: true
-					});
-					front[after] = val;
-				} else {
-					that.$set(front, after, val);
-				}
-			});
-			// this.$forceUpdate();
-			isFn(callback) && this.$nextTick(callback);
-		}
+//挂载goeasy
+Vue.prototype.goeasy = GoEasy({
+	host: 'hangzhou.goeasy.io',
+	appkey: 'BC-14d49c22cbb0419da7881c4a2adb74ae',
+	onConnected: function () {
+		console.log("GoEasy connect successfully.")
+	},
+	onDisconnected: function () {
+		console.log("GoEasy disconnected.")
+	},
+	onConnectFailed: function (error) {
+		uni.showToast({
+			icon: "none",
+			title: "连接失败，请检查您的appkey和host配置.",
+			duration: 6000
+		});
 	}
 });
+
+//格式化时间
+Date.prototype.formatDate = function (fmt) {
+	var o = {
+		"M+": this.getMonth() + 1,
+		"d+": this.getDate(),
+		"h+": this.getHours(),
+		"m+": this.getMinutes(),
+		"s+": this.getSeconds(),
+		"q+": Math.floor((this.getMonth() + 3) / 3),
+		"S": this.getMilliseconds()
+	};
+	if (/(y+)/.test(fmt))
+		fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	for (var k in o)
+		if(o.hasOwnProperty(k)){
+			if (new RegExp("(" + k + ")").test(fmt))
+				fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+		}
+	return fmt;
+};
 
 
 const app = new Vue({

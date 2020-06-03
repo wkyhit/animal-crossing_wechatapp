@@ -2,19 +2,23 @@
 	<view>
 		<uni-card class="img_card">
 			<view class="detail-img">
-				<image class="detail-img" mode="aspectFit" :src="inspectData.imgSource"></image>
+				<image class="detail-img1" mode="aspectFit" :src="info.pic_url"></image>
 			</view>
 		</uni-card>
 		<uni-card class="info_card">
 			<u-cell-group>
-				<u-cell-item icon="setting-fill" title="名称" :arrow="false" :value="name"></u-cell-item>
-				<u-cell-item icon="integral-fill" title="价格" :arrow="false" value="3000"></u-cell-item>
-				<u-cell-item icon="integral-fill" title="出现月份" :arrow="false"></u-cell-item>
-				<u-cell-item icon="integral-fill" title="时间段" :arrow="false"></u-cell-item>
-				<u-cell-item icon="integral-fill" title="出现地点" :arrow="false"></u-cell-item>
-				<u-cell-item icon="integral-fill" title="价格" :arrow="false"></u-cell-item>
-				<u-cell-item icon="integral-fill" title="鱼影大小" :arrow="false"></u-cell-item>
-				<u-cell-item icon="integral-fill" title="已捕捉" :arrow="false">
+				<u-cell-item icon="edit-pen-fill" title="名称" :arrow="false" :value="info.cn_sname"></u-cell-item>
+				<u-cell-item icon="integral-fill" title="价格" :arrow="false" :value="info.price"></u-cell-item>
+				<u-cell-item icon="hourglass-half-fill" title="出现月份(北半球)" :arrow="false" :value="info.north_month"></u-cell-item>
+				<u-cell-item icon="hourglass-half-fill" title="出现月份(南半球)" :arrow="false" :value="info.south_month"></u-cell-item>
+				<u-cell-item icon="clock-fill" title="时间段" :arrow="false" :value="info.time_show"></u-cell-item>
+				<u-cell-item v-if="dexType === 'fish'" icon="map-fill" title="出现地点" :arrow="false" :value="info.fish_place"></u-cell-item>
+				<u-cell-item v-if="dexType === 'insect'" icon="map-fill" title="出现地点" :arrow="false" :value="info.catch_place"></u-cell-item>
+				<u-cell-item v-if="dexType === 'insect'" icon="map-fill" title="出现天气" :arrow="false" :value="info.catch_weather"></u-cell-item>
+				<u-cell-item v-if="dexType === 'fish'" icon="eye-fill" title="鱼影大小" :arrow="false" :value="info.fish_size"></u-cell-item>
+				<u-cell-item icon="lock-opened-fill" title="解锁条件" :arrow="false" :value="info.unlock_difficulty"></u-cell-item>
+				<u-cell-item icon="tags-fill" title="描述" :arrow="false" :value="info.description"></u-cell-item>
+				<u-cell-item icon="heart-fill" title="已捕捉" :arrow="false">
 					<u-switch slot="right-icon" v-model="catched"></u-switch>
 				</u-cell-item>
 			</u-cell-group>
@@ -34,12 +38,16 @@
 				hemisphere:'sh',
 				index:0,
 				inspectData:'undefined',
-				name:""
+				//图鉴详细数据
+				info:[]
 			};
 		},
 		onLoad(option){
-			this.name = option.name
-			console.log(option.name)
+			//接收从列表页传来的图鉴类型
+			this.dexType = option.dexType;
+			console.log("详情页图鉴类型："+this.dexType)
+			//接收从列表页传过来的详细信息
+			this.info = JSON.parse(decodeURIComponent(option.item));			
 		}
 	}
 </script>
@@ -47,16 +55,17 @@
 <style lang="scss">
 	.img_card{
 		width: 100%;
-		height: 50rpx;
+		background-color: blue;
+		// height: 50rpx;
 	}
 	view.detail-img{
 	  display: flex;
 	  height: 33%;
 	  justify-content: center;
-	}
-	img.detail-img{
-	  width: 128px;
-	  height: 128px;
-	  padding: 2em 4em 0em 4em;
+	  .detail-img1{
+	    max-width: 150rpx;
+	    max-height: 150rpx;
+	    padding: 2em 4em 0em 4em;
+	  }
 	}
 </style>

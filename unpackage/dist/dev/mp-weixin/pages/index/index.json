@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "动森助手",
+  "disableScroll": true,
   "usingComponents": {
     "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
     "u-icon": "/node-modules/uview-ui/components/u-icon/u-icon",

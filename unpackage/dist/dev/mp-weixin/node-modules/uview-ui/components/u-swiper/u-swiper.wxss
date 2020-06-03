@@ -24,19 +24,19 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.u-swiper-wrap.data-v-56581641 {
+.u-swiper-wrap.data-v-a0307b58 {
   position: relative;
   overflow: hidden;
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
-.u-swiper-image.data-v-56581641 {
+.u-swiper-image.data-v-a0307b58 {
   width: 100%;
   will-change: transform;
   height: 100%;
   display: block;
 }
-.u-swiper-indicator.data-v-56581641 {
+.u-swiper-indicator.data-v-a0307b58 {
   padding: 0 24rpx;
   position: absolute;
   display: -webkit-box;
@@ -45,7 +45,7 @@
   width: 100%;
   z-index: 1;
 }
-.u-indicator-item-rect.data-v-56581641 {
+.u-indicator-item-rect.data-v-a0307b58 {
   width: 26rpx;
   height: 8rpx;
   margin: 0 6rpx;
@@ -53,10 +53,10 @@
   transition: all 0.5s;
   background-color: rgba(0, 0, 0, 0.3);
 }
-.u-indicator-item-rect-active.data-v-56581641 {
+.u-indicator-item-rect-active.data-v-a0307b58 {
   background-color: rgba(255, 255, 255, 0.8);
 }
-.u-indicator-item-dot.data-v-56581641 {
+.u-indicator-item-dot.data-v-a0307b58 {
   width: 14rpx;
   height: 14rpx;
   margin: 0 6rpx;
@@ -66,10 +66,10 @@
   transition: all 0.5s;
   background-color: rgba(0, 0, 0, 0.3);
 }
-.u-indicator-item-dot-active.data-v-56581641 {
+.u-indicator-item-dot-active.data-v-a0307b58 {
   background-color: rgba(255, 255, 255, 0.8);
 }
-.u-indicator-item-round.data-v-56581641 {
+.u-indicator-item-round.data-v-a0307b58 {
   width: 14rpx;
   height: 14rpx;
   margin: 0 6rpx;
@@ -79,11 +79,11 @@
   transition: all 0.5s;
   background-color: rgba(0, 0, 0, 0.3);
 }
-.u-indicator-item-round-active.data-v-56581641 {
+.u-indicator-item-round-active.data-v-a0307b58 {
   width: 34rpx;
   background-color: rgba(255, 255, 255, 0.8);
 }
-.u-indicator-item-number.data-v-56581641 {
+.u-indicator-item-number.data-v-a0307b58 {
   padding: 6rpx 16rpx;
   line-height: 1;
   background-color: rgba(0, 0, 0, 0.3);
@@ -92,11 +92,11 @@
   font-size: 26rpx;
   color: rgba(255, 255, 255, 0.8);
 }
-.u-list-scale.data-v-56581641 {
+.u-list-scale.data-v-a0307b58 {
   -webkit-transform-origin: center center;
           transform-origin: center center;
 }
-.u-list-image-wrap.data-v-56581641 {
+.u-list-image-wrap.data-v-a0307b58 {
   width: 100%;
   height: 100%;
   -webkit-box-flex: 1;
@@ -109,7 +109,7 @@
           box-sizing: content-box;
   position: relative;
 }
-.u-swiper-title.data-v-56581641 {
+.u-swiper-title.data-v-a0307b58 {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.3);
   bottom: 0;
@@ -119,7 +119,7 @@
   padding: 12rpx 24rpx;
   color: rgba(255, 255, 255, 0.9);
 }
-.u-swiper-item.data-v-56581641 {
+.u-swiper-item.data-v-a0307b58 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;

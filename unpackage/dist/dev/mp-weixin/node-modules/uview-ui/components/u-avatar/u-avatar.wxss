@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.u-avatar.data-v-fcb8193e {
+.u-avatar.data-v-4998c118 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: inline-flex;
@@ -40,7 +40,7 @@
           border-radius: 10px;
   overflow: hidden;
 }
-.u-avatar-img.data-v-fcb8193e {
+.u-avatar-img.data-v-4998c118 {
   width: 100%;
   height: 100%;
 }

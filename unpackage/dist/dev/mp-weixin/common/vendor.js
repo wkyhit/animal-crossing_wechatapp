@@ -757,7 +757,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1564,6 +1564,693 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
+/***/ 116:
+/*!******************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/pages/turnip-prices/predictions.js ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _regeneratorRuntime = __webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 17);var _PATTERN_COUNTS, _PATTERN$FLUCTUATING, _PATTERN$LARGE_SPIKE, _PATTERN$DECREASING, _PATTERN$SMALL_SPIKE, _PROBABILITY_MATRIX;function _createForOfIteratorHelper(o) {if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var it,normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var _marked = /*#__PURE__*/_regeneratorRuntime.mark(
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+generate_pattern_0_with_lengths),_marked2 = /*#__PURE__*/_regeneratorRuntime.mark(
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+generate_pattern_0),_marked3 = /*#__PURE__*/_regeneratorRuntime.mark(
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+generate_pattern_1_with_peak),_marked4 = /*#__PURE__*/_regeneratorRuntime.mark(
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+generate_pattern_1),_marked5 = /*#__PURE__*/_regeneratorRuntime.mark(
+
+
+
+
+
+generate_pattern_2),_marked6 = /*#__PURE__*/_regeneratorRuntime.mark(
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+generate_pattern_3_with_peak),_marked7 = /*#__PURE__*/_regeneratorRuntime.mark(
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+generate_pattern_3),_marked8 = /*#__PURE__*/_regeneratorRuntime.mark(
+
+
+
+
+
+generate_possibilities);function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var PATTERN = { FLUCTUATING: 0, LARGE_SPIKE: 1, DECREASING: 2, SMALL_SPIKE: 3 };var PATTERN_COUNTS = (_PATTERN_COUNTS = {}, _defineProperty(_PATTERN_COUNTS, PATTERN.FLUCTUATING, 56), _defineProperty(_PATTERN_COUNTS, PATTERN.LARGE_SPIKE, 7), _defineProperty(_PATTERN_COUNTS, PATTERN.DECREASING, 1), _defineProperty(_PATTERN_COUNTS, PATTERN.SMALL_SPIKE, 8), _PATTERN_COUNTS);var PROBABILITY_MATRIX = (_PROBABILITY_MATRIX = {}, _defineProperty(_PROBABILITY_MATRIX, PATTERN.FLUCTUATING, (_PATTERN$FLUCTUATING = {}, _defineProperty(_PATTERN$FLUCTUATING, PATTERN.FLUCTUATING, 0.20), _defineProperty(_PATTERN$FLUCTUATING, PATTERN.LARGE_SPIKE, 0.30), _defineProperty(_PATTERN$FLUCTUATING, PATTERN.DECREASING, 0.15), _defineProperty(_PATTERN$FLUCTUATING, PATTERN.SMALL_SPIKE, 0.35), _PATTERN$FLUCTUATING)), _defineProperty(_PROBABILITY_MATRIX, PATTERN.LARGE_SPIKE, (_PATTERN$LARGE_SPIKE = {}, _defineProperty(_PATTERN$LARGE_SPIKE, PATTERN.FLUCTUATING, 0.50), _defineProperty(_PATTERN$LARGE_SPIKE, PATTERN.LARGE_SPIKE, 0.05), _defineProperty(_PATTERN$LARGE_SPIKE, PATTERN.DECREASING, 0.20), _defineProperty(_PATTERN$LARGE_SPIKE, PATTERN.SMALL_SPIKE, 0.25), _PATTERN$LARGE_SPIKE)), _defineProperty(_PROBABILITY_MATRIX, PATTERN.DECREASING, (_PATTERN$DECREASING = {}, _defineProperty(_PATTERN$DECREASING, PATTERN.FLUCTUATING, 0.25), _defineProperty(_PATTERN$DECREASING, PATTERN.LARGE_SPIKE, 0.45), _defineProperty(_PATTERN$DECREASING, PATTERN.DECREASING, 0.05), _defineProperty(_PATTERN$DECREASING, PATTERN.SMALL_SPIKE, 0.25), _PATTERN$DECREASING)), _defineProperty(_PROBABILITY_MATRIX, PATTERN.SMALL_SPIKE, (_PATTERN$SMALL_SPIKE = {}, _defineProperty(_PATTERN$SMALL_SPIKE, PATTERN.FLUCTUATING, 0.45), _defineProperty(_PATTERN$SMALL_SPIKE, PATTERN.LARGE_SPIKE, 0.25), _defineProperty(_PATTERN$SMALL_SPIKE, PATTERN.DECREASING, 0.15), _defineProperty(_PATTERN$SMALL_SPIKE, PATTERN.SMALL_SPIKE, 0.15), _PATTERN$SMALL_SPIKE)), _PROBABILITY_MATRIX);function minimum_rate_from_given_and_base(given_price, buy_price) {return 10000 * (given_price - 1) / buy_price;}function maximum_rate_from_given_and_base(given_price, buy_price) {return 10000 * given_price / buy_price;}function generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, high_phase_2_len, dec_phase_2_len, high_phase_3_len) {var buy_price, predicted_prices, i, min_pred, max_pred, min_rate, max_rate;return _regeneratorRuntime.wrap(function generate_pattern_0_with_lengths$(_context) {while (1) {switch (_context.prev = _context.next) {case 0: /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // PATTERN 0: high, decreasing, high, decreasing, high
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        work = 2;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // high phase 1
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        for (int i = 0; i < hiPhaseLen1; i++)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // decreasing phase 1
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        rate = randfloat(0.8, 0.6);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        for (int i = 0; i < decPhaseLen1; i++)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          sellPrices[work++] = intceil(rate * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          rate -= 0.04;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          rate -= randfloat(0, 0.06);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // high phase 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        for (int i = 0; i < (hiPhaseLen2and3 - hiPhaseLen3); i++)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // decreasing phase 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        rate = randfloat(0.8, 0.6);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        for (int i = 0; i < decPhaseLen2; i++)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          sellPrices[work++] = intceil(rate * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          rate -= 0.04;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          rate -= randfloat(0, 0.06);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // high phase 3
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        for (int i = 0; i < hiPhaseLen3; i++)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    */buy_price = given_prices[0];predicted_prices = [{ min: buy_price, max: buy_price }, { min: buy_price, max: buy_price }]; // High Phase 1
+          i = 2;case 3:if (!(i < 2 + high_phase_1_len)) {_context.next = 15;break;}min_pred = Math.floor(0.9 * buy_price);max_pred = Math.ceil(1.4 * buy_price);if (isNaN(given_prices[i])) {_context.next = 11;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context.next = 9;break;}return _context.abrupt("return");case 9:min_pred = given_prices[i];max_pred = given_prices[i];case 11:predicted_prices.push({ min: min_pred, max: max_pred });case 12:i++;_context.next = 3;break;case 15: // Dec Phase 1
+          min_rate = 6000;max_rate = 8000;i = 2 + high_phase_1_len;case 18:if (!(i < 2 + high_phase_1_len + dec_phase_1_len)) {_context.next = 34;break;}min_pred = Math.floor(min_rate * buy_price / 10000);max_pred = Math.ceil(max_rate * buy_price / 10000);if (isNaN(given_prices[i])) {_context.next = 28;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context.next = 24;break;}return _context.abrupt("return");case 24:min_pred = given_prices[i];max_pred = given_prices[i];min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);case 28:predicted_prices.push({ min: min_pred, max: max_pred });min_rate -= 1000;max_rate -= 400;case 31:i++;_context.next = 18;break;case 34:i = 2 + high_phase_1_len + dec_phase_1_len;case 35:if (!(i < 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len)) {_context.next = 47;break;}min_pred = Math.floor(0.9 * buy_price);max_pred = Math.ceil(1.4 * buy_price);if (isNaN(given_prices[i])) {_context.next = 43;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context.next = 41;break;}return _context.abrupt("return");case 41:min_pred = given_prices[i];max_pred = given_prices[i];case 43:predicted_prices.push({ min: min_pred, max: max_pred });case 44:i++;_context.next = 35;break;case 47: // Dec Phase 2
+          min_rate = 6000;max_rate = 8000;i = 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len;case 50:if (!(i < 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len)) {_context.next = 66;break;}min_pred = Math.floor(min_rate * buy_price / 10000);max_pred = Math.ceil(max_rate * buy_price / 10000);if (isNaN(given_prices[i])) {_context.next = 60;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context.next = 56;break;}return _context.abrupt("return");case 56:min_pred = given_prices[i];max_pred = given_prices[i];min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);case 60:predicted_prices.push({ min: min_pred, max: max_pred });min_rate -= 1000;max_rate -= 400;case 63:i++;_context.next = 50;break;case 66:if (!(2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len + high_phase_3_len != 14)) {_context.next = 68;break;}throw new Error("Phase lengths don't add up");case 68:i = 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len;case 69:if (!(i < 14)) {_context.next = 81;break;}min_pred = Math.floor(0.9 * buy_price);max_pred = Math.ceil(1.4 * buy_price);if (isNaN(given_prices[i])) {_context.next = 77;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context.next = 75;break;}return _context.abrupt("return");case 75:min_pred = given_prices[i];max_pred = given_prices[i];case 77:predicted_prices.push({ min: min_pred, max: max_pred });case 78:i++;_context.next = 69;break;case 81:_context.next = 83;return { // pattern_description: "Fluctuating",
+            pattern_description: "波动型", pattern_number: 0, prices: predicted_prices };case 83:case "end":return _context.stop();}}}, _marked);}function generate_pattern_0(given_prices) {var dec_phase_1_len, high_phase_1_len, high_phase_3_len;return _regeneratorRuntime.wrap(function generate_pattern_0$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:dec_phase_1_len = 2;case 1:if (!(dec_phase_1_len < 4)) {_context2.next = 16;break;}high_phase_1_len = 0;case 3:if (!(high_phase_1_len < 7)) {_context2.next = 13;break;}high_phase_3_len = 0;case 5:if (!(high_phase_3_len < 7 - high_phase_1_len - 1 + 1)) {_context2.next = 10;break;}return _context2.delegateYield(generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, 7 - high_phase_1_len - high_phase_3_len, 5 - dec_phase_1_len, high_phase_3_len), "t0", 7);case 7:high_phase_3_len++;_context2.next = 5;break;case 10:high_phase_1_len++;_context2.next = 3;break;case 13:dec_phase_1_len++;_context2.next = 1;break;case 16:case "end":return _context2.stop();}}}, _marked2);}function generate_pattern_1_with_peak(given_prices, peak_start) {var buy_price, predicted_prices, min_rate, max_rate, i, min_pred, max_pred, min_randoms, max_randoms;return _regeneratorRuntime.wrap(function generate_pattern_1_with_peak$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0: /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      // PATTERN 1: decreasing middle, high spike, random low
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      peakStart = randint(3, 9);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      rate = randfloat(0.9, 0.85);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      for (work = 2; work < peakStart; work++)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        sellPrices[work] = intceil(rate * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        rate -= 0.03;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        rate -= randfloat(0, 0.02);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      sellPrices[work++] = intceil(randfloat(1.4, 2.0) * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      sellPrices[work++] = intceil(randfloat(2.0, 6.0) * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      sellPrices[work++] = intceil(randfloat(1.4, 2.0) * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      for (; work < 14; work++)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        sellPrices[work] = intceil(randfloat(0.4, 0.9) * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    */buy_price = given_prices[0];predicted_prices = [{ min: buy_price, max: buy_price }, { min: buy_price, max: buy_price }];min_rate = 8500;max_rate = 9000;i = 2;case 5:if (!(i < peak_start)) {_context3.next = 21;break;}min_pred = Math.floor(min_rate * buy_price / 10000);max_pred = Math.ceil(max_rate * buy_price / 10000);if (isNaN(given_prices[i])) {_context3.next = 15;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context3.next = 11;break;}return _context3.abrupt("return");case 11:min_pred = given_prices[i];max_pred = given_prices[i];min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);case 15:predicted_prices.push({ min: min_pred, max: max_pred });min_rate -= 500;max_rate -= 300;case 18:i++;_context3.next = 5;break;case 21: // Now each day is independent of next
+          min_randoms = [0.9, 1.4, 2.0, 1.4, 0.9, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4];max_randoms = [1.4, 2.0, 6.0, 2.0, 1.4, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9];i = peak_start;case 24:if (!(i < 14)) {_context3.next = 36;break;}min_pred = Math.floor(min_randoms[i - peak_start] * buy_price);max_pred = Math.ceil(max_randoms[i - peak_start] * buy_price);if (isNaN(given_prices[i])) {_context3.next = 32;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context3.next = 30;break;}return _context3.abrupt("return");case 30:min_pred = given_prices[i];max_pred = given_prices[i];case 32:predicted_prices.push({ min: min_pred, max: max_pred });case 33:i++;_context3.next = 24;break;case 36:_context3.next = 38;return { // pattern_description: "Large spike",
+            pattern_description: "大涨型", pattern_number: 1, prices: predicted_prices };case 38:case "end":return _context3.stop();}}}, _marked3);}function generate_pattern_1(given_prices) {var peak_start;return _regeneratorRuntime.wrap(function generate_pattern_1$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:peak_start = 3;case 1:if (!(peak_start < 10)) {_context4.next = 6;break;}return _context4.delegateYield(generate_pattern_1_with_peak(given_prices, peak_start), "t0", 3);case 3:peak_start++;_context4.next = 1;break;case 6:case "end":return _context4.stop();}}}, _marked4);}function generate_pattern_2(given_prices) {var buy_price, predicted_prices, min_rate, max_rate, i, min_pred, max_pred;return _regeneratorRuntime.wrap(function generate_pattern_2$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0: /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // PATTERN 2: consistently decreasing
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                rate = 0.9;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                rate -= randfloat(0, 0.05);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                for (work = 2; work < 14; work++)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  sellPrices[work] = intceil(rate * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  rate -= 0.03;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  rate -= randfloat(0, 0.02);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                break;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            */buy_price = given_prices[0];predicted_prices = [{ min: buy_price, max: buy_price }, { min: buy_price, max: buy_price }];min_rate = 8500;max_rate = 9000;i = 2;case 5:if (!(i < 14)) {_context5.next = 21;break;}min_pred = Math.floor(min_rate * buy_price / 10000);max_pred = Math.ceil(max_rate * buy_price / 10000);if (isNaN(given_prices[i])) {_context5.next = 15;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context5.next = 11;break;}return _context5.abrupt("return");case 11:min_pred = given_prices[i];max_pred = given_prices[i];min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);case 15:predicted_prices.push({ min: min_pred, max: max_pred });min_rate -= 500;max_rate -= 300;case 18:i++;_context5.next = 5;break;case 21:_context5.next = 23;return { // pattern_description: "Decreasing",
+            pattern_description: "递减型", pattern_number: 2, prices: predicted_prices };case 23:case "end":return _context5.stop();}}}, _marked5);}function generate_pattern_3_with_peak(given_prices, peak_start) {var buy_price, predicted_prices, min_rate, max_rate, i, min_pred, max_pred;return _regeneratorRuntime.wrap(function generate_pattern_3_with_peak$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0: /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                               // PATTERN 3: decreasing, spike, decreasing
+                                                                                                                                                                                                                                                                                                                                                                                                                                               peakStart = randint(2, 9);
+                                                                                                                                                                                                                                                                                                                                                                                                                                               // decreasing phase before the peak
+                                                                                                                                                                                                                                                                                                                                                                                                                                               rate = randfloat(0.9, 0.4);
+                                                                                                                                                                                                                                                                                                                                                                                                                                               for (work = 2; work < peakStart; work++)
+                                                                                                                                                                                                                                                                                                                                                                                                                                               {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 sellPrices[work] = intceil(rate * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 rate -= 0.03;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 rate -= randfloat(0, 0.02);
+                                                                                                                                                                                                                                                                                                                                                                                                                                               }
+                                                                                                                                                                                                                                                                                                                                                                                                                                               sellPrices[work++] = intceil(randfloat(0.9, 1.4) * (float)basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                               sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                               rate = randfloat(1.4, 2.0);
+                                                                                                                                                                                                                                                                                                                                                                                                                                               sellPrices[work++] = intceil(randfloat(1.4, rate) * basePrice) - 1;
+                                                                                                                                                                                                                                                                                                                                                                                                                                               sellPrices[work++] = intceil(rate * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                               sellPrices[work++] = intceil(randfloat(1.4, rate) * basePrice) - 1;
+                                                                                                                                                                                                                                                                                                                                                                                                                                               // decreasing phase after the peak
+                                                                                                                                                                                                                                                                                                                                                                                                                                               if (work < 14)
+                                                                                                                                                                                                                                                                                                                                                                                                                                               {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 rate = randfloat(0.9, 0.4);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 for (; work < 14; work++)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                   sellPrices[work] = intceil(rate * basePrice);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                   rate -= 0.03;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                   rate -= randfloat(0, 0.02);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                               }
+                                                                                                                                                                                                                                                                                                                                                                                                                                             */buy_price = given_prices[0];predicted_prices = [{ min: buy_price, max: buy_price }, { min: buy_price, max: buy_price }];min_rate = 4000;max_rate = 9000;i = 2;case 5:if (!(i < peak_start)) {_context6.next = 21;break;}min_pred = Math.floor(min_rate * buy_price / 10000);max_pred = Math.ceil(max_rate * buy_price / 10000);if (isNaN(given_prices[i])) {_context6.next = 15;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context6.next = 11;break;}return _context6.abrupt("return");case 11:min_pred = given_prices[i];max_pred = given_prices[i];min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);case 15:predicted_prices.push({ min: min_pred, max: max_pred });min_rate -= 500;max_rate -= 300;case 18:i++;_context6.next = 5;break;case 21:i = peak_start;case 22:if (!(i < peak_start + 2)) {_context6.next = 34;break;}min_pred = Math.floor(0.9 * buy_price);max_pred = Math.ceil(1.4 * buy_price);if (isNaN(given_prices[i])) {_context6.next = 30;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context6.next = 28;break;}return _context6.abrupt("return");case 28:min_pred = given_prices[i];max_pred = given_prices[i];case 30:predicted_prices.push({ min: min_pred, max: max_pred });case 31:i++;_context6.next = 22;break;case 34: // Main spike 1
+          min_pred = Math.floor(1.4 * buy_price) - 1;max_pred = Math.ceil(2.0 * buy_price) - 1;if (isNaN(given_prices[peak_start + 2])) {_context6.next = 41;break;}if (!(given_prices[peak_start + 2] < min_pred || given_prices[peak_start + 2] > max_pred)) {_context6.next = 39;break;}return _context6.abrupt("return");case 39:min_pred = given_prices[peak_start + 2];max_pred = given_prices[peak_start + 2];case 41:predicted_prices.push({ min: min_pred, max: max_pred }); // Main spike 2
+          min_pred = predicted_prices[peak_start + 2].min;max_pred = Math.ceil(2.0 * buy_price);if (isNaN(given_prices[peak_start + 3])) {_context6.next = 49;break;}if (!(given_prices[peak_start + 3] < min_pred || given_prices[peak_start + 3] > max_pred)) {_context6.next = 47;break;}return _context6.abrupt("return");case 47:min_pred = given_prices[peak_start + 3];max_pred = given_prices[peak_start + 3];case 49:predicted_prices.push({ min: min_pred, max: max_pred }); // Main spike 3
+          min_pred = Math.floor(1.4 * buy_price) - 1;max_pred = predicted_prices[peak_start + 3].max - 1;if (isNaN(given_prices[peak_start + 4])) {_context6.next = 57;break;}if (!(given_prices[peak_start + 4] < min_pred || given_prices[peak_start + 4] > max_pred)) {_context6.next = 55;break;}return _context6.abrupt("return");case 55:min_pred = given_prices[peak_start + 4];max_pred = given_prices[peak_start + 4];case 57:predicted_prices.push({ min: min_pred, max: max_pred });if (!(peak_start + 5 < 14)) {_context6.next = 78;break;}min_rate = 4000;max_rate = 9000;i = peak_start + 5;case 62:if (!(i < 14)) {_context6.next = 78;break;}min_pred = Math.floor(min_rate * buy_price / 10000);max_pred = Math.ceil(max_rate * buy_price / 10000);if (isNaN(given_prices[i])) {_context6.next = 72;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context6.next = 68;break;}return _context6.abrupt("return");case 68:min_pred = given_prices[i];max_pred = given_prices[i];min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);case 72:predicted_prices.push({ min: min_pred, max: max_pred });min_rate -= 500;max_rate -= 300;case 75:i++;_context6.next = 62;break;case 78:_context6.next = 80;return { // pattern_description: "Small spike",
+            pattern_description: "小涨型", pattern_number: 3, prices: predicted_prices };case 80:case "end":return _context6.stop();}}}, _marked6);}function generate_pattern_3(given_prices) {var peak_start;return _regeneratorRuntime.wrap(function generate_pattern_3$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:peak_start = 2;case 1:if (!(peak_start < 10)) {_context7.next = 6;break;}return _context7.delegateYield(generate_pattern_3_with_peak(given_prices, peak_start), "t0", 3);case 3:peak_start++;_context7.next = 1;break;case 6:case "end":return _context7.stop();}}}, _marked7);}function generate_possibilities(sell_prices, first_buy) {var buy_price;return _regeneratorRuntime.wrap(function generate_possibilities$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:if (!(first_buy || isNaN(sell_prices[0]))) {_context8.next = 17;break;}buy_price = 90;case 2:if (!(buy_price <= 110)) {_context8.next = 15;break;}sell_prices[0] = sell_prices[1] = buy_price;if (!first_buy) {_context8.next = 8;break;}return _context8.delegateYield(generate_pattern_3(sell_prices), "t0", 6);case 6:_context8.next = 12;break;case 8:return _context8.delegateYield(generate_pattern_0(sell_prices), "t1", 9);case 9:return _context8.delegateYield(generate_pattern_1(sell_prices), "t2", 10);case 10:return _context8.delegateYield(generate_pattern_2(sell_prices), "t3", 11);case 11:return _context8.delegateYield(generate_pattern_3(sell_prices), "t4", 12);case 12:buy_price++;_context8.next = 2;break;case 15:_context8.next = 21;break;case 17:return _context8.delegateYield(generate_pattern_0(sell_prices), "t5", 18);case 18:return _context8.delegateYield(generate_pattern_1(sell_prices), "t6", 19);case 19:return _context8.delegateYield(generate_pattern_2(sell_prices), "t7", 20);case 20:return _context8.delegateYield(generate_pattern_3(sell_prices), "t8", 21);case 21:case "end":return _context8.stop();}}}, _marked8);}function row_probability(possibility, previous_pattern) {return PROBABILITY_MATRIX[previous_pattern][possibility.pattern_number] / PATTERN_COUNTS[possibility.pattern_number];}function get_probabilities(possibilities, previous_pattern) {if (typeof previous_pattern === 'undefined' || Number.isNaN(previous_pattern) || previous_pattern === null || previous_pattern < 0 || previous_pattern > 3) {return possibilities;}var max_percent = possibilities.map(function (poss) {return row_probability(poss, previous_pattern);}).reduce(function (prev, current) {return prev + current;}, 0);return possibilities.map(function (poss) {poss.probability = row_probability(poss, previous_pattern) / max_percent;return poss;});}function analyze_possibilities(sell_prices, first_buy, previous_pattern) {var generated_possibilities = Array.from(generate_possibilities(sell_prices, first_buy));generated_possibilities = get_probabilities(generated_possibilities, previous_pattern);var global_min_max = [];for (var day = 0; day < 14; day++) {var prices = { min: 999, max: 0 };var _iterator = _createForOfIteratorHelper(generated_possibilities),_step;try {for (_iterator.s(); !(_step = _iterator.n()).done;) {var poss = _step.value;if (poss.prices[day].min < prices.min) {prices.min = poss.prices[day].min;}if (poss.prices[day].max > prices.max) {prices.max = poss.prices[day].max;}}} catch (err) {_iterator.e(err);} finally {_iterator.f();}global_min_max.push(prices);}generated_possibilities.push({ pattern_description: "汇总", pattern_number: 4, prices: global_min_max });var _iterator2 = _createForOfIteratorHelper(generated_possibilities),_step2;try {for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {var _poss = _step2.value;var weekMins = [];var weekMaxes = [];var _iterator3 = _createForOfIteratorHelper(_poss.prices.slice(2)),_step3;try {for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {var _day = _step3.value;weekMins.push(_day.min);weekMaxes.push(_day.max);}} catch (err) {_iterator3.e(err);} finally {_iterator3.f();}_poss.weekGuaranteedMinimum = Math.max.apply(Math, weekMins);_poss.weekMax = Math.max.apply(Math, weekMaxes);}} catch (err) {_iterator2.e(err);} finally {_iterator2.f();}generated_possibilities.sort(function (a, b) {if (a.weekMax < b.weekMax) {return 1;} else if (a.weekMax > b.weekMax) {return -1;} else {return 0;}});return generated_possibilities;}module.exports = { analyze_possibilities: analyze_possibilities };
+
+/***/ }),
+
 /***/ 12:
 /*!**********************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -1694,9 +2381,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 13:
-/*!***********************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/index.js ***!
-  \***********************************************************************************/
+/*!**************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/index.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1813,9 +2500,9 @@ var install = function install(Vue) {
 /***/ }),
 
 /***/ 14:
-/*!**********************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/mixin/mixin.js ***!
-  \**********************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/mixin/mixin.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1860,9 +2547,9 @@ var install = function install(Vue) {
 /***/ }),
 
 /***/ 15:
-/*!************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/mixin/mpShare.js ***!
-  \************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/mixin/mpShare.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1882,9 +2569,9 @@ module.exports = {
 /***/ }),
 
 /***/ 16:
-/*!************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/request/index.js ***!
-  \************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/request/index.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8383,7 +9070,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8404,14 +9091,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8487,7 +9174,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8882,9 +9569,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 20:
-/*!*******************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/queryParams.js ***!
-  \*******************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/queryParams.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8951,9 +9638,9 @@ queryParams;exports.default = _default;
 /***/ }),
 
 /***/ 21:
-/*!*************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/route.js ***!
-  \*************************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/route.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9048,9 +9735,9 @@ route;exports.default = _default;
 /***/ }),
 
 /***/ 22:
-/*!******************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/timeFormat.js ***!
-  \******************************************************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/timeFormat.js ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9088,9 +9775,9 @@ timeFormat;exports.default = _default;
 /***/ }),
 
 /***/ 23:
-/*!****************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/timeFrom.js ***!
-  \****************************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/timeFrom.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9145,10 +9832,264 @@ timeFrom;exports.default = _default;
 
 /***/ }),
 
-/***/ 238:
-/*!**********************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/components/uni-icons/icons.js ***!
-  \**********************************************************************************/
+/***/ 24:
+/*!************************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/colorGradient.js ***!
+  \************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 求两个颜色之间的渐变值
+                                                                                                      * @param {string} startColor 开始的颜色
+                                                                                                      * @param {string} endColor 结束的颜色
+                                                                                                      * @param {number} step 颜色等分的份额
+                                                                                                      * */
+function colorGradient() {var startColor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'rgb(0, 0, 0)';var endColor = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'rgb(255, 255, 255)';var step = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 10;
+  var startRGB = hexToRgb(startColor, false); //转换为rgb数组模式
+  var startR = startRGB[0];
+  var startG = startRGB[1];
+  var startB = startRGB[2];
+
+  var endRGB = hexToRgb(endColor, false);
+  var endR = endRGB[0];
+  var endG = endRGB[1];
+  var endB = endRGB[2];
+
+  var sR = (endR - startR) / step; //总差值
+  var sG = (endG - startG) / step;
+  var sB = (endB - startB) / step;
+  var colorArr = [];
+  for (var i = 0; i < step; i++) {
+    //计算每一步的hex值 
+    var hex = rgbToHex('rgb(' + Math.round(sR * i + startR) + ',' + Math.round(sG * i + startG) + ',' + Math.round(sB *
+    i + startB) + ')');
+    colorArr.push(hex);
+  }
+  return colorArr;
+}
+
+// 将hex表示方式转换为rgb表示方式(这里返回rgb数组模式)
+function hexToRgb(sColor) {var str = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+  sColor = sColor.toLowerCase();
+  if (sColor && reg.test(sColor)) {
+    if (sColor.length === 4) {
+      var sColorNew = "#";
+      for (var i = 1; i < 4; i += 1) {
+        sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+      }
+      sColor = sColorNew;
+    }
+    //处理六位的颜色值
+    var sColorChange = [];
+    for (var _i = 1; _i < 7; _i += 2) {
+      sColorChange.push(parseInt("0x" + sColor.slice(_i, _i + 2)));
+    }
+    if (!str) {
+      return sColorChange;
+    } else {
+      return "rgb(".concat(sColorChange[0], ",").concat(sColorChange[1], ",").concat(sColorChange[2], ")");
+    }
+  } else if (/^(rgb|RGB)/.test(sColor)) {
+    var arr = sColor.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
+    return arr.map(function (val) {return Number(val);});
+  } else {
+    return sColor;
+  }
+};
+
+// 将rgb表示方式转换为hex表示方式
+function rgbToHex(rgb) {
+  var _this = rgb;
+  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+  if (/^(rgb|RGB)/.test(_this)) {
+    var aColor = _this.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
+    var strHex = "#";
+    for (var i = 0; i < aColor.length; i++) {
+      var hex = Number(aColor[i]).toString(16);
+      hex = String(hex).length == 1 ? 0 + '' + hex : hex; // 保证每个rgb的值为2位
+      if (hex === "0") {
+        hex += hex;
+      }
+      strHex += hex;
+    }
+    if (strHex.length !== 7) {
+      strHex = _this;
+    }
+    return strHex;
+  } else if (reg.test(_this)) {
+    var aNum = _this.replace(/#/, "").split("");
+    if (aNum.length === 6) {
+      return _this;
+    } else if (aNum.length === 3) {
+      var numHex = "#";
+      for (var _i2 = 0; _i2 < aNum.length; _i2 += 1) {
+        numHex += aNum[_i2] + aNum[_i2];
+      }
+      return numHex;
+    }
+  } else {
+    return _this;
+  }
+}var _default =
+
+{
+  colorGradient: colorGradient,
+  hexToRgb: hexToRgb,
+  rgbToHex: rgbToHex };exports.default = _default;
+
+/***/ }),
+
+/***/ 25:
+/*!***************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/guid.js ***!
+  \***************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 本算法来源于简书开源代码，详见：https://www.jianshu.com/p/fdbf293d0a85
+                                                                                                      * 全局唯一标识符（uuid，Globally Unique Identifier）,也称作 uuid(Universally Unique IDentifier) 
+                                                                                                      * 一般用于多个组件之间,给它一个唯一的标识符,或者v-for循环的时候,如果使用数组的index可能会导致更新列表出现问题
+                                                                                                      * 最可能的情况是左滑删除item或者对某条信息流"不喜欢"并去掉它的时候,会导致组件内的数据可能出现错乱
+                                                                                                      * v-for的时候,推荐使用后端返回的id而不是循环的index
+                                                                                                      * @param {Number} len uuid的长度
+                                                                                                      * @param {Boolean} firstU 将返回的首字母置为"u"
+                                                                                                      * @param {Nubmer} radix 生成uuid的基数(意味着返回的字符串都是这个基数),2-二进制,8-八进制,10-十进制,16-十六进制
+                                                                                                      */
+function guid() {var len = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 32;var firstU = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;var radix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+  var uuid = [];
+  radix = radix || chars.length;
+
+  if (len) {
+    // 如果指定uuid长度,只是取随机的字符,0|x为位运算,能去掉x的小数位,返回整数位
+    for (var i = 0; i < len; i++) {uuid[i] = chars[0 | Math.random() * radix];}
+  } else {
+    var r;
+    // rfc4122标准要求返回的uuid中,某些位为固定的字符
+    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+    uuid[14] = '4';
+
+    for (var _i = 0; _i < 36; _i++) {
+      if (!uuid[_i]) {
+        r = 0 | Math.random() * 16;
+        uuid[_i] = chars[_i == 19 ? r & 0x3 | 0x8 : r];
+      }
+    }
+  }
+  // 移除第一个字符,并用u替代,因为第一个字符为数值时,该guuid不能用作id或者class
+  if (firstU) {
+    uuid.shift();
+    return 'u' + uuid.join('');
+  } else {
+    return uuid.join('');
+  }
+}var _default =
+
+guid;exports.default = _default;
+
+/***/ }),
+
+/***/ 26:
+/*!****************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/color.js ***!
+  \****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var color = {
+  primary: "#2979ff",
+  primaryDark: "#2b85e4",
+  primaryDisabled: "#a0cfff",
+  primaryLight: "#ecf5ff",
+  bgColor: "#f3f4f6",
+
+  info: "#909399",
+  infoDark: "#82848a",
+  infoDisabled: "#c8c9cc",
+  infoLight: "#f4f4f5",
+
+  warning: "#ff9900",
+  warningDark: "#f29100",
+  warningDisabled: "#fcbd71",
+  warningLight: "#fdf6ec",
+
+  error: "#fa3534",
+  errorDark: "#dd6161",
+  errorDisabled: "#fab6b6",
+  errorLight: "#fef0f0",
+
+  success: "#19be6b",
+  successDark: "#18b566",
+  successDisabled: "#71d5a1",
+  successLight: "#dbf1e1",
+
+  mainColor: "#303133",
+  contentColor: "#606266",
+  tipsColor: "#909399",
+  lightColor: "#c0c4cc",
+  borderColor: "#e4e7ed" };var _default =
+
+
+color;exports.default = _default;
+
+/***/ }),
+
+/***/ 27:
+/*!********************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/type2icon.js ***!
+  \********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 根据主题type值,获取对应的图标
+                                                                                                      * @param String type 主题名称,primary|info|error|warning|success
+                                                                                                      * @param String fill 是否使用fill填充实体的图标  
+                                                                                                      */
+function type2icon() {var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'success';var fill = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  // 如果非预置值,默认为success
+  if (['primary', 'info', 'error', 'warning', 'success'].indexOf(type) == -1) type = 'success';
+  var iconName = '';
+  // 目前(2019-12-12),info和primary使用同一个图标
+  switch (type) {
+    case 'primary':
+      iconName = 'info-circle';
+      break;
+    case 'info':
+      iconName = 'info-circle';
+      break;
+    case 'error':
+      iconName = 'close-circle';
+      break;
+    case 'warning':
+      iconName = 'error-circle';
+      break;
+    case 'success':
+      iconName = 'checkmark-circle';
+      break;
+    default:
+      iconName = 'checkmark-circle';}
+
+  // 是否是实体类型,加上-fill,在icon组件库中,实体的类名是后面加-fill的
+  if (fill) iconName += '-fill';
+  return iconName;
+}var _default =
+
+type2icon;exports.default = _default;
+
+/***/ }),
+
+/***/ 272:
+/*!*************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/components/uni-icons/icons.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9287,264 +10228,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 24:
-/*!*********************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/colorGradient.js ***!
-  \*********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                      * 求两个颜色之间的渐变值
-                                                                                                      * @param {string} startColor 开始的颜色
-                                                                                                      * @param {string} endColor 结束的颜色
-                                                                                                      * @param {number} step 颜色等分的份额
-                                                                                                      * */
-function colorGradient() {var startColor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'rgb(0, 0, 0)';var endColor = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'rgb(255, 255, 255)';var step = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 10;
-  var startRGB = hexToRgb(startColor, false); //转换为rgb数组模式
-  var startR = startRGB[0];
-  var startG = startRGB[1];
-  var startB = startRGB[2];
-
-  var endRGB = hexToRgb(endColor, false);
-  var endR = endRGB[0];
-  var endG = endRGB[1];
-  var endB = endRGB[2];
-
-  var sR = (endR - startR) / step; //总差值
-  var sG = (endG - startG) / step;
-  var sB = (endB - startB) / step;
-  var colorArr = [];
-  for (var i = 0; i < step; i++) {
-    //计算每一步的hex值 
-    var hex = rgbToHex('rgb(' + Math.round(sR * i + startR) + ',' + Math.round(sG * i + startG) + ',' + Math.round(sB *
-    i + startB) + ')');
-    colorArr.push(hex);
-  }
-  return colorArr;
-}
-
-// 将hex表示方式转换为rgb表示方式(这里返回rgb数组模式)
-function hexToRgb(sColor) {var str = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
-  sColor = sColor.toLowerCase();
-  if (sColor && reg.test(sColor)) {
-    if (sColor.length === 4) {
-      var sColorNew = "#";
-      for (var i = 1; i < 4; i += 1) {
-        sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
-      }
-      sColor = sColorNew;
-    }
-    //处理六位的颜色值
-    var sColorChange = [];
-    for (var _i = 1; _i < 7; _i += 2) {
-      sColorChange.push(parseInt("0x" + sColor.slice(_i, _i + 2)));
-    }
-    if (!str) {
-      return sColorChange;
-    } else {
-      return "rgb(".concat(sColorChange[0], ",").concat(sColorChange[1], ",").concat(sColorChange[2], ")");
-    }
-  } else if (/^(rgb|RGB)/.test(sColor)) {
-    var arr = sColor.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
-    return arr.map(function (val) {return Number(val);});
-  } else {
-    return sColor;
-  }
-};
-
-// 将rgb表示方式转换为hex表示方式
-function rgbToHex(rgb) {
-  var _this = rgb;
-  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
-  if (/^(rgb|RGB)/.test(_this)) {
-    var aColor = _this.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
-    var strHex = "#";
-    for (var i = 0; i < aColor.length; i++) {
-      var hex = Number(aColor[i]).toString(16);
-      hex = String(hex).length == 1 ? 0 + '' + hex : hex; // 保证每个rgb的值为2位
-      if (hex === "0") {
-        hex += hex;
-      }
-      strHex += hex;
-    }
-    if (strHex.length !== 7) {
-      strHex = _this;
-    }
-    return strHex;
-  } else if (reg.test(_this)) {
-    var aNum = _this.replace(/#/, "").split("");
-    if (aNum.length === 6) {
-      return _this;
-    } else if (aNum.length === 3) {
-      var numHex = "#";
-      for (var _i2 = 0; _i2 < aNum.length; _i2 += 1) {
-        numHex += aNum[_i2] + aNum[_i2];
-      }
-      return numHex;
-    }
-  } else {
-    return _this;
-  }
-}var _default =
-
-{
-  colorGradient: colorGradient,
-  hexToRgb: hexToRgb,
-  rgbToHex: rgbToHex };exports.default = _default;
-
-/***/ }),
-
-/***/ 25:
-/*!************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/guid.js ***!
-  \************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                      * 本算法来源于简书开源代码，详见：https://www.jianshu.com/p/fdbf293d0a85
-                                                                                                      * 全局唯一标识符（uuid，Globally Unique Identifier）,也称作 uuid(Universally Unique IDentifier) 
-                                                                                                      * 一般用于多个组件之间,给它一个唯一的标识符,或者v-for循环的时候,如果使用数组的index可能会导致更新列表出现问题
-                                                                                                      * 最可能的情况是左滑删除item或者对某条信息流"不喜欢"并去掉它的时候,会导致组件内的数据可能出现错乱
-                                                                                                      * v-for的时候,推荐使用后端返回的id而不是循环的index
-                                                                                                      * @param {Number} len uuid的长度
-                                                                                                      * @param {Boolean} firstU 将返回的首字母置为"u"
-                                                                                                      * @param {Nubmer} radix 生成uuid的基数(意味着返回的字符串都是这个基数),2-二进制,8-八进制,10-十进制,16-十六进制
-                                                                                                      */
-function guid() {var len = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 32;var firstU = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;var radix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-  var uuid = [];
-  radix = radix || chars.length;
-
-  if (len) {
-    // 如果指定uuid长度,只是取随机的字符,0|x为位运算,能去掉x的小数位,返回整数位
-    for (var i = 0; i < len; i++) {uuid[i] = chars[0 | Math.random() * radix];}
-  } else {
-    var r;
-    // rfc4122标准要求返回的uuid中,某些位为固定的字符
-    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
-    uuid[14] = '4';
-
-    for (var _i = 0; _i < 36; _i++) {
-      if (!uuid[_i]) {
-        r = 0 | Math.random() * 16;
-        uuid[_i] = chars[_i == 19 ? r & 0x3 | 0x8 : r];
-      }
-    }
-  }
-  // 移除第一个字符,并用u替代,因为第一个字符为数值时,该guuid不能用作id或者class
-  if (firstU) {
-    uuid.shift();
-    return 'u' + uuid.join('');
-  } else {
-    return uuid.join('');
-  }
-}var _default =
-
-guid;exports.default = _default;
-
-/***/ }),
-
-/***/ 26:
-/*!*************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/color.js ***!
-  \*************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var color = {
-  primary: "#2979ff",
-  primaryDark: "#2b85e4",
-  primaryDisabled: "#a0cfff",
-  primaryLight: "#ecf5ff",
-  bgColor: "#f3f4f6",
-
-  info: "#909399",
-  infoDark: "#82848a",
-  infoDisabled: "#c8c9cc",
-  infoLight: "#f4f4f5",
-
-  warning: "#ff9900",
-  warningDark: "#f29100",
-  warningDisabled: "#fcbd71",
-  warningLight: "#fdf6ec",
-
-  error: "#fa3534",
-  errorDark: "#dd6161",
-  errorDisabled: "#fab6b6",
-  errorLight: "#fef0f0",
-
-  success: "#19be6b",
-  successDark: "#18b566",
-  successDisabled: "#71d5a1",
-  successLight: "#dbf1e1",
-
-  mainColor: "#303133",
-  contentColor: "#606266",
-  tipsColor: "#909399",
-  lightColor: "#c0c4cc",
-  borderColor: "#e4e7ed" };var _default =
-
-
-color;exports.default = _default;
-
-/***/ }),
-
-/***/ 27:
-/*!*****************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/type2icon.js ***!
-  \*****************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                      * 根据主题type值,获取对应的图标
-                                                                                                      * @param String type 主题名称,primary|info|error|warning|success
-                                                                                                      * @param String fill 是否使用fill填充实体的图标  
-                                                                                                      */
-function type2icon() {var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'success';var fill = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-  // 如果非预置值,默认为success
-  if (['primary', 'info', 'error', 'warning', 'success'].indexOf(type) == -1) type = 'success';
-  var iconName = '';
-  // 目前(2019-12-12),info和primary使用同一个图标
-  switch (type) {
-    case 'primary':
-      iconName = 'info-circle';
-      break;
-    case 'info':
-      iconName = 'info-circle';
-      break;
-    case 'error':
-      iconName = 'close-circle';
-      break;
-    case 'warning':
-      iconName = 'error-circle';
-      break;
-    case 'success':
-      iconName = 'checkmark-circle';
-      break;
-    default:
-      iconName = 'checkmark-circle';}
-
-  // 是否是实体类型,加上-fill,在icon组件库中,实体的类名是后面加-fill的
-  if (fill) iconName += '-fill';
-  return iconName;
-}var _default =
-
-type2icon;exports.default = _default;
-
-/***/ }),
-
 /***/ 28:
-/*!*******************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/randomArray.js ***!
-  \*******************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/randomArray.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9559,697 +10246,10 @@ randomArray;exports.default = _default;
 
 /***/ }),
 
-/***/ 282:
-/*!***************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/pages/turnip-prices/predictions.js ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _regeneratorRuntime = __webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 17);var _PATTERN_COUNTS, _PATTERN$FLUCTUATING, _PATTERN$LARGE_SPIKE, _PATTERN$DECREASING, _PATTERN$SMALL_SPIKE, _PROBABILITY_MATRIX;function _createForOfIteratorHelper(o) {if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var it,normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var _marked = /*#__PURE__*/_regeneratorRuntime.mark(
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-generate_pattern_0_with_lengths),_marked2 = /*#__PURE__*/_regeneratorRuntime.mark(
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-generate_pattern_0),_marked3 = /*#__PURE__*/_regeneratorRuntime.mark(
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-generate_pattern_1_with_peak),_marked4 = /*#__PURE__*/_regeneratorRuntime.mark(
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-generate_pattern_1),_marked5 = /*#__PURE__*/_regeneratorRuntime.mark(
-
-
-
-
-
-generate_pattern_2),_marked6 = /*#__PURE__*/_regeneratorRuntime.mark(
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-generate_pattern_3_with_peak),_marked7 = /*#__PURE__*/_regeneratorRuntime.mark(
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-generate_pattern_3),_marked8 = /*#__PURE__*/_regeneratorRuntime.mark(
-
-
-
-
-
-generate_possibilities);function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var PATTERN = { FLUCTUATING: 0, LARGE_SPIKE: 1, DECREASING: 2, SMALL_SPIKE: 3 };var PATTERN_COUNTS = (_PATTERN_COUNTS = {}, _defineProperty(_PATTERN_COUNTS, PATTERN.FLUCTUATING, 56), _defineProperty(_PATTERN_COUNTS, PATTERN.LARGE_SPIKE, 7), _defineProperty(_PATTERN_COUNTS, PATTERN.DECREASING, 1), _defineProperty(_PATTERN_COUNTS, PATTERN.SMALL_SPIKE, 8), _PATTERN_COUNTS);var PROBABILITY_MATRIX = (_PROBABILITY_MATRIX = {}, _defineProperty(_PROBABILITY_MATRIX, PATTERN.FLUCTUATING, (_PATTERN$FLUCTUATING = {}, _defineProperty(_PATTERN$FLUCTUATING, PATTERN.FLUCTUATING, 0.20), _defineProperty(_PATTERN$FLUCTUATING, PATTERN.LARGE_SPIKE, 0.30), _defineProperty(_PATTERN$FLUCTUATING, PATTERN.DECREASING, 0.15), _defineProperty(_PATTERN$FLUCTUATING, PATTERN.SMALL_SPIKE, 0.35), _PATTERN$FLUCTUATING)), _defineProperty(_PROBABILITY_MATRIX, PATTERN.LARGE_SPIKE, (_PATTERN$LARGE_SPIKE = {}, _defineProperty(_PATTERN$LARGE_SPIKE, PATTERN.FLUCTUATING, 0.50), _defineProperty(_PATTERN$LARGE_SPIKE, PATTERN.LARGE_SPIKE, 0.05), _defineProperty(_PATTERN$LARGE_SPIKE, PATTERN.DECREASING, 0.20), _defineProperty(_PATTERN$LARGE_SPIKE, PATTERN.SMALL_SPIKE, 0.25), _PATTERN$LARGE_SPIKE)), _defineProperty(_PROBABILITY_MATRIX, PATTERN.DECREASING, (_PATTERN$DECREASING = {}, _defineProperty(_PATTERN$DECREASING, PATTERN.FLUCTUATING, 0.25), _defineProperty(_PATTERN$DECREASING, PATTERN.LARGE_SPIKE, 0.45), _defineProperty(_PATTERN$DECREASING, PATTERN.DECREASING, 0.05), _defineProperty(_PATTERN$DECREASING, PATTERN.SMALL_SPIKE, 0.25), _PATTERN$DECREASING)), _defineProperty(_PROBABILITY_MATRIX, PATTERN.SMALL_SPIKE, (_PATTERN$SMALL_SPIKE = {}, _defineProperty(_PATTERN$SMALL_SPIKE, PATTERN.FLUCTUATING, 0.45), _defineProperty(_PATTERN$SMALL_SPIKE, PATTERN.LARGE_SPIKE, 0.25), _defineProperty(_PATTERN$SMALL_SPIKE, PATTERN.DECREASING, 0.15), _defineProperty(_PATTERN$SMALL_SPIKE, PATTERN.SMALL_SPIKE, 0.15), _PATTERN$SMALL_SPIKE)), _PROBABILITY_MATRIX);function minimum_rate_from_given_and_base(given_price, buy_price) {return 10000 * (given_price - 1) / buy_price;}function maximum_rate_from_given_and_base(given_price, buy_price) {return 10000 * given_price / buy_price;}function generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, high_phase_2_len, dec_phase_2_len, high_phase_3_len) {var buy_price, predicted_prices, i, min_pred, max_pred, min_rate, max_rate;return _regeneratorRuntime.wrap(function generate_pattern_0_with_lengths$(_context) {while (1) {switch (_context.prev = _context.next) {case 0: /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // PATTERN 0: high, decreasing, high, decreasing, high
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        work = 2;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // high phase 1
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        for (int i = 0; i < hiPhaseLen1; i++)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // decreasing phase 1
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        rate = randfloat(0.8, 0.6);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        for (int i = 0; i < decPhaseLen1; i++)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          sellPrices[work++] = intceil(rate * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          rate -= 0.04;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          rate -= randfloat(0, 0.06);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // high phase 2
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        for (int i = 0; i < (hiPhaseLen2and3 - hiPhaseLen3); i++)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // decreasing phase 2
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        rate = randfloat(0.8, 0.6);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        for (int i = 0; i < decPhaseLen2; i++)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          sellPrices[work++] = intceil(rate * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          rate -= 0.04;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          rate -= randfloat(0, 0.06);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // high phase 3
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        for (int i = 0; i < hiPhaseLen3; i++)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    */buy_price = given_prices[0];predicted_prices = [{ min: buy_price, max: buy_price }, { min: buy_price, max: buy_price }]; // High Phase 1
-          i = 2;case 3:if (!(i < 2 + high_phase_1_len)) {_context.next = 15;break;}min_pred = Math.floor(0.9 * buy_price);max_pred = Math.ceil(1.4 * buy_price);if (isNaN(given_prices[i])) {_context.next = 11;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context.next = 9;break;}return _context.abrupt("return");case 9:min_pred = given_prices[i];max_pred = given_prices[i];case 11:predicted_prices.push({ min: min_pred, max: max_pred });case 12:i++;_context.next = 3;break;case 15: // Dec Phase 1
-          min_rate = 6000;max_rate = 8000;i = 2 + high_phase_1_len;case 18:if (!(i < 2 + high_phase_1_len + dec_phase_1_len)) {_context.next = 34;break;}min_pred = Math.floor(min_rate * buy_price / 10000);max_pred = Math.ceil(max_rate * buy_price / 10000);if (isNaN(given_prices[i])) {_context.next = 28;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context.next = 24;break;}return _context.abrupt("return");case 24:min_pred = given_prices[i];max_pred = given_prices[i];min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);case 28:predicted_prices.push({ min: min_pred, max: max_pred });min_rate -= 1000;max_rate -= 400;case 31:i++;_context.next = 18;break;case 34:i = 2 + high_phase_1_len + dec_phase_1_len;case 35:if (!(i < 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len)) {_context.next = 47;break;}min_pred = Math.floor(0.9 * buy_price);max_pred = Math.ceil(1.4 * buy_price);if (isNaN(given_prices[i])) {_context.next = 43;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context.next = 41;break;}return _context.abrupt("return");case 41:min_pred = given_prices[i];max_pred = given_prices[i];case 43:predicted_prices.push({ min: min_pred, max: max_pred });case 44:i++;_context.next = 35;break;case 47: // Dec Phase 2
-          min_rate = 6000;max_rate = 8000;i = 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len;case 50:if (!(i < 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len)) {_context.next = 66;break;}min_pred = Math.floor(min_rate * buy_price / 10000);max_pred = Math.ceil(max_rate * buy_price / 10000);if (isNaN(given_prices[i])) {_context.next = 60;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context.next = 56;break;}return _context.abrupt("return");case 56:min_pred = given_prices[i];max_pred = given_prices[i];min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);case 60:predicted_prices.push({ min: min_pred, max: max_pred });min_rate -= 1000;max_rate -= 400;case 63:i++;_context.next = 50;break;case 66:if (!(2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len + high_phase_3_len != 14)) {_context.next = 68;break;}throw new Error("Phase lengths don't add up");case 68:i = 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len;case 69:if (!(i < 14)) {_context.next = 81;break;}min_pred = Math.floor(0.9 * buy_price);max_pred = Math.ceil(1.4 * buy_price);if (isNaN(given_prices[i])) {_context.next = 77;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context.next = 75;break;}return _context.abrupt("return");case 75:min_pred = given_prices[i];max_pred = given_prices[i];case 77:predicted_prices.push({ min: min_pred, max: max_pred });case 78:i++;_context.next = 69;break;case 81:_context.next = 83;return { // pattern_description: "Fluctuating",
-            pattern_description: "波动型", pattern_number: 0, prices: predicted_prices };case 83:case "end":return _context.stop();}}}, _marked);}function generate_pattern_0(given_prices) {var dec_phase_1_len, high_phase_1_len, high_phase_3_len;return _regeneratorRuntime.wrap(function generate_pattern_0$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:dec_phase_1_len = 2;case 1:if (!(dec_phase_1_len < 4)) {_context2.next = 16;break;}high_phase_1_len = 0;case 3:if (!(high_phase_1_len < 7)) {_context2.next = 13;break;}high_phase_3_len = 0;case 5:if (!(high_phase_3_len < 7 - high_phase_1_len - 1 + 1)) {_context2.next = 10;break;}return _context2.delegateYield(generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, 7 - high_phase_1_len - high_phase_3_len, 5 - dec_phase_1_len, high_phase_3_len), "t0", 7);case 7:high_phase_3_len++;_context2.next = 5;break;case 10:high_phase_1_len++;_context2.next = 3;break;case 13:dec_phase_1_len++;_context2.next = 1;break;case 16:case "end":return _context2.stop();}}}, _marked2);}function generate_pattern_1_with_peak(given_prices, peak_start) {var buy_price, predicted_prices, min_rate, max_rate, i, min_pred, max_pred, min_randoms, max_randoms;return _regeneratorRuntime.wrap(function generate_pattern_1_with_peak$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0: /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      // PATTERN 1: decreasing middle, high spike, random low
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      peakStart = randint(3, 9);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      rate = randfloat(0.9, 0.85);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      for (work = 2; work < peakStart; work++)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        sellPrices[work] = intceil(rate * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        rate -= 0.03;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        rate -= randfloat(0, 0.02);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      sellPrices[work++] = intceil(randfloat(1.4, 2.0) * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      sellPrices[work++] = intceil(randfloat(2.0, 6.0) * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      sellPrices[work++] = intceil(randfloat(1.4, 2.0) * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      for (; work < 14; work++)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        sellPrices[work] = intceil(randfloat(0.4, 0.9) * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    */buy_price = given_prices[0];predicted_prices = [{ min: buy_price, max: buy_price }, { min: buy_price, max: buy_price }];min_rate = 8500;max_rate = 9000;i = 2;case 5:if (!(i < peak_start)) {_context3.next = 21;break;}min_pred = Math.floor(min_rate * buy_price / 10000);max_pred = Math.ceil(max_rate * buy_price / 10000);if (isNaN(given_prices[i])) {_context3.next = 15;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context3.next = 11;break;}return _context3.abrupt("return");case 11:min_pred = given_prices[i];max_pred = given_prices[i];min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);case 15:predicted_prices.push({ min: min_pred, max: max_pred });min_rate -= 500;max_rate -= 300;case 18:i++;_context3.next = 5;break;case 21: // Now each day is independent of next
-          min_randoms = [0.9, 1.4, 2.0, 1.4, 0.9, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4];max_randoms = [1.4, 2.0, 6.0, 2.0, 1.4, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9];i = peak_start;case 24:if (!(i < 14)) {_context3.next = 36;break;}min_pred = Math.floor(min_randoms[i - peak_start] * buy_price);max_pred = Math.ceil(max_randoms[i - peak_start] * buy_price);if (isNaN(given_prices[i])) {_context3.next = 32;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context3.next = 30;break;}return _context3.abrupt("return");case 30:min_pred = given_prices[i];max_pred = given_prices[i];case 32:predicted_prices.push({ min: min_pred, max: max_pred });case 33:i++;_context3.next = 24;break;case 36:_context3.next = 38;return { // pattern_description: "Large spike",
-            pattern_description: "大涨型", pattern_number: 1, prices: predicted_prices };case 38:case "end":return _context3.stop();}}}, _marked3);}function generate_pattern_1(given_prices) {var peak_start;return _regeneratorRuntime.wrap(function generate_pattern_1$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:peak_start = 3;case 1:if (!(peak_start < 10)) {_context4.next = 6;break;}return _context4.delegateYield(generate_pattern_1_with_peak(given_prices, peak_start), "t0", 3);case 3:peak_start++;_context4.next = 1;break;case 6:case "end":return _context4.stop();}}}, _marked4);}function generate_pattern_2(given_prices) {var buy_price, predicted_prices, min_rate, max_rate, i, min_pred, max_pred;return _regeneratorRuntime.wrap(function generate_pattern_2$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0: /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // PATTERN 2: consistently decreasing
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                rate = 0.9;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                rate -= randfloat(0, 0.05);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                for (work = 2; work < 14; work++)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  sellPrices[work] = intceil(rate * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  rate -= 0.03;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  rate -= randfloat(0, 0.02);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                break;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            */buy_price = given_prices[0];predicted_prices = [{ min: buy_price, max: buy_price }, { min: buy_price, max: buy_price }];min_rate = 8500;max_rate = 9000;i = 2;case 5:if (!(i < 14)) {_context5.next = 21;break;}min_pred = Math.floor(min_rate * buy_price / 10000);max_pred = Math.ceil(max_rate * buy_price / 10000);if (isNaN(given_prices[i])) {_context5.next = 15;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context5.next = 11;break;}return _context5.abrupt("return");case 11:min_pred = given_prices[i];max_pred = given_prices[i];min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);case 15:predicted_prices.push({ min: min_pred, max: max_pred });min_rate -= 500;max_rate -= 300;case 18:i++;_context5.next = 5;break;case 21:_context5.next = 23;return { // pattern_description: "Decreasing",
-            pattern_description: "递减型", pattern_number: 2, prices: predicted_prices };case 23:case "end":return _context5.stop();}}}, _marked5);}function generate_pattern_3_with_peak(given_prices, peak_start) {var buy_price, predicted_prices, min_rate, max_rate, i, min_pred, max_pred;return _regeneratorRuntime.wrap(function generate_pattern_3_with_peak$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0: /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                               // PATTERN 3: decreasing, spike, decreasing
-                                                                                                                                                                                                                                                                                                                                                                                                                                               peakStart = randint(2, 9);
-                                                                                                                                                                                                                                                                                                                                                                                                                                               // decreasing phase before the peak
-                                                                                                                                                                                                                                                                                                                                                                                                                                               rate = randfloat(0.9, 0.4);
-                                                                                                                                                                                                                                                                                                                                                                                                                                               for (work = 2; work < peakStart; work++)
-                                                                                                                                                                                                                                                                                                                                                                                                                                               {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                 sellPrices[work] = intceil(rate * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                 rate -= 0.03;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                 rate -= randfloat(0, 0.02);
-                                                                                                                                                                                                                                                                                                                                                                                                                                               }
-                                                                                                                                                                                                                                                                                                                                                                                                                                               sellPrices[work++] = intceil(randfloat(0.9, 1.4) * (float)basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                               sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                               rate = randfloat(1.4, 2.0);
-                                                                                                                                                                                                                                                                                                                                                                                                                                               sellPrices[work++] = intceil(randfloat(1.4, rate) * basePrice) - 1;
-                                                                                                                                                                                                                                                                                                                                                                                                                                               sellPrices[work++] = intceil(rate * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                               sellPrices[work++] = intceil(randfloat(1.4, rate) * basePrice) - 1;
-                                                                                                                                                                                                                                                                                                                                                                                                                                               // decreasing phase after the peak
-                                                                                                                                                                                                                                                                                                                                                                                                                                               if (work < 14)
-                                                                                                                                                                                                                                                                                                                                                                                                                                               {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                 rate = randfloat(0.9, 0.4);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                 for (; work < 14; work++)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                 {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                   sellPrices[work] = intceil(rate * basePrice);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                   rate -= 0.03;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                   rate -= randfloat(0, 0.02);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                               }
-                                                                                                                                                                                                                                                                                                                                                                                                                                             */buy_price = given_prices[0];predicted_prices = [{ min: buy_price, max: buy_price }, { min: buy_price, max: buy_price }];min_rate = 4000;max_rate = 9000;i = 2;case 5:if (!(i < peak_start)) {_context6.next = 21;break;}min_pred = Math.floor(min_rate * buy_price / 10000);max_pred = Math.ceil(max_rate * buy_price / 10000);if (isNaN(given_prices[i])) {_context6.next = 15;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context6.next = 11;break;}return _context6.abrupt("return");case 11:min_pred = given_prices[i];max_pred = given_prices[i];min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);case 15:predicted_prices.push({ min: min_pred, max: max_pred });min_rate -= 500;max_rate -= 300;case 18:i++;_context6.next = 5;break;case 21:i = peak_start;case 22:if (!(i < peak_start + 2)) {_context6.next = 34;break;}min_pred = Math.floor(0.9 * buy_price);max_pred = Math.ceil(1.4 * buy_price);if (isNaN(given_prices[i])) {_context6.next = 30;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context6.next = 28;break;}return _context6.abrupt("return");case 28:min_pred = given_prices[i];max_pred = given_prices[i];case 30:predicted_prices.push({ min: min_pred, max: max_pred });case 31:i++;_context6.next = 22;break;case 34: // Main spike 1
-          min_pred = Math.floor(1.4 * buy_price) - 1;max_pred = Math.ceil(2.0 * buy_price) - 1;if (isNaN(given_prices[peak_start + 2])) {_context6.next = 41;break;}if (!(given_prices[peak_start + 2] < min_pred || given_prices[peak_start + 2] > max_pred)) {_context6.next = 39;break;}return _context6.abrupt("return");case 39:min_pred = given_prices[peak_start + 2];max_pred = given_prices[peak_start + 2];case 41:predicted_prices.push({ min: min_pred, max: max_pred }); // Main spike 2
-          min_pred = predicted_prices[peak_start + 2].min;max_pred = Math.ceil(2.0 * buy_price);if (isNaN(given_prices[peak_start + 3])) {_context6.next = 49;break;}if (!(given_prices[peak_start + 3] < min_pred || given_prices[peak_start + 3] > max_pred)) {_context6.next = 47;break;}return _context6.abrupt("return");case 47:min_pred = given_prices[peak_start + 3];max_pred = given_prices[peak_start + 3];case 49:predicted_prices.push({ min: min_pred, max: max_pred }); // Main spike 3
-          min_pred = Math.floor(1.4 * buy_price) - 1;max_pred = predicted_prices[peak_start + 3].max - 1;if (isNaN(given_prices[peak_start + 4])) {_context6.next = 57;break;}if (!(given_prices[peak_start + 4] < min_pred || given_prices[peak_start + 4] > max_pred)) {_context6.next = 55;break;}return _context6.abrupt("return");case 55:min_pred = given_prices[peak_start + 4];max_pred = given_prices[peak_start + 4];case 57:predicted_prices.push({ min: min_pred, max: max_pred });if (!(peak_start + 5 < 14)) {_context6.next = 78;break;}min_rate = 4000;max_rate = 9000;i = peak_start + 5;case 62:if (!(i < 14)) {_context6.next = 78;break;}min_pred = Math.floor(min_rate * buy_price / 10000);max_pred = Math.ceil(max_rate * buy_price / 10000);if (isNaN(given_prices[i])) {_context6.next = 72;break;}if (!(given_prices[i] < min_pred || given_prices[i] > max_pred)) {_context6.next = 68;break;}return _context6.abrupt("return");case 68:min_pred = given_prices[i];max_pred = given_prices[i];min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);case 72:predicted_prices.push({ min: min_pred, max: max_pred });min_rate -= 500;max_rate -= 300;case 75:i++;_context6.next = 62;break;case 78:_context6.next = 80;return { // pattern_description: "Small spike",
-            pattern_description: "小涨型", pattern_number: 3, prices: predicted_prices };case 80:case "end":return _context6.stop();}}}, _marked6);}function generate_pattern_3(given_prices) {var peak_start;return _regeneratorRuntime.wrap(function generate_pattern_3$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:peak_start = 2;case 1:if (!(peak_start < 10)) {_context7.next = 6;break;}return _context7.delegateYield(generate_pattern_3_with_peak(given_prices, peak_start), "t0", 3);case 3:peak_start++;_context7.next = 1;break;case 6:case "end":return _context7.stop();}}}, _marked7);}function generate_possibilities(sell_prices, first_buy) {var buy_price;return _regeneratorRuntime.wrap(function generate_possibilities$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:if (!(first_buy || isNaN(sell_prices[0]))) {_context8.next = 17;break;}buy_price = 90;case 2:if (!(buy_price <= 110)) {_context8.next = 15;break;}sell_prices[0] = sell_prices[1] = buy_price;if (!first_buy) {_context8.next = 8;break;}return _context8.delegateYield(generate_pattern_3(sell_prices), "t0", 6);case 6:_context8.next = 12;break;case 8:return _context8.delegateYield(generate_pattern_0(sell_prices), "t1", 9);case 9:return _context8.delegateYield(generate_pattern_1(sell_prices), "t2", 10);case 10:return _context8.delegateYield(generate_pattern_2(sell_prices), "t3", 11);case 11:return _context8.delegateYield(generate_pattern_3(sell_prices), "t4", 12);case 12:buy_price++;_context8.next = 2;break;case 15:_context8.next = 21;break;case 17:return _context8.delegateYield(generate_pattern_0(sell_prices), "t5", 18);case 18:return _context8.delegateYield(generate_pattern_1(sell_prices), "t6", 19);case 19:return _context8.delegateYield(generate_pattern_2(sell_prices), "t7", 20);case 20:return _context8.delegateYield(generate_pattern_3(sell_prices), "t8", 21);case 21:case "end":return _context8.stop();}}}, _marked8);}function row_probability(possibility, previous_pattern) {return PROBABILITY_MATRIX[previous_pattern][possibility.pattern_number] / PATTERN_COUNTS[possibility.pattern_number];}function get_probabilities(possibilities, previous_pattern) {if (typeof previous_pattern === 'undefined' || Number.isNaN(previous_pattern) || previous_pattern === null || previous_pattern < 0 || previous_pattern > 3) {return possibilities;}var max_percent = possibilities.map(function (poss) {return row_probability(poss, previous_pattern);}).reduce(function (prev, current) {return prev + current;}, 0);return possibilities.map(function (poss) {poss.probability = row_probability(poss, previous_pattern) / max_percent;return poss;});}function analyze_possibilities(sell_prices, first_buy, previous_pattern) {var generated_possibilities = Array.from(generate_possibilities(sell_prices, first_buy));generated_possibilities = get_probabilities(generated_possibilities, previous_pattern);var global_min_max = [];for (var day = 0; day < 14; day++) {var prices = { min: 999, max: 0 };var _iterator = _createForOfIteratorHelper(generated_possibilities),_step;try {for (_iterator.s(); !(_step = _iterator.n()).done;) {var poss = _step.value;if (poss.prices[day].min < prices.min) {prices.min = poss.prices[day].min;}if (poss.prices[day].max > prices.max) {prices.max = poss.prices[day].max;}}} catch (err) {_iterator.e(err);} finally {_iterator.f();}global_min_max.push(prices);}generated_possibilities.push({ pattern_description: "汇总", pattern_number: 4, prices: global_min_max });var _iterator2 = _createForOfIteratorHelper(generated_possibilities),_step2;try {for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {var _poss = _step2.value;var weekMins = [];var weekMaxes = [];var _iterator3 = _createForOfIteratorHelper(_poss.prices.slice(2)),_step3;try {for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {var _day = _step3.value;weekMins.push(_day.min);weekMaxes.push(_day.max);}} catch (err) {_iterator3.e(err);} finally {_iterator3.f();}_poss.weekGuaranteedMinimum = Math.max.apply(Math, weekMins);_poss.weekMax = Math.max.apply(Math, weekMaxes);}} catch (err) {_iterator2.e(err);} finally {_iterator2.f();}generated_possibilities.sort(function (a, b) {if (a.weekMax < b.weekMax) {return 1;} else if (a.weekMax > b.weekMax) {return -1;} else {return 0;}});return generated_possibilities;}module.exports = { analyze_possibilities: analyze_possibilities };
-
-/***/ }),
-
 /***/ 29:
-/*!************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/test.js ***!
-  \************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/test.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10431,6 +10431,2098 @@ function empty(value) {
 
 /***/ }),
 
+/***/ 291:
+/*!************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/goeasy/index.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(uni, Buffer) {// [AIV_SHORT]  Build version: 1.0.11 - Friday, May 8th, 2020, 6:31:02 PM  
+!function (t, e) { true ? module.exports = e() : undefined;}(this, function () {return function (t) {function e(o) {if (n[o]) return n[o].exports;var i = n[o] = { exports: {}, id: o, loaded: !1 };return t[o].call(i.exports, i, i.exports, e), i.loaded = !0, i.exports;}var n = {};return e.m = t, e.c = n, e.p = "", e(0);}([function (t, e, n) {"use strict";function o() {if (g() && uni.overrideShowHideAlready !== !0 && "undefined" != typeof getApp().$options) {uni.overrideShowHideAlready = !0;var t = getApp().$options.onShow[0],e = getApp().$options.onHide[0];getApp().$options.onShow[0] = function () {getApp().uniAppRunningBackend = !1, t();}, getApp().$options.onHide[0] = function () {getApp().uniAppRunningBackend = !0, e();};}}var i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},r = n(1),s = n(35),c = [],a = !1,u = function u(t) {if (a) {var e = new Date().formatDate("yy-MM-dd hh:mm:ss.S");c.push(e + " " + t + "\n");}},p = function p() {this.currentNumber = this.initialCurrentNumber();};p.prototype = { maxNumber: parseInt("10"), number: function number() {return this.currentNumber;}, initialCurrentNumber: function initialCurrentNumber() {var t = this;return k() ? t.currentNumber = parseInt(f("goeasyNode")) : t.currentNumber || (t.currentNumber = m(1, parseInt("10"))), t.currentNumber > 0 && t.currentNumber < this.maxNumber ? t.currentNumber = t.currentNumber + 1 : t.currentNumber == this.maxNumber ? t.currentNumber = 1 : t.currentNumber = Math.floor(Math.random() * this.maxNumber + 1), k() && l("goeasyNode", t.currentNumber), t.currentNumber;} };var h = function h(t) {var e,n = new RegExp("(^| )" + t + "=([^;]*)(;|$)");return (e = document.cookie.match(n)) ? unescape(e[2]) : null;},f = function f(t) {return window.localStorage ? window.localStorage.getItem(t) : h(t);},d = function d(t, e) {var n = 30,o = new Date();o.setTime(o.getTime() + 24 * n * 60 * 60 * 1e3), document.cookie = t + "=" + escape(e) + ";expires=" + o.toGMTString();},l = function l(t, e) {window.localStorage ? window.localStorage.setItem(t, e) : d(t, e);},y = function y() {Array.apply(this);},m = function m(t, e) {return Math.floor(Math.random() * (t - e) + e);},b = function b() {return !("undefined" == typeof wx || !wx.getLocation) && ("function" != typeof WebSocket || "function" != typeof XMLHttpRequest);},g = function g() {return !("object" !== ("undefined" == typeof uni ? "undefined" : i(uni)) || !uni.getSystemInfo);},v = function v() {return !("object" !== ("undefined" == typeof tt ? "undefined" : i(tt)) || !tt.getSystemInfo);},k = function k() {return g() ? "function" == typeof WebSocket && "function" == typeof XMLHttpRequest : !(S() || b() || v());},S = function S() {return "undefined" != typeof navigator && "ReactNative" == navigator.product;},w = new p(),x = function x(t) {if (u("GoEasy() Create GoEasy object:" + JSON.stringify(t)), this._isEmpty(t.appkey)) return void ("undefined" != typeof t.onConnectFailed && t.onConnectFailed({ code: 400, content: "appkey is required" }));if (this._copyConfig(t), "undefined" == typeof t.host) return void t.onConnectFailed({ code: 400, content: "host is required" });var e = "://" + w.number() + t.host,n = "";k() ? (n = t.forceTLS === !1 ? "http" + e + ":80" : "https" + e + ":443", this.socket = r.connect(n, { transports: ["polling", "websocket"], timeout: 1500 })) : (n = "https://wx-" + t.host + ":443", this.socket = r(n, { transports: ["websocket"], reconnectionDelayMax: 3e3 })), this._callbackEvents(t);};x.goEasyDomainNumber = w, "undefined" != typeof window && (window._GoEasy_ = x), Date.prototype.formatDate = function (t) {var e = { "M+": this.getMonth() + 1, "d+": this.getDate(), "h+": this.getHours(), "m+": this.getMinutes(), "s+": this.getSeconds(), "q+": Math.floor((this.getMonth() + 3) / 3), S: this.getMilliseconds() };/(y+)/.test(t) && (t = t.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length)));for (var n in e) {e.hasOwnProperty(n) && new RegExp("(" + n + ")").test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? e[n] : ("00" + e[n]).substr(("" + e[n]).length)));}return t;}, y.prototype = new Array(), y.prototype.indexOfGuid = function (t) {for (var e = 0; e < this.length; e++) {if (this[e] == t) return e;}return -1;}, y.prototype.unshiftGuid = function (t) {var e = !1,n = this.indexOfGuid(t);for (n > -1 && (e = !0, this.splice(n, 1)), this.unshift(t); this.length > 300;) {this.pop();}return e;}, x.prototype = { debug: !1, socket: null, networkStatus: "initial", authorizeResult: null, subscribeBuffer: [], subscriptions: [], subscriptionChannelUUIDs: [], maxRetries: 3, _manualConnect: !1, _manualDisconnectStatus: "initial", authorizeStatus: "initial", receivedGuids: new y(), _copyConfig: function _copyConfig(t) {this._appkey = t.appkey, this._otp = t.otp, this._isEmpty(t.userId) ? (this._userId = "anonymous-" + Math.floor(1e5 * Math.random() + 1), t.userId = this._userId) : this._userId = this._trim(t.userId), this._isEmpty(t.userData) ? this._userData = "" : this._userData = this._trim(t.userData), 1 == t.debug && (this.debug = !0);}, validateSubscription: function validateSubscription(t) {var e = t.channel,n = t.channels;if ("undefined" == typeof e && "undefined" == typeof n) return t.onFailed({ code: 400, content: "channel is required" }), !1;if ("undefined" != typeof e && "undefined" != typeof n) return t.onFailed({ code: 400, content: "subscribe to either channel or channels, not both" }), !1;if ("undefined" != typeof e) {if ("number" == typeof e && (e = e.toString()), this._isEmpty(e) && "undefined" != typeof t.onFailed) return t.onFailed({ code: 400, content: "channel is required" }), !1;} else {if (!this._isArray(n) || 0 === n.length) return t.onFailed({ code: 400, content: "channels must be an array" }), !1;if (this._isArray(n) && n.length > 500) return t.onFailed({ code: 400, content: "channels over max length:500" }), !1;}return !0;}, subscribe: function subscribe(t) {if (o(), u("subscribe() subscribe:" + JSON.stringify(t)), this.validateSubscription(t)) {var e = t.channel;if ("undefined" != typeof e) {"number" == typeof e && (e = e.toString());var n = [];n.push(e), t.channels = n;}this.handleSubscribe(t);}}, handleSubscribe: function handleSubscribe(t) {t.uuid = this.uuid_goeasy(), this.subscribeBuffer[t.uuid] = t;var e = this;null != e.authorizeResult && "connected" == e.networkStatus && (t.checking = !0, e.doSubscribeAndCheckAck(t));}, doSubscribe: function doSubscribe(t) {u("doSubscribe() with subscription:" + JSON.stringify(t));var e = this;if (200 == e.authorizeResult.code) {var n = { channels: t.channels, sid: e.authorizeResult.sid };u("doSubscribe() emit subscribe params:" + JSON.stringify(n)), e.socket.emit("subscribe", n, function (n) {if (u("doSubscribe() receive subscribe ack:" + JSON.stringify(n)), 1 != t.finish) if (t.finish = !0, delete e.subscribeBuffer[t.uuid], u("doSubscribe() delete subscription from subscribeBuffer:" + JSON.stringify(t)), 200 == n.resultCode) {e.subscriptions[t.uuid] = t;for (var o = 0; o < t.channels.length; o++) {var i = t.channels[o];"number" == typeof i && (i = i.toString()), e.subscriptionChannelUUIDs[i] = t.uuid;}"undefined" != typeof t.onSuccess && t.onSuccess();} else "undefined" != typeof t.onFailed && t.onFailed({ code: n.resultCode, content: n.content });});} else u("doSubscribe() return with authorize code:" + e.authorizeResult.code);}, doSubscribeAndCheckAck: function doSubscribeAndCheckAck(t) {u("doSubscribeAndCheckAck():" + JSON.stringify(t)), t.finish = !1;var e = this;e.doSubscribe(t);var n = setInterval(function () {t.finish || "connected" != e.networkStatus ? (u("doSubscribeAndCheckAck() clean doSubscribeAndCheckAck:" + JSON.stringify(t)), t.checking = !1, clearInterval(n)) : (u("doSubscribeAndCheckAck() retry doSubscribe:" + JSON.stringify(t)), e.doSubscribe(t));}, 1300);}, subscribePresence: function subscribePresence(t) {if (this.validateSubscription(t)) {var e = t.channels,n = [];if (this._isArray(e)) {for (var o = 0; o < e.length; o++) {var i = e[o];"number" == typeof i && (i = i.toString());var r = i + "_presence";n.push(r);}t.channels = n;} else {var s = t.channel;"number" == typeof s && (s = s.toString()), n.push(s + "_presence"), t.channels = n;}this.handleSubscribe(t);}}, unsubscribe: function unsubscribe(t) {function e() {200 == i.authorizeResult.code ? i.socket.emit("unsubscribe", { sid: i.authorizeResult.sid, channel: t.channel }, function (e) {if (r = !0, 200 == e.resultCode) {delete i.subscriptionChannelUUIDs[t.channel];for (var n = i.subscriptions[o], s = n.channels, c = 0; c < s.length; c++) {(t.channel = s[c]) && s.splice(c, 1);}u("doUnsubscribe() delete from channels:" + JSON.stringify(t)), "undefined" != typeof t.onSuccess && t.onSuccess();} else "undefined" != typeof t.onFailed && t.onFailed({ code: e.resultCode, content: e.content });}) : (r = !0, "undefined" != typeof t.onFailed && t.onFailed({ code: i.authorizeResult.code, content: i.authorizeResult.content }));}function n() {e();var n = setInterval(function () {!r && "connected" == i.networkStatus && s < 0 ? (s++, e()) : s == i.maxRetries ? (clearInterval(n), "undefined" != typeof t.onFailed && t.onFailed({ code: 408, content: "Server unreachable or timeout" })) : clearInterval(n);}, 1e3);}if ("number" == typeof t.channel && (t.channel = t.channel.toString()), this._isEmpty(t.channel)) return this.log("'channel' is required."), void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "channel is required" }));var o = this.subscriptionChannelUUIDs[t.channel];if (this._isEmpty(o)) return this.log("'channel' is not subscribed."), void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "channel[" + t.channel + "] is not subscribed" }));var i = this,r = !1,s = 0;if (null != this.authorizeResult && "connected" == i.networkStatus) n();else var c = setInterval(function () {null != i.authorizeResult && "connected" == i.networkStatus ? (clearInterval(c), n()) : (s++, s == i.maxRetries && (clearInterval(c), "undefined" != typeof t.onFailed && t.onFailed({ code: 408, content: "Server unreachable or timeout" })));}, 1e3);}, unsubscribePresence: function unsubscribePresence(t) {return "number" == typeof t.channel && (t.channel = t.channel.toString()), this._isEmpty(t.channel) ? void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "channel is required" })) : (t.channel = t.channel + "_presence", void this.unsubscribe(t));}, publish: function publish(t) {function e(e) {200 == i.authorizeResult.code ? i.socket.emit("publish", { sid: i.authorizeResult.sid, channel: t.channel, content: t.message, guid: e, retried: s }, function (e) {r = !0, 200 == e.resultCode ? "undefined" != typeof t.onSuccess && t.onSuccess() : "undefined" != typeof t.onFailed && t.onFailed({ code: e.resultCode, content: e.content });}) : (r = !0, "undefined" != typeof t.onFailed && t.onFailed({ code: i.authorizeResult.code, content: i.authorizeResult.content }));}function n() {var n = i.uuid_goeasy();e(n);var o = setInterval(function () {!r && s < i.maxRetries ? (s++, e(n)) : s == i.maxRetries ? (clearInterval(o), "undefined" != typeof t.onFailed && t.onFailed({ code: 408, content: "Server unreachable or timeout" })) : clearInterval(o);}, 1e3);}if (o(), "number" == typeof t.channel && (t.channel = t.channel.toString()), this._isEmpty(t.channel)) return this.log("'channel' is required."), void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "channel is required" }));if (this._isEmpty(t.message)) return this.log("'message' is required."), void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "message is required" }));var i = this,r = !1,s = 0;if (null != this.authorizeResult && "connected" == i.networkStatus) n();else var c = setInterval(function () {null != i.authorizeResult && "connected" == i.networkStatus ? (clearInterval(c), n()) : (s++, s == i.maxRetries && (clearInterval(c), "undefined" != typeof t.onFailed && t.onFailed({ code: 408, content: "Server unreachable or timeout" })));}, 1e3);}, hereNow: function hereNow(t, e) {var n = { channels: [], includeUsers: !1, distinct: !1 };if ("undefined" !== t.channels) for (var o = 0; o < t.channels.length; o++) {var i = t.channels[o];"number" == typeof i && (i = i.toString()), n.channels.push(i);}1 == t.includeUsers && (n.includeUsers = !0), 1 == t.distinct && (n.distinct = !0), this.socket.emit("hereNow", n, function (t) {"undefined" != typeof e && e(t);});}, hereNowByUserIds: function hereNowByUserIds(t, e) {var n = { userIds: [], distinct: !0 };"undefined" !== t.userIds && (n.userIds = t.userIds), 0 == t.distinct && (n.distinct = !1), "undefined" != typeof e && (0 === n.userIds.length ? e({ code: 400, content: "userIds is required" }) : n.userIds.length > 500 ? e({ code: 400, content: "userIds is over max length 500" }) : this.socket.emit("hereNowByUserIds", n, function (t) {e(t);}));}, history: function history(t, e) {return "number" == typeof t.channel && (t.channel = t.channel.toString()), this._isEmpty(t.channel) ? void ("undefined" != typeof e && e({ code: 400, content: "channel is required" })) : void this.socket.emit("historyMessages", t, function (t) {"undefined" != typeof e && e(t);});}, disconnect: function disconnect() {var t = this;if (this._manualDisconnectStatus = "disconnecting", "connected" === this.networkStatus && "authorized" === this.authorizeStatus && 200 === this.authorizeResult.code) {var e = function e() {t.socket.disconnect();},n = function n() {t._manualDisconnectStatus = "disconnected";};t.tryEmit("manualDisconnect", null, e, n);} else this.socket.disconnect();}, disconnected: function disconnected() {return "disconnected" === this.networkStatus;}, reconnect: function reconnect() {this._manualConnect = !0, this.socket.connect();}, tryEmit: function tryEmit(t, e, n, o) {function i() {r.socket.emit(t, e, function (t) {s = !0, "undefined" != typeof o && o(t);});}var r = this,s = !1,c = 0;i();var a = setInterval(function () {var t = c === r.maxRetries;s || t ? (clearInterval(a), t && "undefined" != typeof n && n()) : (c++, i());}, 1e3);}, _callbackEvents: function _callbackEvents(t) {var e = this;this.socket.on("message", function (t, n) {var o = JSON.parse(t);if (!e.receivedGuids.unshiftGuid(o.i)) {o.a && e.socket.emit("ack", { publishGuid: o.i });var i = e.subscriptionChannelUUIDs[o.n];e._endWith(o.n, "presence") ? "undefined" != typeof e.subscriptions[i].onPresence && e.subscriptions[i].onPresence(JSON.parse(o.c)) : "undefined" != typeof e.subscriptions[i].onMessage && e.subscriptions[i].onMessage({ time: o.t, channel: o.n, content: o.c });}}), this.socket.on("connect", function () {function n() {u("doAuthorize() emit authorize params:" + JSON.stringify(i)), e._isEmpty(i.artifactVersion) && e.sendlogs(), e.socket.emit("authorize", i, function (n) {if (u("doAuthorize() received authorize ack:" + JSON.stringify(n)), !r) if (r = !0, e.authorizeStatus = "authorized", e._manualDisconnectStatus = "initial", null == e.authorizeResult && (e.authorizeResult = {}), e.authorizeResult.code = n.resultCode, e.authorizeResult.content = n.content, 200 == n.resultCode) {if (o(), null == e.authorizeResult.sid) e.authorizeResult.sid = n.sid;else if (e.authorizeResult.sid != n.sid) {e.authorizeResult.sid = n.sid;for (var i in e.subscriptions) {e.subscriptions.hasOwnProperty(i) && (u("doAuthorize() sid expired and will call doSubscribeAndCheckAck for channels:" + JSON.stringify(e.subscriptions[i])), e.doSubscribeAndCheckAck(e.subscriptions[i]));}}for (var s in e.subscribeBuffer) {e.subscribeBuffer.hasOwnProperty(s) && (u("doAuthorize() will doSubscribeAndCheckAck from subscribeBuffer:" + JSON.stringify(e.subscribeBuffer[s])), e.doSubscribeAndCheckAck(e.subscribeBuffer[s]));}"undefined" != typeof t.onConnected && t.onConnected();} else "undefined" != typeof t.onConnectFailed && t.onConnectFailed({ code: n.resultCode, content: n.content });});}if ("disconnecting" !== e._manualDisconnectStatus && "disconnected" !== e._manualDisconnectStatus || e._manualConnect) {e.authorizeStatus = "authorizing", e.networkStatus = "connected";var i = { appkey: e._appkey, userId: e._userId, userData: e._userData, otp: e._otp, artifactVersion: "1.0.11", manual: e._manualConnect };null != e.authorizeResult && (i.sid = e.authorizeResult.sid);var r = !1;n();var s = setInterval(function () {r || "connected" != e.networkStatus ? clearInterval(s) : n();}, 1300);}}), this.socket.on("connect_error", function (e) {"undefined" != typeof t.onConnectFailed && t.onConnectFailed({ code: 408, content: e });}), this.socket.on("disconnect", function () {e.networkStatus = "disconnected", e.authorizeStatus = "initial", e._manualConnect = !1, null == e.authorizeResult && (e.authorizeResult = {}), e.authorizeResult.code = 408, e.authorizeResult.content = "Server unreachable or timeout", "undefined" != typeof t.onDisconnected && t.onDisconnected();});}, _isEmpty: function _isEmpty(t) {return "undefined" == typeof t || null == t || 0 == this._trim(t).length;}, _trim: function _trim(t) {return t.replace(/(^\s*)|(\s*$)/g, "");}, _endWith: function _endWith(t, e) {var n = new RegExp(e + "$");return n.test(t);}, _isArray: function _isArray(t) {return "[object Array]" == Object.prototype.toString.call(t);}, log: function log(t) {"undefined" != typeof window && window.console && this.debug && console.log(t);}, uuid_goeasy: function uuid_goeasy() {var t = s();return t.replace(/-/g, "");}, sendlogs: function sendlogs() {a && this.socket.emit("log", { logs: c });} };var A = function () {var t;return function (e) {return t && !t.disconnected() || (t = new x(e)), t;};}();t.exports = A;}, function (t, e, n) {"use strict";function o(t, e) {"object" === ("undefined" == typeof t ? "undefined" : i(t)) && (e = t, t = void 0), e = e || {};var n,o = r(t),s = o.source,u = o.id,p = o.path,h = a[u] && p in a[u].nsps,f = e.forceNew || e["force new connection"] || !1 === e.multiplex || h;return f ? n = c(s, e) : (a[u] || (a[u] = c(s, e)), n = a[u]), o.query && !e.query && (e.query = o.query), n.socket(o.path, e);}var i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},r = n(2),s = n(5),c = n(8);n(4)("socket.io-client");t.exports = e = o;var a = e.managers = {};e.protocol = s.protocol, e.connect = o, e.Manager = n(8), e.Socket = n(30);}, function (t, e, n) {"use strict";function o(t, e) {var n = t;e = e || "undefined" != typeof location && location, null == t && (t = e.protocol + "//" + e.host), "string" == typeof t && ("/" === t.charAt(0) && (t = "/" === t.charAt(1) ? e.protocol + t : e.host + t), /^(https?|wss?):\/\//.test(t) || (t = "undefined" != typeof e ? e.protocol + "//" + t : "https://" + t), n = i(t)), n.port || (/^(http|ws)$/.test(n.protocol) ? n.port = "80" : /^(http|ws)s$/.test(n.protocol) && (n.port = "443")), n.path = n.path || "/";var o = n.host.indexOf(":") !== -1,r = o ? "[" + n.host + "]" : n.host;return n.id = n.protocol + "://" + r + ":" + n.port, n.href = n.protocol + "://" + r + (e && e.port === n.port ? "" : ":" + n.port), n;}var i = n(3);n(4)("socket.io-client:url");t.exports = o;}, function (t, e) {var n = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,o = ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"];t.exports = function (t) {var e = t,i = t.indexOf("["),r = t.indexOf("]");i != -1 && r != -1 && (t = t.substring(0, i) + t.substring(i, r).replace(/:/g, ";") + t.substring(r, t.length));for (var s = n.exec(t || ""), c = {}, a = 14; a--;) {c[o[a]] = s[a] || "";}return i != -1 && r != -1 && (c.source = e, c.host = c.host.substring(1, c.host.length - 1).replace(/;/g, ":"), c.authority = c.authority.replace("[", "").replace("]", "").replace(/;/g, ":"), c.ipv6uri = !0), c;};}, function (t, e) {"use strict";t.exports = function () {return function () {};};}, function (t, e, n) {"use strict";function o() {}function i(t) {var n = "" + t.type;if (e.BINARY_EVENT !== t.type && e.BINARY_ACK !== t.type || (n += t.attachments + "-"), t.nsp && "/" !== t.nsp && (n += t.nsp + ","), null != t.id && (n += t.id), null != t.data) {var o = r(t.data);if (o === !1) return d;n += o;}return n;}function r(t) {try {return JSON.stringify(t);} catch (t) {return !1;}}function s() {this.reconstructor = null;}function c(t) {var n = 0,o = { type: Number(t.charAt(0)) };if (null == e.types[o.type]) return p("unknown packet type " + o.type);if (e.BINARY_EVENT === o.type || e.BINARY_ACK === o.type) {for (var i = ""; "-" !== t.charAt(++n) && (i += t.charAt(n), n != t.length);) {;}if (i != Number(i) || "-" !== t.charAt(n)) throw new Error("Illegal attachments");o.attachments = Number(i);}if ("/" === t.charAt(n + 1)) for (o.nsp = ""; ++n;) {var r = t.charAt(n);if ("," === r) break;if (o.nsp += r, n === t.length) break;} else o.nsp = "/";var s = t.charAt(n + 1);if ("" !== s && Number(s) == s) {for (o.id = ""; ++n;) {var r = t.charAt(n);if (null == r || Number(r) != r) {--n;break;}if (o.id += t.charAt(n), n === t.length) break;}o.id = Number(o.id);}if (t.charAt(++n)) {var c = a(t.substr(n)),u = c !== !1 && (o.type === e.ERROR || f(c));if (!u) return p("invalid payload");o.data = c;}return o;}function a(t) {try {return JSON.parse(t);} catch (t) {return !1;}}function u(t) {this.reconPack = t, this.buffers = [];}function p(t) {return { type: e.ERROR, data: "parser error: " + t };}var h = (n(4)("socket.io-parser"), n(6)),f = n(7);e.protocol = 4, e.types = ["CONNECT", "DISCONNECT", "EVENT", "ACK", "ERROR", "BINARY_EVENT", "BINARY_ACK"], e.CONNECT = 0, e.DISCONNECT = 1, e.EVENT = 2, e.ACK = 3, e.ERROR = 4, e.BINARY_EVENT = 5, e.BINARY_ACK = 6, e.Encoder = o, e.Decoder = s;var d = e.ERROR + '"encode error"';o.prototype.encode = function (t, e) {var n = i(t);e([n]);}, h(s.prototype), s.prototype.add = function (t) {var e;if ("string" != typeof t) throw new Error("Unknown type: " + t);e = c(t), this.emit("decoded", e);}, s.prototype.destroy = function () {this.reconstructor && this.reconstructor.finishedReconstruction();}, u.prototype.takeBinaryData = function (t) {if (this.buffers.push(t), this.buffers.length === this.reconPack.attachments) {var e = binary.reconstructPacket(this.reconPack, this.buffers);return this.finishedReconstruction(), e;}return null;}, u.prototype.finishedReconstruction = function () {this.reconPack = null, this.buffers = [];};}, function (t, e, n) {function o(t) {if (t) return i(t);}function i(t) {for (var e in o.prototype) {t[e] = o.prototype[e];}return t;}t.exports = o, o.prototype.on = o.prototype.addEventListener = function (t, e) {return this._callbacks = this._callbacks || {}, (this._callbacks["$" + t] = this._callbacks["$" + t] || []).push(e), this;}, o.prototype.once = function (t, e) {function n() {this.off(t, n), e.apply(this, arguments);}return n.fn = e, this.on(t, n), this;}, o.prototype.off = o.prototype.removeListener = o.prototype.removeAllListeners = o.prototype.removeEventListener = function (t, e) {if (this._callbacks = this._callbacks || {}, 0 == arguments.length) return this._callbacks = {}, this;var n = this._callbacks["$" + t];if (!n) return this;if (1 == arguments.length) return delete this._callbacks["$" + t], this;for (var o, i = 0; i < n.length; i++) {if (o = n[i], o === e || o.fn === e) {n.splice(i, 1);break;}}return this;}, o.prototype.emit = function (t) {this._callbacks = this._callbacks || {};var e = [].slice.call(arguments, 1),n = this._callbacks["$" + t];if (n) {n = n.slice(0);for (var o = 0, i = n.length; o < i; ++o) {n[o].apply(this, e);}}return this;}, o.prototype.listeners = function (t) {return this._callbacks = this._callbacks || {}, this._callbacks["$" + t] || [];}, o.prototype.hasListeners = function (t) {return !!this.listeners(t).length;};}, function (t, e) {var n = {}.toString;t.exports = Array.isArray || function (t) {return "[object Array]" == n.call(t);};}, function (t, e, n) {"use strict";function o(t, e) {if (!(this instanceof o)) return new o(t, e);t && "object" === ("undefined" == typeof t ? "undefined" : r(t)) && (e = t, t = void 0), e = e || {}, e.path = e.path || "/socket.io", this.nsps = {}, this.subs = [], this.opts = e, this.reconnection(e.reconnection !== !1), this.reconnectionAttempts(e.reconnectionAttempts || 1 / 0), this.reconnectionDelay(e.reconnectionDelay || 1e3), this.reconnectionDelayMax(e.reconnectionDelayMax || 5e3), this.randomizationFactor(e.randomizationFactor || .5), this.backoff = new d({ min: this.reconnectionDelay(), max: this.reconnectionDelayMax(), jitter: this.randomizationFactor() }), this.timeout(null == e.timeout ? 2e4 : e.timeout), this.readyState = "closed", this.uri = t, this.connecting = [], this.lastPing = null, this.encoding = !1, this.packetBuffer = [];var n = e.parser || u;this.encoder = new n.Encoder(), this.decoder = new n.Decoder(), this.autoConnect = e.autoConnect !== !1, this.autoConnect && this.open();}function i() {var t = !1;return "object" === ("undefined" == typeof uni ? "undefined" : r(uni)) && uni.getSystemInfo && (t = !0), t && getApp().uniAppRunningBackend === !0;}var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},s = n(9),c = n(30),a = n(6),u = n(5),p = n(32),h = n(33),f = (n(4)("socket.io-client:manager"), n(29)),d = n(34),l = Object.prototype.hasOwnProperty;t.exports = o, o.prototype.emitAll = function () {this.emit.apply(this, arguments);for (var t in this.nsps) {l.call(this.nsps, t) && this.nsps[t].emit.apply(this.nsps[t], arguments);}}, o.prototype.updateSocketIds = function () {for (var t in this.nsps) {l.call(this.nsps, t) && (this.nsps[t].id = this.generateId(t));}}, o.prototype.generateId = function (t) {return ("/" === t ? "" : t + "#") + this.engine.id;}, a(o.prototype), o.prototype.reconnection = function (t) {return arguments.length ? (this._reconnection = !!t, this) : this._reconnection;}, o.prototype.reconnectionAttempts = function (t) {return arguments.length ? (this._reconnectionAttempts = t, this) : this._reconnectionAttempts;}, o.prototype.reconnectionDelay = function (t) {return arguments.length ? (this._reconnectionDelay = t, this.backoff && this.backoff.setMin(t), this) : this._reconnectionDelay;}, o.prototype.randomizationFactor = function (t) {return arguments.length ? (this._randomizationFactor = t, this.backoff && this.backoff.setJitter(t), this) : this._randomizationFactor;}, o.prototype.reconnectionDelayMax = function (t) {return arguments.length ? (this._reconnectionDelayMax = t, this.backoff && this.backoff.setMax(t), this) : this._reconnectionDelayMax;}, o.prototype.timeout = function (t) {return arguments.length ? (this._timeout = t, this) : this._timeout;}, o.prototype.maybeReconnectOnOpen = function () {!this.reconnecting && this._reconnection && 0 === this.backoff.attempts && this.reconnect();}, o.prototype.open = o.prototype.connect = function (t, e) {if (~this.readyState.indexOf("open")) return this;this.engine = s(this.uri, this.opts);var n = this.engine,o = this;this.readyState = "opening", this.skipReconnect = !1;var i = p(n, "open", function () {o.onopen(), t && t();}),r = p(n, "error", function (e) {if ("undefined" != typeof window) {var n = /[1-9][0-9]*/g,i = parseInt(o.uri.match(n)[0]),r = window._GoEasy_.goEasyDomainNumber.initialCurrentNumber();o.uri = o.uri.replace(i, r);}if (o.cleanup(), o.readyState = "closed", o.emitAll("connect_error", e), t) {var s = new Error("Connection error");s.data = e, t(s);} else o.maybeReconnectOnOpen();});if (!1 !== this._timeout) {var c = this._timeout,a = setTimeout(function () {i.destroy(), n.close(), n.emit("error", "timeout"), o.emitAll("connect_timeout", c);}, c);this.subs.push({ destroy: function destroy() {clearTimeout(a);} });}return this.subs.push(i), this.subs.push(r), this;}, o.prototype.onopen = function () {this.cleanup(), this.readyState = "open", this.emit("open");var t = this.engine;this.subs.push(p(t, "data", h(this, "ondata"))), this.subs.push(p(t, "ping", h(this, "onping"))), this.subs.push(p(t, "pong", h(this, "onpong"))), this.subs.push(p(t, "error", h(this, "onerror"))), this.subs.push(p(t, "close", h(this, "onclose"))), this.subs.push(p(this.decoder, "decoded", h(this, "ondecoded")));}, o.prototype.onping = function () {this.lastPing = new Date(), this.emitAll("ping");}, o.prototype.onpong = function () {this.emitAll("pong", new Date() - this.lastPing);}, o.prototype.ondata = function (t) {this.decoder.add(t);}, o.prototype.ondecoded = function (t) {this.emit("packet", t);}, o.prototype.onerror = function (t) {this.emitAll("error", t);}, o.prototype.socket = function (t, e) {function n() {~f(i.connecting, o) || i.connecting.push(o);}var o = this.nsps[t];if (!o) {o = new c(this, t, e), this.nsps[t] = o;var i = this;o.on("connecting", n), o.on("connect", function () {o.id = i.generateId(t);}), this.autoConnect && n();}return o;}, o.prototype.destroy = function (t) {var e = f(this.connecting, t);~e && this.connecting.splice(e, 1), this.connecting.length || this.close();}, o.prototype.packet = function (t) {var e = this;t.query && 0 === t.type && (t.nsp += "?" + t.query), e.encoding ? e.packetBuffer.push(t) : (e.encoding = !0, this.encoder.encode(t, function (n) {for (var o = 0; o < n.length; o++) {e.engine.write(n[o], t.options);}e.encoding = !1, e.processPacketQueue();}));}, o.prototype.processPacketQueue = function () {if (this.packetBuffer.length > 0 && !this.encoding) {var t = this.packetBuffer.shift();this.packet(t);}}, o.prototype.cleanup = function () {for (var t = this.subs.length, e = 0; e < t; e++) {var n = this.subs.shift();n.destroy();}this.packetBuffer = [], this.encoding = !1, this.lastPing = null, this.decoder.destroy();}, o.prototype.close = o.prototype.disconnect = function () {this.skipReconnect = !0, this.reconnecting = !1, "opening" === this.readyState && this.cleanup(), this.backoff.reset(), this.readyState = "closed", this.engine && this.engine.close();}, o.prototype.onclose = function (t) {this.cleanup(), this.backoff.reset(), this.readyState = "closed", this.emit("close", t), this._reconnection && !this.skipReconnect && this.reconnect();}, o.prototype.reconnect = function () {if (this.reconnecting || this.skipReconnect) return this;var t = this;if (this.backoff.attempts >= this._reconnectionAttempts) this.backoff.reset(), this.emitAll("reconnect_failed"), this.reconnecting = !1;else {var e = this.backoff.duration();this.reconnecting = !0;var n = setTimeout(function () {t.skipReconnect || (t.emitAll("reconnect_attempt", t.backoff.attempts), t.emitAll("reconnecting", t.backoff.attempts), t.skipReconnect || (i() ? (t.reconnecting = !1, t.reconnect(), t.emitAll("reconnect_error", "Uniapp running backend, skipped reconnect...")) : t.open(function (e) {e ? (t.reconnecting = !1, t.reconnect(), t.emitAll("reconnect_error", e.data)) : t.onreconnect();})));}, e);this.subs.push({ destroy: function destroy() {clearTimeout(n);} });}}, o.prototype.onreconnect = function () {var t = this.backoff.attempts;this.reconnecting = !1, this.backoff.reset(), this.updateSocketIds(), this.emitAll("reconnect", t);};}, function (t, e, n) {"use strict";t.exports = n(10), t.exports.parser = n(15);}, function (t, e, n) {"use strict";function o(t, e) {return this instanceof o ? (e = e || {}, t && "object" === ("undefined" == typeof t ? "undefined" : r(t)) && (e = t, t = null), t ? (t = p(t), e.hostname = t.host, e.secure = "https" === t.protocol || "wss" === t.protocol, e.port = t.port, t.query && (e.query = t.query)) : e.host && (e.hostname = p(e.host).host), this.secure = null != e.secure ? e.secure : "undefined" != typeof location && "https:" === location.protocol, e.hostname && !e.port && (e.port = this.secure ? "443" : "80"), this.agent = e.agent || !1, this.hostname = e.hostname || ("undefined" != typeof location ? location.hostname : "localhost"), this.port = e.port || ("undefined" != typeof location && location.port ? location.port : this.secure ? 443 : 80), this.query = e.query || {}, "string" == typeof this.query && (this.query = h.decode(this.query)), this.upgrade = !1 !== e.upgrade, this.path = (e.path || "/engine.io").replace(/\/$/, "") + "/", this.forceJSONP = !!e.forceJSONP, this.jsonp = !1 !== e.jsonp, this.forceBase64 = !!e.forceBase64, this.enablesXDR = !!e.enablesXDR, this.timestampParam = e.timestampParam || "t", this.timestampRequests = e.timestampRequests, this.transports = e.transports || ["polling", "websocket"], this.transportOptions = e.transportOptions || {}, this.readyState = "", this.writeBuffer = [], this.prevBufferLen = 0, this.policyPort = e.policyPort || 843, this.rememberUpgrade = e.rememberUpgrade || !1, this.binaryType = null, this.onlyBinaryUpgrades = e.onlyBinaryUpgrades, this.perMessageDeflate = !1 !== e.perMessageDeflate && (e.perMessageDeflate || {}), !0 === this.perMessageDeflate && (this.perMessageDeflate = {}), this.perMessageDeflate && null == this.perMessageDeflate.threshold && (this.perMessageDeflate.threshold = 1024), this.pfx = e.pfx || null, this.key = e.key || null, this.passphrase = e.passphrase || null, this.cert = e.cert || null, this.ca = e.ca || null, this.ciphers = e.ciphers || null, this.rejectUnauthorized = void 0 === e.rejectUnauthorized || e.rejectUnauthorized, this.forceNode = !!e.forceNode, this.isReactNative = "undefined" != typeof navigator && "string" == typeof navigator.product && "reactnative" === navigator.product.toLowerCase(), ("undefined" == typeof self || this.isReactNative) && (e.extraHeaders && Object.keys(e.extraHeaders).length > 0 && (this.extraHeaders = e.extraHeaders), e.localAddress && (this.localAddress = e.localAddress)), this.id = null, this.upgrades = null, this.pingInterval = null, this.pingTimeout = null, this.pingIntervalTimer = null, this.pingTimeoutTimer = null, void this.open()) : new o(t, e);}function i(t) {var e = {};for (var n in t) {t.hasOwnProperty(n) && (e[n] = t[n]);}return e;}var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},s = n(11),c = n(6),a = (n(4)("engine.io-client:socket"), n(29)),u = n(15),p = n(3),h = n(22);t.exports = o, o.priorWebsocketSuccess = !1, c(o.prototype), o.protocol = u.protocol, o.Socket = o, o.Transport = n(14), o.transports = n(11), o.parser = n(15), o.prototype.createTransport = function (t) {var e = i(this.query);e.EIO = u.protocol, e.transport = t;var n = this.transportOptions[t] || {};this.id && (e.sid = this.id);var o = new s[t]({ query: e, socket: this, agent: n.agent || this.agent, hostname: n.hostname || this.hostname, port: n.port || this.port, secure: n.secure || this.secure, path: n.path || this.path, forceJSONP: n.forceJSONP || this.forceJSONP, jsonp: n.jsonp || this.jsonp, forceBase64: n.forceBase64 || this.forceBase64, enablesXDR: n.enablesXDR || this.enablesXDR, timestampRequests: n.timestampRequests || this.timestampRequests, timestampParam: n.timestampParam || this.timestampParam, policyPort: n.policyPort || this.policyPort, pfx: n.pfx || this.pfx, key: n.key || this.key, passphrase: n.passphrase || this.passphrase, cert: n.cert || this.cert, ca: n.ca || this.ca, ciphers: n.ciphers || this.ciphers, rejectUnauthorized: n.rejectUnauthorized || this.rejectUnauthorized, perMessageDeflate: n.perMessageDeflate || this.perMessageDeflate, extraHeaders: n.extraHeaders || this.extraHeaders, forceNode: n.forceNode || this.forceNode, localAddress: n.localAddress || this.localAddress, requestTimeout: n.requestTimeout || this.requestTimeout, protocols: n.protocols || void 0, isReactNative: this.isReactNative });return o;}, o.prototype.open = function () {var t;if (this.rememberUpgrade && o.priorWebsocketSuccess && this.transports.indexOf("websocket") !== -1) t = "websocket";else {
+        if (0 === this.transports.length) {var e = this;return void setTimeout(function () {e.emit("error", "No transports available");}, 0);}t = this.transports[0];}this.readyState = "opening";try {t = this.createTransport(t);} catch (t) {return this.transports.shift(), void this.open();}t.open(), this.setTransport(t);}, o.prototype.setTransport = function (t) {var e = this;this.transport && this.transport.removeAllListeners(), this.transport = t, t.on("drain", function () {e.onDrain();}).on("packet", function (t) {e.onPacket(t);}).on("error", function (t) {e.onError(t);}).on("close", function () {e.onClose("transport close");});}, o.prototype.probe = function (t) {function e() {if (h.onlyBinaryUpgrades) {var t = !this.supportsBinary && h.transport.supportsBinary;p = p || t;}p || (u.send([{ type: "ping", data: "probe" }]), u.once("packet", function (t) {if (!p) if ("pong" === t.type && "probe" === t.data) {if (h.upgrading = !0, h.emit("upgrading", u), !u) return;o.priorWebsocketSuccess = "websocket" === u.name, h.transport.pause(function () {p || "closed" !== h.readyState && (a(), h.setTransport(u), u.send([{ type: "upgrade" }]), h.emit("upgrade", u), u = null, h.upgrading = !1, h.flush());});} else {var e = new Error("probe error");e.transport = u.name, h.emit("upgradeError", e);}}));}function n() {p || (p = !0, a(), u.close(), u = null);}function i(t) {var e = new Error("probe error: " + t);e.transport = u.name, n(), h.emit("upgradeError", e);}function r() {i("transport closed");}function s() {i("socket closed");}function c(t) {u && t.name !== u.name && n();}function a() {u.removeListener("open", e), u.removeListener("error", i), u.removeListener("close", r), h.removeListener("close", s), h.removeListener("upgrading", c);}var u = this.createTransport(t, { probe: 1 }),p = !1,h = this;o.priorWebsocketSuccess = !1, u.once("open", e), u.once("error", i), u.once("close", r), this.once("close", s), this.once("upgrading", c), u.open();}, o.prototype.onOpen = function () {if (this.readyState = "open", o.priorWebsocketSuccess = "websocket" === this.transport.name, this.emit("open"), this.flush(), "open" === this.readyState && this.upgrade && this.transport.pause) for (var t = 0, e = this.upgrades.length; t < e; t++) {this.probe(this.upgrades[t]);}}, o.prototype.onPacket = function (t) {if ("opening" === this.readyState || "open" === this.readyState || "closing" === this.readyState) switch (this.emit("packet", t), this.emit("heartbeat"), t.type) {case "open":this.onHandshake(JSON.parse(t.data));break;case "pong":this.setPing(), this.emit("pong");break;case "error":var e = new Error("server error");e.code = t.data, this.onError(e);break;case "message":this.emit("data", t.data), this.emit("message", t.data);}}, o.prototype.onHandshake = function (t) {this.emit("handshake", t), this.id = t.sid, this.transport.query.sid = t.sid, this.upgrades = this.filterUpgrades(t.upgrades), this.pingInterval = t.pingInterval, this.pingTimeout = t.pingTimeout, this.onOpen(), "closed" !== this.readyState && (this.setPing(), this.removeListener("heartbeat", this.onHeartbeat), this.on("heartbeat", this.onHeartbeat));}, o.prototype.onHeartbeat = function (t) {clearTimeout(this.pingTimeoutTimer);var e = this;e.pingTimeoutTimer = setTimeout(function () {"closed" !== e.readyState && e.onClose("ping timeout");}, t || e.pingInterval + e.pingTimeout);}, o.prototype.setPing = function () {var t = this;clearTimeout(t.pingIntervalTimer), t.pingIntervalTimer = setTimeout(function () {t.ping(), t.onHeartbeat(t.pingTimeout);}, t.pingInterval);}, o.prototype.ping = function () {var t = this;this.sendPacket("ping", function () {t.emit("ping");});}, o.prototype.onDrain = function () {this.writeBuffer.splice(0, this.prevBufferLen), this.prevBufferLen = 0, 0 === this.writeBuffer.length ? this.emit("drain") : this.flush();}, o.prototype.flush = function () {"closed" !== this.readyState && this.transport.writable && !this.upgrading && this.writeBuffer.length && (this.transport.send(this.writeBuffer), this.prevBufferLen = this.writeBuffer.length, this.emit("flush"));}, o.prototype.write = o.prototype.send = function (t, e, n) {return this.sendPacket("message", t, e, n), this;}, o.prototype.sendPacket = function (t, e, n, o) {if ("function" == typeof e && (o = e, e = void 0), "function" == typeof n && (o = n, n = null), "closing" !== this.readyState && "closed" !== this.readyState) {n = n || {}, n.compress = !1 !== n.compress;var i = { type: t, data: e, options: n };this.emit("packetCreate", i), this.writeBuffer.push(i), o && this.once("flush", o), this.flush();}}, o.prototype.close = function () {function t() {o.onClose("forced close"), o.transport.close();}function e() {o.removeListener("upgrade", e), o.removeListener("upgradeError", e), t();}function n() {o.once("upgrade", e), o.once("upgradeError", e);}if ("opening" === this.readyState || "open" === this.readyState) {this.readyState = "closing";var o = this;this.writeBuffer.length ? this.once("drain", function () {this.upgrading ? n() : t();}) : this.upgrading ? n() : t();}return this;}, o.prototype.onError = function (t) {o.priorWebsocketSuccess = !1, this.emit("error", t), this.onClose("transport error", t);}, o.prototype.onClose = function (t, e) {if ("opening" === this.readyState || "open" === this.readyState || "closing" === this.readyState) {var n = this;clearTimeout(this.pingIntervalTimer), clearTimeout(this.pingTimeoutTimer), this.transport.removeAllListeners("close"), this.transport.close(), this.transport.removeAllListeners(), this.readyState = "closed", this.id = null, this.emit("close", t, e), n.writeBuffer = [], n.prevBufferLen = 0;}}, o.prototype.filterUpgrades = function (t) {for (var e = [], n = 0, o = t.length; n < o; n++) {~a(this.transports, t[n]) && e.push(t[n]);}return e;};}, function (t, e, n) {"use strict";function o(t) {var e = !1,n = !1;!1 !== t.jsonp;if ("undefined" != typeof location) {var o = "https:" === location.protocol,r = location.port;r || (r = o ? 443 : 80), e = t.hostname !== location.hostname || r !== t.port, n = t.secure !== o;}return t.xdomain = e, t.xscheme = n, new i(t);}var i = n(12),r = n(27);e.polling = o, e.websocket = r;}, function (t, e, n) {(function (e) {"use strict";function o() {}function i() {return "undefined" != typeof self ? self : "undefined" != typeof window ? window : "undefined" != typeof e ? e : {};}function r(t) {if (s.call(this, t), this.query = this.query || {}, !a) {var e = i();a = e.___eio = e.___eio || [];}this.index = a.length;var n = this;a.push(function (t) {n.onData(t);}), this.query.j = this.index, "function" == typeof addEventListener && addEventListener("beforeunload", function () {n.script && (n.script.onerror = o);}, !1);}var s = n(13),c = n(23);t.exports = r;var a,u = /\n/g,p = /\\n/g;c(r, s), r.prototype.supportsBinary = !1, r.prototype.doClose = function () {this.script && (this.script.parentNode.removeChild(this.script), this.script = null), this.form && (this.form.parentNode.removeChild(this.form), this.form = null, this.iframe = null), s.prototype.doClose.call(this);}, r.prototype.doPoll = function () {var t = this,e = document.createElement("script");this.script && (this.script.parentNode.removeChild(this.script), this.script = null), e.async = !0, e.src = this.uri(), e.onerror = function (e) {t.onError("jsonp poll error", e);};var n = document.getElementsByTagName("script")[0];n ? n.parentNode.insertBefore(e, n) : (document.head || document.body).appendChild(e), this.script = e;var o = "undefined" != typeof navigator && /gecko/i.test(navigator.userAgent);o && setTimeout(function () {var t = document.createElement("iframe");document.body.appendChild(t), document.body.removeChild(t);}, 100);}, r.prototype.doWrite = function (t, e) {function n() {o(), e();}function o() {if (i.iframe) try {i.form.removeChild(i.iframe);} catch (t) {i.onError("jsonp polling iframe removal error", t);}try {var t = '<iframe src="javascript:0" name="' + i.iframeId + '">';r = document.createElement(t);} catch (t) {r = document.createElement("iframe"), r.name = i.iframeId, r.src = "javascript:0";}r.id = i.iframeId, i.form.appendChild(r), i.iframe = r;}var i = this;if (!this.form) {var r,s = document.createElement("form"),c = document.createElement("textarea"),a = this.iframeId = "eio_iframe_" + this.index;s.className = "socketio", s.style.position = "absolute", s.style.top = "-1000px", s.style.left = "-1000px", s.target = a, s.method = "POST", s.setAttribute("accept-charset", "utf-8"), c.name = "d", s.appendChild(c), document.body.appendChild(s), this.form = s, this.area = c;}this.form.action = this.uri(), o(), t = t.replace(p, "\\\n"), this.area.value = t.replace(u, "\\n");try {this.form.submit();} catch (t) {}this.iframe.attachEvent ? this.iframe.onreadystatechange = function () {"complete" === i.iframe.readyState && n();} : this.iframe.onload = n;};}).call(e, function () {return this;}());}, function (t, e, n) {"use strict";function o(t) {var e = t && t.forceBase64;u && !e || (this.supportsBinary = !1), i.call(this, t);}var i = n(14),r = n(22),s = n(15),c = n(23),a = n(24);n(4)("engine.io-client:polling");t.exports = o;var u = function () {var t = n(25),e = new t({ xdomain: !1 });return null != e.responseType;}();c(o, i), o.prototype.name = "polling", o.prototype.doOpen = function () {this.poll();}, o.prototype.pause = function (t) {function e() {n.readyState = "paused", t();}var n = this;if (this.readyState = "pausing", this.polling || !this.writable) {var o = 0;this.polling && (o++, this.once("pollComplete", function () {--o || e();})), this.writable || (o++, this.once("drain", function () {--o || e();}));} else e();}, o.prototype.poll = function () {this.polling = !0, this.doPoll(), this.emit("poll");}, o.prototype.onData = function (t) {var e = this,n = function n(t, _n, o) {return "opening" === e.readyState && e.onOpen(), "close" === t.type ? (e.onClose(), !1) : void e.onPacket(t);};s.decodePayload(t, this.socket.binaryType, n), "closed" !== this.readyState && (this.polling = !1, this.emit("pollComplete"), "open" === this.readyState && this.poll());}, o.prototype.doClose = function () {function t() {e.write([{ type: "close" }]);}var e = this;"open" === this.readyState ? t() : this.once("open", t);}, o.prototype.write = function (t) {var e = this;this.writable = !1;var n = function n() {e.writable = !0, e.emit("drain");};s.encodePayload(t, this.supportsBinary, function (t) {e.doWrite(t, n);});}, o.prototype.uri = function () {var t = this.query || {},e = this.secure ? "https" : "http",n = "";!1 !== this.timestampRequests && (t[this.timestampParam] = a()), this.supportsBinary || t.sid || (t.b64 = 1), t = r.encode(t), this.port && ("https" === e && 443 !== Number(this.port) || "http" === e && 80 !== Number(this.port)) && (n = ":" + this.port), t.length && (t = "?" + t);var o = this.hostname.indexOf(":") !== -1;return e + "://" + (o ? "[" + this.hostname + "]" : this.hostname) + n + this.path + t;};}, function (t, e, n) {"use strict";function o(t) {this.path = t.path, this.hostname = t.hostname, this.port = t.port, this.secure = t.secure, this.query = t.query, this.timestampParam = t.timestampParam, this.timestampRequests = t.timestampRequests, this.readyState = "", this.agent = t.agent || !1, this.socket = t.socket, this.enablesXDR = t.enablesXDR, this.pfx = t.pfx, this.key = t.key, this.passphrase = t.passphrase, this.cert = t.cert, this.ca = t.ca, this.ciphers = t.ciphers, this.rejectUnauthorized = t.rejectUnauthorized, this.forceNode = t.forceNode, this.isReactNative = t.isReactNative, this.extraHeaders = t.extraHeaders, this.localAddress = t.localAddress;}var i = n(15),r = n(6);t.exports = o, r(o.prototype), o.prototype.onError = function (t, e) {var n = new Error(t);return n.type = "TransportError", n.description = e, this.emit("error", n), this;}, o.prototype.open = function () {return "closed" !== this.readyState && "" !== this.readyState || (this.readyState = "opening", this.doOpen()), this;}, o.prototype.close = function () {return "opening" !== this.readyState && "open" !== this.readyState || (this.doClose(), this.onClose()), this;}, o.prototype.send = function (t) {if ("open" !== this.readyState) throw new Error("Transport not open");this.write(t);}, o.prototype.onOpen = function () {this.readyState = "open", this.writable = !0, this.emit("open");}, o.prototype.onData = function (t) {var e = i.decodePacket(t, this.socket.binaryType);this.onPacket(e);}, o.prototype.onPacket = function (t) {this.emit("packet", t);}, o.prototype.onClose = function () {this.readyState = "closed", this.emit("close");};}, function (t, e, n) {"use strict";function o(t) {try {t = a.decode(t, { strict: !1 });} catch (t) {return !1;}return t;}function i(t, e, n) {for (var o = new Array(t.length), i = c(t.length, n), r = function r(t, n, i) {e(n, function (e, n) {o[t] = n, i(e, o);});}, s = 0; s < t.length; s++) {r(s, t[s], i);}}var r = n(16),s = n(17),c = n(19),a = n(20);"undefined" != typeof navigator && /Android/i.test(navigator.userAgent), "undefined" != typeof navigator && /PhantomJS/i.test(navigator.userAgent);e.protocol = 3;var u = e.packets = { open: 0, close: 1, ping: 2, pong: 3, message: 4, upgrade: 5, noop: 6 },p = r(u),h = { type: "error", data: "parser error" },f = n(21);e.encodePacket = function (t, e, n, o) {"function" == typeof e && (o = e, e = !1), "function" == typeof n && (o = n, n = null);var i = (void 0 === t.data ? void 0 : t.data.buffer || t.data, u[t.type]);return void 0 !== t.data && (i += n ? a.encode(String(t.data), { strict: !1 }) : String(t.data)), o("" + i);}, e.decodePacket = function (t, e, n) {if (void 0 === t) return h;if ("string" == typeof t) {if (n && (t = o(t), t === !1)) return h;var i = t.charAt(0);return Number(i) == i && p[i] ? t.length > 1 ? { type: p[i], data: t.substring(1) } : { type: p[i] } : h;}var r = new Uint8Array(t),i = r[0],s = sliceBuffer(t, 1);return f && "blob" === e && (s = new f([s])), { type: p[i], data: s };}, e.encodePayload = function (t, n, o) {function r(t) {return t.length + ":" + t;}function c(t, o) {e.encodePacket(t, !!a && n, !0, function (t) {o(null, r(t));});}"function" == typeof n && (o = n, n = null);var a = s(t);return t.length ? void i(t, c, function (t, e) {return o(e.join(""));}) : o("0:");}, e.decodePayload = function (t, n, o) {"function" == typeof n && (o = n, n = null);var i;if ("" === t) return o(h, 0, 1);for (var r, s, c = "", a = 0, u = t.length; a < u; a++) {var p = t.charAt(a);if (":" === p) {if ("" === c || c != (r = Number(c))) return o(h, 0, 1);if (s = t.substr(a + 1, r), c != s.length) return o(h, 0, 1);if (s.length) {if (i = e.decodePacket(s, n, !0), h.type === i.type && h.data === i.data) return o(h, 0, 1);var f = o(i, a + r, u);if (!1 === f) return;}a += r, c = "";} else c += p;}return "" !== c ? o(h, 0, 1) : void 0;};}, function (t, e) {"use strict";t.exports = Object.keys || function (t) {var e = [],n = Object.prototype.hasOwnProperty;for (var o in t) {n.call(t, o) && e.push(o);}return e;};}, function (t, e, n) {function o(t) {if (!t || "object" != typeof t) return !1;if (i(t)) {for (var e = 0, n = t.length; e < n; e++) {if (o(t[e])) return !0;}return !1;}if ("function" == typeof Buffer && Buffer.isBuffer && Buffer.isBuffer(t) || "function" == typeof ArrayBuffer && t instanceof ArrayBuffer || s && t instanceof Blob || c && t instanceof File) return !0;if (t.toJSON && "function" == typeof t.toJSON && 1 === arguments.length) return o(t.toJSON(), !0);for (var r in t) {if (Object.prototype.hasOwnProperty.call(t, r) && o(t[r])) return !0;}return !1;}var i = n(18),r = Object.prototype.toString,s = "function" == typeof Blob || "undefined" != typeof Blob && "[object BlobConstructor]" === r.call(Blob),c = "function" == typeof File || "undefined" != typeof File && "[object FileConstructor]" === r.call(File);t.exports = o;}, function (t, e) {var n = {}.toString;t.exports = Array.isArray || function (t) {return "[object Array]" == n.call(t);};}, function (t, e) {function n(t, e, n) {function i(t, o) {if (i.count <= 0) throw new Error("after called too many times");--i.count, t ? (r = !0, e(t), e = n) : 0 !== i.count || r || e(null, o);}var r = !1;return n = n || o, i.count = t, 0 === t ? e() : i;}function o() {}t.exports = n;}, function (t, e) {"use strict";function n(t) {for (var e, n, o = [], i = 0, r = t.length; i < r;) {e = t.charCodeAt(i++), e >= 55296 && e <= 56319 && i < r ? (n = t.charCodeAt(i++), 56320 == (64512 & n) ? o.push(((1023 & e) << 10) + (1023 & n) + 65536) : (o.push(e), i--)) : o.push(e);}return o;}function o(t) {for (var e, n = t.length, o = -1, i = ""; ++o < n;) {e = t[o], e > 65535 && (e -= 65536, i += l(e >>> 10 & 1023 | 55296), e = 56320 | 1023 & e), i += l(e);}return i;}function i(t, e) {if (t >= 55296 && t <= 57343) {if (e) throw Error("Lone surrogate U+" + t.toString(16).toUpperCase() + " is not a scalar value");return !1;}return !0;}function r(t, e) {return l(t >> e & 63 | 128);}function s(t, e) {if (0 == (4294967168 & t)) return l(t);var n = "";return 0 == (4294965248 & t) ? n = l(t >> 6 & 31 | 192) : 0 == (4294901760 & t) ? (i(t, e) || (t = 65533), n = l(t >> 12 & 15 | 224), n += r(t, 6)) : 0 == (4292870144 & t) && (n = l(t >> 18 & 7 | 240), n += r(t, 12), n += r(t, 6)), n += l(63 & t | 128);}function c(t, e) {e = e || {};for (var o, i = !1 !== e.strict, r = n(t), c = r.length, a = -1, u = ""; ++a < c;) {o = r[a], u += s(o, i);}return u;}function a() {if (d >= f) throw Error("Invalid byte index");var t = 255 & h[d];if (d++, 128 == (192 & t)) return 63 & t;throw Error("Invalid continuation byte");}function u(t) {var e, n, o, r, s;if (d > f) throw Error("Invalid byte index");if (d == f) return !1;if (e = 255 & h[d], d++, 0 == (128 & e)) return e;if (192 == (224 & e)) {if (n = a(), s = (31 & e) << 6 | n, s >= 128) return s;throw Error("Invalid continuation byte");}if (224 == (240 & e)) {if (n = a(), o = a(), s = (15 & e) << 12 | n << 6 | o, s >= 2048) return i(s, t) ? s : 65533;throw Error("Invalid continuation byte");}if (240 == (248 & e) && (n = a(), o = a(), r = a(), s = (7 & e) << 18 | n << 12 | o << 6 | r, s >= 65536 && s <= 1114111)) return s;throw Error("Invalid UTF-8 detected");}function p(t, e) {e = e || {};var i = !1 !== e.strict;h = n(t), f = h.length, d = 0;for (var r, s = []; (r = u(i)) !== !1;) {s.push(r);}return o(s);} /*! https://mths.be/utf8js v2.1.2 by @mathias */
+    var h,f,d,l = String.fromCharCode;t.exports = { version: "2.1.2", encode: c, decode: p };}, function (t, e) {function n(t) {return t.map(function (t) {if (t.buffer instanceof ArrayBuffer) {var e = t.buffer;if (t.byteLength !== e.byteLength) {var n = new Uint8Array(t.byteLength);n.set(new Uint8Array(e, t.byteOffset, t.byteLength)), e = n.buffer;}return e;}return t;});}function o(t, e) {e = e || {};var o = new r();return n(t).forEach(function (t) {o.append(t);}), e.type ? o.getBlob(e.type) : o.getBlob();}function i(t, e) {return new Blob(n(t), e || {});}var r = "undefined" != typeof r ? r : "undefined" != typeof WebKitBlobBuilder ? WebKitBlobBuilder : "undefined" != typeof MSBlobBuilder ? MSBlobBuilder : "undefined" != typeof MozBlobBuilder && MozBlobBuilder,s = function () {try {var t = new Blob(["hi"]);return 2 === t.size;} catch (t) {return !1;}}(),c = s && function () {try {var t = new Blob([new Uint8Array([1, 2])]);return 2 === t.size;} catch (t) {return !1;}}(),a = r && r.prototype.append && r.prototype.getBlob;"undefined" != typeof Blob && (o.prototype = Blob.prototype, i.prototype = Blob.prototype), t.exports = function () {return s ? c ? Blob : i : a ? o : void 0;}();}, function (t, e) {e.encode = function (t) {var e = "";for (var n in t) {t.hasOwnProperty(n) && (e.length && (e += "&"), e += encodeURIComponent(n) + "=" + encodeURIComponent(t[n]));}return e;}, e.decode = function (t) {for (var e = {}, n = t.split("&"), o = 0, i = n.length; o < i; o++) {var r = n[o].split("=");e[decodeURIComponent(r[0])] = decodeURIComponent(r[1]);}return e;};}, function (t, e) {t.exports = function (t, e) {var n = function n() {};n.prototype = e.prototype, t.prototype = new n(), t.prototype.constructor = t;};}, function (t, e) {"use strict";function n(t) {var e = "";do {e = s[t % c] + e, t = Math.floor(t / c);} while (t > 0);return e;}function o(t) {var e = 0;for (p = 0; p < t.length; p++) {e = e * c + a[t.charAt(p)];}return e;}function i() {var t = n(+new Date());return t !== r ? (u = 0, r = t) : t + "." + n(u++);}for (var r, s = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_".split(""), c = 64, a = {}, u = 0, p = 0; p < c; p++) {a[s[p]] = p;}i.encode = n, i.decode = o, t.exports = i;}, function (t, e, n) {"use strict";var o = n(26);t.exports = function (t) {var e = t.xdomain,n = t.xscheme,i = t.enablesXDR;try {if ("undefined" != typeof XMLHttpRequest && (!e || o)) return new XMLHttpRequest();} catch (t) {}try {if ("undefined" != typeof XDomainRequest && !n && i) return new XDomainRequest();} catch (t) {}if (!e) try {return new self[["Active"].concat("Object").join("X")]("Microsoft.XMLHTTP");} catch (t) {}};}, function (t, e) {try {t.exports = "undefined" != typeof XMLHttpRequest && "withCredentials" in new XMLHttpRequest();} catch (e) {t.exports = !1;}}, function (t, e, n) {"use strict";function o(t) {var e = t && t.forceBase64;e && (this.supportsBinary = !1), ("undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket) && (this.perMessageDeflate = t.perMessageDeflate, this.usingBrowserWebSocket = i && !t.forceNode, this.protocols = t.protocols, this.usingBrowserWebSocket || (f = r)), c.call(this, t);}var i,r,s = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},c = n(14),a = n(15),u = n(22),p = n(23),h = n(24);n(4)("engine.io-client:websocket");if ("undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket) if ("undefined" != typeof WebSocket) i = WebSocket;else if ("undefined" != typeof self) i = self.WebSocket || self.MozWebSocket;else try {r = n(28);} catch (t) {}var f = i || r;"undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket || (f = function f(t) {var e = this;if (e.onopen = function () {}, e.onclose = function () {}, e.onmessage = function (t) {}, e.onerror = function (t) {}, "object" === ("undefined" == typeof tt ? "undefined" : s(tt)) && tt.getSystemInfo) {var n = tt.connectSocket({ url: t });e.send = function (t) {n.send({ data: t });}, e.close = function () {n.close();}, n.onOpen(function () {e.onopen();}), n.onError(function (t) {e.onerror(t);}), n.onMessage(function (t) {e.onmessage(t);}), n.onClose(function () {e.onclose();});} else "undefined" != typeof uni ? (e.send = function (t) {uni.sendSocketMessage({ data: t });}, e.close = function () {uni.closeSocket();}, uni.onSocketOpen(function (t) {e.onopen();}), uni.onSocketError(function (t) {e.onerror(t);}), uni.onSocketMessage(function (t) {e.onmessage(t);}), uni.onSocketClose(function (t) {e.onclose();}), uni.connectSocket({ url: t })) : (e.send = function (t) {wx.sendSocketMessage({ data: t });}, e.close = function () {wx.closeSocket();}, wx.onSocketOpen(function (t) {e.onopen();}), wx.onSocketError(function (t) {e.onerror(t);}), wx.onSocketMessage(function (t) {e.onmessage(t);}), wx.onSocketClose(function (t) {e.onclose();}), wx.connectSocket({ url: t }));}), t.exports = o, p(o, c), o.prototype.name = "websocket", o.prototype.supportsBinary = !1, o.prototype.doOpen = function () {if (this.check()) {var t,e = this.uri();("undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket) && (t = this.protocols);var n;n = "undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket ? { agent: this.agent, perMessageDeflate: this.perMessageDeflate } : { agent: this.agent }, n.pfx = this.pfx, n.key = this.key, n.passphrase = this.passphrase, n.cert = this.cert, n.ca = this.ca, n.ciphers = this.ciphers, n.rejectUnauthorized = this.rejectUnauthorized, this.extraHeaders && (n.headers = this.extraHeaders), this.localAddress && (n.localAddress = this.localAddress);try {"undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket ? this.ws = this.usingBrowserWebSocket && !this.isReactNative ? t ? new f(e, t) : new f(e) : new f(e, t, n) : this.ws = new f(e);} catch (t) {return this.emit("error", t);}void 0 === this.ws.binaryType && (this.supportsBinary = !1), this.ws.supports && this.ws.supports.binary ? (this.supportsBinary = !0, this.ws.binaryType = "nodebuffer") : this.ws.binaryType = "arraybuffer", this.addEventListeners();}}, o.prototype.addEventListeners = function () {var t = this;this.ws.onopen = function () {t.onOpen();}, this.ws.onclose = function () {t.onClose();}, this.ws.onmessage = function (e) {t.onData(e.data);}, this.ws.onerror = function (e) {t.onError("websocket error", e);};}, o.prototype.write = function (t) {function e() {n.emit("flush"), setTimeout(function () {n.writable = !0, n.emit("drain");}, 0);}var n = this;this.writable = !1;for (var o = t.length, i = 0, r = o; i < r; i++) {!function (t) {a.encodePacket(t, n.supportsBinary, function (i) {if ("undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket) {if (!n.usingBrowserWebSocket) {var r = {};if (t.options && (r.compress = t.options.compress), n.perMessageDeflate) {var s = "string" == typeof i ? Buffer.byteLength(i) : i.length;s < n.perMessageDeflate.threshold && (r.compress = !1);}}try {n.usingBrowserWebSocket ? n.ws.send(i) : n.ws.send(i, r);} catch (t) {}} else try {n.ws.send(i);} catch (t) {}--o || e();});}(t[i]);}}, o.prototype.onClose = function () {c.prototype.onClose.call(this);}, o.prototype.doClose = function () {"undefined" != typeof this.ws && this.ws.close();}, o.prototype.uri = function () {var t = this.query || {},e = this.secure ? "wss" : "ws",n = "";this.port && ("wss" === e && 443 !== Number(this.port) || "ws" === e && 80 !== Number(this.port)) && (n = ":" + this.port), this.timestampRequests && (t[this.timestampParam] = h()), this.supportsBinary || (t.b64 = 1), t = u.encode(t), t.length && (t = "?" + t);var o = this.hostname.indexOf(":") !== -1;return e + "://" + (o ? "[" + this.hostname + "]" : this.hostname) + n + this.path + t;}, o.prototype.check = function () {return !(!f || "__initialize" in f && this.name === o.prototype.name);};}, function (t, e) {}, function (t, e) {var n = [].indexOf;t.exports = function (t, e) {if (n) return t.indexOf(e);for (var o = 0; o < t.length; ++o) {if (t[o] === e) return o;}return -1;};}, function (t, e, n) {"use strict";function o(t, e, n) {this.io = t, this.nsp = e, this.json = this, this.ids = 0, this.acks = {}, this.receiveBuffer = [], this.sendBuffer = [], this.connected = !1, this.disconnected = !0, this.flags = {}, n && n.query && (this.query = n.query), this.io.autoConnect && this.open();}var i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},r = n(5),s = n(6),c = n(31),a = n(32),u = n(33),p = (n(4)("socket.io-client:socket"), n(22)),h = n(17);t.exports = e = o;var f = { connect: 1, connect_error: 1, connect_timeout: 1, connecting: 1, disconnect: 1, error: 1, reconnect: 1, reconnect_attempt: 1, reconnect_failed: 1, reconnect_error: 1, reconnecting: 1, ping: 1, pong: 1 },d = s.prototype.emit;s(o.prototype), o.prototype.subEvents = function () {if (!this.subs) {var t = this.io;this.subs = [a(t, "open", u(this, "onopen")), a(t, "packet", u(this, "onpacket")), a(t, "close", u(this, "onclose"))];}}, o.prototype.open = o.prototype.connect = function () {return this.connected ? this : (this.subEvents(), this.io.open(), "open" === this.io.readyState && this.onopen(), this.emit("connecting"), this);}, o.prototype.send = function () {var t = c(arguments);return t.unshift("message"), this.emit.apply(this, t), this;}, o.prototype.emit = function (t) {if (f.hasOwnProperty(t)) return d.apply(this, arguments), this;var e = c(arguments),n = { type: (void 0 !== this.flags.binary ? this.flags.binary : h(e)) ? r.BINARY_EVENT : r.EVENT, data: e };return n.options = {}, n.options.compress = !this.flags || !1 !== this.flags.compress, "function" == typeof e[e.length - 1] && (this.acks[this.ids] = e.pop(), n.id = this.ids++), this.connected ? this.packet(n) : this.sendBuffer.push(n), this.flags = {}, this;}, o.prototype.packet = function (t) {t.nsp = this.nsp, this.io.packet(t);}, o.prototype.onopen = function () {if ("/" !== this.nsp) if (this.query) {var t = "object" === i(this.query) ? p.encode(this.query) : this.query;this.packet({ type: r.CONNECT, query: t });} else this.packet({ type: r.CONNECT });}, o.prototype.onclose = function (t) {this.connected = !1, this.disconnected = !0, delete this.id, this.emit("disconnect", t);}, o.prototype.onpacket = function (t) {var e = t.nsp === this.nsp,n = t.type === r.ERROR && "/" === t.nsp;if (e || n) switch (t.type) {case r.CONNECT:this.onconnect();break;case r.EVENT:this.onevent(t);break;case r.BINARY_EVENT:this.onevent(t);break;case r.ACK:this.onack(t);break;case r.BINARY_ACK:this.onack(t);break;case r.DISCONNECT:this.ondisconnect();break;case r.ERROR:this.emit("error", t.data);}}, o.prototype.onevent = function (t) {var e = t.data || [];null != t.id && e.push(this.ack(t.id)), this.connected ? d.apply(this, e) : this.receiveBuffer.push(e);}, o.prototype.ack = function (t) {var e = this,n = !1;return function () {if (!n) {n = !0;var o = c(arguments);e.packet({ type: h(o) ? r.BINARY_ACK : r.ACK, id: t, data: o });}};}, o.prototype.onack = function (t) {var e = this.acks[t.id];"function" == typeof e && (e.apply(this, t.data), delete this.acks[t.id]);}, o.prototype.onconnect = function () {this.connected = !0, this.disconnected = !1, this.emit("connect"), this.emitBuffered();}, o.prototype.emitBuffered = function () {var t;for (t = 0; t < this.receiveBuffer.length; t++) {d.apply(this, this.receiveBuffer[t]);}for (this.receiveBuffer = [], t = 0; t < this.sendBuffer.length; t++) {this.packet(this.sendBuffer[t]);}this.sendBuffer = [];}, o.prototype.ondisconnect = function () {this.destroy(), this.onclose("io server disconnect");}, o.prototype.destroy = function () {if (this.subs) {for (var t = 0; t < this.subs.length; t++) {this.subs[t].destroy();}this.subs = null;}this.io.destroy(this);}, o.prototype.close = o.prototype.disconnect = function () {return this.connected && this.packet({ type: r.DISCONNECT }), this.destroy(), this.connected && this.onclose("io client disconnect"), this;}, o.prototype.compress = function (t) {return this.flags.compress = t, this;}, o.prototype.binary = function (t) {return this.flags.binary = t, this;};}, function (t, e) {function n(t, e) {var n = [];e = e || 0;for (var o = e || 0; o < t.length; o++) {n[o - e] = t[o];}return n;}t.exports = n;}, function (t, e) {"use strict";function n(t, e, n) {return t.on(e, n), { destroy: function destroy() {t.removeListener(e, n);} };}t.exports = n;}, function (t, e) {var n = [].slice;t.exports = function (t, e) {if ("string" == typeof e && (e = t[e]), "function" != typeof e) throw new Error("bind() requires a function");var o = n.call(arguments, 2);return function () {return e.apply(t, o.concat(n.call(arguments)));};};}, function (t, e) {function n(t) {t = t || {}, this.ms = t.min || 100, this.max = t.max || 1e4, this.factor = t.factor || 2, this.jitter = t.jitter > 0 && t.jitter <= 1 ? t.jitter : 0, this.attempts = 0;}t.exports = n, n.prototype.duration = function () {var t = this.ms * Math.pow(this.factor, this.attempts++);if (this.jitter) {var e = Math.random(),n = Math.floor(e * this.jitter * t);t = 0 == (1 & Math.floor(10 * e)) ? t - n : t + n;}return 0 | Math.min(t, this.max);}, n.prototype.reset = function () {this.attempts = 0;}, n.prototype.setMin = function (t) {this.ms = t;}, n.prototype.setMax = function (t) {this.max = t;}, n.prototype.setJitter = function (t) {this.jitter = t;};}, function (t, e, n) {function o(t, e, n) {var o = e && n || 0,p = e || [];t = t || {};var h = t.node || i,f = void 0 !== t.clockseq ? t.clockseq : r;if (null == h || null == f) {var d = s();null == h && (h = i = [1 | d[0], d[1], d[2], d[3], d[4], d[5]]), null == f && (f = r = 16383 & (d[6] << 8 | d[7]));}var l = void 0 !== t.msecs ? t.msecs : new Date().getTime(),y = void 0 !== t.nsecs ? t.nsecs : u + 1,m = l - a + (y - u) / 1e4;if (m < 0 && void 0 === t.clockseq && (f = f + 1 & 16383), (m < 0 || l > a) && void 0 === t.nsecs && (y = 0), y >= 1e4) throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");a = l, u = y, r = f, l += 122192928e5;var b = (1e4 * (268435455 & l) + y) % 4294967296;p[o++] = b >>> 24 & 255, p[o++] = b >>> 16 & 255, p[o++] = b >>> 8 & 255, p[o++] = 255 & b;var g = l / 4294967296 * 1e4 & 268435455;p[o++] = g >>> 8 & 255, p[o++] = 255 & g, p[o++] = g >>> 24 & 15 | 16, p[o++] = g >>> 16 & 255, p[o++] = f >>> 8 | 128, p[o++] = 255 & f;for (var v = 0; v < 6; ++v) {p[o + v] = h[v];}return e ? e : c(p);}var i,r,s = n(36),c = n(37),a = 0,u = 0;t.exports = o;}, function (t, e) {var n = "undefined" != typeof crypto && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || "undefined" != typeof smsCrypto && "function" == typeof window.msCrypto.getRandomValues && msCrypto.getRandomValues.bind(msCrypto);if (n) {var o = new Uint8Array(16);t.exports = function () {return n(o), o;};} else {var i = new Array(16);t.exports = function () {for (var t, e = 0; e < 16; e++) {0 === (3 & e) && (t = 4294967296 * Math.random()), i[e] = t >>> ((3 & e) << 3) & 255;}return i;};}}, function (t, e) {function n(t, e) {var n = e || 0,i = o;return [i[t[n++]], i[t[n++]], i[t[n++]], i[t[n++]], "-", i[t[n++]], i[t[n++]], "-", i[t[n++]], i[t[n++]], "-", i[t[n++]], i[t[n++]], "-", i[t[n++]], i[t[n++]], i[t[n++]], i[t[n++]], i[t[n++]], i[t[n++]]].join("");}for (var o = [], i = 0; i < 256; ++i) {o[i] = (i + 256).toString(16).substr(1);}t.exports = n;}]);});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./../../../../../../software/HBuilderX/HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 292).Buffer))
+
+/***/ }),
+
+/***/ 292:
+/*!**************************************!*\
+  !*** ./node_modules/buffer/index.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+/* eslint-disable no-proto */
+
+
+
+var base64 = __webpack_require__(/*! base64-js */ 293)
+var ieee754 = __webpack_require__(/*! ieee754 */ 294)
+var isArray = __webpack_require__(/*! isarray */ 295)
+
+exports.Buffer = Buffer
+exports.SlowBuffer = SlowBuffer
+exports.INSPECT_MAX_BYTES = 50
+
+/**
+ * If `Buffer.TYPED_ARRAY_SUPPORT`:
+ *   === true    Use Uint8Array implementation (fastest)
+ *   === false   Use Object implementation (most compatible, even IE6)
+ *
+ * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
+ * Opera 11.6+, iOS 4.2+.
+ *
+ * Due to various browser bugs, sometimes the Object implementation will be used even
+ * when the browser supports typed arrays.
+ *
+ * Note:
+ *
+ *   - Firefox 4-29 lacks support for adding new properties to `Uint8Array` instances,
+ *     See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
+ *
+ *   - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
+ *
+ *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
+ *     incorrect length in some situations.
+
+ * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
+ * get the Object implementation, which is slower but behaves correctly.
+ */
+Buffer.TYPED_ARRAY_SUPPORT = global.TYPED_ARRAY_SUPPORT !== undefined
+  ? global.TYPED_ARRAY_SUPPORT
+  : typedArraySupport()
+
+/*
+ * Export kMaxLength after typed array support is determined.
+ */
+exports.kMaxLength = kMaxLength()
+
+function typedArraySupport () {
+  try {
+    var arr = new Uint8Array(1)
+    arr.__proto__ = {__proto__: Uint8Array.prototype, foo: function () { return 42 }}
+    return arr.foo() === 42 && // typed array instances can be augmented
+        typeof arr.subarray === 'function' && // chrome 9-10 lack `subarray`
+        arr.subarray(1, 1).byteLength === 0 // ie10 has broken `subarray`
+  } catch (e) {
+    return false
+  }
+}
+
+function kMaxLength () {
+  return Buffer.TYPED_ARRAY_SUPPORT
+    ? 0x7fffffff
+    : 0x3fffffff
+}
+
+function createBuffer (that, length) {
+  if (kMaxLength() < length) {
+    throw new RangeError('Invalid typed array length')
+  }
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    // Return an augmented `Uint8Array` instance, for best performance
+    that = new Uint8Array(length)
+    that.__proto__ = Buffer.prototype
+  } else {
+    // Fallback: Return an object instance of the Buffer class
+    if (that === null) {
+      that = new Buffer(length)
+    }
+    that.length = length
+  }
+
+  return that
+}
+
+/**
+ * The Buffer constructor returns instances of `Uint8Array` that have their
+ * prototype changed to `Buffer.prototype`. Furthermore, `Buffer` is a subclass of
+ * `Uint8Array`, so the returned instances will have all the node `Buffer` methods
+ * and the `Uint8Array` methods. Square bracket notation works as expected -- it
+ * returns a single octet.
+ *
+ * The `Uint8Array` prototype remains unmodified.
+ */
+
+function Buffer (arg, encodingOrOffset, length) {
+  if (!Buffer.TYPED_ARRAY_SUPPORT && !(this instanceof Buffer)) {
+    return new Buffer(arg, encodingOrOffset, length)
+  }
+
+  // Common case.
+  if (typeof arg === 'number') {
+    if (typeof encodingOrOffset === 'string') {
+      throw new Error(
+        'If encoding is specified then the first argument must be a string'
+      )
+    }
+    return allocUnsafe(this, arg)
+  }
+  return from(this, arg, encodingOrOffset, length)
+}
+
+Buffer.poolSize = 8192 // not used by this implementation
+
+// TODO: Legacy, not needed anymore. Remove in next major version.
+Buffer._augment = function (arr) {
+  arr.__proto__ = Buffer.prototype
+  return arr
+}
+
+function from (that, value, encodingOrOffset, length) {
+  if (typeof value === 'number') {
+    throw new TypeError('"value" argument must not be a number')
+  }
+
+  if (typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer) {
+    return fromArrayBuffer(that, value, encodingOrOffset, length)
+  }
+
+  if (typeof value === 'string') {
+    return fromString(that, value, encodingOrOffset)
+  }
+
+  return fromObject(that, value)
+}
+
+/**
+ * Functionally equivalent to Buffer(arg, encoding) but throws a TypeError
+ * if value is a number.
+ * Buffer.from(str[, encoding])
+ * Buffer.from(array)
+ * Buffer.from(buffer)
+ * Buffer.from(arrayBuffer[, byteOffset[, length]])
+ **/
+Buffer.from = function (value, encodingOrOffset, length) {
+  return from(null, value, encodingOrOffset, length)
+}
+
+if (Buffer.TYPED_ARRAY_SUPPORT) {
+  Buffer.prototype.__proto__ = Uint8Array.prototype
+  Buffer.__proto__ = Uint8Array
+  if (typeof Symbol !== 'undefined' && Symbol.species &&
+      Buffer[Symbol.species] === Buffer) {
+    // Fix subarray() in ES2016. See: https://github.com/feross/buffer/pull/97
+    Object.defineProperty(Buffer, Symbol.species, {
+      value: null,
+      configurable: true
+    })
+  }
+}
+
+function assertSize (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('"size" argument must be a number')
+  } else if (size < 0) {
+    throw new RangeError('"size" argument must not be negative')
+  }
+}
+
+function alloc (that, size, fill, encoding) {
+  assertSize(size)
+  if (size <= 0) {
+    return createBuffer(that, size)
+  }
+  if (fill !== undefined) {
+    // Only pay attention to encoding if it's a string. This
+    // prevents accidentally sending in a number that would
+    // be interpretted as a start offset.
+    return typeof encoding === 'string'
+      ? createBuffer(that, size).fill(fill, encoding)
+      : createBuffer(that, size).fill(fill)
+  }
+  return createBuffer(that, size)
+}
+
+/**
+ * Creates a new filled Buffer instance.
+ * alloc(size[, fill[, encoding]])
+ **/
+Buffer.alloc = function (size, fill, encoding) {
+  return alloc(null, size, fill, encoding)
+}
+
+function allocUnsafe (that, size) {
+  assertSize(size)
+  that = createBuffer(that, size < 0 ? 0 : checked(size) | 0)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) {
+    for (var i = 0; i < size; ++i) {
+      that[i] = 0
+    }
+  }
+  return that
+}
+
+/**
+ * Equivalent to Buffer(num), by default creates a non-zero-filled Buffer instance.
+ * */
+Buffer.allocUnsafe = function (size) {
+  return allocUnsafe(null, size)
+}
+/**
+ * Equivalent to SlowBuffer(num), by default creates a non-zero-filled Buffer instance.
+ */
+Buffer.allocUnsafeSlow = function (size) {
+  return allocUnsafe(null, size)
+}
+
+function fromString (that, string, encoding) {
+  if (typeof encoding !== 'string' || encoding === '') {
+    encoding = 'utf8'
+  }
+
+  if (!Buffer.isEncoding(encoding)) {
+    throw new TypeError('"encoding" must be a valid string encoding')
+  }
+
+  var length = byteLength(string, encoding) | 0
+  that = createBuffer(that, length)
+
+  var actual = that.write(string, encoding)
+
+  if (actual !== length) {
+    // Writing a hex string, for example, that contains invalid characters will
+    // cause everything after the first invalid character to be ignored. (e.g.
+    // 'abxxcd' will be treated as 'ab')
+    that = that.slice(0, actual)
+  }
+
+  return that
+}
+
+function fromArrayLike (that, array) {
+  var length = array.length < 0 ? 0 : checked(array.length) | 0
+  that = createBuffer(that, length)
+  for (var i = 0; i < length; i += 1) {
+    that[i] = array[i] & 255
+  }
+  return that
+}
+
+function fromArrayBuffer (that, array, byteOffset, length) {
+  array.byteLength // this throws if `array` is not a valid ArrayBuffer
+
+  if (byteOffset < 0 || array.byteLength < byteOffset) {
+    throw new RangeError('\'offset\' is out of bounds')
+  }
+
+  if (array.byteLength < byteOffset + (length || 0)) {
+    throw new RangeError('\'length\' is out of bounds')
+  }
+
+  if (byteOffset === undefined && length === undefined) {
+    array = new Uint8Array(array)
+  } else if (length === undefined) {
+    array = new Uint8Array(array, byteOffset)
+  } else {
+    array = new Uint8Array(array, byteOffset, length)
+  }
+
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    // Return an augmented `Uint8Array` instance, for best performance
+    that = array
+    that.__proto__ = Buffer.prototype
+  } else {
+    // Fallback: Return an object instance of the Buffer class
+    that = fromArrayLike(that, array)
+  }
+  return that
+}
+
+function fromObject (that, obj) {
+  if (Buffer.isBuffer(obj)) {
+    var len = checked(obj.length) | 0
+    that = createBuffer(that, len)
+
+    if (that.length === 0) {
+      return that
+    }
+
+    obj.copy(that, 0, 0, len)
+    return that
+  }
+
+  if (obj) {
+    if ((typeof ArrayBuffer !== 'undefined' &&
+        obj.buffer instanceof ArrayBuffer) || 'length' in obj) {
+      if (typeof obj.length !== 'number' || isnan(obj.length)) {
+        return createBuffer(that, 0)
+      }
+      return fromArrayLike(that, obj)
+    }
+
+    if (obj.type === 'Buffer' && isArray(obj.data)) {
+      return fromArrayLike(that, obj.data)
+    }
+  }
+
+  throw new TypeError('First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.')
+}
+
+function checked (length) {
+  // Note: cannot use `length < kMaxLength()` here because that fails when
+  // length is NaN (which is otherwise coerced to zero.)
+  if (length >= kMaxLength()) {
+    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
+                         'size: 0x' + kMaxLength().toString(16) + ' bytes')
+  }
+  return length | 0
+}
+
+function SlowBuffer (length) {
+  if (+length != length) { // eslint-disable-line eqeqeq
+    length = 0
+  }
+  return Buffer.alloc(+length)
+}
+
+Buffer.isBuffer = function isBuffer (b) {
+  return !!(b != null && b._isBuffer)
+}
+
+Buffer.compare = function compare (a, b) {
+  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b)) {
+    throw new TypeError('Arguments must be Buffers')
+  }
+
+  if (a === b) return 0
+
+  var x = a.length
+  var y = b.length
+
+  for (var i = 0, len = Math.min(x, y); i < len; ++i) {
+    if (a[i] !== b[i]) {
+      x = a[i]
+      y = b[i]
+      break
+    }
+  }
+
+  if (x < y) return -1
+  if (y < x) return 1
+  return 0
+}
+
+Buffer.isEncoding = function isEncoding (encoding) {
+  switch (String(encoding).toLowerCase()) {
+    case 'hex':
+    case 'utf8':
+    case 'utf-8':
+    case 'ascii':
+    case 'latin1':
+    case 'binary':
+    case 'base64':
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      return true
+    default:
+      return false
+  }
+}
+
+Buffer.concat = function concat (list, length) {
+  if (!isArray(list)) {
+    throw new TypeError('"list" argument must be an Array of Buffers')
+  }
+
+  if (list.length === 0) {
+    return Buffer.alloc(0)
+  }
+
+  var i
+  if (length === undefined) {
+    length = 0
+    for (i = 0; i < list.length; ++i) {
+      length += list[i].length
+    }
+  }
+
+  var buffer = Buffer.allocUnsafe(length)
+  var pos = 0
+  for (i = 0; i < list.length; ++i) {
+    var buf = list[i]
+    if (!Buffer.isBuffer(buf)) {
+      throw new TypeError('"list" argument must be an Array of Buffers')
+    }
+    buf.copy(buffer, pos)
+    pos += buf.length
+  }
+  return buffer
+}
+
+function byteLength (string, encoding) {
+  if (Buffer.isBuffer(string)) {
+    return string.length
+  }
+  if (typeof ArrayBuffer !== 'undefined' && typeof ArrayBuffer.isView === 'function' &&
+      (ArrayBuffer.isView(string) || string instanceof ArrayBuffer)) {
+    return string.byteLength
+  }
+  if (typeof string !== 'string') {
+    string = '' + string
+  }
+
+  var len = string.length
+  if (len === 0) return 0
+
+  // Use a for loop to avoid recursion
+  var loweredCase = false
+  for (;;) {
+    switch (encoding) {
+      case 'ascii':
+      case 'latin1':
+      case 'binary':
+        return len
+      case 'utf8':
+      case 'utf-8':
+      case undefined:
+        return utf8ToBytes(string).length
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return len * 2
+      case 'hex':
+        return len >>> 1
+      case 'base64':
+        return base64ToBytes(string).length
+      default:
+        if (loweredCase) return utf8ToBytes(string).length // assume utf8
+        encoding = ('' + encoding).toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+Buffer.byteLength = byteLength
+
+function slowToString (encoding, start, end) {
+  var loweredCase = false
+
+  // No need to verify that "this.length <= MAX_UINT32" since it's a read-only
+  // property of a typed array.
+
+  // This behaves neither like String nor Uint8Array in that we set start/end
+  // to their upper/lower bounds if the value passed is out of range.
+  // undefined is handled specially as per ECMA-262 6th Edition,
+  // Section 13.3.3.7 Runtime Semantics: KeyedBindingInitialization.
+  if (start === undefined || start < 0) {
+    start = 0
+  }
+  // Return early if start > this.length. Done here to prevent potential uint32
+  // coercion fail below.
+  if (start > this.length) {
+    return ''
+  }
+
+  if (end === undefined || end > this.length) {
+    end = this.length
+  }
+
+  if (end <= 0) {
+    return ''
+  }
+
+  // Force coersion to uint32. This will also coerce falsey/NaN values to 0.
+  end >>>= 0
+  start >>>= 0
+
+  if (end <= start) {
+    return ''
+  }
+
+  if (!encoding) encoding = 'utf8'
+
+  while (true) {
+    switch (encoding) {
+      case 'hex':
+        return hexSlice(this, start, end)
+
+      case 'utf8':
+      case 'utf-8':
+        return utf8Slice(this, start, end)
+
+      case 'ascii':
+        return asciiSlice(this, start, end)
+
+      case 'latin1':
+      case 'binary':
+        return latin1Slice(this, start, end)
+
+      case 'base64':
+        return base64Slice(this, start, end)
+
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return utf16leSlice(this, start, end)
+
+      default:
+        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+        encoding = (encoding + '').toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+
+// The property is used by `Buffer.isBuffer` and `is-buffer` (in Safari 5-7) to detect
+// Buffer instances.
+Buffer.prototype._isBuffer = true
+
+function swap (b, n, m) {
+  var i = b[n]
+  b[n] = b[m]
+  b[m] = i
+}
+
+Buffer.prototype.swap16 = function swap16 () {
+  var len = this.length
+  if (len % 2 !== 0) {
+    throw new RangeError('Buffer size must be a multiple of 16-bits')
+  }
+  for (var i = 0; i < len; i += 2) {
+    swap(this, i, i + 1)
+  }
+  return this
+}
+
+Buffer.prototype.swap32 = function swap32 () {
+  var len = this.length
+  if (len % 4 !== 0) {
+    throw new RangeError('Buffer size must be a multiple of 32-bits')
+  }
+  for (var i = 0; i < len; i += 4) {
+    swap(this, i, i + 3)
+    swap(this, i + 1, i + 2)
+  }
+  return this
+}
+
+Buffer.prototype.swap64 = function swap64 () {
+  var len = this.length
+  if (len % 8 !== 0) {
+    throw new RangeError('Buffer size must be a multiple of 64-bits')
+  }
+  for (var i = 0; i < len; i += 8) {
+    swap(this, i, i + 7)
+    swap(this, i + 1, i + 6)
+    swap(this, i + 2, i + 5)
+    swap(this, i + 3, i + 4)
+  }
+  return this
+}
+
+Buffer.prototype.toString = function toString () {
+  var length = this.length | 0
+  if (length === 0) return ''
+  if (arguments.length === 0) return utf8Slice(this, 0, length)
+  return slowToString.apply(this, arguments)
+}
+
+Buffer.prototype.equals = function equals (b) {
+  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+  if (this === b) return true
+  return Buffer.compare(this, b) === 0
+}
+
+Buffer.prototype.inspect = function inspect () {
+  var str = ''
+  var max = exports.INSPECT_MAX_BYTES
+  if (this.length > 0) {
+    str = this.toString('hex', 0, max).match(/.{2}/g).join(' ')
+    if (this.length > max) str += ' ... '
+  }
+  return '<Buffer ' + str + '>'
+}
+
+Buffer.prototype.compare = function compare (target, start, end, thisStart, thisEnd) {
+  if (!Buffer.isBuffer(target)) {
+    throw new TypeError('Argument must be a Buffer')
+  }
+
+  if (start === undefined) {
+    start = 0
+  }
+  if (end === undefined) {
+    end = target ? target.length : 0
+  }
+  if (thisStart === undefined) {
+    thisStart = 0
+  }
+  if (thisEnd === undefined) {
+    thisEnd = this.length
+  }
+
+  if (start < 0 || end > target.length || thisStart < 0 || thisEnd > this.length) {
+    throw new RangeError('out of range index')
+  }
+
+  if (thisStart >= thisEnd && start >= end) {
+    return 0
+  }
+  if (thisStart >= thisEnd) {
+    return -1
+  }
+  if (start >= end) {
+    return 1
+  }
+
+  start >>>= 0
+  end >>>= 0
+  thisStart >>>= 0
+  thisEnd >>>= 0
+
+  if (this === target) return 0
+
+  var x = thisEnd - thisStart
+  var y = end - start
+  var len = Math.min(x, y)
+
+  var thisCopy = this.slice(thisStart, thisEnd)
+  var targetCopy = target.slice(start, end)
+
+  for (var i = 0; i < len; ++i) {
+    if (thisCopy[i] !== targetCopy[i]) {
+      x = thisCopy[i]
+      y = targetCopy[i]
+      break
+    }
+  }
+
+  if (x < y) return -1
+  if (y < x) return 1
+  return 0
+}
+
+// Finds either the first index of `val` in `buffer` at offset >= `byteOffset`,
+// OR the last index of `val` in `buffer` at offset <= `byteOffset`.
+//
+// Arguments:
+// - buffer - a Buffer to search
+// - val - a string, Buffer, or number
+// - byteOffset - an index into `buffer`; will be clamped to an int32
+// - encoding - an optional encoding, relevant is val is a string
+// - dir - true for indexOf, false for lastIndexOf
+function bidirectionalIndexOf (buffer, val, byteOffset, encoding, dir) {
+  // Empty buffer means no match
+  if (buffer.length === 0) return -1
+
+  // Normalize byteOffset
+  if (typeof byteOffset === 'string') {
+    encoding = byteOffset
+    byteOffset = 0
+  } else if (byteOffset > 0x7fffffff) {
+    byteOffset = 0x7fffffff
+  } else if (byteOffset < -0x80000000) {
+    byteOffset = -0x80000000
+  }
+  byteOffset = +byteOffset  // Coerce to Number.
+  if (isNaN(byteOffset)) {
+    // byteOffset: it it's undefined, null, NaN, "foo", etc, search whole buffer
+    byteOffset = dir ? 0 : (buffer.length - 1)
+  }
+
+  // Normalize byteOffset: negative offsets start from the end of the buffer
+  if (byteOffset < 0) byteOffset = buffer.length + byteOffset
+  if (byteOffset >= buffer.length) {
+    if (dir) return -1
+    else byteOffset = buffer.length - 1
+  } else if (byteOffset < 0) {
+    if (dir) byteOffset = 0
+    else return -1
+  }
+
+  // Normalize val
+  if (typeof val === 'string') {
+    val = Buffer.from(val, encoding)
+  }
+
+  // Finally, search either indexOf (if dir is true) or lastIndexOf
+  if (Buffer.isBuffer(val)) {
+    // Special case: looking for empty string/buffer always fails
+    if (val.length === 0) {
+      return -1
+    }
+    return arrayIndexOf(buffer, val, byteOffset, encoding, dir)
+  } else if (typeof val === 'number') {
+    val = val & 0xFF // Search for a byte value [0-255]
+    if (Buffer.TYPED_ARRAY_SUPPORT &&
+        typeof Uint8Array.prototype.indexOf === 'function') {
+      if (dir) {
+        return Uint8Array.prototype.indexOf.call(buffer, val, byteOffset)
+      } else {
+        return Uint8Array.prototype.lastIndexOf.call(buffer, val, byteOffset)
+      }
+    }
+    return arrayIndexOf(buffer, [ val ], byteOffset, encoding, dir)
+  }
+
+  throw new TypeError('val must be string, number or Buffer')
+}
+
+function arrayIndexOf (arr, val, byteOffset, encoding, dir) {
+  var indexSize = 1
+  var arrLength = arr.length
+  var valLength = val.length
+
+  if (encoding !== undefined) {
+    encoding = String(encoding).toLowerCase()
+    if (encoding === 'ucs2' || encoding === 'ucs-2' ||
+        encoding === 'utf16le' || encoding === 'utf-16le') {
+      if (arr.length < 2 || val.length < 2) {
+        return -1
+      }
+      indexSize = 2
+      arrLength /= 2
+      valLength /= 2
+      byteOffset /= 2
+    }
+  }
+
+  function read (buf, i) {
+    if (indexSize === 1) {
+      return buf[i]
+    } else {
+      return buf.readUInt16BE(i * indexSize)
+    }
+  }
+
+  var i
+  if (dir) {
+    var foundIndex = -1
+    for (i = byteOffset; i < arrLength; i++) {
+      if (read(arr, i) === read(val, foundIndex === -1 ? 0 : i - foundIndex)) {
+        if (foundIndex === -1) foundIndex = i
+        if (i - foundIndex + 1 === valLength) return foundIndex * indexSize
+      } else {
+        if (foundIndex !== -1) i -= i - foundIndex
+        foundIndex = -1
+      }
+    }
+  } else {
+    if (byteOffset + valLength > arrLength) byteOffset = arrLength - valLength
+    for (i = byteOffset; i >= 0; i--) {
+      var found = true
+      for (var j = 0; j < valLength; j++) {
+        if (read(arr, i + j) !== read(val, j)) {
+          found = false
+          break
+        }
+      }
+      if (found) return i
+    }
+  }
+
+  return -1
+}
+
+Buffer.prototype.includes = function includes (val, byteOffset, encoding) {
+  return this.indexOf(val, byteOffset, encoding) !== -1
+}
+
+Buffer.prototype.indexOf = function indexOf (val, byteOffset, encoding) {
+  return bidirectionalIndexOf(this, val, byteOffset, encoding, true)
+}
+
+Buffer.prototype.lastIndexOf = function lastIndexOf (val, byteOffset, encoding) {
+  return bidirectionalIndexOf(this, val, byteOffset, encoding, false)
+}
+
+function hexWrite (buf, string, offset, length) {
+  offset = Number(offset) || 0
+  var remaining = buf.length - offset
+  if (!length) {
+    length = remaining
+  } else {
+    length = Number(length)
+    if (length > remaining) {
+      length = remaining
+    }
+  }
+
+  // must be an even number of digits
+  var strLen = string.length
+  if (strLen % 2 !== 0) throw new TypeError('Invalid hex string')
+
+  if (length > strLen / 2) {
+    length = strLen / 2
+  }
+  for (var i = 0; i < length; ++i) {
+    var parsed = parseInt(string.substr(i * 2, 2), 16)
+    if (isNaN(parsed)) return i
+    buf[offset + i] = parsed
+  }
+  return i
+}
+
+function utf8Write (buf, string, offset, length) {
+  return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length)
+}
+
+function asciiWrite (buf, string, offset, length) {
+  return blitBuffer(asciiToBytes(string), buf, offset, length)
+}
+
+function latin1Write (buf, string, offset, length) {
+  return asciiWrite(buf, string, offset, length)
+}
+
+function base64Write (buf, string, offset, length) {
+  return blitBuffer(base64ToBytes(string), buf, offset, length)
+}
+
+function ucs2Write (buf, string, offset, length) {
+  return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length)
+}
+
+Buffer.prototype.write = function write (string, offset, length, encoding) {
+  // Buffer#write(string)
+  if (offset === undefined) {
+    encoding = 'utf8'
+    length = this.length
+    offset = 0
+  // Buffer#write(string, encoding)
+  } else if (length === undefined && typeof offset === 'string') {
+    encoding = offset
+    length = this.length
+    offset = 0
+  // Buffer#write(string, offset[, length][, encoding])
+  } else if (isFinite(offset)) {
+    offset = offset | 0
+    if (isFinite(length)) {
+      length = length | 0
+      if (encoding === undefined) encoding = 'utf8'
+    } else {
+      encoding = length
+      length = undefined
+    }
+  // legacy write(string, encoding, offset, length) - remove in v0.13
+  } else {
+    throw new Error(
+      'Buffer.write(string, encoding, offset[, length]) is no longer supported'
+    )
+  }
+
+  var remaining = this.length - offset
+  if (length === undefined || length > remaining) length = remaining
+
+  if ((string.length > 0 && (length < 0 || offset < 0)) || offset > this.length) {
+    throw new RangeError('Attempt to write outside buffer bounds')
+  }
+
+  if (!encoding) encoding = 'utf8'
+
+  var loweredCase = false
+  for (;;) {
+    switch (encoding) {
+      case 'hex':
+        return hexWrite(this, string, offset, length)
+
+      case 'utf8':
+      case 'utf-8':
+        return utf8Write(this, string, offset, length)
+
+      case 'ascii':
+        return asciiWrite(this, string, offset, length)
+
+      case 'latin1':
+      case 'binary':
+        return latin1Write(this, string, offset, length)
+
+      case 'base64':
+        // Warning: maxLength not taken into account in base64Write
+        return base64Write(this, string, offset, length)
+
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return ucs2Write(this, string, offset, length)
+
+      default:
+        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+        encoding = ('' + encoding).toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+
+Buffer.prototype.toJSON = function toJSON () {
+  return {
+    type: 'Buffer',
+    data: Array.prototype.slice.call(this._arr || this, 0)
+  }
+}
+
+function base64Slice (buf, start, end) {
+  if (start === 0 && end === buf.length) {
+    return base64.fromByteArray(buf)
+  } else {
+    return base64.fromByteArray(buf.slice(start, end))
+  }
+}
+
+function utf8Slice (buf, start, end) {
+  end = Math.min(buf.length, end)
+  var res = []
+
+  var i = start
+  while (i < end) {
+    var firstByte = buf[i]
+    var codePoint = null
+    var bytesPerSequence = (firstByte > 0xEF) ? 4
+      : (firstByte > 0xDF) ? 3
+      : (firstByte > 0xBF) ? 2
+      : 1
+
+    if (i + bytesPerSequence <= end) {
+      var secondByte, thirdByte, fourthByte, tempCodePoint
+
+      switch (bytesPerSequence) {
+        case 1:
+          if (firstByte < 0x80) {
+            codePoint = firstByte
+          }
+          break
+        case 2:
+          secondByte = buf[i + 1]
+          if ((secondByte & 0xC0) === 0x80) {
+            tempCodePoint = (firstByte & 0x1F) << 0x6 | (secondByte & 0x3F)
+            if (tempCodePoint > 0x7F) {
+              codePoint = tempCodePoint
+            }
+          }
+          break
+        case 3:
+          secondByte = buf[i + 1]
+          thirdByte = buf[i + 2]
+          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80) {
+            tempCodePoint = (firstByte & 0xF) << 0xC | (secondByte & 0x3F) << 0x6 | (thirdByte & 0x3F)
+            if (tempCodePoint > 0x7FF && (tempCodePoint < 0xD800 || tempCodePoint > 0xDFFF)) {
+              codePoint = tempCodePoint
+            }
+          }
+          break
+        case 4:
+          secondByte = buf[i + 1]
+          thirdByte = buf[i + 2]
+          fourthByte = buf[i + 3]
+          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80 && (fourthByte & 0xC0) === 0x80) {
+            tempCodePoint = (firstByte & 0xF) << 0x12 | (secondByte & 0x3F) << 0xC | (thirdByte & 0x3F) << 0x6 | (fourthByte & 0x3F)
+            if (tempCodePoint > 0xFFFF && tempCodePoint < 0x110000) {
+              codePoint = tempCodePoint
+            }
+          }
+      }
+    }
+
+    if (codePoint === null) {
+      // we did not generate a valid codePoint so insert a
+      // replacement char (U+FFFD) and advance only 1 byte
+      codePoint = 0xFFFD
+      bytesPerSequence = 1
+    } else if (codePoint > 0xFFFF) {
+      // encode to utf16 (surrogate pair dance)
+      codePoint -= 0x10000
+      res.push(codePoint >>> 10 & 0x3FF | 0xD800)
+      codePoint = 0xDC00 | codePoint & 0x3FF
+    }
+
+    res.push(codePoint)
+    i += bytesPerSequence
+  }
+
+  return decodeCodePointsArray(res)
+}
+
+// Based on http://stackoverflow.com/a/22747272/680742, the browser with
+// the lowest limit is Chrome, with 0x10000 args.
+// We go 1 magnitude less, for safety
+var MAX_ARGUMENTS_LENGTH = 0x1000
+
+function decodeCodePointsArray (codePoints) {
+  var len = codePoints.length
+  if (len <= MAX_ARGUMENTS_LENGTH) {
+    return String.fromCharCode.apply(String, codePoints) // avoid extra slice()
+  }
+
+  // Decode in chunks to avoid "call stack size exceeded".
+  var res = ''
+  var i = 0
+  while (i < len) {
+    res += String.fromCharCode.apply(
+      String,
+      codePoints.slice(i, i += MAX_ARGUMENTS_LENGTH)
+    )
+  }
+  return res
+}
+
+function asciiSlice (buf, start, end) {
+  var ret = ''
+  end = Math.min(buf.length, end)
+
+  for (var i = start; i < end; ++i) {
+    ret += String.fromCharCode(buf[i] & 0x7F)
+  }
+  return ret
+}
+
+function latin1Slice (buf, start, end) {
+  var ret = ''
+  end = Math.min(buf.length, end)
+
+  for (var i = start; i < end; ++i) {
+    ret += String.fromCharCode(buf[i])
+  }
+  return ret
+}
+
+function hexSlice (buf, start, end) {
+  var len = buf.length
+
+  if (!start || start < 0) start = 0
+  if (!end || end < 0 || end > len) end = len
+
+  var out = ''
+  for (var i = start; i < end; ++i) {
+    out += toHex(buf[i])
+  }
+  return out
+}
+
+function utf16leSlice (buf, start, end) {
+  var bytes = buf.slice(start, end)
+  var res = ''
+  for (var i = 0; i < bytes.length; i += 2) {
+    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256)
+  }
+  return res
+}
+
+Buffer.prototype.slice = function slice (start, end) {
+  var len = this.length
+  start = ~~start
+  end = end === undefined ? len : ~~end
+
+  if (start < 0) {
+    start += len
+    if (start < 0) start = 0
+  } else if (start > len) {
+    start = len
+  }
+
+  if (end < 0) {
+    end += len
+    if (end < 0) end = 0
+  } else if (end > len) {
+    end = len
+  }
+
+  if (end < start) end = start
+
+  var newBuf
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    newBuf = this.subarray(start, end)
+    newBuf.__proto__ = Buffer.prototype
+  } else {
+    var sliceLen = end - start
+    newBuf = new Buffer(sliceLen, undefined)
+    for (var i = 0; i < sliceLen; ++i) {
+      newBuf[i] = this[i + start]
+    }
+  }
+
+  return newBuf
+}
+
+/*
+ * Need to make sure that buffer isn't trying to write out of bounds.
+ */
+function checkOffset (offset, ext, length) {
+  if ((offset % 1) !== 0 || offset < 0) throw new RangeError('offset is not uint')
+  if (offset + ext > length) throw new RangeError('Trying to access beyond buffer length')
+}
+
+Buffer.prototype.readUIntLE = function readUIntLE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+  var val = this[offset]
+  var mul = 1
+  var i = 0
+  while (++i < byteLength && (mul *= 0x100)) {
+    val += this[offset + i] * mul
+  }
+
+  return val
+}
+
+Buffer.prototype.readUIntBE = function readUIntBE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) {
+    checkOffset(offset, byteLength, this.length)
+  }
+
+  var val = this[offset + --byteLength]
+  var mul = 1
+  while (byteLength > 0 && (mul *= 0x100)) {
+    val += this[offset + --byteLength] * mul
+  }
+
+  return val
+}
+
+Buffer.prototype.readUInt8 = function readUInt8 (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 1, this.length)
+  return this[offset]
+}
+
+Buffer.prototype.readUInt16LE = function readUInt16LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  return this[offset] | (this[offset + 1] << 8)
+}
+
+Buffer.prototype.readUInt16BE = function readUInt16BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  return (this[offset] << 8) | this[offset + 1]
+}
+
+Buffer.prototype.readUInt32LE = function readUInt32LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return ((this[offset]) |
+      (this[offset + 1] << 8) |
+      (this[offset + 2] << 16)) +
+      (this[offset + 3] * 0x1000000)
+}
+
+Buffer.prototype.readUInt32BE = function readUInt32BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return (this[offset] * 0x1000000) +
+    ((this[offset + 1] << 16) |
+    (this[offset + 2] << 8) |
+    this[offset + 3])
+}
+
+Buffer.prototype.readIntLE = function readIntLE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+  var val = this[offset]
+  var mul = 1
+  var i = 0
+  while (++i < byteLength && (mul *= 0x100)) {
+    val += this[offset + i] * mul
+  }
+  mul *= 0x80
+
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+
+  return val
+}
+
+Buffer.prototype.readIntBE = function readIntBE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+  var i = byteLength
+  var mul = 1
+  var val = this[offset + --i]
+  while (i > 0 && (mul *= 0x100)) {
+    val += this[offset + --i] * mul
+  }
+  mul *= 0x80
+
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+
+  return val
+}
+
+Buffer.prototype.readInt8 = function readInt8 (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 1, this.length)
+  if (!(this[offset] & 0x80)) return (this[offset])
+  return ((0xff - this[offset] + 1) * -1)
+}
+
+Buffer.prototype.readInt16LE = function readInt16LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  var val = this[offset] | (this[offset + 1] << 8)
+  return (val & 0x8000) ? val | 0xFFFF0000 : val
+}
+
+Buffer.prototype.readInt16BE = function readInt16BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  var val = this[offset + 1] | (this[offset] << 8)
+  return (val & 0x8000) ? val | 0xFFFF0000 : val
+}
+
+Buffer.prototype.readInt32LE = function readInt32LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return (this[offset]) |
+    (this[offset + 1] << 8) |
+    (this[offset + 2] << 16) |
+    (this[offset + 3] << 24)
+}
+
+Buffer.prototype.readInt32BE = function readInt32BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return (this[offset] << 24) |
+    (this[offset + 1] << 16) |
+    (this[offset + 2] << 8) |
+    (this[offset + 3])
+}
+
+Buffer.prototype.readFloatLE = function readFloatLE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+  return ieee754.read(this, offset, true, 23, 4)
+}
+
+Buffer.prototype.readFloatBE = function readFloatBE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+  return ieee754.read(this, offset, false, 23, 4)
+}
+
+Buffer.prototype.readDoubleLE = function readDoubleLE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 8, this.length)
+  return ieee754.read(this, offset, true, 52, 8)
+}
+
+Buffer.prototype.readDoubleBE = function readDoubleBE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 8, this.length)
+  return ieee754.read(this, offset, false, 52, 8)
+}
+
+function checkInt (buf, value, offset, ext, max, min) {
+  if (!Buffer.isBuffer(buf)) throw new TypeError('"buffer" argument must be a Buffer instance')
+  if (value > max || value < min) throw new RangeError('"value" argument is out of bounds')
+  if (offset + ext > buf.length) throw new RangeError('Index out of range')
+}
+
+Buffer.prototype.writeUIntLE = function writeUIntLE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) {
+    var maxBytes = Math.pow(2, 8 * byteLength) - 1
+    checkInt(this, value, offset, byteLength, maxBytes, 0)
+  }
+
+  var mul = 1
+  var i = 0
+  this[offset] = value & 0xFF
+  while (++i < byteLength && (mul *= 0x100)) {
+    this[offset + i] = (value / mul) & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeUIntBE = function writeUIntBE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) {
+    var maxBytes = Math.pow(2, 8 * byteLength) - 1
+    checkInt(this, value, offset, byteLength, maxBytes, 0)
+  }
+
+  var i = byteLength - 1
+  var mul = 1
+  this[offset + i] = value & 0xFF
+  while (--i >= 0 && (mul *= 0x100)) {
+    this[offset + i] = (value / mul) & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeUInt8 = function writeUInt8 (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 1, 0xff, 0)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+  this[offset] = (value & 0xff)
+  return offset + 1
+}
+
+function objectWriteUInt16 (buf, value, offset, littleEndian) {
+  if (value < 0) value = 0xffff + value + 1
+  for (var i = 0, j = Math.min(buf.length - offset, 2); i < j; ++i) {
+    buf[offset + i] = (value & (0xff << (8 * (littleEndian ? i : 1 - i)))) >>>
+      (littleEndian ? i : 1 - i) * 8
+  }
+}
+
+Buffer.prototype.writeUInt16LE = function writeUInt16LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value & 0xff)
+    this[offset + 1] = (value >>> 8)
+  } else {
+    objectWriteUInt16(this, value, offset, true)
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeUInt16BE = function writeUInt16BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 8)
+    this[offset + 1] = (value & 0xff)
+  } else {
+    objectWriteUInt16(this, value, offset, false)
+  }
+  return offset + 2
+}
+
+function objectWriteUInt32 (buf, value, offset, littleEndian) {
+  if (value < 0) value = 0xffffffff + value + 1
+  for (var i = 0, j = Math.min(buf.length - offset, 4); i < j; ++i) {
+    buf[offset + i] = (value >>> (littleEndian ? i : 3 - i) * 8) & 0xff
+  }
+}
+
+Buffer.prototype.writeUInt32LE = function writeUInt32LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset + 3] = (value >>> 24)
+    this[offset + 2] = (value >>> 16)
+    this[offset + 1] = (value >>> 8)
+    this[offset] = (value & 0xff)
+  } else {
+    objectWriteUInt32(this, value, offset, true)
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeUInt32BE = function writeUInt32BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 24)
+    this[offset + 1] = (value >>> 16)
+    this[offset + 2] = (value >>> 8)
+    this[offset + 3] = (value & 0xff)
+  } else {
+    objectWriteUInt32(this, value, offset, false)
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeIntLE = function writeIntLE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) {
+    var limit = Math.pow(2, 8 * byteLength - 1)
+
+    checkInt(this, value, offset, byteLength, limit - 1, -limit)
+  }
+
+  var i = 0
+  var mul = 1
+  var sub = 0
+  this[offset] = value & 0xFF
+  while (++i < byteLength && (mul *= 0x100)) {
+    if (value < 0 && sub === 0 && this[offset + i - 1] !== 0) {
+      sub = 1
+    }
+    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeIntBE = function writeIntBE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) {
+    var limit = Math.pow(2, 8 * byteLength - 1)
+
+    checkInt(this, value, offset, byteLength, limit - 1, -limit)
+  }
+
+  var i = byteLength - 1
+  var mul = 1
+  var sub = 0
+  this[offset + i] = value & 0xFF
+  while (--i >= 0 && (mul *= 0x100)) {
+    if (value < 0 && sub === 0 && this[offset + i + 1] !== 0) {
+      sub = 1
+    }
+    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeInt8 = function writeInt8 (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 1, 0x7f, -0x80)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+  if (value < 0) value = 0xff + value + 1
+  this[offset] = (value & 0xff)
+  return offset + 1
+}
+
+Buffer.prototype.writeInt16LE = function writeInt16LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value & 0xff)
+    this[offset + 1] = (value >>> 8)
+  } else {
+    objectWriteUInt16(this, value, offset, true)
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeInt16BE = function writeInt16BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 8)
+    this[offset + 1] = (value & 0xff)
+  } else {
+    objectWriteUInt16(this, value, offset, false)
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeInt32LE = function writeInt32LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value & 0xff)
+    this[offset + 1] = (value >>> 8)
+    this[offset + 2] = (value >>> 16)
+    this[offset + 3] = (value >>> 24)
+  } else {
+    objectWriteUInt32(this, value, offset, true)
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeInt32BE = function writeInt32BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  if (value < 0) value = 0xffffffff + value + 1
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 24)
+    this[offset + 1] = (value >>> 16)
+    this[offset + 2] = (value >>> 8)
+    this[offset + 3] = (value & 0xff)
+  } else {
+    objectWriteUInt32(this, value, offset, false)
+  }
+  return offset + 4
+}
+
+function checkIEEE754 (buf, value, offset, ext, max, min) {
+  if (offset + ext > buf.length) throw new RangeError('Index out of range')
+  if (offset < 0) throw new RangeError('Index out of range')
+}
+
+function writeFloat (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
+  }
+  ieee754.write(buf, value, offset, littleEndian, 23, 4)
+  return offset + 4
+}
+
+Buffer.prototype.writeFloatLE = function writeFloatLE (value, offset, noAssert) {
+  return writeFloat(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeFloatBE = function writeFloatBE (value, offset, noAssert) {
+  return writeFloat(this, value, offset, false, noAssert)
+}
+
+function writeDouble (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
+  }
+  ieee754.write(buf, value, offset, littleEndian, 52, 8)
+  return offset + 8
+}
+
+Buffer.prototype.writeDoubleLE = function writeDoubleLE (value, offset, noAssert) {
+  return writeDouble(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeDoubleBE = function writeDoubleBE (value, offset, noAssert) {
+  return writeDouble(this, value, offset, false, noAssert)
+}
+
+// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+Buffer.prototype.copy = function copy (target, targetStart, start, end) {
+  if (!start) start = 0
+  if (!end && end !== 0) end = this.length
+  if (targetStart >= target.length) targetStart = target.length
+  if (!targetStart) targetStart = 0
+  if (end > 0 && end < start) end = start
+
+  // Copy 0 bytes; we're done
+  if (end === start) return 0
+  if (target.length === 0 || this.length === 0) return 0
+
+  // Fatal error conditions
+  if (targetStart < 0) {
+    throw new RangeError('targetStart out of bounds')
+  }
+  if (start < 0 || start >= this.length) throw new RangeError('sourceStart out of bounds')
+  if (end < 0) throw new RangeError('sourceEnd out of bounds')
+
+  // Are we oob?
+  if (end > this.length) end = this.length
+  if (target.length - targetStart < end - start) {
+    end = target.length - targetStart + start
+  }
+
+  var len = end - start
+  var i
+
+  if (this === target && start < targetStart && targetStart < end) {
+    // descending copy from end
+    for (i = len - 1; i >= 0; --i) {
+      target[i + targetStart] = this[i + start]
+    }
+  } else if (len < 1000 || !Buffer.TYPED_ARRAY_SUPPORT) {
+    // ascending copy from start
+    for (i = 0; i < len; ++i) {
+      target[i + targetStart] = this[i + start]
+    }
+  } else {
+    Uint8Array.prototype.set.call(
+      target,
+      this.subarray(start, start + len),
+      targetStart
+    )
+  }
+
+  return len
+}
+
+// Usage:
+//    buffer.fill(number[, offset[, end]])
+//    buffer.fill(buffer[, offset[, end]])
+//    buffer.fill(string[, offset[, end]][, encoding])
+Buffer.prototype.fill = function fill (val, start, end, encoding) {
+  // Handle string cases:
+  if (typeof val === 'string') {
+    if (typeof start === 'string') {
+      encoding = start
+      start = 0
+      end = this.length
+    } else if (typeof end === 'string') {
+      encoding = end
+      end = this.length
+    }
+    if (val.length === 1) {
+      var code = val.charCodeAt(0)
+      if (code < 256) {
+        val = code
+      }
+    }
+    if (encoding !== undefined && typeof encoding !== 'string') {
+      throw new TypeError('encoding must be a string')
+    }
+    if (typeof encoding === 'string' && !Buffer.isEncoding(encoding)) {
+      throw new TypeError('Unknown encoding: ' + encoding)
+    }
+  } else if (typeof val === 'number') {
+    val = val & 255
+  }
+
+  // Invalid ranges are not set to a default, so can range check early.
+  if (start < 0 || this.length < start || this.length < end) {
+    throw new RangeError('Out of range index')
+  }
+
+  if (end <= start) {
+    return this
+  }
+
+  start = start >>> 0
+  end = end === undefined ? this.length : end >>> 0
+
+  if (!val) val = 0
+
+  var i
+  if (typeof val === 'number') {
+    for (i = start; i < end; ++i) {
+      this[i] = val
+    }
+  } else {
+    var bytes = Buffer.isBuffer(val)
+      ? val
+      : utf8ToBytes(new Buffer(val, encoding).toString())
+    var len = bytes.length
+    for (i = 0; i < end - start; ++i) {
+      this[i + start] = bytes[i % len]
+    }
+  }
+
+  return this
+}
+
+// HELPER FUNCTIONS
+// ================
+
+var INVALID_BASE64_RE = /[^+\/0-9A-Za-z-_]/g
+
+function base64clean (str) {
+  // Node strips out invalid characters like \n and \t from the string, base64-js does not
+  str = stringtrim(str).replace(INVALID_BASE64_RE, '')
+  // Node converts strings with length < 2 to ''
+  if (str.length < 2) return ''
+  // Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
+  while (str.length % 4 !== 0) {
+    str = str + '='
+  }
+  return str
+}
+
+function stringtrim (str) {
+  if (str.trim) return str.trim()
+  return str.replace(/^\s+|\s+$/g, '')
+}
+
+function toHex (n) {
+  if (n < 16) return '0' + n.toString(16)
+  return n.toString(16)
+}
+
+function utf8ToBytes (string, units) {
+  units = units || Infinity
+  var codePoint
+  var length = string.length
+  var leadSurrogate = null
+  var bytes = []
+
+  for (var i = 0; i < length; ++i) {
+    codePoint = string.charCodeAt(i)
+
+    // is surrogate component
+    if (codePoint > 0xD7FF && codePoint < 0xE000) {
+      // last char was a lead
+      if (!leadSurrogate) {
+        // no lead yet
+        if (codePoint > 0xDBFF) {
+          // unexpected trail
+          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+          continue
+        } else if (i + 1 === length) {
+          // unpaired lead
+          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+          continue
+        }
+
+        // valid lead
+        leadSurrogate = codePoint
+
+        continue
+      }
+
+      // 2 leads in a row
+      if (codePoint < 0xDC00) {
+        if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+        leadSurrogate = codePoint
+        continue
+      }
+
+      // valid surrogate pair
+      codePoint = (leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00) + 0x10000
+    } else if (leadSurrogate) {
+      // valid bmp char, but last char was a lead
+      if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+    }
+
+    leadSurrogate = null
+
+    // encode utf8
+    if (codePoint < 0x80) {
+      if ((units -= 1) < 0) break
+      bytes.push(codePoint)
+    } else if (codePoint < 0x800) {
+      if ((units -= 2) < 0) break
+      bytes.push(
+        codePoint >> 0x6 | 0xC0,
+        codePoint & 0x3F | 0x80
+      )
+    } else if (codePoint < 0x10000) {
+      if ((units -= 3) < 0) break
+      bytes.push(
+        codePoint >> 0xC | 0xE0,
+        codePoint >> 0x6 & 0x3F | 0x80,
+        codePoint & 0x3F | 0x80
+      )
+    } else if (codePoint < 0x110000) {
+      if ((units -= 4) < 0) break
+      bytes.push(
+        codePoint >> 0x12 | 0xF0,
+        codePoint >> 0xC & 0x3F | 0x80,
+        codePoint >> 0x6 & 0x3F | 0x80,
+        codePoint & 0x3F | 0x80
+      )
+    } else {
+      throw new Error('Invalid code point')
+    }
+  }
+
+  return bytes
+}
+
+function asciiToBytes (str) {
+  var byteArray = []
+  for (var i = 0; i < str.length; ++i) {
+    // Node's code seems to be doing this and not & 0x7F..
+    byteArray.push(str.charCodeAt(i) & 0xFF)
+  }
+  return byteArray
+}
+
+function utf16leToBytes (str, units) {
+  var c, hi, lo
+  var byteArray = []
+  for (var i = 0; i < str.length; ++i) {
+    if ((units -= 2) < 0) break
+
+    c = str.charCodeAt(i)
+    hi = c >> 8
+    lo = c % 256
+    byteArray.push(lo)
+    byteArray.push(hi)
+  }
+
+  return byteArray
+}
+
+function base64ToBytes (str) {
+  return base64.toByteArray(base64clean(str))
+}
+
+function blitBuffer (src, dst, offset, length) {
+  for (var i = 0; i < length; ++i) {
+    if ((i + offset >= dst.length) || (i >= src.length)) break
+    dst[i + offset] = src[i]
+  }
+  return i
+}
+
+function isnan (val) {
+  return val !== val // eslint-disable-line no-self-compare
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ 3)))
+
+/***/ }),
+
+/***/ 293:
+/*!*****************************************!*\
+  !*** ./node_modules/base64-js/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.byteLength = byteLength
+exports.toByteArray = toByteArray
+exports.fromByteArray = fromByteArray
+
+var lookup = []
+var revLookup = []
+var Arr = typeof Uint8Array !== 'undefined' ? Uint8Array : Array
+
+var code = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+for (var i = 0, len = code.length; i < len; ++i) {
+  lookup[i] = code[i]
+  revLookup[code.charCodeAt(i)] = i
+}
+
+// Support decoding URL-safe base64 strings, as Node.js does.
+// See: https://en.wikipedia.org/wiki/Base64#URL_applications
+revLookup['-'.charCodeAt(0)] = 62
+revLookup['_'.charCodeAt(0)] = 63
+
+function getLens (b64) {
+  var len = b64.length
+
+  if (len % 4 > 0) {
+    throw new Error('Invalid string. Length must be a multiple of 4')
+  }
+
+  // Trim off extra bytes after placeholder bytes are found
+  // See: https://github.com/beatgammit/base64-js/issues/42
+  var validLen = b64.indexOf('=')
+  if (validLen === -1) validLen = len
+
+  var placeHoldersLen = validLen === len
+    ? 0
+    : 4 - (validLen % 4)
+
+  return [validLen, placeHoldersLen]
+}
+
+// base64 is 4/3 + up to two characters of the original data
+function byteLength (b64) {
+  var lens = getLens(b64)
+  var validLen = lens[0]
+  var placeHoldersLen = lens[1]
+  return ((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen
+}
+
+function _byteLength (b64, validLen, placeHoldersLen) {
+  return ((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen
+}
+
+function toByteArray (b64) {
+  var tmp
+  var lens = getLens(b64)
+  var validLen = lens[0]
+  var placeHoldersLen = lens[1]
+
+  var arr = new Arr(_byteLength(b64, validLen, placeHoldersLen))
+
+  var curByte = 0
+
+  // if there are placeholders, only get up to the last complete 4 chars
+  var len = placeHoldersLen > 0
+    ? validLen - 4
+    : validLen
+
+  var i
+  for (i = 0; i < len; i += 4) {
+    tmp =
+      (revLookup[b64.charCodeAt(i)] << 18) |
+      (revLookup[b64.charCodeAt(i + 1)] << 12) |
+      (revLookup[b64.charCodeAt(i + 2)] << 6) |
+      revLookup[b64.charCodeAt(i + 3)]
+    arr[curByte++] = (tmp >> 16) & 0xFF
+    arr[curByte++] = (tmp >> 8) & 0xFF
+    arr[curByte++] = tmp & 0xFF
+  }
+
+  if (placeHoldersLen === 2) {
+    tmp =
+      (revLookup[b64.charCodeAt(i)] << 2) |
+      (revLookup[b64.charCodeAt(i + 1)] >> 4)
+    arr[curByte++] = tmp & 0xFF
+  }
+
+  if (placeHoldersLen === 1) {
+    tmp =
+      (revLookup[b64.charCodeAt(i)] << 10) |
+      (revLookup[b64.charCodeAt(i + 1)] << 4) |
+      (revLookup[b64.charCodeAt(i + 2)] >> 2)
+    arr[curByte++] = (tmp >> 8) & 0xFF
+    arr[curByte++] = tmp & 0xFF
+  }
+
+  return arr
+}
+
+function tripletToBase64 (num) {
+  return lookup[num >> 18 & 0x3F] +
+    lookup[num >> 12 & 0x3F] +
+    lookup[num >> 6 & 0x3F] +
+    lookup[num & 0x3F]
+}
+
+function encodeChunk (uint8, start, end) {
+  var tmp
+  var output = []
+  for (var i = start; i < end; i += 3) {
+    tmp =
+      ((uint8[i] << 16) & 0xFF0000) +
+      ((uint8[i + 1] << 8) & 0xFF00) +
+      (uint8[i + 2] & 0xFF)
+    output.push(tripletToBase64(tmp))
+  }
+  return output.join('')
+}
+
+function fromByteArray (uint8) {
+  var tmp
+  var len = uint8.length
+  var extraBytes = len % 3 // if we have 1 byte left, pad 2 bytes
+  var parts = []
+  var maxChunkLength = 16383 // must be multiple of 3
+
+  // go through the array every three bytes, we'll deal with trailing stuff later
+  for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
+    parts.push(encodeChunk(
+      uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)
+    ))
+  }
+
+  // pad the end with zeros, but make sure to not forget the extra bytes
+  if (extraBytes === 1) {
+    tmp = uint8[len - 1]
+    parts.push(
+      lookup[tmp >> 2] +
+      lookup[(tmp << 4) & 0x3F] +
+      '=='
+    )
+  } else if (extraBytes === 2) {
+    tmp = (uint8[len - 2] << 8) + uint8[len - 1]
+    parts.push(
+      lookup[tmp >> 10] +
+      lookup[(tmp >> 4) & 0x3F] +
+      lookup[(tmp << 2) & 0x3F] +
+      '='
+    )
+  }
+
+  return parts.join('')
+}
+
+
+/***/ }),
+
+/***/ 294:
+/*!***************************************!*\
+  !*** ./node_modules/ieee754/index.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+exports.read = function (buffer, offset, isLE, mLen, nBytes) {
+  var e, m
+  var eLen = (nBytes * 8) - mLen - 1
+  var eMax = (1 << eLen) - 1
+  var eBias = eMax >> 1
+  var nBits = -7
+  var i = isLE ? (nBytes - 1) : 0
+  var d = isLE ? -1 : 1
+  var s = buffer[offset + i]
+
+  i += d
+
+  e = s & ((1 << (-nBits)) - 1)
+  s >>= (-nBits)
+  nBits += eLen
+  for (; nBits > 0; e = (e * 256) + buffer[offset + i], i += d, nBits -= 8) {}
+
+  m = e & ((1 << (-nBits)) - 1)
+  e >>= (-nBits)
+  nBits += mLen
+  for (; nBits > 0; m = (m * 256) + buffer[offset + i], i += d, nBits -= 8) {}
+
+  if (e === 0) {
+    e = 1 - eBias
+  } else if (e === eMax) {
+    return m ? NaN : ((s ? -1 : 1) * Infinity)
+  } else {
+    m = m + Math.pow(2, mLen)
+    e = e - eBias
+  }
+  return (s ? -1 : 1) * m * Math.pow(2, e - mLen)
+}
+
+exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
+  var e, m, c
+  var eLen = (nBytes * 8) - mLen - 1
+  var eMax = (1 << eLen) - 1
+  var eBias = eMax >> 1
+  var rt = (mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0)
+  var i = isLE ? 0 : (nBytes - 1)
+  var d = isLE ? 1 : -1
+  var s = value < 0 || (value === 0 && 1 / value < 0) ? 1 : 0
+
+  value = Math.abs(value)
+
+  if (isNaN(value) || value === Infinity) {
+    m = isNaN(value) ? 1 : 0
+    e = eMax
+  } else {
+    e = Math.floor(Math.log(value) / Math.LN2)
+    if (value * (c = Math.pow(2, -e)) < 1) {
+      e--
+      c *= 2
+    }
+    if (e + eBias >= 1) {
+      value += rt / c
+    } else {
+      value += rt * Math.pow(2, 1 - eBias)
+    }
+    if (value * c >= 2) {
+      e++
+      c /= 2
+    }
+
+    if (e + eBias >= eMax) {
+      m = 0
+      e = eMax
+    } else if (e + eBias >= 1) {
+      m = ((value * c) - 1) * Math.pow(2, mLen)
+      e = e + eBias
+    } else {
+      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen)
+      e = 0
+    }
+  }
+
+  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8) {}
+
+  e = (e << mLen) | m
+  eLen += mLen
+  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8) {}
+
+  buffer[offset + i - d] |= s * 128
+}
+
+
+/***/ }),
+
+/***/ 295:
+/*!***************************************!*\
+  !*** ./node_modules/isarray/index.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
 /***/ 3:
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -10463,9 +12555,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 30:
-/*!**************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/random.js ***!
-  \**************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/random.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10484,9 +12576,9 @@ random;exports.default = _default;
 /***/ }),
 
 /***/ 31:
-/*!************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/trim.js ***!
-  \************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/trim.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10510,9 +12602,9 @@ trim;exports.default = _default;
 /***/ }),
 
 /***/ 32:
-/*!*************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/function/toast.js ***!
-  \*************************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/toast.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10531,9 +12623,9 @@ toast;exports.default = _default;
 /***/ }),
 
 /***/ 33:
-/*!************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/config/config.js ***!
-  \************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/config/config.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10548,9 +12640,9 @@ var version = '1.2.7';var _default =
 /***/ }),
 
 /***/ 34:
-/*!************************************************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/node_modules/uview-ui/libs/config/zIndex.js ***!
-  \************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/config/zIndex.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10576,10 +12668,47 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
+/***/ 35:
+/*!*******************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/util/api.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.myRequest = void 0; // 封装get请求
+var baseUrl = "http://47.240.8.112";
+var myRequest = function myRequest(options) {
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      method: options.method,
+      data: options.data,
+      url: baseUrl + options.url,
+      success: function success(res) {
+        if (res.statusCode !== 200) {
+          return uni.showToast({
+            title: '获取数据失败2' });
+
+        }
+        resolve(res);
+      },
+      fail: function fail(err) {
+        uni.showToast({
+          title: '获取数据失败' });
+
+        reject(err);
+      } });
+
+  });
+};exports.myRequest = myRequest;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
 /***/ 4:
-/*!***************************************************************!*\
-  !*** D:/wechatapp/animal-crossing/animal_crossing/pages.json ***!
-  \***************************************************************/
+/*!******************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/pages.json ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 

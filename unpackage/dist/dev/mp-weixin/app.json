@@ -10,7 +10,8 @@
     "pages/Message/Message",
     "pages/market/market",
     "pages/circle_friends/circle_friends",
-    "pages/turnip-prices/turnip-prices"
+    "pages/turnip-prices/turnip-prices",
+    "pages/setting/setting"
   ],
   "subPackages": [],
   "window": {
@@ -38,12 +39,13 @@
         "text": "图鉴"
       },
       {
-        "pagePath": "pages/mysite/mysite",
+        "pagePath": "pages/setting/setting",
         "iconPath": "static/icon/mysite.png",
         "selectedIconPath": "static/icon/mysite.png",
         "text": "我的"
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap7.json"
 }
