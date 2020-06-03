@@ -52,15 +52,14 @@
 		</scroll-view>
 
 		<!-- 化石图鉴列表 -->
-		<scroll-view v-show="current==2" class="list" style="margin-top: 150rpx;">
-			<view class="artsAndfossil_view" v-for="(item,index) in artWork" :key="index">
-				<image class="v_img"></image>
+		<scroll-view v-show="current==2" class="list" style="margin-top: 150rpx;" :scroll-y="true" @scrolltolower="getRemainFossilInfo">
+			<view class="artsAndfossil_view" v-for="(item,index) in fossil" :key="index">
+				<image class="v_img" :src="item.pic_url"></image>
 				<u-cell-group class="cell-group">
-					<u-cell-item :title="item.name" :arrow="false">
+					<u-cell-item :title="item.cn_sname" :arrow="false">
 						<view class="item">
 							<!-- <p class="name">{{item.name}}</p> -->
 							<p class="price">{{item.price}}</p>
-							<p></p>
 						</view>
 						<view class="collection">
 							<u-number-box :value="0" @change="valChange"></u-number-box>
@@ -68,16 +67,16 @@
 					</u-cell-item>
 				</u-cell-group>
 			</view>
-			
 			<u-divider>化石图鉴完</u-divider>
 		</scroll-view>
 		<!-- 艺术品图鉴列表 -->
-		<scroll-view v-show="current==3" class="list" style="margin-top: 150rpx;">
+		<scroll-view v-show="current==3" class="list" style="margin-top: 150rpx;" :scroll-y="true" @scrolltolower="getRemainArtWorkInfo">
 			<view class="artsAndfossil_view" v-for="(item,index) in artWork" :key="index">
-				<image class="v_img"></image>
+				<image class="v_img" :src="item.logo_url"></image>
 				<u-cell-group class="cell-group">
-					<u-cell-item :title="item.name" :arrow="false">
+					<u-cell-item :title="item.cn_sname" :arrow="false">
 						<view class="collection">
+							<u-button class="artwork_detail" type="primary" size="mini" @click="onClickMoreInfo('artwork',item)" >详情</u-button>
 							<p v-if="item.number>0">(已捐)</p>
 							<u-number-box :value="item.number" :min="0" @change="valChange"></u-number-box>
 						</view>
@@ -159,41 +158,14 @@
 				insect: [],
 				//虫类页数
 				insectPageNum:1,
-				artWork: [{
-						name: "冲浪图",
-						number: "1"
-					},
-					{
-						name: "星夜",
-						number: "0"
-					},
-					{
-						name: "富春山居图",
-						number: "2"
-					},
-					{
-						name: "清明上河图",
-						number: "3"
-					}
-				],
-				//化石
-				fossil: [{
-						name: "暴龙",
-						number: "1"
-					},
-					{
-						name: "梁龙",
-						number: "1"
-					},
-					{
-						name: "角龙",
-						number: "0"
-					},
-					{
-						name: "腕龙",
-						number: "3"
-					}
-				],
+				//化石信息
+				fossil: [],
+				//化石页数
+				fossilPageNum:1,
+				//艺术品信息
+				artWork: [],
+				//艺术品页数
+				artWorkPageNum:1,
 				//村民
 				villagers: [],
 				//村民页数
@@ -204,10 +176,15 @@
 			//标签页tabs切换事件监听
 			changeMap(index) {
 				this.current = index;
+				//根据current判断处于哪个标签页，并请求相应数据
 				if (this.current === 0 && this.fish !== [] && this.fishPageNum <= 8){
 					this.getFishInfo();
 				}else if(this.current === 1 && this.insect !== [] && this.insectPageNum <= 8){
 					this.getInsectInfo()
+				}else if(this.current === 2 && this.fossil !== [] && this.fossilPageNum <=8){
+					this.getFossilInfo();
+				}else if(this.current === 3 && this.artWork !== [] && this.artWorkPageNum <= 5){
+					this.getArtWorkInfo();
 				}
 				if (this.current === 4 && this.villagers !== []){
 					this.getVillagerInfo();
@@ -231,6 +208,10 @@
 					uni.navigateTo({
 						url: '/pages/map/mapDetail/mapDetail?dexType=insect&item=' + encodeURIComponent(JSON.stringify(this.detailItem))
 					});
+				}else if (dex_type === "artwork") {
+					uni.navigateTo({
+						url: '/pages/map/mapDetail/artworkDetail?dexType=artwork&item=' + encodeURIComponent(JSON.stringify(this.detailItem))
+					});
 				}
 				// console.log("点击了鱼类");
 
@@ -252,7 +233,6 @@
 					this.getFishInfo();
 					console.log("fish"+this.fishPageNum);
 				}
-
 			},
 			//获取虫类信息
 			async getInsectInfo(){
@@ -271,9 +251,43 @@
 					this.getInsectInfo();
 					console.log("insect"+this.insectPageNum)
 				}
-				
-			}
-			,
+			},
+			//获取化石信息
+			async getFossilInfo(){
+				const result = await this.$myRequest({
+				method: 'GET',
+				url: '/fossils/?pagenum=' + this.fossilPageNum
+				})
+				this.fossil = [...this.fossil,...result.data.results]
+				// this.insect = result.data.results;
+			},
+			//获取化石剩余信息
+			getRemainFossilInfo(){
+				//总共有8页
+				if(this.fossilPageNum <= 8){
+					this.fossilPageNum++;
+					this.getFossilInfo();
+					console.log("fossil"+this.fossilPageNum);
+				}
+			},
+			//获取艺术品信息
+			async getArtWorkInfo(){
+				const result = await this.$myRequest({
+				method: 'GET',
+				url: '/artworks/?pagenum=' + this.artWorkPageNum
+				})
+				this.artWork = [...this.artWork,...result.data.results]
+				// this.insect = result.data.results;
+			},
+			//获取艺术品剩余信息
+			getRemainArtWorkInfo(){
+				//总共有5页
+				if(this.artWorkPageNum <= 4){
+					this.artWorkPageNum++;
+					this.getArtWorkInfo();
+					console.log("artwork"+this.artWorkPageNum);
+				}
+			},
 			//获取村民信息
 			async getVillagerInfo() {
 				const result = await this.$myRequest({
@@ -291,9 +305,8 @@
 					this.villagerPageNum++;
 					this.getVillagerInfo();
 					console.log("villager"+this.villagerPageNum);
-				}
-				
-			}
+				}	
+			},
 		},
 		// 监控列表触底
 		// onReachBottom() {
@@ -327,7 +340,6 @@
 		height: 1200rpx;
 		margin-top: 145rpx;
 	}
-
 	// 图鉴单项行样式
 	.item {
 		// background-color: blue;
@@ -349,7 +361,6 @@
 			flex: 1em;
 		}
 	}
-	
 	.collection {
 		display: flex;
 		justify-content: flex-end;
@@ -358,18 +369,13 @@
 			left: 0;
 			transform: translate(50%);
 		}
-		
 		.sw_button {
 			margin-left: 15rpx;
 		}
 	}
-
-	
-
 	u-number-box {
 		margin-left: 25rpx;
 	}
-	
 	// /deep/ .u-cell-box{
 	// 	height: 400rpx;
 	// 	background-color: blue;
@@ -390,7 +396,6 @@
 			flex: 4;
 		}
 	}
-	
 	//艺术品和化石样式
 	.artsAndfossil_view{
 		display: flex;

@@ -52,6 +52,10 @@
             "path" : "pages/setting/setting",
             "style" : {}
         }
+        ,{
+            "path" : "pages/map/mapDetail/artworkDetail",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

@@ -268,7 +268,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var _default =
 {
   data: function data() {var _ref;
@@ -315,42 +314,15 @@ var _default =
 
     []), _defineProperty(_ref, "insectPageNum",
 
+    1), _defineProperty(_ref, "fossil",
+
+    []), _defineProperty(_ref, "fossilPageNum",
+
     1), _defineProperty(_ref, "artWork",
-    [{
-      name: "冲浪图",
-      number: "1" },
 
-    {
-      name: "星夜",
-      number: "0" },
+    []), _defineProperty(_ref, "artWorkPageNum",
 
-    {
-      name: "富春山居图",
-      number: "2" },
-
-    {
-      name: "清明上河图",
-      number: "3" }]), _defineProperty(_ref, "fossil",
-
-
-
-    [{
-      name: "暴龙",
-      number: "1" },
-
-    {
-      name: "梁龙",
-      number: "1" },
-
-    {
-      name: "角龙",
-      number: "0" },
-
-    {
-      name: "腕龙",
-      number: "3" }]), _defineProperty(_ref, "villagers",
-
-
+    1), _defineProperty(_ref, "villagers",
 
     []), _defineProperty(_ref, "villagerPageNum",
 
@@ -361,10 +333,15 @@ var _default =
     //标签页tabs切换事件监听
     changeMap: function changeMap(index) {
       this.current = index;
+      //根据current判断处于哪个标签页，并请求相应数据
       if (this.current === 0 && this.fish !== [] && this.fishPageNum <= 8) {
         this.getFishInfo();
       } else if (this.current === 1 && this.insect !== [] && this.insectPageNum <= 8) {
         this.getInsectInfo();
+      } else if (this.current === 2 && this.fossil !== [] && this.fossilPageNum <= 8) {
+        this.getFossilInfo();
+      } else if (this.current === 3 && this.artWork !== [] && this.artWorkPageNum <= 5) {
+        this.getArtWorkInfo();
       }
       if (this.current === 4 && this.villagers !== []) {
         this.getVillagerInfo();
@@ -388,6 +365,10 @@ var _default =
         uni.navigateTo({
           url: '/pages/map/mapDetail/mapDetail?dexType=insect&item=' + encodeURIComponent(JSON.stringify(this.detailItem)) });
 
+      } else if (dex_type === "artwork") {
+        uni.navigateTo({
+          url: '/pages/map/mapDetail/artworkDetail?dexType=artwork&item=' + encodeURIComponent(JSON.stringify(this.detailItem)) });
+
       }
       // console.log("点击了鱼类");
 
@@ -409,7 +390,6 @@ var _default =
         this.getFishInfo();
         console.log("fish" + this.fishPageNum);
       }
-
     },
     //获取虫类信息
     getInsectInfo: function getInsectInfo() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
@@ -428,19 +408,53 @@ var _default =
         this.getInsectInfo();
         console.log("insect" + this.insectPageNum);
       }
-
     },
-
-    //获取村民信息
-    getVillagerInfo: function getVillagerInfo() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+    //获取化石信息
+    getFossilInfo: function getFossilInfo() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
                   _this3.$myRequest({
                     method: 'GET',
-                    url: '/dwellers/?pagenum=' + _this3.villagerPageNum }));case 2:result = _context3.sent;
+                    url: '/fossils/?pagenum=' + _this3.fossilPageNum }));case 2:result = _context3.sent;
 
-                _this3.villagers = [].concat(_toConsumableArray(_this3.villagers), _toConsumableArray(result.data.results));
+                _this3.fossil = [].concat(_toConsumableArray(_this3.fossil), _toConsumableArray(result.data.results));
+                // this.insect = result.data.results;
+              case 4:case "end":return _context3.stop();}}}, _callee3);}))();},
+    //获取化石剩余信息
+    getRemainFossilInfo: function getRemainFossilInfo() {
+      //总共有8页
+      if (this.fossilPageNum <= 8) {
+        this.fossilPageNum++;
+        this.getFossilInfo();
+        console.log("fossil" + this.fossilPageNum);
+      }
+    },
+    //获取艺术品信息
+    getArtWorkInfo: function getArtWorkInfo() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var result;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
+                  _this4.$myRequest({
+                    method: 'GET',
+                    url: '/artworks/?pagenum=' + _this4.artWorkPageNum }));case 2:result = _context4.sent;
+
+                _this4.artWork = [].concat(_toConsumableArray(_this4.artWork), _toConsumableArray(result.data.results));
+                // this.insect = result.data.results;
+              case 4:case "end":return _context4.stop();}}}, _callee4);}))();},
+    //获取艺术品剩余信息
+    getRemainArtWorkInfo: function getRemainArtWorkInfo() {
+      //总共有5页
+      if (this.artWorkPageNum <= 4) {
+        this.artWorkPageNum++;
+        this.getArtWorkInfo();
+        console.log("artwork" + this.artWorkPageNum);
+      }
+    },
+    //获取村民信息
+    getVillagerInfo: function getVillagerInfo() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var result;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
+                  _this5.$myRequest({
+                    method: 'GET',
+                    url: '/dwellers/?pagenum=' + _this5.villagerPageNum }));case 2:result = _context5.sent;
+
+                _this5.villagers = [].concat(_toConsumableArray(_this5.villagers), _toConsumableArray(result.data.results));
                 // this.villagers = result.data.results;
                 // console.log("村民"+this.villagers[1].id)
-              case 4:case "end":return _context3.stop();}}}, _callee3);}))();},
+              case 4:case "end":return _context5.stop();}}}, _callee5);}))();},
     //获取村民剩余信息
     getRemainVillagerInfo: function getRemainVillagerInfo() {
       //总共有40页
@@ -449,7 +463,6 @@ var _default =
         this.getVillagerInfo();
         console.log("villager" + this.villagerPageNum);
       }
-
     } },
 
   // 监控列表触底

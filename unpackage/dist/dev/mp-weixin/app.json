@@ -11,7 +11,8 @@
     "pages/market/market",
     "pages/circle_friends/circle_friends",
     "pages/turnip-prices/turnip-prices",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/map/mapDetail/artworkDetail"
   ],
   "subPackages": [],
   "window": {
@@ -46,6 +47,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap7.json"
+  "usingComponents": {}
 }
