@@ -3,7 +3,7 @@
 		<view class="topBar">
 			<u-tabs :list="list" :is-scroll="true" :current="current" @change="changeMap"></u-tabs>
 			<u-search placeholder="输入名称可模糊搜索" v-model="keyword" :clearabled="true" shape="round" :show-action="true" action-text="搜索"
-			 :animation="true"></u-search>
+			 :animation="true" @change="clickToSearch"></u-search>
 		</view>
 
 		<!-- 鱼类图鉴列表 -->
@@ -172,7 +172,6 @@
 				<u-cell-group class="cell-group">
 					<u-cell-item :title="item.cn_sname" :arrow="false">
 						<view class="collection">
-							<u-button class="artwork_detail"  type="primary" size="mini" @click="onClickMoreInfo('fish',item)">详情</u-button>
 							<p>已有</p>
 							<u-switch v-model="item.checked"></u-switch>
 						</view>
@@ -188,13 +187,17 @@
 	export default {
 		data() {
 			return {
+				//tab标签当前选中的值
 				current: 0,
+				// 搜索框的值
+				keyword:'',
 				//图鉴类型
 				dexType: "fish",
 				//详情item
 				detailItem: [],
 				//已收集
 				checked: false,
+				//tabs列表
 				list: [{
 						name: '鱼类'
 					},
@@ -287,7 +290,32 @@
 				} else if (this.current === 8 && this.albums.length === 0 && this.albumsPageNum <= 10) {
 					this.getalbumsInfo();
 				} 
-
+			},
+			// 搜索事件
+			clickToSearch(){
+				// 对输入keyword进行url编码
+				const encode_url = encodeURI(this.keyword);
+				 // console.log(encode_url);
+				// 根据current判断当前处于哪个标签页
+				if(this.current === 0){//鱼类
+					this.serchFishInfo(encode_url);
+				} else if(this.current === 1){ //虫类
+					this.serchInsectInfo(encode_url)
+				} else if(this.current === 2){ //化石
+					this.serchFossilInfo(encode_url)
+				} else if(this.current === 3){ //艺术品
+					this.serchArtWorkInfo(encode_url)
+				} else if(this.current === 4){ //村民
+					this.serchVillagerInfo(encode_url)
+				} else if(this.current === 5){ //家具
+					this.serchFurnitureInfo(encode_url)
+				} else if(this.current === 6){ //diy
+					this.serchDiyInfo(encode_url)
+				} else if(this.current === 7){ //服装
+					this.serchDressInfo(encode_url)
+				} else if(this.current === 8){ //唱片
+					this.serchAlbumsInfo(encode_url)
+				}
 			},
 			//化石数量变化监听
 			valChange(e) {
@@ -297,7 +325,7 @@
 			onClickMoreInfo(dex_type, item) {
 				this.dexType = dex_type;
 				this.detailItem = item;
-				console.log(this.detailItem);
+				// console.log(this.detailItem);
 				// console.log(name)
 				if (dex_type === "fish") {
 					uni.navigateTo({
@@ -335,6 +363,14 @@
 				// console.log("点击了鱼类");
 
 			},
+			// 搜索鱼类信息
+			async serchFishInfo(url){
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/fishes/?search='+ url
+				})
+				this.fish = result.data.results;
+			},
 			//获取鱼类信息
 			async getFishInfo() {
 				const result = await this.$myRequest({
@@ -352,6 +388,14 @@
 					this.getFishInfo();
 					// console.log("fish" + this.fishPageNum);
 				}
+			},
+			// 搜索虫类信息
+			async serchInsectInfo(url){
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/insects/?search='+ url
+				})
+				this.insect = result.data.results;
 			},
 			//获取虫类信息
 			async getInsectInfo() {
@@ -371,6 +415,14 @@
 					// console.log("insect" + this.insectPageNum)
 				}
 			},
+			// 搜索化石信息
+			async serchFossilInfo(url){
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/fossils/?search='+ url
+				})
+				this.fossil = result.data.results;
+			},
 			//获取化石信息
 			async getFossilInfo() {
 				const result = await this.$myRequest({
@@ -389,6 +441,14 @@
 					// console.log("fossil" + this.fossilPageNum);
 				}
 			},
+			// 搜索艺术品信息
+			async serchArtWorkInfo(url){
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/artworks/?search='+ url
+				})
+				this.artWork = result.data.results;
+			},
 			//获取艺术品信息
 			async getArtWorkInfo() {
 				const result = await this.$myRequest({
@@ -405,8 +465,16 @@
 				if (this.artWorkPageNum <= 4) {
 					this.artWorkPageNum++;
 					this.getArtWorkInfo();
-					console.log("artwork" + this.artWorkPageNum);
+					// console.log("artwork" + this.artWorkPageNum);
 				}
+			},
+			// 搜索村民信息
+			async serchVillagerInfo(url){
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/dwellers/?search='+ url
+				})
+				this.villagers = result.data.results;
 			},
 			//获取村民信息
 			async getVillagerInfo() {
@@ -427,6 +495,14 @@
 					// console.log("villager" + this.villagerPageNum);
 				}
 			},
+			// 搜索家具信息
+			async serchFurnitureInfo(url){
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/furnitures/?search='+ url
+				})
+				this.furniture = result.data.results;
+			},
 			//获取家具信息
 			async getFurnitureInfo() {
 				const result = await this.$myRequest({
@@ -444,6 +520,14 @@
 					// console.log("furniture" + this.furniturePageNum);
 				}
 			},
+			// 搜索diy信息
+			async serchDiyInfo(url){
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/diys/?search='+ url
+				})
+				this.diy = result.data.results;
+			},
 			//获取diy信息
 			async getDiyInfo() {
 				const result = await this.$myRequest({
@@ -458,8 +542,16 @@
 				if(this.diyPageNum <= 59){
 					this.diyPageNum++;
 					this.getDiyInfo();
-					console.log("diy" + this.diyPageNum);
+					// console.log("diy" + this.diyPageNum);
 				}
+			},
+			// 搜索服装信息
+			async serchDressInfo(url){
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/dresses/?search='+ url
+				})
+				this.dress = result.data.results;
 			},
 			//获取服装信息
 			async getDressInfo() {
@@ -475,8 +567,16 @@
 				if(this.albumsPageNum <= 464){
 					this.dressPageNum++;
 					this.getDressInfo();
-					console.log("dress" + this.dressPageNum);
+					// console.log("dress" + this.dressPageNum);
 				}
+			},
+			// 搜索唱片信息
+			async serchAlbumsInfo(url){
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/albums/?search='+ url
+				})
+				this.albums = result.data.results;
 			},
 			//获取唱片信息
 			async getalbumsInfo() {
@@ -492,7 +592,7 @@
 				if(this.albumsPageNum <= 9){
 					this.albumsPageNum++;
 					this.getalbumsInfo();
-					console.log("albums" + this.albumsPageNum);
+					// console.log("albums" + this.albumsPageNum);
 				}
 			},
 		},

@@ -15,7 +15,8 @@
     "pages/map/mapDetail/artworkDetail",
     "pages/map/mapDetail/fossilDetail",
     "pages/map/mapDetail/villagerDetail",
-    "pages/map/mapDetail/furniture-dressDetail"
+    "pages/map/mapDetail/furniture-dressDetail",
+    "pages/map/mapDetail/diyDetail"
   ],
   "subPackages": [],
   "window": {
@@ -50,6 +51,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap0.json"
+  "usingComponents": {}
 }

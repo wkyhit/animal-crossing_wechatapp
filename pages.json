@@ -68,6 +68,10 @@
             "path" : "pages/map/mapDetail/furniture-dressDetail",
             "style" : {}
         }
+        ,{
+            "path" : "pages/map/mapDetail/diyDetail",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

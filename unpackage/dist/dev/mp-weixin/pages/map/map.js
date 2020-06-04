@@ -340,18 +340,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var _default =
 {
   data: function data() {
     return {
+      //tab标签当前选中的值
       current: 0,
+      // 搜索框的值
+      keyword: '',
       //图鉴类型
       dexType: "fish",
       //详情item
       detailItem: [],
       //已收集
       checked: false,
+      //tabs列表
       list: [{
         name: '鱼类' },
 
@@ -444,7 +447,32 @@ var _default =
       } else if (this.current === 8 && this.albums.length === 0 && this.albumsPageNum <= 10) {
         this.getalbumsInfo();
       }
-
+    },
+    // 搜索事件
+    clickToSearch: function clickToSearch() {
+      // 对输入keyword进行url编码
+      var encode_url = encodeURI(this.keyword);
+      // console.log(encode_url);
+      // 根据current判断当前处于哪个标签页
+      if (this.current === 0) {//鱼类
+        this.serchFishInfo(encode_url);
+      } else if (this.current === 1) {//虫类
+        this.serchInsectInfo(encode_url);
+      } else if (this.current === 2) {//化石
+        this.serchFossilInfo(encode_url);
+      } else if (this.current === 3) {//艺术品
+        this.serchArtWorkInfo(encode_url);
+      } else if (this.current === 4) {//村民
+        this.serchVillagerInfo(encode_url);
+      } else if (this.current === 5) {//家具
+        this.serchFurnitureInfo(encode_url);
+      } else if (this.current === 6) {//diy
+        this.serchDiyInfo(encode_url);
+      } else if (this.current === 7) {//服装
+        this.serchDressInfo(encode_url);
+      } else if (this.current === 8) {//唱片
+        this.serchAlbumsInfo(encode_url);
+      }
     },
     //化石数量变化监听
     valChange: function valChange(e) {
@@ -454,7 +482,7 @@ var _default =
     onClickMoreInfo: function onClickMoreInfo(dex_type, item) {
       this.dexType = dex_type;
       this.detailItem = item;
-      console.log(this.detailItem);
+      // console.log(this.detailItem);
       // console.log(name)
       if (dex_type === "fish") {
         uni.navigateTo({
@@ -492,15 +520,23 @@ var _default =
       // console.log("点击了鱼类");
 
     },
-    //获取鱼类信息
-    getFishInfo: function getFishInfo() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+    // 搜索鱼类信息
+    serchFishInfo: function serchFishInfo(url) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                   _this.$myRequest({
                     method: 'GET',
-                    url: '/fishes/?pagenum=' + _this.fishPageNum }));case 2:result = _context.sent;
+                    url: '/fishes/?search=' + url }));case 2:result = _context.sent;
 
-                _this.fish = [].concat(_toConsumableArray(_this.fish), _toConsumableArray(result.data.results));
+                _this.fish = result.data.results;case 4:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    //获取鱼类信息
+    getFishInfo: function getFishInfo() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _this2.$myRequest({
+                    method: 'GET',
+                    url: '/fishes/?pagenum=' + _this2.fishPageNum }));case 2:result = _context2.sent;
+
+                _this2.fish = [].concat(_toConsumableArray(_this2.fish), _toConsumableArray(result.data.results));
                 // this.fish = result.data.results;
-              case 4:case "end":return _context.stop();}}}, _callee);}))();},
+              case 4:case "end":return _context2.stop();}}}, _callee2);}))();},
     // 获取鱼类剩余信息
     getRemainFishInfo: function getRemainFishInfo() {
       //总共有8页
@@ -510,15 +546,23 @@ var _default =
         // console.log("fish" + this.fishPageNum);
       }
     },
-    //获取虫类信息
-    getInsectInfo: function getInsectInfo() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
-                  _this2.$myRequest({
+    // 搜索虫类信息
+    serchInsectInfo: function serchInsectInfo(url) {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+                  _this3.$myRequest({
                     method: 'GET',
-                    url: '/insects/?pagenum=' + _this2.insectPageNum }));case 2:result = _context2.sent;
+                    url: '/insects/?search=' + url }));case 2:result = _context3.sent;
 
-                _this2.insect = [].concat(_toConsumableArray(_this2.insect), _toConsumableArray(result.data.results));
+                _this3.insect = result.data.results;case 4:case "end":return _context3.stop();}}}, _callee3);}))();
+    },
+    //获取虫类信息
+    getInsectInfo: function getInsectInfo() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var result;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
+                  _this4.$myRequest({
+                    method: 'GET',
+                    url: '/insects/?pagenum=' + _this4.insectPageNum }));case 2:result = _context4.sent;
+
+                _this4.insect = [].concat(_toConsumableArray(_this4.insect), _toConsumableArray(result.data.results));
                 // this.insect = result.data.results;
-              case 4:case "end":return _context2.stop();}}}, _callee2);}))();},
+              case 4:case "end":return _context4.stop();}}}, _callee4);}))();},
     //获取虫类剩余信息
     getRemainInsectInfo: function getRemainInsectInfo() {
       //总共有8页
@@ -528,15 +572,23 @@ var _default =
         // console.log("insect" + this.insectPageNum)
       }
     },
-    //获取化石信息
-    getFossilInfo: function getFossilInfo() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
-                  _this3.$myRequest({
+    // 搜索化石信息
+    serchFossilInfo: function serchFossilInfo(url) {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var result;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
+                  _this5.$myRequest({
                     method: 'GET',
-                    url: '/fossils/?pagenum=' + _this3.fossilPageNum }));case 2:result = _context3.sent;
+                    url: '/fossils/?search=' + url }));case 2:result = _context5.sent;
 
-                _this3.fossil = [].concat(_toConsumableArray(_this3.fossil), _toConsumableArray(result.data.results));
+                _this5.fossil = result.data.results;case 4:case "end":return _context5.stop();}}}, _callee5);}))();
+    },
+    //获取化石信息
+    getFossilInfo: function getFossilInfo() {var _this6 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6() {var result;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:_context6.next = 2;return (
+                  _this6.$myRequest({
+                    method: 'GET',
+                    url: '/fossils/?pagenum=' + _this6.fossilPageNum }));case 2:result = _context6.sent;
+
+                _this6.fossil = [].concat(_toConsumableArray(_this6.fossil), _toConsumableArray(result.data.results));
                 // this.insect = result.data.results;
-              case 4:case "end":return _context3.stop();}}}, _callee3);}))();},
+              case 4:case "end":return _context6.stop();}}}, _callee6);}))();},
     //获取化石剩余信息
     getRemainFossilInfo: function getRemainFossilInfo() {
       //总共有8页
@@ -546,35 +598,51 @@ var _default =
         // console.log("fossil" + this.fossilPageNum);
       }
     },
-    //获取艺术品信息
-    getArtWorkInfo: function getArtWorkInfo() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var result;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
-                  _this4.$myRequest({
+    // 搜索艺术品信息
+    serchArtWorkInfo: function serchArtWorkInfo(url) {var _this7 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7() {var result;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:_context7.next = 2;return (
+                  _this7.$myRequest({
                     method: 'GET',
-                    url: '/artworks/?pagenum=' + _this4.artWorkPageNum }));case 2:result = _context4.sent;
+                    url: '/artworks/?search=' + url }));case 2:result = _context7.sent;
+
+                _this7.artWork = result.data.results;case 4:case "end":return _context7.stop();}}}, _callee7);}))();
+    },
+    //获取艺术品信息
+    getArtWorkInfo: function getArtWorkInfo() {var _this8 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee8() {var result;return _regenerator.default.wrap(function _callee8$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:_context8.next = 2;return (
+                  _this8.$myRequest({
+                    method: 'GET',
+                    url: '/artworks/?pagenum=' + _this8.artWorkPageNum }));case 2:result = _context8.sent;
 
                 // console.log("artwork"+this.artWorkPageNum)
-                _this4.artWork = [].concat(_toConsumableArray(_this4.artWork), _toConsumableArray(result.data.results));
+                _this8.artWork = [].concat(_toConsumableArray(_this8.artWork), _toConsumableArray(result.data.results));
                 // this.insect = result.data.results;
-              case 4:case "end":return _context4.stop();}}}, _callee4);}))();},
+              case 4:case "end":return _context8.stop();}}}, _callee8);}))();},
     //获取艺术品剩余信息
     getRemainArtWorkInfo: function getRemainArtWorkInfo() {
       //总共有5页
       if (this.artWorkPageNum <= 4) {
         this.artWorkPageNum++;
         this.getArtWorkInfo();
-        console.log("artwork" + this.artWorkPageNum);
+        // console.log("artwork" + this.artWorkPageNum);
       }
     },
-    //获取村民信息
-    getVillagerInfo: function getVillagerInfo() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var result;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
-                  _this5.$myRequest({
+    // 搜索村民信息
+    serchVillagerInfo: function serchVillagerInfo(url) {var _this9 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee9() {var result;return _regenerator.default.wrap(function _callee9$(_context9) {while (1) {switch (_context9.prev = _context9.next) {case 0:_context9.next = 2;return (
+                  _this9.$myRequest({
                     method: 'GET',
-                    url: '/dwellers/?pagenum=' + _this5.villagerPageNum }));case 2:result = _context5.sent;
+                    url: '/dwellers/?search=' + url }));case 2:result = _context9.sent;
 
-                _this5.villagers = [].concat(_toConsumableArray(_this5.villagers), _toConsumableArray(result.data.results));
+                _this9.villagers = result.data.results;case 4:case "end":return _context9.stop();}}}, _callee9);}))();
+    },
+    //获取村民信息
+    getVillagerInfo: function getVillagerInfo() {var _this10 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee10() {var result;return _regenerator.default.wrap(function _callee10$(_context10) {while (1) {switch (_context10.prev = _context10.next) {case 0:_context10.next = 2;return (
+                  _this10.$myRequest({
+                    method: 'GET',
+                    url: '/dwellers/?pagenum=' + _this10.villagerPageNum }));case 2:result = _context10.sent;
+
+                _this10.villagers = [].concat(_toConsumableArray(_this10.villagers), _toConsumableArray(result.data.results));
                 // this.villagers = result.data.results;
                 // console.log("村民"+this.villagers[1].id)
-              case 4:case "end":return _context5.stop();}}}, _callee5);}))();},
+              case 4:case "end":return _context10.stop();}}}, _callee10);}))();},
     //获取村民剩余信息
     getRemainVillagerInfo: function getRemainVillagerInfo() {
       //总共有40页
@@ -584,13 +652,21 @@ var _default =
         // console.log("villager" + this.villagerPageNum);
       }
     },
-    //获取家具信息
-    getFurnitureInfo: function getFurnitureInfo() {var _this6 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6() {var result;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:_context6.next = 2;return (
-                  _this6.$myRequest({
+    // 搜索家具信息
+    serchFurnitureInfo: function serchFurnitureInfo(url) {var _this11 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee11() {var result;return _regenerator.default.wrap(function _callee11$(_context11) {while (1) {switch (_context11.prev = _context11.next) {case 0:_context11.next = 2;return (
+                  _this11.$myRequest({
                     method: 'GET',
-                    url: '/furnitures/?pagenum=' + _this6.furniturePageNum }));case 2:result = _context6.sent;
+                    url: '/furnitures/?search=' + url }));case 2:result = _context11.sent;
 
-                _this6.furniture = [].concat(_toConsumableArray(_this6.furniture), _toConsumableArray(result.data.results));case 4:case "end":return _context6.stop();}}}, _callee6);}))();
+                _this11.furniture = result.data.results;case 4:case "end":return _context11.stop();}}}, _callee11);}))();
+    },
+    //获取家具信息
+    getFurnitureInfo: function getFurnitureInfo() {var _this12 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee12() {var result;return _regenerator.default.wrap(function _callee12$(_context12) {while (1) {switch (_context12.prev = _context12.next) {case 0:_context12.next = 2;return (
+                  _this12.$myRequest({
+                    method: 'GET',
+                    url: '/furnitures/?pagenum=' + _this12.furniturePageNum }));case 2:result = _context12.sent;
+
+                _this12.furniture = [].concat(_toConsumableArray(_this12.furniture), _toConsumableArray(result.data.results));case 4:case "end":return _context12.stop();}}}, _callee12);}))();
     },
     //获取家具剩余信息
     getRemainFurnitureInfo: function getRemainFurnitureInfo() {
@@ -601,13 +677,21 @@ var _default =
         // console.log("furniture" + this.furniturePageNum);
       }
     },
-    //获取diy信息
-    getDiyInfo: function getDiyInfo() {var _this7 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7() {var result;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:_context7.next = 2;return (
-                  _this7.$myRequest({
+    // 搜索diy信息
+    serchDiyInfo: function serchDiyInfo(url) {var _this13 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee13() {var result;return _regenerator.default.wrap(function _callee13$(_context13) {while (1) {switch (_context13.prev = _context13.next) {case 0:_context13.next = 2;return (
+                  _this13.$myRequest({
                     method: 'GET',
-                    url: '/diys/?pagenum=' + _this7.diyPageNum }));case 2:result = _context7.sent;
+                    url: '/diys/?search=' + url }));case 2:result = _context13.sent;
 
-                _this7.diy = [].concat(_toConsumableArray(_this7.diy), _toConsumableArray(result.data.results));case 4:case "end":return _context7.stop();}}}, _callee7);}))();
+                _this13.diy = result.data.results;case 4:case "end":return _context13.stop();}}}, _callee13);}))();
+    },
+    //获取diy信息
+    getDiyInfo: function getDiyInfo() {var _this14 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee14() {var result;return _regenerator.default.wrap(function _callee14$(_context14) {while (1) {switch (_context14.prev = _context14.next) {case 0:_context14.next = 2;return (
+                  _this14.$myRequest({
+                    method: 'GET',
+                    url: '/diys/?pagenum=' + _this14.diyPageNum }));case 2:result = _context14.sent;
+
+                _this14.diy = [].concat(_toConsumableArray(_this14.diy), _toConsumableArray(result.data.results));case 4:case "end":return _context14.stop();}}}, _callee14);}))();
     },
     //获取diy剩余信息
     getRemainDiyInfo: function getRemainDiyInfo() {
@@ -615,16 +699,24 @@ var _default =
       if (this.diyPageNum <= 59) {
         this.diyPageNum++;
         this.getDiyInfo();
-        console.log("diy" + this.diyPageNum);
+        // console.log("diy" + this.diyPageNum);
       }
     },
-    //获取服装信息
-    getDressInfo: function getDressInfo() {var _this8 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee8() {var result;return _regenerator.default.wrap(function _callee8$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:_context8.next = 2;return (
-                  _this8.$myRequest({
+    // 搜索服装信息
+    serchDressInfo: function serchDressInfo(url) {var _this15 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee15() {var result;return _regenerator.default.wrap(function _callee15$(_context15) {while (1) {switch (_context15.prev = _context15.next) {case 0:_context15.next = 2;return (
+                  _this15.$myRequest({
                     method: 'GET',
-                    url: '/dresses/?pagenum=' + _this8.dressPageNum }));case 2:result = _context8.sent;
+                    url: '/dresses/?search=' + url }));case 2:result = _context15.sent;
 
-                _this8.dress = [].concat(_toConsumableArray(_this8.dress), _toConsumableArray(result.data.results));case 4:case "end":return _context8.stop();}}}, _callee8);}))();
+                _this15.dress = result.data.results;case 4:case "end":return _context15.stop();}}}, _callee15);}))();
+    },
+    //获取服装信息
+    getDressInfo: function getDressInfo() {var _this16 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee16() {var result;return _regenerator.default.wrap(function _callee16$(_context16) {while (1) {switch (_context16.prev = _context16.next) {case 0:_context16.next = 2;return (
+                  _this16.$myRequest({
+                    method: 'GET',
+                    url: '/dresses/?pagenum=' + _this16.dressPageNum }));case 2:result = _context16.sent;
+
+                _this16.dress = [].concat(_toConsumableArray(_this16.dress), _toConsumableArray(result.data.results));case 4:case "end":return _context16.stop();}}}, _callee16);}))();
     },
     //获取服装剩余信息
     getRemainDressInfo: function getRemainDressInfo() {
@@ -632,16 +724,24 @@ var _default =
       if (this.albumsPageNum <= 464) {
         this.dressPageNum++;
         this.getDressInfo();
-        console.log("dress" + this.dressPageNum);
+        // console.log("dress" + this.dressPageNum);
       }
     },
-    //获取唱片信息
-    getalbumsInfo: function getalbumsInfo() {var _this9 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee9() {var result;return _regenerator.default.wrap(function _callee9$(_context9) {while (1) {switch (_context9.prev = _context9.next) {case 0:_context9.next = 2;return (
-                  _this9.$myRequest({
+    // 搜索唱片信息
+    serchAlbumsInfo: function serchAlbumsInfo(url) {var _this17 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee17() {var result;return _regenerator.default.wrap(function _callee17$(_context17) {while (1) {switch (_context17.prev = _context17.next) {case 0:_context17.next = 2;return (
+                  _this17.$myRequest({
                     method: 'GET',
-                    url: '/albums/?pagenum=' + _this9.albumsPageNum }));case 2:result = _context9.sent;
+                    url: '/albums/?search=' + url }));case 2:result = _context17.sent;
 
-                _this9.albums = [].concat(_toConsumableArray(_this9.albums), _toConsumableArray(result.data.results));case 4:case "end":return _context9.stop();}}}, _callee9);}))();
+                _this17.albums = result.data.results;case 4:case "end":return _context17.stop();}}}, _callee17);}))();
+    },
+    //获取唱片信息
+    getalbumsInfo: function getalbumsInfo() {var _this18 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee18() {var result;return _regenerator.default.wrap(function _callee18$(_context18) {while (1) {switch (_context18.prev = _context18.next) {case 0:_context18.next = 2;return (
+                  _this18.$myRequest({
+                    method: 'GET',
+                    url: '/albums/?pagenum=' + _this18.albumsPageNum }));case 2:result = _context18.sent;
+
+                _this18.albums = [].concat(_toConsumableArray(_this18.albums), _toConsumableArray(result.data.results));case 4:case "end":return _context18.stop();}}}, _callee18);}))();
     },
     //获取唱片剩余信息
     getRemainalbumsInfo: function getRemainalbumsInfo() {
@@ -649,7 +749,7 @@ var _default =
       if (this.albumsPageNum <= 9) {
         this.albumsPageNum++;
         this.getalbumsInfo();
-        console.log("albums" + this.albumsPageNum);
+        // console.log("albums" + this.albumsPageNum);
       }
     } },
 
