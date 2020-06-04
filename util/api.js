@@ -1,5 +1,5 @@
 // 封装get请求
-const baseUrl = "http://47.240.8.112"
+const baseUrl = "http://47.240.8.112/api/v1/private"
 export const myRequest = (options) => {
 	return new Promise((resolve, reject) => {
 		uni.request({

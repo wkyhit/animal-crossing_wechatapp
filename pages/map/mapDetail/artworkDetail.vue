@@ -1,3 +1,4 @@
+<!-- 艺术品图鉴详情页 -->
 <template>
 	<view>
 		<uni-card class="img_card">
@@ -8,8 +9,6 @@
 				<view class="detail-fake" v-if="info.fake_pic_url !== '' " >
 					<image class="fake-img" mode="aspectFit" :src="info.fake_pic_url"></image>
 				</view>
-				
-				
 			</view>
 			<view class="fakeDes">
 				<text>{{info.fake_desc}}</text>

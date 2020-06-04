@@ -1,3 +1,4 @@
+<!-- 鱼类虫类图鉴详情页 -->
 <template>
 	<view>
 		<uni-card class="img_card">

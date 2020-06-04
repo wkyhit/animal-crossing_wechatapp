@@ -40,15 +40,7 @@
 			"current": -1,
 			"list": []
 		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
 		"game": {
-			"current": -1,
-			"list": []
-		},
-		"gamePlugin": {
 			"current": -1,
 			"list": []
 		},
@@ -56,16 +48,10 @@
 			"current": 0,
 			"list": [
 				{
-					"id": 0,
 					"name": "",
-					"pathName": "pages/mysite/mysite",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "pages/map/mapDetail/artworkDetail",
-					"pathName": "pages/map/mapDetail/artworkDetail",
-					"scene": null
+					"query": "",
+					"id": 0,
+					"pathName": "pages/mysite/mysite"
 				}
 			]
 		}

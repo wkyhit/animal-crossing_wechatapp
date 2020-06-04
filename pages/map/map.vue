@@ -10,7 +10,7 @@
 		<scroll-view v-show="current==0" class="list" :scroll-y="true" @scrolltolower="getRemainFishInfo">
 			<view class="fishAndinsects_view" v-for="(item,index) in fish" :key="index">
 				<image class="v_img" :src="item.pic_url"></image>
-				<u-cell-group class="cell-group" >
+				<u-cell-group class="cell-group">
 					<u-cell-item :title="item.cn_sname" :arrow="false">
 						<view class="item">
 							<!-- <p class="name">{{item.name}}</p> -->
@@ -33,7 +33,7 @@
 			<view class="fishAndinsects_view" v-for="(item,index) in insect" :key="index">
 				<image class="v_img" :src="item.pic_url"></image>
 				<u-cell-group class="cell-group">
-					<u-cell-item  :title="item.cn_sname" :arrow="false">
+					<u-cell-item :title="item.cn_sname" :arrow="false">
 						<view class="item">
 							<!-- <p class="name">{{item.name}}</p> -->
 							<p class="description">{{item.catch_place}}</p>
@@ -62,6 +62,8 @@
 							<p class="price">{{item.price}}</p>
 						</view>
 						<view class="collection">
+							<u-button class="btn_detail" type="primary" size="mini" @click="onClickMoreInfo('fossil',item)">详情</u-button>
+							<p>已收集</p>
 							<u-number-box :value="0" @change="valChange"></u-number-box>
 						</view>
 					</u-cell-item>
@@ -76,7 +78,7 @@
 				<u-cell-group class="cell-group">
 					<u-cell-item :title="item.cn_sname" :arrow="false">
 						<view class="collection">
-							<u-button class="artwork_detail" type="primary" size="mini" @click="onClickMoreInfo('artwork',item)" >详情</u-button>
+							<u-button class="artwork_detail" type="primary" size="mini" @click="onClickMoreInfo('artwork',item)">详情</u-button>
 							<p v-if="item.number>0">(已捐)</p>
 							<u-number-box :value="item.number" :min="0" @change="valChange"></u-number-box>
 						</view>
@@ -87,27 +89,98 @@
 		</scroll-view>
 		<!-- 村民图鉴 -->
 		<scroll-view v-show="current==4" class="list" :scroll-y="true" @scrolltolower="getRemainVillagerInfo">
-		<view class="villager_view" v-for="(item,index) in villagers" :key="index" >
-			<image class="v_img" :src="item.pic_url"></image>
-			<!-- <u-avatar :src="item.pic_url" mode="square" size="large"></u-avatar> -->
-			<u-cell-group class="cell-group">
-				<u-cell-item  :title="item.cn_sname" :arrow="false" >
-					<view class="item" @click="onClickMoreInfo('villager')">
-						<!-- <p class="name">{{item.name}}</p> -->
-						<p class="description">{{item.race}}</p>
-						<p class="price">{{item.birth_month}}月{{item.birth_day}}日</p>
-						<p></p>
-					</view>
-					<view class="collection">
-						<p>已入住</p>
-						<u-switch class="sw_button" slot="right-icon" v-model="item.checked"></u-switch>
-					</view>
-				</u-cell-item>
-			</u-cell-group>
-		</view>
-		<u-divider>村民图鉴完</u-divider>
+			<view class="villager_view" v-for="(item,index) in villagers" :key="index">
+				<image class="v_img" :src="item.icon_url"></image>
+				<!-- <u-avatar :src="item.pic_url" mode="square" size="large"></u-avatar> -->
+				<u-cell-group class="cell-group">
+					<u-cell-item :title="item.cn_sname" :arrow="false">
+						<view class="item" @click="onClickMoreInfo('villager')">
+							<!-- <p class="name">{{item.name}}</p> -->
+							<p class="description">{{item.race}}</p>
+							<p class="price">{{item.birth_month}}月{{item.birth_day}}日</p>
+							<p></p>
+						</view>
+						<view class="collection">
+							<u-button class="btn_detail" type="primary" size="mini" @click="onClickMoreInfo('villager',item)">详情</u-button>
+							<p>已入住</p>
+							<u-switch class="sw_button" slot="right-icon" v-model="item.checked"></u-switch>
+						</view>
+					</u-cell-item>
+				</u-cell-group>
+			</view>
+			<u-divider>村民图鉴完</u-divider>
+		</scroll-view>
+		<!-- 家具图鉴 -->
+		<scroll-view v-show="current==5" class="list" :scroll-y="true" @scrolltolower="getRemainFurnitureInfo">
+			<view class="fishAndinsects_view" v-for="(item,index) in furniture" :key="index">
+				<image class="v_img" :src="item.pic_url"></image>
+				<u-cell-group class="cell-group">
+					<u-cell-item :title="item.cn_sname" :arrow="false">
+						<view class="item">
+							<!-- <p class="name">{{item.name}}</p> -->
+							<p class="description">{{item.color}}</p>
+							<!-- 获取方式 -->
+							<p class="price">{{item.obtain_way}}</p>
+							<p></p>
+						</view>
+						<view class="collection">
+							<u-button class="btn_detail" type="primary" size="mini" @click="onClickMoreInfo('furniture',item)">详情</u-button>
+							<p>已收集</p>
+							<u-switch class="sw_button" slot="right-icon" v-model="item.checked"></u-switch>
+						</view>
+					</u-cell-item>
+				</u-cell-group>
+			</view>
+			<u-divider>家具图鉴完</u-divider>
 		</scroll-view>
 		<!-- diy图鉴 -->
+		<scroll-view v-show="current==6" class="list" :scroll-y="true" @scrolltolower="getRemainDiyInfo">
+			<view class="artsAndfossil_view" v-for="(item,index) in diy" :key="index">
+				<image class="v_img" :src="item.pic_url"></image>
+				<u-cell-group class="cell-group">
+					<u-cell-item :title="item.cn_sname" :arrow="false">
+						<view class="collection">
+							<u-button class="artwork_detail"  type="primary" size="mini" @click="onClickMoreInfo('diy',item)">详情</u-button>
+							<p>已有</p>
+							<u-switch v-model="item.checked"></u-switch>
+						</view>
+					</u-cell-item>
+				</u-cell-group>
+			</view>
+			<u-divider>diy图鉴完</u-divider>
+		</scroll-view>
+		<!-- 服装图鉴 -->
+		<scroll-view v-show="current==7" class="list" :scroll-y="true" @scrolltolower="getRemainDressInfo">
+			<view class="artsAndfossil_view" v-for="(item,index) in dress" :key="index">
+				<image class="v_img" :src="item.pic_url"></image>
+				<u-cell-group class="cell-group">
+					<u-cell-item :title="item.cn_sname" :arrow="false">
+						<view class="collection">
+							<u-button class="artwork_detail"  type="primary" size="mini" @click="onClickMoreInfo('dress',item)">详情</u-button>
+							<p>已有</p>
+							<u-switch v-model="item.checked"></u-switch>
+						</view>
+					</u-cell-item>
+				</u-cell-group>
+			</view>
+			<u-divider>服装图鉴完</u-divider>
+		</scroll-view>
+		<!-- 唱片图鉴 -->
+		<scroll-view v-show="current==8" class="list" :scroll-y="true" @scrolltolower="getRemainalbumsInfo">
+			<view class="artsAndfossil_view" v-for="(item,index) in albums" :key="index">
+				<image class="v_img" :src="item.cover_url"></image>
+				<u-cell-group class="cell-group">
+					<u-cell-item :title="item.cn_sname" :arrow="false">
+						<view class="collection">
+							<u-button class="artwork_detail"  type="primary" size="mini" @click="onClickMoreInfo('fish',item)">详情</u-button>
+							<p>已有</p>
+							<u-switch v-model="item.checked"></u-switch>
+						</view>
+					</u-cell-item>
+				</u-cell-group>
+			</view>
+			<u-divider>唱片图鉴完</u-divider>
+		</scroll-view>
 	</view>
 </template>
 
@@ -119,7 +192,7 @@
 				//图鉴类型
 				dexType: "fish",
 				//详情item
-				detailItem:[],
+				detailItem: [],
 				//已收集
 				checked: false,
 				list: [{
@@ -138,57 +211,83 @@
 						name: '村民'
 					},
 					{
+						name: '家具'
+					},
+					{
 						name: 'diy'
+					},
+					{
+						name: '服装'
 					},
 					{
 						name: '唱片'
 					},
-					{
-						name: '家具'
-					},
 
 
 				],
-				current: 0,
 				//鱼类信息
 				fish: [],
 				//鱼类页数
-				fishPageNum:1,
+				fishPageNum: 1,
 				//虫类信息
 				insect: [],
 				//虫类页数
-				insectPageNum:1,
+				insectPageNum: 1,
 				//化石信息
 				fossil: [],
 				//化石页数
-				fossilPageNum:1,
+				fossilPageNum: 1,
 				//艺术品信息
 				artWork: [],
 				//艺术品页数
-				artWorkPageNum:1,
+				artWorkPageNum: 1,
 				//村民
 				villagers: [],
 				//村民页数
-				villagerPageNum:1,
+				villagerPageNum: 1,
+				//家具
+				furniture: [],
+				//家具页数
+				furniturePageNum: 1,
+				//diy
+				diy: [],
+				//diy页数
+				diyPageNum: 1,
+				//服装
+				dress: [],
+				//服装页数
+				dressPageNum: 1,
+				//唱片
+				albums: [],
+				//唱片页数
+				albumsPageNum: 1,
 			};
 		},
 		methods: {
 			//标签页tabs切换事件监听
 			changeMap(index) {
 				this.current = index;
-				//根据current判断处于哪个标签页，并请求相应数据
-				if (this.current === 0 && this.fish !== [] && this.fishPageNum <= 8){
+				//根据current判断处于哪个标签页，且数组为空（从未请求过数据），并请求相应数据,
+				if (this.current === 0 && this.fish.length === 0 && this.fishPageNum <= 8) {
 					this.getFishInfo();
-				}else if(this.current === 1 && this.insect !== [] && this.insectPageNum <= 8){
+				} else if (this.current === 1 && this.insect.length === 0 && this.insectPageNum <= 8) {
 					this.getInsectInfo()
-				}else if(this.current === 2 && this.fossil !== [] && this.fossilPageNum <=8){
+				} else if (this.current === 2 && this.fossil.length === 0 && this.fossilPageNum <= 8) {
 					this.getFossilInfo();
-				}else if(this.current === 3 && this.artWork !== [] && this.artWorkPageNum <= 5){
+				} else if (this.current === 3 && this.artWork.length === 0 && this.artWorkPageNum <= 5) {
 					this.getArtWorkInfo();
-				}
-				if (this.current === 4 && this.villagers !== []){
+				} else if (this.current === 4 && this.villagers.length === 0 && this.villagerPageNum <= 40) {
 					this.getVillagerInfo();
-				}
+				} else if (this.current === 5 && this.furniture.length === 0 && this.furniturePageNum <= 331) {
+					this.getFurnitureInfo();
+				} else if (this.current === 6 && this.diy.length === 0 && this.diyPageNum <= 60) {
+					this.getDiyInfo();
+				} else if (this.current === 7 && this.dress.length === 0 && this.dressPageNum <= 465) {
+					this.getDressInfo();
+				} else if (this.current === 8 && this.albums.length === 0 && this.albumsPageNum <= 10) {
+					this.getalbumsInfo();
+				} 
+
 			},
 			//化石数量变化监听
 			valChange(e) {
@@ -208,104 +307,193 @@
 					uni.navigateTo({
 						url: '/pages/map/mapDetail/mapDetail?dexType=insect&item=' + encodeURIComponent(JSON.stringify(this.detailItem))
 					});
-				}else if (dex_type === "artwork") {
+				} else if (dex_type === "fossil") {
+					uni.navigateTo({
+						url: '/pages/map/mapDetail/fossilDetail?dexType=fossil&item=' + encodeURIComponent(JSON.stringify(this.detailItem))
+					});
+				} else if (dex_type === "artwork") {
 					uni.navigateTo({
 						url: '/pages/map/mapDetail/artworkDetail?dexType=artwork&item=' + encodeURIComponent(JSON.stringify(this.detailItem))
+					});
+				} else if (dex_type === "villager") {
+					uni.navigateTo({
+						url: '/pages/map/mapDetail/villagerDetail?dexType=villager&item=' + encodeURIComponent(JSON.stringify(this.detailItem))
+					});
+				} else if (dex_type === "furniture") {
+					uni.navigateTo({
+						url: '/pages/map/mapDetail/furniture-dressDetail?dexType=furniture&item=' + encodeURIComponent(JSON.stringify(this.detailItem))
+					});
+				} else if (dex_type === "dress") {
+					uni.navigateTo({
+						url: '/pages/map/mapDetail/furniture-dressDetail?dexType=dress&item=' + encodeURIComponent(JSON.stringify(this.detailItem))
+					});
+				} else if (dex_type === "diy") {
+					uni.navigateTo({
+						url: '/pages/map/mapDetail/diyDetail?dexType=diy&item=' + encodeURIComponent(JSON.stringify(this.detailItem))
 					});
 				}
 				// console.log("点击了鱼类");
 
 			},
 			//获取鱼类信息
-			async getFishInfo(){
+			async getFishInfo() {
 				const result = await this.$myRequest({
-				method: 'GET',
-				url: '/fishes/?pagenum=' + this.fishPageNum
+					method: 'GET',
+					url: '/fishes/?pagenum=' + this.fishPageNum
 				})
-				this.fish = [...this.fish,...result.data.results]
+				this.fish = [...this.fish, ...result.data.results]
 				// this.fish = result.data.results;
 			},
 			// 获取鱼类剩余信息
-			getRemainFishInfo(){
+			getRemainFishInfo() {
 				//总共有8页
-				if(this.fishPageNum <= 7){
+				if (this.fishPageNum <= 7) {
 					this.fishPageNum++;
 					this.getFishInfo();
-					console.log("fish"+this.fishPageNum);
+					// console.log("fish" + this.fishPageNum);
 				}
 			},
 			//获取虫类信息
-			async getInsectInfo(){
+			async getInsectInfo() {
 				const result = await this.$myRequest({
-				method: 'GET',
-				url: '/insects/?pagenum=' + this.insectPageNum
+					method: 'GET',
+					url: '/insects/?pagenum=' + this.insectPageNum
 				})
-				this.insect = [...this.insect,...result.data.results]
+				this.insect = [...this.insect, ...result.data.results]
 				// this.insect = result.data.results;
 			},
 			//获取虫类剩余信息
-			getRemainInsectInfo(){
+			getRemainInsectInfo() {
 				//总共有8页
-				if(this.insectPageNum <= 7){
+				if (this.insectPageNum <= 7) {
 					this.insectPageNum++;
 					this.getInsectInfo();
-					console.log("insect"+this.insectPageNum)
+					// console.log("insect" + this.insectPageNum)
 				}
 			},
 			//获取化石信息
-			async getFossilInfo(){
+			async getFossilInfo() {
 				const result = await this.$myRequest({
-				method: 'GET',
-				url: '/fossils/?pagenum=' + this.fossilPageNum
+					method: 'GET',
+					url: '/fossils/?pagenum=' + this.fossilPageNum
 				})
-				this.fossil = [...this.fossil,...result.data.results]
+				this.fossil = [...this.fossil, ...result.data.results]
 				// this.insect = result.data.results;
 			},
 			//获取化石剩余信息
-			getRemainFossilInfo(){
+			getRemainFossilInfo() {
 				//总共有8页
-				if(this.fossilPageNum <= 8){
+				if (this.fossilPageNum <= 7) {
 					this.fossilPageNum++;
 					this.getFossilInfo();
-					console.log("fossil"+this.fossilPageNum);
+					// console.log("fossil" + this.fossilPageNum);
 				}
 			},
 			//获取艺术品信息
-			async getArtWorkInfo(){
+			async getArtWorkInfo() {
 				const result = await this.$myRequest({
-				method: 'GET',
-				url: '/artworks/?pagenum=' + this.artWorkPageNum
+					method: 'GET',
+					url: '/artworks/?pagenum=' + this.artWorkPageNum
 				})
-				this.artWork = [...this.artWork,...result.data.results]
+				// console.log("artwork"+this.artWorkPageNum)
+				this.artWork = [...this.artWork, ...result.data.results]
 				// this.insect = result.data.results;
 			},
 			//获取艺术品剩余信息
-			getRemainArtWorkInfo(){
+			getRemainArtWorkInfo() {
 				//总共有5页
-				if(this.artWorkPageNum <= 4){
+				if (this.artWorkPageNum <= 4) {
 					this.artWorkPageNum++;
 					this.getArtWorkInfo();
-					console.log("artwork"+this.artWorkPageNum);
+					console.log("artwork" + this.artWorkPageNum);
 				}
 			},
 			//获取村民信息
 			async getVillagerInfo() {
 				const result = await this.$myRequest({
-				method: 'GET',
-				url: '/dwellers/?pagenum='+this.villagerPageNum
+					method: 'GET',
+					url: '/dwellers/?pagenum=' + this.villagerPageNum
 				})
-				this.villagers = [...this.villagers,...result.data.results];
+				this.villagers = [...this.villagers, ...result.data.results];
 				// this.villagers = result.data.results;
 				// console.log("村民"+this.villagers[1].id)
 			},
 			//获取村民剩余信息
-			getRemainVillagerInfo(){
+			getRemainVillagerInfo() {
 				//总共有40页
-				if(this.villagerPageNum <= 39){
+				if (this.villagerPageNum <= 39) {
 					this.villagerPageNum++;
 					this.getVillagerInfo();
-					console.log("villager"+this.villagerPageNum);
-				}	
+					// console.log("villager" + this.villagerPageNum);
+				}
+			},
+			//获取家具信息
+			async getFurnitureInfo() {
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/furnitures/?pagenum=' + this.furniturePageNum
+				})
+				this.furniture = [...this.furniture, ...result.data.results];
+			},
+			//获取家具剩余信息
+			getRemainFurnitureInfo() {
+				//总共有331页
+				if(this.furniturePageNum <= 330){
+					this.furniturePageNum++;
+					this.getFurnitureInfo();
+					// console.log("furniture" + this.furniturePageNum);
+				}
+			},
+			//获取diy信息
+			async getDiyInfo() {
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/diys/?pagenum=' + this.diyPageNum
+				})
+				this.diy = [...this.diy, ...result.data.results];
+			},
+			//获取diy剩余信息
+			getRemainDiyInfo() {
+				//总共有60页
+				if(this.diyPageNum <= 59){
+					this.diyPageNum++;
+					this.getDiyInfo();
+					console.log("diy" + this.diyPageNum);
+				}
+			},
+			//获取服装信息
+			async getDressInfo() {
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/dresses/?pagenum=' + this.dressPageNum
+				})
+				this.dress = [...this.dress, ...result.data.results];
+			},
+			//获取服装剩余信息
+			getRemainDressInfo() {
+				//总共有465页
+				if(this.albumsPageNum <= 464){
+					this.dressPageNum++;
+					this.getDressInfo();
+					console.log("dress" + this.dressPageNum);
+				}
+			},
+			//获取唱片信息
+			async getalbumsInfo() {
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/albums/?pagenum=' + this.albumsPageNum
+				})
+				this.albums = [...this.albums, ...result.data.results];
+			},
+			//获取唱片剩余信息
+			getRemainalbumsInfo() {
+				//总共有10页
+				if(this.albumsPageNum <= 9){
+					this.albumsPageNum++;
+					this.getalbumsInfo();
+					console.log("albums" + this.albumsPageNum);
+				}
 			},
 		},
 		// 监控列表触底
@@ -335,11 +523,13 @@
 		z-index: 99;
 		width: 100%;
 	}
+
 	// 图鉴列表整体样式
 	.list {
-		height: 1200rpx;
+		height: 960rpx;
 		margin-top: 145rpx;
 	}
+
 	// 图鉴单项行样式
 	.item {
 		// background-color: blue;
@@ -347,6 +537,7 @@
 		flex-direction: row;
 		justify-content: sapce-between;
 		align-items: center;
+
 		// border-radius: 5rpx;
 		// border-style: solid;
 		// border-color: #dddddd;
@@ -355,75 +546,89 @@
 			// background-color: red;
 			flex: 1em;
 		}
+
 		//图鉴单项price样式
 		.price {
 			// background-color: yellow;
 			flex: 1em;
 		}
 	}
+
 	.collection {
 		display: flex;
 		justify-content: flex-end;
+
 		.btn_detail {
 			position: absolute;
 			left: 0;
 			transform: translate(50%);
 		}
+
 		.sw_button {
 			margin-left: 15rpx;
 		}
 	}
+
 	u-number-box {
 		margin-left: 25rpx;
 	}
+
 	// /deep/ .u-cell-box{
 	// 	height: 400rpx;
 	// 	background-color: blue;
 	// }
-	
+
 	//鱼类与昆虫样式
-	.fishAndinsects_view{
+	.fishAndinsects_view {
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
-		.v_img{
+
+		.v_img {
 			margin: 15rpx 15rpx;
 			flex: 1;
 			max-width: 70rpx;
-			max-height: 100rpx;
+			max-height: 75rpx;
 		}
-		.cell-group{
+
+		.cell-group {
 			flex: 4;
 		}
 	}
+
 	//艺术品和化石样式
-	.artsAndfossil_view{
+	.artsAndfossil_view {
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
-		.v_img{
+
+		.v_img {
 			margin: 15rpx 15rpx;
 			flex: 1;
 			max-width: 70rpx;
-			max-height: 100rpx;
+			max-height: 75rpx;
 		}
-		.cell-group{
+
+		.cell-group {
 			flex: 4;
 		}
 	}
+
 	//村民图鉴样式
-	.villager_view{
+	.villager_view {
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
-		.v_img{
+
+		.v_img {
 			margin: 15rpx 15rpx;
-			max-width: 70rpx;
-			max-height: 100rpx;
+			max-width: 75rpx;
+			max-height: 75rpx;
 			// width: 35rpx;
 			flex: 1;
 		}
-		.cell-group{
+
+		.cell-group {
 			flex: 4;
 			// background-color: blue;
 		}

@@ -12,7 +12,10 @@
     "pages/circle_friends/circle_friends",
     "pages/turnip-prices/turnip-prices",
     "pages/setting/setting",
-    "pages/map/mapDetail/artworkDetail"
+    "pages/map/mapDetail/artworkDetail",
+    "pages/map/mapDetail/fossilDetail",
+    "pages/map/mapDetail/villagerDetail",
+    "pages/map/mapDetail/furniture-dressDetail"
   ],
   "subPackages": [],
   "window": {
@@ -47,5 +50,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap0.json"
 }

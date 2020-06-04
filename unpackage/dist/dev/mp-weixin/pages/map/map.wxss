@@ -31,7 +31,7 @@
   width: 100%;
 }
 .list.data-v-51404933 {
-  height: 1200rpx;
+  height: 960rpx;
   margin-top: 145rpx;
 }
 .item.data-v-51404933 {
@@ -96,7 +96,7 @@ u-number-box.data-v-51404933 {
   -webkit-flex: 1;
           flex: 1;
   max-width: 70rpx;
-  max-height: 100rpx;
+  max-height: 75rpx;
 }
 .fishAndinsects_view .cell-group.data-v-51404933 {
   -webkit-box-flex: 4;
@@ -120,7 +120,7 @@ u-number-box.data-v-51404933 {
   -webkit-flex: 1;
           flex: 1;
   max-width: 70rpx;
-  max-height: 100rpx;
+  max-height: 75rpx;
 }
 .artsAndfossil_view .cell-group.data-v-51404933 {
   -webkit-box-flex: 4;
@@ -140,8 +140,8 @@ u-number-box.data-v-51404933 {
 }
 .villager_view .v_img.data-v-51404933 {
   margin: 15rpx 15rpx;
-  max-width: 70rpx;
-  max-height: 100rpx;
+  max-width: 75rpx;
+  max-height: 75rpx;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;

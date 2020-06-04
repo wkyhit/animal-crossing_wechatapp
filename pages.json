@@ -56,6 +56,18 @@
             "path" : "pages/map/mapDetail/artworkDetail",
             "style" : {}
         }
+        ,{
+            "path" : "pages/map/mapDetail/fossilDetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/map/mapDetail/villagerDetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/map/mapDetail/furniture-dressDetail",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
