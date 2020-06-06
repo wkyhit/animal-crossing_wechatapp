@@ -94,28 +94,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uTabs: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 206))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 218))
   },
   uSearch: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 213))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 225))
   },
   uCellGroup: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-group/u-cell-group */ "node-modules/uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-group/u-cell-group.vue */ 220))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-group/u-cell-group */ "node-modules/uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-group/u-cell-group.vue */ 232))
   },
   uCellItem: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-item/u-cell-item */ "node-modules/uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-item/u-cell-item.vue */ 227))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-item/u-cell-item */ "node-modules/uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-item/u-cell-item.vue */ 239))
   },
   uButton: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 234))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 246))
   },
   uSwitch: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-switch/u-switch */ "node-modules/uview-ui/components/u-switch/u-switch").then(__webpack_require__.bind(null, /*! uview-ui/components/u-switch/u-switch.vue */ 241))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-switch/u-switch */ "node-modules/uview-ui/components/u-switch/u-switch").then(__webpack_require__.bind(null, /*! uview-ui/components/u-switch/u-switch.vue */ 253))
   },
   uDivider: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-divider/u-divider */ "node-modules/uview-ui/components/u-divider/u-divider").then(__webpack_require__.bind(null, /*! uview-ui/components/u-divider/u-divider.vue */ 248))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-divider/u-divider */ "node-modules/uview-ui/components/u-divider/u-divider").then(__webpack_require__.bind(null, /*! uview-ui/components/u-divider/u-divider.vue */ 260))
   },
   uNumberBox: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-number-box/u-number-box */ "node-modules/uview-ui/components/u-number-box/u-number-box").then(__webpack_require__.bind(null, /*! uview-ui/components/u-number-box/u-number-box.vue */ 255))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-number-box/u-number-box */ "node-modules/uview-ui/components/u-number-box/u-number-box").then(__webpack_require__.bind(null, /*! uview-ui/components/u-number-box/u-number-box.vue */ 267))
   }
 }
 var render = function() {
@@ -155,7 +155,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _createForOfIteratorHelper(o) {if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var it,normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -352,8 +352,24 @@ var _default =
       dexType: "fish",
       //详情item
       detailItem: [],
-      //已收集
-      checked: false,
+      //鱼类已收集
+      fish_checked: [1, 3, 4],
+      // 虫类已收集
+      insect_checked: [1, 4, 5],
+      // 化石已收集（数量）
+      fossil_number: [],
+      // 艺术品已收集(数量)
+      artwork_number: [],
+      // 村民已入住
+      villager_checked: [1, 19, 32, 42],
+      // 家具已收集
+      furniture_checked: [1, 10, 32, 25],
+      // diy已收集
+      diy_checked: [1, 2, 3, 4, 6, 9, 12],
+      // 服装已收集
+      dress_checked: [1, 2, 4, 12, 23],
+      // 唱片已收集
+      albums_checked: [1, 2, 3, 5, 7],
       //tabs列表
       list: [{
         name: '鱼类' },
@@ -423,6 +439,100 @@ var _default =
       albumsPageNum: 1 };
 
   },
+  computed: {
+    //鱼类已收集数组
+    fishChecked: function fishChecked() {
+      var fish_checked_list = [];
+      for (var i = 0; i < 80; i++) {
+        // 如果有该标记,则压入true
+        if (this.fish_checked.includes(i + 1)) {
+          fish_checked_list.push(true);
+        } else {
+          fish_checked_list.push(false);
+        }
+      }
+      return fish_checked_list;
+    },
+    //虫类已收集数组
+    insectChecked: function insectChecked() {
+      var insect_checked_list = [];
+      for (var i = 0; i < 80; i++) {
+        // 如果有该标记,则压入true
+        if (this.insect_checked.includes(i + 1)) {
+          insect_checked_list.push(true);
+        } else {
+          insect_checked_list.push(false);
+        }
+      }
+      return insect_checked_list;
+    },
+    //村民已入住数组
+    villagerChecked: function villagerChecked() {
+      var villager_checked_list = [];
+      for (var i = 0; i < 391; i++) {
+        // 如果有该标记,则压入true
+        if (this.villager_checked.includes(i + 1)) {
+          villager_checked_list.push(true);
+        } else {
+          villager_checked_list.push(false);
+        }
+      }
+      return villager_checked_list;
+    },
+    //家具已收集数组
+    furnitureChecked: function furnitureChecked() {
+      var furniture_checked_list = [];
+      for (var i = 0; i < 3303; i++) {
+        // 如果有该标记,则压入true
+        if (this.furniture_checked.includes(i + 1)) {
+          furniture_checked_list.push(true);
+        } else {
+          furniture_checked_list.push(false);
+        }
+      }
+      return furniture_checked_list;
+    },
+    //diy已收集数组
+    diyChecked: function diyChecked() {
+      var diy_checked_list = [];
+      for (var i = 0; i < 593; i++) {
+        // 如果有该标记,则压入true
+        if (this.diy_checked.includes(i + 1)) {
+          diy_checked_list.push(true);
+        } else {
+          diy_checked_list.push(false);
+        }
+      }
+      return diy_checked_list;
+    },
+    //服装已收集数组
+    dressChecked: function dressChecked() {
+      var dress_checked_list = [];
+      for (var i = 0; i < 4646; i++) {
+        // 如果有该标记,则压入true
+        if (this.dress_checked.includes(i + 1)) {
+          dress_checked_list.push(true);
+        } else {
+          dress_checked_list.push(false);
+        }
+      }
+      return dress_checked_list;
+    },
+    //唱片已收集数组
+    albumsChecked: function albumsChecked() {
+      var albums_checked_list = [];
+      for (var i = 0; i < 95; i++) {
+        // 如果有该标记,则压入true
+        if (this.albums_checked.includes(i + 1)) {
+          albums_checked_list.push(true);
+        } else {
+          albums_checked_list.push(false);
+        }
+      }
+      return albums_checked_list;
+    } },
+
+
   methods: {
     //标签页tabs切换事件监听
     changeMap: function changeMap(index) {
@@ -478,6 +588,99 @@ var _default =
     valChange: function valChange(e) {
       console.log('当前值为: ' + e.value);
     },
+
+    // u-switch控件变化监听
+
+    //鱼类checked变化监听
+    fishCheckedChange: function fishCheckedChange(id) {
+      // 传入改变的fishid,改变fish_checked数组
+      // 如果已经存在,则从中删除
+      // console.log("fishid:"+id);
+      if (this.fish_checked.includes(id)) {
+        var index = this.fish_checked.indexOf(id);
+        this.fish_checked.splice(index, 1);
+      } else {//如果不存在，则压入
+        this.fish_checked.push(id);
+        this.createUserFishCollectedInfo(id);
+      }
+      console.log("fish_checked: " + this.fish_checked);
+    },
+    //虫类checked变化监听
+    insectCheckedChange: function insectCheckedChange(id) {
+      // 传入改变的insectid,改变insect_checked数组
+      // 如果已经存在,则从中删除
+      // console.log("fishid:"+id);
+      if (this.insect_checked.includes(id)) {
+        var index = this.insect_checked.indexOf(id);
+        this.insect_checked.splice(index, 1);
+      } else {//如果不存在，则压入
+        this.insect_checked.push(id);
+      }
+      console.log("insect_checked: " + this.insect_checked);
+    },
+    //村民checked变化监听
+    villagerCheckedChange: function villagerCheckedChange(id) {
+      // 传入改变的villagerid,改变villager_checked数组
+      // 如果已经存在,则从中删除
+      // console.log("fishid:"+id);
+      if (this.villager_checked.includes(id)) {
+        var index = this.villager_checked.indexOf(id);
+        this.villager_checked.splice(index, 1);
+      } else {//如果不存在，则压入
+        this.villager_checked.push(id);
+      }
+      console.log("villager_checked: " + this.villager_checked);
+    },
+    //家具checked变化监听
+    furnitureCheckedChange: function furnitureCheckedChange(id) {
+      // 传入改变的furnitureid,改变furniture_checked数组
+      // 如果已经存在,则从中删除
+      // console.log("fishid:"+id);
+      if (this.furniture_checked.includes(id)) {
+        var index = this.furniture_checked.indexOf(id);
+        this.furniture_checked.splice(index, 1);
+      } else {//如果不存在，则压入
+        this.furniture_checked.push(id);
+      }
+      console.log("furniture_checked: " + this.furniture_checked);
+    },
+    //diy checked变化监听
+    diyCheckedChange: function diyCheckedChange(id) {
+      // 传入改变的diy id,改变diy_checked数组
+      // 如果已经存在,则从中删除
+      if (this.diy_checked.includes(id)) {
+        var index = this.diy_checked.indexOf(id);
+        this.diy_checked.splice(index, 1);
+      } else {//如果不存在，则压入
+        this.diy_checked.push(id);
+      }
+      console.log("diy_checked: " + this.diy_checked);
+    },
+    //dress checked变化监听
+    dressCheckedChange: function dressCheckedChange(id) {
+      // 传入改变的dress id,改变dress_checked数组
+      // 如果已经存在,则从中删除
+      if (this.dress_checked.includes(id)) {
+        var index = this.dress_checked.indexOf(id);
+        this.dress_checked.splice(index, 1);
+      } else {//如果不存在，则压入
+        this.dress_checked.push(id);
+      }
+      console.log("dress_checked: " + this.dress_checked);
+    },
+    //albums checked变化监听
+    albumsCheckedChange: function albumsCheckedChange(id) {
+      // 传入改变的albums id,改变albums_checked数组
+      // 如果已经存在,则从中删除
+      if (this.albums_checked.includes(id)) {
+        var index = this.albums_checked.indexOf(id);
+        this.albums_checked.splice(index, 1);
+      } else {//如果不存在，则压入
+        this.albums_checked.push(id);
+      }
+      console.log("albums_checked: " + this.albums_checked);
+    },
+
     // 点击查看图鉴详情
     onClickMoreInfo: function onClickMoreInfo(dex_type, item) {
       this.dexType = dex_type;
@@ -751,22 +954,44 @@ var _default =
         this.getalbumsInfo();
         // console.log("albums" + this.albumsPageNum);
       }
+    },
+
+    //获取user的图鉴收集信息
+
+    //获取user fish 图鉴收集信息
+    getUserFishCollectedInfo: function getUserFishCollectedInfo() {var _this19 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee19() {var jwt, head, result, _iterator, _step, _step$value, id, fish;return _regenerator.default.wrap(function _callee19$(_context19) {while (1) {switch (_context19.prev = _context19.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context19.next = 4;return (
+                  _this19.$myRequest({
+                    method: 'GET',
+                    url: '/user_fish/',
+                    header: head }));case 4:result = _context19.sent;
+
+                console.log(result.data.results);
+                // let fish_collected = result.data.results;
+                _iterator = _createForOfIteratorHelper(result.data.results);try {for (_iterator.s(); !(_step = _iterator.n()).done;) {_step$value = _step.value, id = _step$value.id, fish = _step$value.fish;
+                    console.log("id:" + id + " fish_id: " + fish);
+                  }} catch (err) {_iterator.e(err);} finally {_iterator.f();}case 8:case "end":return _context19.stop();}}}, _callee19);}))();
+    },
+    //向后端create user fish 收集信息
+    createUserFishCollectedInfo: function createUserFishCollectedInfo(id) {var _this20 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee20() {var jwt, head, result;return _regenerator.default.wrap(function _callee20$(_context20) {while (1) {switch (_context20.prev = _context20.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context20.next = 4;return (
+                  _this20.$myRequest({
+                    method: 'POST',
+                    url: '/user_fish/',
+                    header: head,
+                    data: { fish: id } }));case 4:result = _context20.sent;
+
+                console.log(result);case 6:case "end":return _context20.stop();}}}, _callee20);}))();
     } },
 
-  // 监控列表触底
-  // onReachBottom() {
-  // 	if(this.current === 0){
-  // 		this.fishPageNum++;
-  // 		this.getFishInfo();
-  // 		console.log("fish"+this.fishPageNum)
-  // 	}else if(this.current === 1){
-  // 		this.insectPageNum++;
-  // 		this.getInsectInfo();
-  // 		console.log("insect"+this.insectPageNum)
-  // 	}
-  // },
   onLoad: function onLoad() {
     this.getFishInfo();
+
+  },
+  onShow: function onShow() {
+    this.getUserFishCollectedInfo();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

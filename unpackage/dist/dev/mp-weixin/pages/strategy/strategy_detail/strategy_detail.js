@@ -92,7 +92,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uniCard: function() {
-    return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 269))
+    return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 281))
   }
 }
 var render = function() {
@@ -196,8 +196,8 @@ var _default =
               'content-type': 'application/json' },
 
             data: {
-              code: code,
-              user_info: userinfo
+              code: code
+              // user_info:userinfo
               // user_info: info_res.rawData
             },
             success: function success(res) {
@@ -207,7 +207,7 @@ var _default =
               // 	// that.$store.commit('login', userInfo);
               // 	uni.setStorageSync("userInfo",userInfo);
 
-              // 	uni.setStorageSync("skey", res.data.data);
+              uni.setStorageSync("skey", res.data.jwt);
               // } else {
               // 	console.log('登录失败')
               // 	console.log(res)

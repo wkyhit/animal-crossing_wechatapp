@@ -10,8 +10,8 @@
 		<scroll-view v-show="current==0" class="list" :scroll-y="true" @scrolltolower="getRemainFishInfo">
 			<view class="fishAndinsects_view" v-for="(item,index) in fish" :key="index">
 				<image class="v_img" :src="item.pic_url"></image>
-				<u-cell-group class="cell-group">
-					<u-cell-item :title="item.cn_sname" :arrow="false">
+				<u-cell-group class="cell-group" >
+					<u-cell-item :title="item.cn_sname" :arrow="false" hover-class="none">
 						<view class="item">
 							<!-- <p class="name">{{item.name}}</p> -->
 							<p class="description">{{item.fish_size}}</p>
@@ -21,7 +21,7 @@
 						<view class="collection">
 							<u-button class="btn_detail" type="primary" size="mini" @click="onClickMoreInfo('fish',item)">详情</u-button>
 							<p>已收集</p>
-							<u-switch class="sw_button" slot="right-icon" v-model="item.checked"></u-switch>
+							<u-switch class="sw_button" slot="right-icon" @change="fishCheckedChange(item.id)" v-model="fishChecked[item.id-1]"></u-switch>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -32,8 +32,8 @@
 		<scroll-view v-show="current==1" class="list" :scroll-y="true" @scrolltolower="getRemainInsectInfo">
 			<view class="fishAndinsects_view" v-for="(item,index) in insect" :key="index">
 				<image class="v_img" :src="item.pic_url"></image>
-				<u-cell-group class="cell-group">
-					<u-cell-item :title="item.cn_sname" :arrow="false">
+				<u-cell-group class="cell-group" >
+					<u-cell-item :title="item.cn_sname" :arrow="false" hover-class="none">
 						<view class="item">
 							<!-- <p class="name">{{item.name}}</p> -->
 							<p class="description">{{item.catch_place}}</p>
@@ -43,7 +43,7 @@
 						<view class="collection">
 							<u-button class="btn_detail" type="primary" size="mini" @click="onClickMoreInfo('insect',item)">详情</u-button>
 							<p>已收集</p>
-							<u-switch class="sw_button" slot="right-icon" v-model="item.checked"></u-switch>
+							<u-switch class="sw_button" slot="right-icon" @change="insectCheckedChange(item.id)" v-model="insectChecked[item.id-1]"></u-switch>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -56,7 +56,7 @@
 			<view class="artsAndfossil_view" v-for="(item,index) in fossil" :key="index">
 				<image class="v_img" :src="item.pic_url"></image>
 				<u-cell-group class="cell-group">
-					<u-cell-item :title="item.cn_sname" :arrow="false">
+					<u-cell-item :title="item.cn_sname" :arrow="false" hover-class="none">
 						<view class="item">
 							<!-- <p class="name">{{item.name}}</p> -->
 							<p class="price">{{item.price}}</p>
@@ -76,7 +76,7 @@
 			<view class="artsAndfossil_view" v-for="(item,index) in artWork" :key="index">
 				<image class="v_img" :src="item.logo_url"></image>
 				<u-cell-group class="cell-group">
-					<u-cell-item :title="item.cn_sname" :arrow="false">
+					<u-cell-item :title="item.cn_sname" :arrow="false" hover-class="none">
 						<view class="collection">
 							<u-button class="artwork_detail" type="primary" size="mini" @click="onClickMoreInfo('artwork',item)">详情</u-button>
 							<p v-if="item.number>0">(已捐)</p>
@@ -93,7 +93,7 @@
 				<image class="v_img" :src="item.icon_url"></image>
 				<!-- <u-avatar :src="item.pic_url" mode="square" size="large"></u-avatar> -->
 				<u-cell-group class="cell-group">
-					<u-cell-item :title="item.cn_sname" :arrow="false">
+					<u-cell-item :title="item.cn_sname" :arrow="false" hover-class="none">
 						<view class="item" @click="onClickMoreInfo('villager')">
 							<!-- <p class="name">{{item.name}}</p> -->
 							<p class="description">{{item.race}}</p>
@@ -103,7 +103,7 @@
 						<view class="collection">
 							<u-button class="btn_detail" type="primary" size="mini" @click="onClickMoreInfo('villager',item)">详情</u-button>
 							<p>已入住</p>
-							<u-switch class="sw_button" slot="right-icon" v-model="item.checked"></u-switch>
+							<u-switch class="sw_button" slot="right-icon" @change="villagerCheckedChange(item.id)" v-model="villagerChecked[item.id-1]"></u-switch>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -115,7 +115,7 @@
 			<view class="fishAndinsects_view" v-for="(item,index) in furniture" :key="index">
 				<image class="v_img" :src="item.pic_url"></image>
 				<u-cell-group class="cell-group">
-					<u-cell-item :title="item.cn_sname" :arrow="false">
+					<u-cell-item :title="item.cn_sname" :arrow="false" hover-class="none">
 						<view class="item">
 							<!-- <p class="name">{{item.name}}</p> -->
 							<p class="description">{{item.color}}</p>
@@ -126,7 +126,7 @@
 						<view class="collection">
 							<u-button class="btn_detail" type="primary" size="mini" @click="onClickMoreInfo('furniture',item)">详情</u-button>
 							<p>已收集</p>
-							<u-switch class="sw_button" slot="right-icon" v-model="item.checked"></u-switch>
+							<u-switch class="sw_button" slot="right-icon" @change="furnitureCheckedChange(item.id)" v-model="furnitureChecked[item.id-1]"></u-switch>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -138,11 +138,11 @@
 			<view class="artsAndfossil_view" v-for="(item,index) in diy" :key="index">
 				<image class="v_img" :src="item.pic_url"></image>
 				<u-cell-group class="cell-group">
-					<u-cell-item :title="item.cn_sname" :arrow="false">
+					<u-cell-item :title="item.cn_sname" :arrow="false" hover-class="none">
 						<view class="collection">
 							<u-button class="artwork_detail"  type="primary" size="mini" @click="onClickMoreInfo('diy',item)">详情</u-button>
 							<p>已有</p>
-							<u-switch v-model="item.checked"></u-switch>
+							<u-switch @change="diyCheckedChange(item.id)" v-model="diyChecked[item.id-1]"></u-switch>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -154,11 +154,11 @@
 			<view class="artsAndfossil_view" v-for="(item,index) in dress" :key="index">
 				<image class="v_img" :src="item.pic_url"></image>
 				<u-cell-group class="cell-group">
-					<u-cell-item :title="item.cn_sname" :arrow="false">
+					<u-cell-item :title="item.cn_sname" :arrow="false" hover-class="none">
 						<view class="collection">
 							<u-button class="artwork_detail"  type="primary" size="mini" @click="onClickMoreInfo('dress',item)">详情</u-button>
 							<p>已有</p>
-							<u-switch v-model="item.checked"></u-switch>
+							<u-switch @change="dressCheckedChange(item.id)" v-model="dressChecked[item.id-1]"></u-switch>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -170,10 +170,10 @@
 			<view class="artsAndfossil_view" v-for="(item,index) in albums" :key="index">
 				<image class="v_img" :src="item.cover_url"></image>
 				<u-cell-group class="cell-group">
-					<u-cell-item :title="item.cn_sname" :arrow="false">
+					<u-cell-item :title="item.cn_sname" :arrow="false" hover-class="none">
 						<view class="collection">
 							<p>已有</p>
-							<u-switch v-model="item.checked"></u-switch>
+							<u-switch @change="albumsCheckedChange(item.id)" v-model="albumsChecked[item.id-1]"></u-switch>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -195,8 +195,24 @@
 				dexType: "fish",
 				//详情item
 				detailItem: [],
-				//已收集
-				checked: false,
+				//鱼类已收集
+				fish_checked: [1,3,4],
+				// 虫类已收集
+				insect_checked:[1,4,5],
+				// 化石已收集（数量）
+				fossil_number:[],
+				// 艺术品已收集(数量)
+				artwork_number:[],
+				// 村民已入住
+				villager_checked:[1,19,32,42],
+				// 家具已收集
+				furniture_checked:[1,10,32,25],
+				// diy已收集
+				diy_checked:[1,2,3,4,6,9,12],
+				// 服装已收集
+				dress_checked:[1,2,4,12,23],
+				// 唱片已收集
+				albums_checked:[1,2,3,5,7],
 				//tabs列表
 				list: [{
 						name: '鱼类'
@@ -266,6 +282,100 @@
 				albumsPageNum: 1,
 			};
 		},
+		computed:{
+			//鱼类已收集数组
+			fishChecked(){
+				let fish_checked_list=[]
+				for(let i=0;i<80;i++){
+					// 如果有该标记,则压入true
+					if(this.fish_checked.includes(i+1)){
+						fish_checked_list.push(true);
+					}else{
+						fish_checked_list.push(false);
+					}
+				}
+				return fish_checked_list;
+			},
+			//虫类已收集数组
+			insectChecked(){
+				let insect_checked_list=[]
+				for(let i=0;i<80;i++){
+					// 如果有该标记,则压入true
+					if(this.insect_checked.includes(i+1)){
+						insect_checked_list.push(true);
+					}else{
+						insect_checked_list.push(false);
+					}
+				}
+				return insect_checked_list;
+			},
+			//村民已入住数组
+			villagerChecked(){
+				let villager_checked_list=[]
+				for(let i=0;i<391;i++){
+					// 如果有该标记,则压入true
+					if(this.villager_checked.includes(i+1)){
+						villager_checked_list.push(true);
+					}else{
+						villager_checked_list.push(false);
+					}
+				}
+				return villager_checked_list;
+			},
+			//家具已收集数组
+			furnitureChecked(){
+				let furniture_checked_list=[]
+				for(let i=0;i<3303;i++){
+					// 如果有该标记,则压入true
+					if(this.furniture_checked.includes(i+1)){
+						furniture_checked_list.push(true);
+					}else{
+						furniture_checked_list.push(false);
+					}
+				}
+				return furniture_checked_list;
+			},
+			//diy已收集数组
+			diyChecked(){
+				let diy_checked_list=[]
+				for(let i=0;i<593;i++){
+					// 如果有该标记,则压入true
+					if(this.diy_checked.includes(i+1)){
+						diy_checked_list.push(true);
+					}else{
+						diy_checked_list.push(false);
+					}
+				}
+				return diy_checked_list;
+			},
+			//服装已收集数组
+			dressChecked(){
+				let dress_checked_list=[]
+				for(let i=0;i<4646;i++){
+					// 如果有该标记,则压入true
+					if(this.dress_checked.includes(i+1)){
+						dress_checked_list.push(true);
+					}else{
+						dress_checked_list.push(false);
+					}
+				}
+				return dress_checked_list;
+			},
+			//唱片已收集数组
+			albumsChecked(){
+				let albums_checked_list=[]
+				for(let i=0;i<95;i++){
+					// 如果有该标记,则压入true
+					if(this.albums_checked.includes(i+1)){
+						albums_checked_list.push(true);
+					}else{
+						albums_checked_list.push(false);
+					}
+				}
+				return albums_checked_list;
+			}
+		}
+		,
 		methods: {
 			//标签页tabs切换事件监听
 			changeMap(index) {
@@ -321,6 +431,99 @@
 			valChange(e) {
 				console.log('当前值为: ' + e.value)
 			},
+			
+			// u-switch控件变化监听
+			
+			//鱼类checked变化监听
+			fishCheckedChange(id){
+				// 传入改变的fishid,改变fish_checked数组
+				// 如果已经存在,则从中删除
+				// console.log("fishid:"+id);
+				if(this.fish_checked.includes(id)){
+					let index = this.fish_checked.indexOf(id);
+					this.fish_checked.splice(index,1);
+				}else{//如果不存在，则压入
+					this.fish_checked.push(id);
+					this.createUserFishCollectedInfo(id);
+				}
+				console.log("fish_checked: "+this.fish_checked)
+			},
+			//虫类checked变化监听
+			insectCheckedChange(id){
+				// 传入改变的insectid,改变insect_checked数组
+				// 如果已经存在,则从中删除
+				// console.log("fishid:"+id);
+				if(this.insect_checked.includes(id)){
+					let index = this.insect_checked.indexOf(id);
+					this.insect_checked.splice(index,1);
+				}else{//如果不存在，则压入
+					this.insect_checked.push(id);
+				}
+				console.log("insect_checked: "+this.insect_checked)
+			},
+			//村民checked变化监听
+			villagerCheckedChange(id){
+				// 传入改变的villagerid,改变villager_checked数组
+				// 如果已经存在,则从中删除
+				// console.log("fishid:"+id);
+				if(this.villager_checked.includes(id)){
+					let index = this.villager_checked.indexOf(id);
+					this.villager_checked.splice(index,1);
+				}else{//如果不存在，则压入
+					this.villager_checked.push(id);
+				}
+				console.log("villager_checked: "+this.villager_checked)
+			},
+			//家具checked变化监听
+			furnitureCheckedChange(id){
+				// 传入改变的furnitureid,改变furniture_checked数组
+				// 如果已经存在,则从中删除
+				// console.log("fishid:"+id);
+				if(this.furniture_checked.includes(id)){
+					let index = this.furniture_checked.indexOf(id);
+					this.furniture_checked.splice(index,1);
+				}else{//如果不存在，则压入
+					this.furniture_checked.push(id);
+				}
+				console.log("furniture_checked: "+this.furniture_checked)
+			},
+			//diy checked变化监听
+			diyCheckedChange(id){
+				// 传入改变的diy id,改变diy_checked数组
+				// 如果已经存在,则从中删除
+				if(this.diy_checked.includes(id)){
+					let index = this.diy_checked.indexOf(id);
+					this.diy_checked.splice(index,1);
+				}else{//如果不存在，则压入
+					this.diy_checked.push(id);
+				}
+				console.log("diy_checked: "+this.diy_checked)
+			},
+			//dress checked变化监听
+			dressCheckedChange(id){
+				// 传入改变的dress id,改变dress_checked数组
+				// 如果已经存在,则从中删除
+				if(this.dress_checked.includes(id)){
+					let index = this.dress_checked.indexOf(id);
+					this.dress_checked.splice(index,1);
+				}else{//如果不存在，则压入
+					this.dress_checked.push(id);
+				}
+				console.log("dress_checked: "+this.dress_checked)
+			},
+			//albums checked变化监听
+			albumsCheckedChange(id){
+				// 传入改变的albums id,改变albums_checked数组
+				// 如果已经存在,则从中删除
+				if(this.albums_checked.includes(id)){
+					let index = this.albums_checked.indexOf(id);
+					this.albums_checked.splice(index,1);
+				}else{//如果不存在，则压入
+					this.albums_checked.push(id);
+				}
+				console.log("albums_checked: "+this.albums_checked)
+			},
+			
 			// 点击查看图鉴详情
 			onClickMoreInfo(dex_type, item) {
 				this.dexType = dex_type;
@@ -595,21 +798,43 @@
 					// console.log("albums" + this.albumsPageNum);
 				}
 			},
+			
+			//获取user的图鉴收集信息
+			
+			//获取user fish 图鉴收集信息
+			async getUserFishCollectedInfo(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/user_fish/',
+					header: head,
+				})
+				console.log(result.data.results)
+				// let fish_collected = result.data.results;
+				for(let {id,fish} of result.data.results){
+					console.log("id:"+id+" fish_id: "+fish);
+				}
+			},
+			//向后端create user fish 收集信息
+			async createUserFishCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'POST',
+					url: '/user_fish/',
+					header: head,
+					data: {fish:id},
+				})
+				console.log(result);
+			}
 		},
-		// 监控列表触底
-		// onReachBottom() {
-		// 	if(this.current === 0){
-		// 		this.fishPageNum++;
-		// 		this.getFishInfo();
-		// 		console.log("fish"+this.fishPageNum)
-		// 	}else if(this.current === 1){
-		// 		this.insectPageNum++;
-		// 		this.getInsectInfo();
-		// 		console.log("insect"+this.insectPageNum)
-		// 	}
-		// },
 		onLoad() {
 			this.getFishInfo();
+			
+		},
+		onShow() {
+			this.getUserFishCollectedInfo()
 		}
 	}
 </script>

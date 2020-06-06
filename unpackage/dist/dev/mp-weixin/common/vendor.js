@@ -1693,7 +1693,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 121:
+/***/ 125:
 /*!******************************************************************************************!*\
   !*** D:/wechatapp/1711201-5/frontend/animal_crossing/pages/turnip-prices/predictions.js ***!
   \******************************************************************************************/
@@ -10341,7 +10341,54 @@ random;exports.default = _default;
 
 /***/ }),
 
-/***/ 309:
+/***/ 31:
+/*!***************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/trim.js ***!
+  \***************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function trim(str) {var pos = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'both';
+  if (pos == 'both') {
+    return str.replace(/^\s+|\s+$/g, "");
+  } else if (pos == "left") {
+    return str.replace(/^\s*/, '');
+  } else if (pos == 'right') {
+    return str.replace(/(\s*$)/g, "");
+  } else if (pos == 'all') {
+    return str.replace(/\s+/g, "");
+  } else {
+    return str;
+  }
+}var _default =
+
+trim;exports.default = _default;
+
+/***/ }),
+
+/***/ 32:
+/*!****************************************************************************************************!*\
+  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/toast.js ***!
+  \****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function toast(title) {var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
+  uni.showToast({
+    title: title,
+    icon: 'none',
+    duration: duration });
+
+}var _default =
+
+toast;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 328:
 /*!*************************************************************************************!*\
   !*** D:/wechatapp/1711201-5/frontend/animal_crossing/components/uni-icons/icons.js ***!
   \*************************************************************************************/
@@ -10483,53 +10530,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 31:
-/*!***************************************************************************************************!*\
-  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/trim.js ***!
-  \***************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function trim(str) {var pos = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'both';
-  if (pos == 'both') {
-    return str.replace(/^\s+|\s+$/g, "");
-  } else if (pos == "left") {
-    return str.replace(/^\s*/, '');
-  } else if (pos == 'right') {
-    return str.replace(/(\s*$)/g, "");
-  } else if (pos == 'all') {
-    return str.replace(/\s+/g, "");
-  } else {
-    return str;
-  }
-}var _default =
-
-trim;exports.default = _default;
-
-/***/ }),
-
-/***/ 32:
-/*!****************************************************************************************************!*\
-  !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/function/toast.js ***!
-  \****************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function toast(title) {var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
-  uni.showToast({
-    title: title,
-    icon: 'none',
-    duration: duration });
-
-}var _default =
-
-toast;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
 /***/ 33:
 /*!***************************************************************************************************!*\
   !*** D:/wechatapp/1711201-5/frontend/animal_crossing/node_modules/uview-ui/libs/config/config.js ***!
@@ -10592,10 +10592,12 @@ var myRequest = function myRequest(options) {
       method: options.method,
       data: options.data,
       url: baseUrl + options.url,
+      header: options.header,
       success: function success(res) {
-        if (res.statusCode !== 200) {
+        // console.log("post"+res.statusCode)
+        if (res.statusCode !== 200 && res.statusCode !== 201) {
           return uni.showToast({
-            title: '获取数据失败2' });
+            title: '获取数据失败' });
 
         }
         resolve(res);

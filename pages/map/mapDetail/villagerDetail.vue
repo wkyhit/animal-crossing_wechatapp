@@ -5,6 +5,7 @@
 			<view class="detail-img">
 				<image class="detail-img1" mode="aspectFit" :src="info.pic_url"></image>
 			</view>
+			<text>Amiibo:{{info.amiibo}}</text>
 		</uni-card>
 		<uni-card class="info_card">
 			<u-cell-group>

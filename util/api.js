@@ -6,10 +6,12 @@ export const myRequest = (options) => {
 			method: options.method,
 			data: options.data,
 			url: baseUrl + options.url,
+			header: options.header,
 			success(res) {
-				if (res.statusCode !== 200) {
+				// console.log("post"+res.statusCode)
+				if (res.statusCode !== 200 && res.statusCode !== 201 ) {
 					return uni.showToast({
-						title: '获取数据失败2'
+						title: '获取数据失败'
 					})
 				}
 				resolve(res)

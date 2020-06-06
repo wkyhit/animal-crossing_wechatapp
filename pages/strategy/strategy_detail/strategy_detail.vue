@@ -63,7 +63,7 @@
 							},
 							data: {
 								code: code,
-								user_info:userinfo
+								// user_info:userinfo
 								// user_info: info_res.rawData
 							},
 							success(res) {
@@ -73,7 +73,7 @@
 								// 	// that.$store.commit('login', userInfo);
 								// 	uni.setStorageSync("userInfo",userInfo);
 
-								// 	uni.setStorageSync("skey", res.data.data);
+									uni.setStorageSync("skey", res.data.jwt);
 								// } else {
 								// 	console.log('登录失败')
 								// 	console.log(res)
