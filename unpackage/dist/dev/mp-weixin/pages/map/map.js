@@ -353,23 +353,23 @@ var _default =
       //详情item
       detailItem: [],
       //鱼类已收集
-      fish_checked: [1, 3, 4],
+      fish_checked: [],
       // 虫类已收集
-      insect_checked: [1, 4, 5],
+      insect_checked: [],
       // 化石已收集（数量）
       fossil_number: [],
       // 艺术品已收集(数量)
       artwork_number: [],
       // 村民已入住
-      villager_checked: [1, 19, 32, 42],
+      villager_checked: [],
       // 家具已收集
-      furniture_checked: [1, 10, 32, 25],
+      furniture_checked: [],
       // diy已收集
-      diy_checked: [1, 2, 3, 4, 6, 9, 12],
+      diy_checked: [],
       // 服装已收集
-      dress_checked: [1, 2, 4, 12, 23],
+      dress_checked: [],
       // 唱片已收集
-      albums_checked: [1, 2, 3, 5, 7],
+      albums_checked: [],
       //tabs列表
       list: [{
         name: '鱼类' },
@@ -397,8 +397,6 @@ var _default =
 
       {
         name: '唱片' }],
-
-
 
 
       //鱼类信息
@@ -465,6 +463,10 @@ var _default =
         }
       }
       return insect_checked_list;
+    },
+    // 艺术品已收集数量数组
+    artworkNumber: function artworkNumber() {
+      return this.artwork_number;
     },
     //村民已入住数组
     villagerChecked: function villagerChecked() {
@@ -588,7 +590,10 @@ var _default =
     valChange: function valChange(e) {
       console.log('当前值为: ' + e.value);
     },
-
+    // 艺术品number变化监听
+    artworkNumberChange: function artworkNumberChange(id) {
+      this.createUserArtworkCollectedInfo(id);
+    },
     // u-switch控件变化监听
 
     //鱼类checked变化监听
@@ -599,8 +604,9 @@ var _default =
       if (this.fish_checked.includes(id)) {
         var index = this.fish_checked.indexOf(id);
         this.fish_checked.splice(index, 1);
+        this.deleteUserFishCollectedInfo(id);
       } else {//如果不存在，则压入
-        this.fish_checked.push(id);
+        // this.fish_checked.push(id);
         this.createUserFishCollectedInfo(id);
       }
       console.log("fish_checked: " + this.fish_checked);
@@ -609,12 +615,13 @@ var _default =
     insectCheckedChange: function insectCheckedChange(id) {
       // 传入改变的insectid,改变insect_checked数组
       // 如果已经存在,则从中删除
-      // console.log("fishid:"+id);
       if (this.insect_checked.includes(id)) {
         var index = this.insect_checked.indexOf(id);
         this.insect_checked.splice(index, 1);
+        this.deleteUserInsectCollectedInfo(id);
       } else {//如果不存在，则压入
-        this.insect_checked.push(id);
+        // this.insect_checked.push(id);
+        this.createUserInsectCollectedInfo(id);
       }
       console.log("insect_checked: " + this.insect_checked);
     },
@@ -622,7 +629,6 @@ var _default =
     villagerCheckedChange: function villagerCheckedChange(id) {
       // 传入改变的villagerid,改变villager_checked数组
       // 如果已经存在,则从中删除
-      // console.log("fishid:"+id);
       if (this.villager_checked.includes(id)) {
         var index = this.villager_checked.indexOf(id);
         this.villager_checked.splice(index, 1);
@@ -635,12 +641,13 @@ var _default =
     furnitureCheckedChange: function furnitureCheckedChange(id) {
       // 传入改变的furnitureid,改变furniture_checked数组
       // 如果已经存在,则从中删除
-      // console.log("fishid:"+id);
       if (this.furniture_checked.includes(id)) {
         var index = this.furniture_checked.indexOf(id);
         this.furniture_checked.splice(index, 1);
+        this.deleteUserFurnitureCollectedInfo(id);
       } else {//如果不存在，则压入
-        this.furniture_checked.push(id);
+        // this.furniture_checked.push(id);
+        this.createUserFurnitureCollectedInfo(id);
       }
       console.log("furniture_checked: " + this.furniture_checked);
     },
@@ -651,8 +658,10 @@ var _default =
       if (this.diy_checked.includes(id)) {
         var index = this.diy_checked.indexOf(id);
         this.diy_checked.splice(index, 1);
+        this.deleteUserDiyCollectedInfo(id);
       } else {//如果不存在，则压入
-        this.diy_checked.push(id);
+        // this.diy_checked.push(id);
+        this.createUserDiyCollectedInfo(id);
       }
       console.log("diy_checked: " + this.diy_checked);
     },
@@ -663,8 +672,10 @@ var _default =
       if (this.dress_checked.includes(id)) {
         var index = this.dress_checked.indexOf(id);
         this.dress_checked.splice(index, 1);
+        this.deleteUserDressCollectedInfo(id);
       } else {//如果不存在，则压入
-        this.dress_checked.push(id);
+        // this.dress_checked.push(id);
+        this.createUserDressCollectedInfo(id);
       }
       console.log("dress_checked: " + this.dress_checked);
     },
@@ -675,8 +686,10 @@ var _default =
       if (this.albums_checked.includes(id)) {
         var index = this.albums_checked.indexOf(id);
         this.albums_checked.splice(index, 1);
+        this.deleteUserAlbumsCollectedInfo(id);
       } else {//如果不存在，则压入
-        this.albums_checked.push(id);
+        // this.albums_checked.push(id);
+        this.createUserAlbumsCollectedInfo(id);
       }
       console.log("albums_checked: " + this.albums_checked);
     },
@@ -958,40 +971,326 @@ var _default =
 
     //获取user的图鉴收集信息
 
-    //获取user fish 图鉴收集信息
-    getUserFishCollectedInfo: function getUserFishCollectedInfo() {var _this19 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee19() {var jwt, head, result, _iterator, _step, _step$value, id, fish;return _regenerator.default.wrap(function _callee19$(_context19) {while (1) {switch (_context19.prev = _context19.next) {case 0:
+    //u-numberbox:
+
+    // 获取 user artwork 收集信息
+    getUserArtworkCollectedInfo: function getUserArtworkCollectedInfo() {var _this19 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee19() {var jwt, head, result, tmp_artwork, _iterator, _step, _step$value, artwork, amount, index;return _regenerator.default.wrap(function _callee19$(_context19) {while (1) {switch (_context19.prev = _context19.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 head = { 'Authorization': "Bearer " + jwt };_context19.next = 4;return (
                   _this19.$myRequest({
                     method: 'GET',
-                    url: '/user_fish/',
+                    url: '/user_artwork/',
                     header: head }));case 4:result = _context19.sent;
 
-                console.log(result.data.results);
-                // let fish_collected = result.data.results;
-                _iterator = _createForOfIteratorHelper(result.data.results);try {for (_iterator.s(); !(_step = _iterator.n()).done;) {_step$value = _step.value, id = _step$value.id, fish = _step$value.fish;
-                    console.log("id:" + id + " fish_id: " + fish);
-                  }} catch (err) {_iterator.e(err);} finally {_iterator.f();}case 8:case "end":return _context19.stop();}}}, _callee19);}))();
-    },
-    //向后端create user fish 收集信息
-    createUserFishCollectedInfo: function createUserFishCollectedInfo(id) {var _this20 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee20() {var jwt, head, result;return _regenerator.default.wrap(function _callee20$(_context20) {while (1) {switch (_context20.prev = _context20.next) {case 0:
+                // console.log("artwork_result")
+                // console.log(result)
+                //创建一个长度43 值全为0的数组
+                //用artworkid做索引，将对于位置替换成amount数值
+                tmp_artwork = new Array(43).fill(0);
+                // console.log("tmp_artwork"+tmp_artwork);
+                _iterator = _createForOfIteratorHelper(result.data);try {for (_iterator.s(); !(_step = _iterator.n()).done;) {_step$value = _step.value, artwork = _step$value.artwork, amount = _step$value.amount;
+                    console.log("artworkid:" + artwork + " amount:" + amount);
+
+                    index = artwork - 1;
+                    tmp_artwork.splice(index, 1, amount);
+                  }
+                  // 前端数组与后端同步
+                } catch (err) {_iterator.e(err);} finally {_iterator.f();}_this19.artwork_number = tmp_artwork;
+                console.log("tmp_artwork" + tmp_artwork);
+                // console.log("artwork_number"+this.artwork_number)
+              case 10:case "end":return _context19.stop();}}}, _callee19);}))();},
+    // 第一次收集 向后端create user artwork 收集信息
+    createUserArtworkCollectedInfo: function createUserArtworkCollectedInfo(id) {var _this20 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee20() {var jwt, head, result;return _regenerator.default.wrap(function _callee20$(_context20) {while (1) {switch (_context20.prev = _context20.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 head = { 'Authorization': "Bearer " + jwt };_context20.next = 4;return (
                   _this20.$myRequest({
                     method: 'POST',
+                    url: '/user_artwork/',
+                    header: head,
+                    data: { artwork: id } }));case 4:result = _context20.sent;
+
+                console.log(result);
+                //将对应处的值替换成1（0->1)
+                _this20.artwork_number.splice(id - 1, 1, 1);case 7:case "end":return _context20.stop();}}}, _callee20);}))();
+    },
+    // 向后端 update user artwork 收集信息
+    // 向后端delete user artwork 收集信息
+
+    //u-switch：
+    //获取user fish 图鉴收集信息
+    getUserFishCollectedInfo: function getUserFishCollectedInfo() {var _this21 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee21() {var jwt, head, result, tmp_fish, _iterator2, _step2, _step2$value, id, fish;return _regenerator.default.wrap(function _callee21$(_context21) {while (1) {switch (_context21.prev = _context21.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context21.next = 4;return (
+                  _this21.$myRequest({
+                    method: 'GET',
+                    url: '/user_fish/',
+                    header: head }));case 4:result = _context21.sent;
+
+                tmp_fish = [];_iterator2 = _createForOfIteratorHelper(
+                result.data);try {for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {_step2$value = _step2.value, id = _step2$value.id, fish = _step2$value.fish;
+                    tmp_fish.push(fish);
+                  }
+                  //后端数据赋予前端，保证数据一致性
+                } catch (err) {_iterator2.e(err);} finally {_iterator2.f();}_this21.fish_checked = tmp_fish;case 9:case "end":return _context21.stop();}}}, _callee21);}))();
+    },
+    //向后端create user fish 收集信息
+    createUserFishCollectedInfo: function createUserFishCollectedInfo(id) {var _this22 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee22() {var jwt, head, result;return _regenerator.default.wrap(function _callee22$(_context22) {while (1) {switch (_context22.prev = _context22.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context22.next = 4;return (
+                  _this22.$myRequest({
+                    method: 'POST',
                     url: '/user_fish/',
                     header: head,
-                    data: { fish: id } }));case 4:result = _context20.sent;
+                    data: { fish: id } }));case 4:result = _context22.sent;
 
-                console.log(result);case 6:case "end":return _context20.stop();}}}, _callee20);}))();
+                // 本地数组同步
+                _this22.fish_checked.push(id);
+                // console.log(result);
+              case 6:case "end":return _context22.stop();}}}, _callee22);}))();},
+    //向后端delete user fish 收集信息
+    deleteUserFishCollectedInfo: function deleteUserFishCollectedInfo(id) {var _this23 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee23() {var jwt, head, result;return _regenerator.default.wrap(function _callee23$(_context23) {while (1) {switch (_context23.prev = _context23.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context23.next = 4;return (
+                  _this23.$myRequest({
+                    method: 'DELETE',
+                    url: '/user_fish/' + id + '/',
+                    header: head }));case 4:result = _context23.sent;case 5:case "end":return _context23.stop();}}}, _callee23);}))();
+
+    },
+    //获取 get user insect 图鉴收集信息
+    getUserInsectCollectedInfo: function getUserInsectCollectedInfo() {var _this24 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee24() {var jwt, head, result, tmp_insect, _iterator3, _step3, _step3$value, id, insect;return _regenerator.default.wrap(function _callee24$(_context24) {while (1) {switch (_context24.prev = _context24.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context24.next = 4;return (
+                  _this24.$myRequest({
+                    method: 'GET',
+                    url: '/user_insect/',
+                    header: head }));case 4:result = _context24.sent;
+
+                tmp_insect = [];
+                // let fish_collected = result.data.results;
+                _iterator3 = _createForOfIteratorHelper(result.data);try {for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {_step3$value = _step3.value, id = _step3$value.id, insect = _step3$value.insect;
+                    tmp_insect.push(insect);
+                    // console.log("id:"+id+" insect_id: "+insect);
+                  }} catch (err) {_iterator3.e(err);} finally {_iterator3.f();}
+                console.log("tmp_insect" + tmp_insect);
+                //后端数据赋予前端，保证数据一致性
+                _this24.insect_checked = tmp_insect;case 10:case "end":return _context24.stop();}}}, _callee24);}))();
+    },
+    //向后端create user insect 收集信息
+    createUserInsectCollectedInfo: function createUserInsectCollectedInfo(id) {var _this25 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee25() {var jwt, head, result;return _regenerator.default.wrap(function _callee25$(_context25) {while (1) {switch (_context25.prev = _context25.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context25.next = 4;return (
+                  _this25.$myRequest({
+                    method: 'POST',
+                    url: '/user_insect/',
+                    header: head,
+                    data: { insect: id } }));case 4:result = _context25.sent;
+
+                //本地数组同步
+                _this25.insect_checked.push(id);
+                console.log(result);case 7:case "end":return _context25.stop();}}}, _callee25);}))();
+    },
+    //向后端delete  user insect  收集信息
+    deleteUserInsectCollectedInfo: function deleteUserInsectCollectedInfo(id) {var _this26 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee26() {var jwt, head, result;return _regenerator.default.wrap(function _callee26$(_context26) {while (1) {switch (_context26.prev = _context26.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context26.next = 4;return (
+                  _this26.$myRequest({
+                    method: 'DELETE',
+                    url: '/user_insect/' + id + '/',
+                    header: head }));case 4:result = _context26.sent;case 5:case "end":return _context26.stop();}}}, _callee26);}))();
+
+    },
+    //获取 get user furniture 图鉴收集信息
+    getUserFurnitureCollectedInfo: function getUserFurnitureCollectedInfo() {var _this27 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee27() {var jwt, head, result, tmp_furniture, _iterator4, _step4, _step4$value, id, furniture;return _regenerator.default.wrap(function _callee27$(_context27) {while (1) {switch (_context27.prev = _context27.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context27.next = 4;return (
+                  _this27.$myRequest({
+                    method: 'GET',
+                    url: '/user_furniture/',
+                    header: head }));case 4:result = _context27.sent;
+
+                tmp_furniture = [];
+                console.log(result);
+                // let fish_collected = result.data.results;
+                _iterator4 = _createForOfIteratorHelper(result.data);try {for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {_step4$value = _step4.value, id = _step4$value.id, furniture = _step4$value.furniture;
+                    tmp_furniture.push(furniture);
+                    // console.log("id:"+id+" insect_id: "+furniture);
+                  }} catch (err) {_iterator4.e(err);} finally {_iterator4.f();}
+                console.log("tmp_furniture" + tmp_furniture);
+                //后端数据赋予前端，保证数据一致性
+                _this27.furniture_checked = tmp_furniture;case 11:case "end":return _context27.stop();}}}, _callee27);}))();
+    },
+    //向后端create user furniture 收集信息
+    createUserFurnitureCollectedInfo: function createUserFurnitureCollectedInfo(id) {var _this28 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee28() {var jwt, head, result;return _regenerator.default.wrap(function _callee28$(_context28) {while (1) {switch (_context28.prev = _context28.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context28.next = 4;return (
+                  _this28.$myRequest({
+                    method: 'POST',
+                    url: '/user_furniture/',
+                    header: head,
+                    data: { furniture: id } }));case 4:result = _context28.sent;
+
+                //本地数组同步
+                _this28.furniture_checked.push(id);
+                console.log(result);case 7:case "end":return _context28.stop();}}}, _callee28);}))();
+    },
+    //向后端delete user furniture收集信息
+    deleteUserFurnitureCollectedInfo: function deleteUserFurnitureCollectedInfo(id) {var _this29 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee29() {var jwt, head, result;return _regenerator.default.wrap(function _callee29$(_context29) {while (1) {switch (_context29.prev = _context29.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context29.next = 4;return (
+                  _this29.$myRequest({
+                    method: 'DELETE',
+                    url: '/user_furniture/' + id + '/',
+                    header: head }));case 4:result = _context29.sent;case 5:case "end":return _context29.stop();}}}, _callee29);}))();
+
+    },
+    //获取 get user diy 图鉴收集信息
+    getUserDiyCollectedInfo: function getUserDiyCollectedInfo() {var _this30 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee30() {var jwt, head, result, tmp_diy, _iterator5, _step5, _step5$value, id, diy;return _regenerator.default.wrap(function _callee30$(_context30) {while (1) {switch (_context30.prev = _context30.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context30.next = 4;return (
+                  _this30.$myRequest({
+                    method: 'GET',
+                    url: '/user_diy/',
+                    header: head }));case 4:result = _context30.sent;
+
+                tmp_diy = [];
+                console.log(result);
+                // let fish_collected = result.data.results;
+                _iterator5 = _createForOfIteratorHelper(result.data);try {for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {_step5$value = _step5.value, id = _step5$value.id, diy = _step5$value.diy;
+                    tmp_diy.push(diy);
+                    // console.log("id:"+id+" insect_id: "+furniture);
+                  }} catch (err) {_iterator5.e(err);} finally {_iterator5.f();}
+                console.log("tmp_diy" + tmp_diy);
+                //后端数据赋予前端，保证数据一致性
+                _this30.diy_checked = tmp_diy;case 11:case "end":return _context30.stop();}}}, _callee30);}))();
+    },
+    //向后端create user diy 收集信息
+    createUserDiyCollectedInfo: function createUserDiyCollectedInfo(id) {var _this31 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee31() {var jwt, head, result;return _regenerator.default.wrap(function _callee31$(_context31) {while (1) {switch (_context31.prev = _context31.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context31.next = 4;return (
+                  _this31.$myRequest({
+                    method: 'POST',
+                    url: '/user_diy/',
+                    header: head,
+                    data: { diy: id } }));case 4:result = _context31.sent;
+
+                //本地数组同步
+                _this31.diy_checked.push(id);
+                console.log(result);case 7:case "end":return _context31.stop();}}}, _callee31);}))();
+    },
+    //向后端delete user diy收集信息
+    deleteUserDiyCollectedInfo: function deleteUserDiyCollectedInfo(id) {var _this32 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee32() {var jwt, head, result;return _regenerator.default.wrap(function _callee32$(_context32) {while (1) {switch (_context32.prev = _context32.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context32.next = 4;return (
+                  _this32.$myRequest({
+                    method: 'DELETE',
+                    url: '/user_diy/' + id + '/',
+                    header: head }));case 4:result = _context32.sent;case 5:case "end":return _context32.stop();}}}, _callee32);}))();
+
+    },
+    //获取 get user dress 图鉴收集信息
+    getUserDressCollectedInfo: function getUserDressCollectedInfo() {var _this33 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee33() {var jwt, head, result, tmp_dress, _iterator6, _step6, _step6$value, id, dress;return _regenerator.default.wrap(function _callee33$(_context33) {while (1) {switch (_context33.prev = _context33.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context33.next = 4;return (
+                  _this33.$myRequest({
+                    method: 'GET',
+                    url: '/user_dress/',
+                    header: head }));case 4:result = _context33.sent;
+
+                tmp_dress = [];
+                console.log(result);
+                // let fish_collected = result.data.results;
+                _iterator6 = _createForOfIteratorHelper(result.data);try {for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {_step6$value = _step6.value, id = _step6$value.id, dress = _step6$value.dress;
+                    tmp_dress.push(dress);
+                    // console.log("id:"+id+" insect_id: "+furniture);
+                  }} catch (err) {_iterator6.e(err);} finally {_iterator6.f();}
+                console.log("tmp_dress" + tmp_dress);
+                //后端数据赋予前端，保证数据一致性
+                _this33.dress_checked = tmp_dress;case 11:case "end":return _context33.stop();}}}, _callee33);}))();
+    },
+    //向后端create user dress 收集信息
+    createUserDressCollectedInfo: function createUserDressCollectedInfo(id) {var _this34 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee34() {var jwt, head, result;return _regenerator.default.wrap(function _callee34$(_context34) {while (1) {switch (_context34.prev = _context34.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context34.next = 4;return (
+                  _this34.$myRequest({
+                    method: 'POST',
+                    url: '/user_dress/',
+                    header: head,
+                    data: { dress: id } }));case 4:result = _context34.sent;
+
+                //本地数组同步
+                _this34.dress_checked.push(id);
+                console.log(result);case 7:case "end":return _context34.stop();}}}, _callee34);}))();
+    },
+    //向后端delete user dress收集信息
+    deleteUserDressCollectedInfo: function deleteUserDressCollectedInfo(id) {var _this35 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee35() {var jwt, head, result;return _regenerator.default.wrap(function _callee35$(_context35) {while (1) {switch (_context35.prev = _context35.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context35.next = 4;return (
+                  _this35.$myRequest({
+                    method: 'DELETE',
+                    url: '/user_dress/' + id + '/',
+                    header: head }));case 4:result = _context35.sent;case 5:case "end":return _context35.stop();}}}, _callee35);}))();
+
+    },
+    //获取 get user albums 图鉴收集信息
+    getUserAlbumsCollectedInfo: function getUserAlbumsCollectedInfo() {var _this36 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee36() {var jwt, head, result, tmp_album, _iterator7, _step7, _step7$value, id, album;return _regenerator.default.wrap(function _callee36$(_context36) {while (1) {switch (_context36.prev = _context36.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context36.next = 4;return (
+                  _this36.$myRequest({
+                    method: 'GET',
+                    url: '/user_album/',
+                    header: head }));case 4:result = _context36.sent;
+
+                tmp_album = [];
+                console.log(result);
+                // let fish_collected = result.data.results;
+                _iterator7 = _createForOfIteratorHelper(result.data);try {for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {_step7$value = _step7.value, id = _step7$value.id, album = _step7$value.album;
+                    tmp_album.push(album);
+                    // console.log("id:"+id+" insect_id: "+furniture);
+                  }} catch (err) {_iterator7.e(err);} finally {_iterator7.f();}
+                console.log("tmp_album" + tmp_album);
+                //后端数据赋予前端，保证数据一致性
+                _this36.albums_checked = tmp_album;case 11:case "end":return _context36.stop();}}}, _callee36);}))();
+    },
+    //向后端create user albums 收集信息
+    createUserAlbumsCollectedInfo: function createUserAlbumsCollectedInfo(id) {var _this37 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee37() {var jwt, head, result;return _regenerator.default.wrap(function _callee37$(_context37) {while (1) {switch (_context37.prev = _context37.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context37.next = 4;return (
+                  _this37.$myRequest({
+                    method: 'POST',
+                    url: '/user_album/',
+                    header: head,
+                    data: { album: id } }));case 4:result = _context37.sent;
+
+                //本地数组同步
+                _this37.albums_checked.push(id);
+                console.log(result);case 7:case "end":return _context37.stop();}}}, _callee37);}))();
+    },
+    //向后端delete user albums收集信息
+    deleteUserAlbumsCollectedInfo: function deleteUserAlbumsCollectedInfo(id) {var _this38 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee38() {var jwt, head, result;return _regenerator.default.wrap(function _callee38$(_context38) {while (1) {switch (_context38.prev = _context38.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context38.next = 4;return (
+                  _this38.$myRequest({
+                    method: 'DELETE',
+                    url: '/user_album/' + id + '/',
+                    header: head }));case 4:result = _context38.sent;case 5:case "end":return _context38.stop();}}}, _callee38);}))();
+
     } },
+
+
 
   onLoad: function onLoad() {
     this.getFishInfo();
 
   },
   onShow: function onShow() {
+    this.getUserArtworkCollectedInfo();
     this.getUserFishCollectedInfo();
+    this.getUserInsectCollectedInfo();
+    this.getUserFurnitureCollectedInfo();
+    this.getUserDiyCollectedInfo();
+    this.getUserDressCollectedInfo();
+    this.getUserAlbumsCollectedInfo();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

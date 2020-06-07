@@ -64,7 +64,7 @@
 						<view class="collection">
 							<u-button class="btn_detail" type="primary" size="mini" @click="onClickMoreInfo('fossil',item)">详情</u-button>
 							<p>已收集</p>
-							<u-number-box :value="0" @change="valChange"></u-number-box>
+							<u-number-box :value="0" @change="valChange" ></u-number-box>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -80,7 +80,7 @@
 						<view class="collection">
 							<u-button class="artwork_detail" type="primary" size="mini" @click="onClickMoreInfo('artwork',item)">详情</u-button>
 							<p v-if="item.number>0">(已捐)</p>
-							<u-number-box :value="item.number" :min="0" @change="valChange"></u-number-box>
+							<u-number-box :value="artworkNumber[item.id-1]" :min="0" @plus="artworkNumberChange(item.id)"></u-number-box>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -196,23 +196,23 @@
 				//详情item
 				detailItem: [],
 				//鱼类已收集
-				fish_checked: [1,3,4],
+				fish_checked: [],
 				// 虫类已收集
-				insect_checked:[1,4,5],
+				insect_checked:[],
 				// 化石已收集（数量）
 				fossil_number:[],
 				// 艺术品已收集(数量)
 				artwork_number:[],
 				// 村民已入住
-				villager_checked:[1,19,32,42],
+				villager_checked:[],
 				// 家具已收集
-				furniture_checked:[1,10,32,25],
+				furniture_checked:[],
 				// diy已收集
-				diy_checked:[1,2,3,4,6,9,12],
+				diy_checked:[],
 				// 服装已收集
-				dress_checked:[1,2,4,12,23],
+				dress_checked:[],
 				// 唱片已收集
-				albums_checked:[1,2,3,5,7],
+				albums_checked:[],
 				//tabs列表
 				list: [{
 						name: '鱼类'
@@ -241,8 +241,6 @@
 					{
 						name: '唱片'
 					},
-
-
 				],
 				//鱼类信息
 				fish: [],
@@ -308,6 +306,10 @@
 					}
 				}
 				return insect_checked_list;
+			},
+			// 艺术品已收集数量数组
+			artworkNumber(){
+				return this.artwork_number
 			},
 			//村民已入住数组
 			villagerChecked(){
@@ -431,7 +433,10 @@
 			valChange(e) {
 				console.log('当前值为: ' + e.value)
 			},
-			
+			// 艺术品number变化监听
+			artworkNumberChange(id){
+				this.createUserArtworkCollectedInfo(id);
+			},
 			// u-switch控件变化监听
 			
 			//鱼类checked变化监听
@@ -442,8 +447,9 @@
 				if(this.fish_checked.includes(id)){
 					let index = this.fish_checked.indexOf(id);
 					this.fish_checked.splice(index,1);
+					this.deleteUserFishCollectedInfo(id)
 				}else{//如果不存在，则压入
-					this.fish_checked.push(id);
+					// this.fish_checked.push(id);
 					this.createUserFishCollectedInfo(id);
 				}
 				console.log("fish_checked: "+this.fish_checked)
@@ -452,12 +458,13 @@
 			insectCheckedChange(id){
 				// 传入改变的insectid,改变insect_checked数组
 				// 如果已经存在,则从中删除
-				// console.log("fishid:"+id);
 				if(this.insect_checked.includes(id)){
 					let index = this.insect_checked.indexOf(id);
 					this.insect_checked.splice(index,1);
+					this.deleteUserInsectCollectedInfo(id)
 				}else{//如果不存在，则压入
-					this.insect_checked.push(id);
+					// this.insect_checked.push(id);
+					this.createUserInsectCollectedInfo(id);
 				}
 				console.log("insect_checked: "+this.insect_checked)
 			},
@@ -465,7 +472,6 @@
 			villagerCheckedChange(id){
 				// 传入改变的villagerid,改变villager_checked数组
 				// 如果已经存在,则从中删除
-				// console.log("fishid:"+id);
 				if(this.villager_checked.includes(id)){
 					let index = this.villager_checked.indexOf(id);
 					this.villager_checked.splice(index,1);
@@ -478,12 +484,13 @@
 			furnitureCheckedChange(id){
 				// 传入改变的furnitureid,改变furniture_checked数组
 				// 如果已经存在,则从中删除
-				// console.log("fishid:"+id);
 				if(this.furniture_checked.includes(id)){
 					let index = this.furniture_checked.indexOf(id);
 					this.furniture_checked.splice(index,1);
+					this.deleteUserFurnitureCollectedInfo(id)
 				}else{//如果不存在，则压入
-					this.furniture_checked.push(id);
+					// this.furniture_checked.push(id);
+					this.createUserFurnitureCollectedInfo(id)
 				}
 				console.log("furniture_checked: "+this.furniture_checked)
 			},
@@ -494,8 +501,10 @@
 				if(this.diy_checked.includes(id)){
 					let index = this.diy_checked.indexOf(id);
 					this.diy_checked.splice(index,1);
+					this.deleteUserDiyCollectedInfo(id)
 				}else{//如果不存在，则压入
-					this.diy_checked.push(id);
+					// this.diy_checked.push(id);
+					this.createUserDiyCollectedInfo(id)
 				}
 				console.log("diy_checked: "+this.diy_checked)
 			},
@@ -506,8 +515,10 @@
 				if(this.dress_checked.includes(id)){
 					let index = this.dress_checked.indexOf(id);
 					this.dress_checked.splice(index,1);
+					this.deleteUserDressCollectedInfo(id)
 				}else{//如果不存在，则压入
-					this.dress_checked.push(id);
+					// this.dress_checked.push(id);
+					this.createUserDressCollectedInfo(id);
 				}
 				console.log("dress_checked: "+this.dress_checked)
 			},
@@ -518,8 +529,10 @@
 				if(this.albums_checked.includes(id)){
 					let index = this.albums_checked.indexOf(id);
 					this.albums_checked.splice(index,1);
+					this.deleteUserAlbumsCollectedInfo(id)
 				}else{//如果不存在，则压入
-					this.albums_checked.push(id);
+					// this.albums_checked.push(id);
+					this.createUserAlbumsCollectedInfo(id)
 				}
 				console.log("albums_checked: "+this.albums_checked)
 			},
@@ -801,6 +814,52 @@
 			
 			//获取user的图鉴收集信息
 			
+			//u-numberbox:
+			
+			// 获取 user artwork 收集信息
+			async getUserArtworkCollectedInfo(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/user_artwork/',
+					header: head,
+				})
+				// console.log("artwork_result")
+				// console.log(result)
+				//创建一个长度43 值全为0的数组
+				//用artworkid做索引，将对于位置替换成amount数值
+				let tmp_artwork= new Array(43).fill(0);
+				// console.log("tmp_artwork"+tmp_artwork);
+				for(let {artwork,amount} of result.data){
+					console.log("artworkid:"+artwork+" amount:"+amount);
+				
+					let index = (artwork-1) 
+					tmp_artwork.splice(index,1,amount)
+				}
+				// 前端数组与后端同步
+				this.artwork_number = tmp_artwork;
+				console.log("tmp_artwork"+tmp_artwork);
+				// console.log("artwork_number"+this.artwork_number)
+			},
+			// 第一次收集 向后端create user artwork 收集信息
+			async createUserArtworkCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'POST',
+					url: '/user_artwork/',
+					header: head,
+					data: {artwork:id},
+				})
+				console.log(result)
+				//将对应处的值替换成1（0->1)
+				this.artwork_number.splice(id-1,1,1);
+			},
+			// 向后端 update user artwork 收集信息
+			// 向后端delete user artwork 收集信息
+			
+			//u-switch：
 			//获取user fish 图鉴收集信息
 			async getUserFishCollectedInfo(){
 				const jwt = uni.getStorageSync("skey");
@@ -810,11 +869,12 @@
 					url: '/user_fish/',
 					header: head,
 				})
-				console.log(result.data.results)
-				// let fish_collected = result.data.results;
-				for(let {id,fish} of result.data.results){
-					console.log("id:"+id+" fish_id: "+fish);
+				let tmp_fish = []
+				for(let {id,fish} of result.data){
+					tmp_fish.push(fish);
 				}
+				//后端数据赋予前端，保证数据一致性
+				this.fish_checked = tmp_fish;
 			},
 			//向后端create user fish 收集信息
 			async createUserFishCollectedInfo(id){
@@ -826,15 +886,254 @@
 					header: head,
 					data: {fish:id},
 				})
+				// 本地数组同步
+				this.fish_checked.push(id);
+				// console.log(result);
+			},
+			//向后端delete user fish 收集信息
+			async deleteUserFishCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'DELETE',
+					url: '/user_fish/'+id+'/',
+					header: head,
+				})
+			},
+			//获取 get user insect 图鉴收集信息
+			async getUserInsectCollectedInfo(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/user_insect/',
+					header: head,
+				})
+				let tmp_insect = []
+				// let fish_collected = result.data.results;
+				for(let {id,insect} of result.data){
+					tmp_insect.push(insect);
+					// console.log("id:"+id+" insect_id: "+insect);
+				}
+				console.log("tmp_insect"+tmp_insect);
+				//后端数据赋予前端，保证数据一致性
+				this.insect_checked = tmp_insect;
+			},
+			//向后端create user insect 收集信息
+			async createUserInsectCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'POST',
+					url: '/user_insect/',
+					header: head,
+					data: {insect:id},
+				})
+				//本地数组同步
+				this.insect_checked.push(id);
 				console.log(result);
-			}
+			},
+			//向后端delete  user insect  收集信息
+			async deleteUserInsectCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'DELETE',
+					url: '/user_insect/'+id+'/',
+					header: head,
+				})
+			},
+			//获取 get user furniture 图鉴收集信息
+			async getUserFurnitureCollectedInfo(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/user_furniture/',
+					header: head,
+				})
+				let tmp_furniture = []
+				console.log(result)
+				// let fish_collected = result.data.results;
+				for(let {id,furniture} of result.data){
+					tmp_furniture.push(furniture);
+					// console.log("id:"+id+" insect_id: "+furniture);
+				}
+				console.log("tmp_furniture"+tmp_furniture);
+				//后端数据赋予前端，保证数据一致性
+				this.furniture_checked = tmp_furniture;
+			},
+			//向后端create user furniture 收集信息
+			async createUserFurnitureCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'POST',
+					url: '/user_furniture/',
+					header: head,
+					data: {furniture:id},
+				})
+				//本地数组同步
+				this.furniture_checked.push(id);
+				console.log(result);
+			},
+			//向后端delete user furniture收集信息
+			async deleteUserFurnitureCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'DELETE',
+					url: '/user_furniture/'+id+'/',
+					header: head,
+				})
+			},
+			//获取 get user diy 图鉴收集信息
+			async getUserDiyCollectedInfo(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/user_diy/',
+					header: head,
+				})
+				let tmp_diy = []
+				console.log(result)
+				// let fish_collected = result.data.results;
+				for(let {id,diy} of result.data){
+					tmp_diy.push(diy);
+					// console.log("id:"+id+" insect_id: "+furniture);
+				}
+				console.log("tmp_diy"+tmp_diy);
+				//后端数据赋予前端，保证数据一致性
+				this.diy_checked = tmp_diy;
+			},
+			//向后端create user diy 收集信息
+			async createUserDiyCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'POST',
+					url: '/user_diy/',
+					header: head,
+					data: {diy:id},
+				})
+				//本地数组同步
+				this.diy_checked.push(id);
+				console.log(result);
+			},
+			//向后端delete user diy收集信息
+			async deleteUserDiyCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'DELETE',
+					url: '/user_diy/'+id+'/',
+					header: head,
+				})
+			},
+			//获取 get user dress 图鉴收集信息
+			async getUserDressCollectedInfo(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/user_dress/',
+					header: head,
+				})
+				let tmp_dress = []
+				console.log(result)
+				// let fish_collected = result.data.results;
+				for(let {id,dress} of result.data){
+					tmp_dress.push(dress);
+					// console.log("id:"+id+" insect_id: "+furniture);
+				}
+				console.log("tmp_dress"+tmp_dress);
+				//后端数据赋予前端，保证数据一致性
+				this.dress_checked = tmp_dress;
+			},
+			//向后端create user dress 收集信息
+			async createUserDressCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'POST',
+					url: '/user_dress/',
+					header: head,
+					data: {dress:id},
+				})
+				//本地数组同步
+				this.dress_checked.push(id);
+				console.log(result);
+			},
+			//向后端delete user dress收集信息
+			async deleteUserDressCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'DELETE',
+					url: '/user_dress/'+id+'/',
+					header: head,
+				})
+			},
+			//获取 get user albums 图鉴收集信息
+			async getUserAlbumsCollectedInfo(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/user_album/',
+					header: head,
+				})
+				let tmp_album = []
+				console.log(result)
+				// let fish_collected = result.data.results;
+				for(let {id,album} of result.data){
+					tmp_album.push(album);
+					// console.log("id:"+id+" insect_id: "+furniture);
+				}
+				console.log("tmp_album"+tmp_album);
+				//后端数据赋予前端，保证数据一致性
+				this.albums_checked = tmp_album;
+			},
+			//向后端create user albums 收集信息
+			async createUserAlbumsCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'POST',
+					url: '/user_album/',
+					header: head,
+					data: {album:id},
+				})
+				//本地数组同步
+				this.albums_checked.push(id);
+				console.log(result);
+			},
+			//向后端delete user albums收集信息
+			async deleteUserAlbumsCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'DELETE',
+					url: '/user_album/'+id+'/',
+					header: head,
+				})
+			},
+			
+			
 		},
 		onLoad() {
 			this.getFishInfo();
 			
 		},
 		onShow() {
+			this.getUserArtworkCollectedInfo()
 			this.getUserFishCollectedInfo()
+			this.getUserInsectCollectedInfo()
+			this.getUserFurnitureCollectedInfo()
+			this.getUserDiyCollectedInfo()
+			this.getUserDressCollectedInfo()
+			this.getUserAlbumsCollectedInfo()
 		}
 	}
 </script>

@@ -10594,10 +10594,11 @@ var myRequest = function myRequest(options) {
       url: baseUrl + options.url,
       header: options.header,
       success: function success(res) {
+        // console.log("delelte"+res.statusCode)
         // console.log("post"+res.statusCode)
-        if (res.statusCode !== 200 && res.statusCode !== 201) {
+        if (res.statusCode !== 200 && res.statusCode !== 201 && res.statusCode !== 204) {
           return uni.showToast({
-            title: '获取数据失败' });
+            title: '获取数据失败' + res.statusCode });
 
         }
         resolve(res);
