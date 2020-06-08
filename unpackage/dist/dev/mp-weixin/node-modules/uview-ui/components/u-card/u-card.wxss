@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.u-card.data-v-45112194 {
+.u-card.data-v-6096f892 {
   position: relative;
   overflow: hidden;
   font-size: 28rpx;
@@ -32,31 +32,31 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-.u-card-full.data-v-45112194 {
+.u-card-full.data-v-6096f892 {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
-.u-card.data-v-45112194:after {
+.u-card.data-v-6096f892:after {
   -webkit-border-radius: 20rpx;
           border-radius: 20rpx;
 }
-.u-card__head--left.data-v-45112194 {
+.u-card__head--left.data-v-6096f892 {
   color: #303133;
 }
-.u-card__head--left__thumb.data-v-45112194 {
+.u-card__head--left__thumb.data-v-6096f892 {
   margin-right: 16rpx;
 }
-.u-card__head--left__title.data-v-45112194 {
+.u-card__head--left__title.data-v-6096f892 {
   max-width: 400rpx;
 }
-.u-card__head--right.data-v-45112194 {
+.u-card__head--right.data-v-6096f892 {
   color: #909399;
   margin-left: 6rpx;
 }
-.u-card__body.data-v-45112194 {
+.u-card__body.data-v-6096f892 {
   color: #606266;
 }
-.u-card__foot.data-v-45112194 {
+.u-card__foot.data-v-6096f892 {
   color: #909399;
 }
 

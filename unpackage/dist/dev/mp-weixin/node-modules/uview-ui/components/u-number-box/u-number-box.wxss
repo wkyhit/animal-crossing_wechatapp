@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.u-numberbox.data-v-08119398 {
+.u-numberbox.data-v-6e817bd7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: inline-flex;
@@ -32,7 +32,7 @@
   -webkit-align-items: center;
           align-items: center;
 }
-.u-number-input.data-v-08119398 {
+.u-number-input.data-v-6e817bd7 {
   position: relative;
   text-align: center;
   padding: 0;
@@ -47,8 +47,8 @@
   -webkit-justify-content: center;
           justify-content: center;
 }
-.u-icon-plus.data-v-08119398,
-.u-icon-minus.data-v-08119398 {
+.u-icon-plus.data-v-6e817bd7,
+.u-icon-minus.data-v-6e817bd7 {
   width: 60rpx;
   display: -webkit-box;
   display: -webkit-flex;
@@ -60,19 +60,19 @@
   -webkit-align-items: center;
           align-items: center;
 }
-.u-icon-plus.data-v-08119398 {
+.u-icon-plus.data-v-6e817bd7 {
   -webkit-border-radius: 0 8rpx 8rpx 0;
           border-radius: 0 8rpx 8rpx 0;
 }
-.u-icon-minus.data-v-08119398 {
+.u-icon-minus.data-v-6e817bd7 {
   -webkit-border-radius: 8rpx 0 0 8rpx;
           border-radius: 8rpx 0 0 8rpx;
 }
-.u-icon-disabled.data-v-08119398 {
+.u-icon-disabled.data-v-6e817bd7 {
   color: #c8c9cc !important;
   background: #f7f8fa !important;
 }
-.u-input-disabled.data-v-08119398 {
+.u-input-disabled.data-v-6e817bd7 {
   color: #c8c9cc !important;
   background-color: #f2f3f5 !important;
 }

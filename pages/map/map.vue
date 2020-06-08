@@ -64,7 +64,7 @@
 						<view class="collection">
 							<u-button class="btn_detail" type="primary" size="mini" @click="onClickMoreInfo('fossil',item)">详情</u-button>
 							<p>已收集</p>
-							<u-number-box :value="0" @change="valChange" ></u-number-box>
+							<u-number-box :value="fossilNumber[item.id-1]" :min="0" @plus="fossilNumberAdd(item.id)" @minus="fossilNumberMinus(item.id)" ></u-number-box>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -80,7 +80,7 @@
 						<view class="collection">
 							<u-button class="artwork_detail" type="primary" size="mini" @click="onClickMoreInfo('artwork',item)">详情</u-button>
 							<p v-if="item.number>0">(已捐)</p>
-							<u-number-box :value="artworkNumber[item.id-1]" :min="0" @plus="artworkNumberChange(item.id)"></u-number-box>
+							<u-number-box :value="artworkNumber[item.id-1]" :min="0" @plus="artworkNumberAdd(item.id)" @minus="artworkNumberMinus(item.id)" ></u-number-box>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -307,6 +307,10 @@
 				}
 				return insect_checked_list;
 			},
+			// 化石已收集数量数组
+			fossilNumber(){
+				return this.fossil_number
+			},
 			// 艺术品已收集数量数组
 			artworkNumber(){
 				return this.artwork_number
@@ -429,13 +433,80 @@
 					this.serchAlbumsInfo(encode_url)
 				}
 			},
-			//化石数量变化监听
-			valChange(e) {
-				console.log('当前值为: ' + e.value)
+			
+			//化石number变化监听
+			// 化石 number plus事件监听
+			fossilNumberAdd(id){
+				//如果尚未收集过，即 number === 0，则进行create
+				// 反之如果number 不为0 ,则说明原有number>=1,则进行update
+				if(this.fossil_number[id-1] === 0 ){
+					this.createUserFossilCollectedInfo(id);
+				}else{
+					//update操作,由于是add，并且每次+1
+					// 同步前端数组
+					let tmp = this.fossil_number[id-1] + 1
+					// 使数组变化,这样计算属性artworkNumber才能监听
+					// 传入id 和变化后的数量
+					this.updateUserFossilCollectedInfo(id,tmp)
+					this.fossil_number.splice(id-1,1,tmp)
+				}
 			},
+			// 化石number minus 事件监听
+			fossilNumberMinus(id){
+				// 如果能减少,一定是 >= 1，如果减之前=1，则调用delete
+				//如果减之前>1，则调用update
+				if(this.fossil_number[id-1] === 1){
+					// 调用delete
+					let tmp = 0;
+					// 本地数组同步
+					this.fossil_number.splice(id-1,1,tmp)
+					this.deleteUserFossilCollectedInfo(id)
+				}else{
+					// 调用update
+					let tmp = this.fossil_number[id-1] - 1
+					//传入id 和 最新的数量
+					this.updateUserFossilCollectedInfo(id,tmp)
+					//本地数组同步
+					this.fossil_number.splice(id-1,1,tmp)
+				}
+			},
+			
 			// 艺术品number变化监听
-			artworkNumberChange(id){
-				this.createUserArtworkCollectedInfo(id);
+			//艺术品 number plus事件监听
+			artworkNumberAdd(id){
+				//如果尚未收集过，即 number === 0，则进行create
+				// 反之如果number 不为0 ,则说明原有number>=1,则进行update
+				if(this.artwork_number[id-1] === 0 ){
+					this.createUserArtworkCollectedInfo(id);
+				}else{
+					//update操作,由于是add，并且每次+1
+					// 同步前端数组
+					let tmp = this.artwork_number[id-1] + 1
+					// 使数组变化,这样计算属性artworkNumber才能监听
+					// 传入id 和变化后的数量
+					this.updateUserArtworkCollectedInfo(id,tmp)
+					this.artwork_number.splice(id-1,1,tmp)
+					// this.artwork_number[id-1] = this.artwork_number[id-1]+1;
+				}
+			},
+			// 艺术品number minus事件监听
+			artworkNumberMinus(id){
+				// 如果能减少,一定是 >= 1，如果减之前=1，则调用delete
+				//如果减之前>1，则调用update
+				if(this.artwork_number[id-1] === 1){
+					// 调用delete
+					let tmp = 0;
+					// 本地数组同步
+					this.artwork_number.splice(id-1,1,tmp)
+					this.deleteUserArtworkCollectedInfo(id)
+				}else{
+					// 调用update
+					let tmp = this.artwork_number[id-1] - 1
+					//传入id 和 最新的数量
+					this.updateUserArtworkCollectedInfo(id,tmp)
+					//本地数组同步
+					this.artwork_number.splice(id-1,1,tmp)
+				}
 			},
 			// u-switch控件变化监听
 			
@@ -475,8 +546,18 @@
 				if(this.villager_checked.includes(id)){
 					let index = this.villager_checked.indexOf(id);
 					this.villager_checked.splice(index,1);
-				}else{//如果不存在，则压入
-					this.villager_checked.push(id);
+					this.deleteUserVillagerCollectedInfo(id)
+					
+				}else{//如果不存在，且村民数量未到10人，则压入
+					// this.villager_checked.push(id);
+					if(this.villager_checked.length < 10){
+						this.createUserVillagerCollectedInfo(id)
+					}else{
+						return uni.showToast({
+							title: "居民不能超过10人哦",
+							icon: "none",
+						})
+					}
 				}
 				console.log("villager_checked: "+this.villager_checked)
 			},
@@ -816,6 +897,65 @@
 			
 			//u-numberbox:
 			
+			// 获取user fossil 收集信息
+			async getUserFossilCollectedInfo(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/user_fossil/',
+					header: head,
+				})
+				// console.log(result)
+				//创建一个长度73 值全为0的数组
+				//用artworkid做索引，将对于位置替换成amount数值
+				let tmp_fossil= new Array(73).fill(0);
+				for(let {fossil,amount} of result.data){
+					// console.log("artworkid:"+artwork+" amount:"+amount);
+					// 获取索引值: id-1 在索引处0替换成对应的amount
+					let index = (fossil-1) 
+					tmp_fossil.splice(index,1,amount)
+				}
+				// 前端数组与后端同步
+				this.fossil_number = tmp_fossil;
+				console.log("tmp_fossil"+tmp_fossil);
+			},
+			// 第一次收集 向后端create user fossil 收集信息
+			async createUserFossilCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'POST',
+					url: '/user_fossil/',
+					header: head,
+					data: {fossil:id},
+				})
+				// console.log(result)
+				//将对应处的值替换成1（0->1)
+				this.fossil_number.splice(id-1,1,1);
+			},
+			// 向后端 update user fossil 收集信息
+			async updateUserFossilCollectedInfo(id,num){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'PUT',
+					url: '/user_fossil/'+id+'/',
+					header: head,
+					data: {amount:num,fossil:id},
+				})
+			},
+			// 向后端delete user fossil 收集信息
+			async deleteUserFossilCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'DELETE',
+					url: '/user_fossil/'+id+'/',
+					header: head,
+				})
+			},
+			
 			// 获取 user artwork 收集信息
 			async getUserArtworkCollectedInfo(){
 				const jwt = uni.getStorageSync("skey");
@@ -832,8 +972,7 @@
 				let tmp_artwork= new Array(43).fill(0);
 				// console.log("tmp_artwork"+tmp_artwork);
 				for(let {artwork,amount} of result.data){
-					console.log("artworkid:"+artwork+" amount:"+amount);
-				
+					// console.log("artworkid:"+artwork+" amount:"+amount);
 					let index = (artwork-1) 
 					tmp_artwork.splice(index,1,amount)
 				}
@@ -852,12 +991,31 @@
 					header: head,
 					data: {artwork:id},
 				})
-				console.log(result)
+				// console.log(result)
 				//将对应处的值替换成1（0->1)
 				this.artwork_number.splice(id-1,1,1);
 			},
 			// 向后端 update user artwork 收集信息
+			async updateUserArtworkCollectedInfo(id,num){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'PUT',
+					url: '/user_artwork/'+id+'/',
+					header: head,
+					data: {amount:num,artwork:id},
+				})
+			},
 			// 向后端delete user artwork 收集信息
+			async deleteUserArtworkCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'DELETE',
+					url: '/user_artwork/'+id+'/',
+					header: head,
+				})
+			},
 			
 			//u-switch：
 			//获取user fish 图鉴收集信息
@@ -940,6 +1098,47 @@
 				const result = await this.$myRequest({
 					method: 'DELETE',
 					url: '/user_insect/'+id+'/',
+					header: head,
+				})
+			},
+			//获取 get user villager 图鉴收集信息
+			async getUserVillagerCollectedInfo(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/user_dweller/',
+					header: head,
+				})
+				let tmp_villager = []
+				for(let {id,dweller} of result.data){
+					tmp_villager.push(dweller);
+				}
+				console.log("tmp_villager"+tmp_villager);
+				//后端数据赋予前端，保证数据一致性
+				this.villager_checked = tmp_villager;
+			},
+			//向后端create user villager 收集信息
+			async createUserVillagerCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'POST',
+					url: '/user_dweller/',
+					header: head,
+					data: {dweller:id},
+				})
+				//本地数组同步
+				this.villager_checked.push(id);
+				// console.log(result);
+			},
+			//向后端delete  user villager  收集信息
+			async deleteUserVillagerCollectedInfo(id){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'DELETE',
+					url: '/user_dweller/'+id+'/',
 					header: head,
 				})
 			},
@@ -1124,12 +1323,14 @@
 		},
 		onLoad() {
 			this.getFishInfo();
-			
 		},
 		onShow() {
+			//获取用户收集数据
 			this.getUserArtworkCollectedInfo()
+			this.getUserFossilCollectedInfo()
 			this.getUserFishCollectedInfo()
 			this.getUserInsectCollectedInfo()
+			this.getUserVillagerCollectedInfo()
 			this.getUserFurnitureCollectedInfo()
 			this.getUserDiyCollectedInfo()
 			this.getUserDressCollectedInfo()

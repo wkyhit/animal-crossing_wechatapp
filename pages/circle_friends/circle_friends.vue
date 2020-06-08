@@ -1,59 +1,84 @@
 <template>
 	<view class="content">
-		<view class="nuter">
-			<view :class="target==0?'active':''" @click="setIndex" data-index="0">
-				动态广场
+		<view class="topBar">
+			<view class="tab_outside" style="width: 600rpx;">
+				<u-tabs :list="list" :is-scroll="true" gutter="80" :current="current_tab" @change="changeTab"></u-tabs>
 			</view>
-			<view :class="target==1?'active':''" @click="setIndex" data-index="1">
-				发布动态
+			<view class="search_outside" v-show="current_tab === 0">
+				<u-search placeholder="输入名称可模糊搜索" v-model="keyword" :clearabled="true" shape="round" :show-action="true"
+				 action-text="搜索" :animation="true"></u-search>
 			</view>
 		</view>
-		<swiper :duration="500" :current="thisindex" :data-index='thisindex' @change="toggle" circular>
-			<swiper-item class="swiper-item">
-				<!-- 按顺序对应第一个的内容 动态广场 -->
-				<view class="trends_square">
-					<view class="clr"></view>
-					<!-- 动态卡片 -->
-					<view class="trends_card" v-for="(item,index) in trends " :key="index">
-						<!-- 卡片头部 -->
-						<view class="trends_card_head">
-							<!-- 用户头像 -->
-							<view class="avator">
-								{{item.user_name}}
-								<view class="clr"></view>
-								<!-- <text>{{item.user_name}}</text> -->
-								<!-- <image :src="item.user_img"></image> -->
-								<!-- <u-avatar :src="item.user_img" mode="square" size="mini"></u-avatar> -->
-							</view>
-							<!-- 用户名字 -->
-							<view class="name">
-								{{item.user_name}}
-								<view class="clr"></view>
-								<!-- <text>{{item.user_name}}</text> -->
-							</view>
-						</view>
-						<view class="clr"></view>
-						<!-- 卡片中部内容 -->
-						<view class="trends_card_content">
-							<view class="content_text">
-								
-							</view>
-							<view class="content_img">
-								<view class="content_img1">
-									<image></image>
-								</view>
-							</view>
+		<!-- 动态广场tab -->
+		<scroll-view v-show="current_tab===0" class="trends_square" :scroll-y="true">
+			<!-- 动态卡片 -->
+			<view class="trends_card" v-for="(item,index) in trends " :key="index">
+				<!-- 卡片头部 -->
+				<view class="trends_card_head">
+					<!-- 用户头像 -->
+					<view class="avator">
+						<!-- {{item.user_name}} -->
+						<!-- <text>{{item.user_name}}</text> -->
+						<!-- <image :src="item.user_img"></image> -->
+						<u-avatar :src="img_test" mode="square" size="mini"></u-avatar>
+					</view>
+					<!-- 用户名字 -->
+					<view class="name">
+						<!-- {{item.user_name}} -->
+						<text>{{item.user}}</text>
+					</view>
+					<!-- 操作 -->
+					<view class="operate">
+						<u-icon name="more-dot-fill" size="36"></u-icon>
+					</view>
+				</view>
+				<!-- 卡片中部内容 -->
+				<view class="trends_card_content">
+					<view class="content_text">
+						<text>
+							{{item.content}}
+						</text>
+					</view>
+					<view class="content_img">
+						<view class="content_img1">
+							<image :src="img_test"></image>
 						</view>
 					</view>
-					<view class="clr"></view>
 				</view>
-			</swiper-item>
-			
-			<swiper-item class="swiper-item">
-				<!-- 按顺序对应第二个的内容 -->
-				2222222
-			</swiper-item>
-		</swiper>
+				<!-- 卡片下部内容 -->
+				<view class="trends_card_bottom">
+					<!-- 点赞 -->
+					<view class="like" >
+						<u-icon name="heart" :hover-class="heart-fill" size="36" @click="clickLike"></u-icon>
+						<text>{{item.thumbs_up}}</text>
+					</view>
+					<!-- 评论 -->
+					<view class="comment">
+						<u-icon name="weixin-fill"  size="36" @click="clickComment"></u-icon>
+						<text></text>
+					</view>
+					<!-- 分享 -->
+					<view class="share">
+						<u-icon name="share"  :hover-class="share-fill" size="36" @click="clickShare"></u-icon>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+		<!-- 发布动态 -->
+		<view v-show="current_tab===1" class="post_trends">
+			<view class="card">
+				<view class="context">
+					<textarea class="context_input" placeholder="请输入内容..." maxlength=-1></textarea>
+					<!-- <input class="context_input" placeholder="请输入内容..."  /> -->
+				</view>
+				<view class="upload_img">
+					<u-upload :action="action" :file-list="fileList" ></u-upload>
+				</view>
+			</view>
+			<view class="submit">
+				<button class="btn_submit" :value="new_trend" @click="submitTrends">提交</button>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -61,141 +86,254 @@
 	export default {
 		data() {
 			return {
-				// 当前样式
-				target: 0,
-				// 当前item位置
-				thisindex: 0,
-				//动态的数据
-				trends:[{user_img:"http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",user_name:"wky"},{}],
+				//上方tabs list
+				list: [{
+					name: "动态广场"
+				}, {
+					name: "发布动态"
+				}],
+				//当前tab
+				current_tab: 0,
+				//搜索keyword
+				keyword: "",
+				trends:[],
+				//动态图片(临时)
+				img_test:"http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",
+				//发布动态的内容
+				new_trend:"",
+				
 			};
 		},
+		onLoad() {
+			this.getTrends();
+		},
 		methods: {
-			// 切换触发的事件
-			toggle(e) {
-				let index = e.detail.current
-				this.target = index
+			//监听tabs change
+			changeTab(index) {
+				this.current_tab = index;
 			},
-			// 点击nav控制下面的展示
-			setIndex(e) {
-				let index = e.currentTarget.dataset.index
-				this.thisindex = index
+			clickLike(){
+				console.log("click like")
 			},
+			clickComment(){
+				
+			},
+			clickShare(){
+				
+			},
+			//获取动态
+			async getTrends(){
+				const jwt = uni.getStorageSync("skey");
+				// console.log("jwt: "+jwt);
+				const head = {'Authorization':"Bearer "+jwt};
+				// console.log("header: "+head.Authorization);
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/posts/',
+					header: head,
+				})
+				this.trends = [...this.trends, ...result.data.results]
+			}
+			,
+			//提交动态
+			submitTrends(){
+				
+			},
+			
+			
 		}
 	}
 </script>
 
 <style lang="scss">
-	page {
-		background-color: #9fc8cc;
-	}
-	.nuter {
-		width: 100%;
-		height: 80rpx;
-		line-height: 80rpx;
+	.content {
+		// position: relative;
 		display: flex;
-		justify-content: space-around;
-		font-size: 35rpx;
-	}
-	.nuter view {
-		flex: 1;
-		font-size: 30rpx;
-		text-align: center;
-		transition: all 0.5s ease .1s;
-		background-color: #f7f7f7;
+		flex-direction: column;
+		align-items: center;
+		// background: url("https://i0.hdslb.com/bfs/article/1bbad7cad546d3499317ea4607960f7465970140.jpg@1320w_2346h.webp");
+		// background-size: 750rpx 1200rpx;
+		// height: 1200rpx;
 	}
 
-	.active {
-		box-sizing: border-box;
-		color: #007AFF;
-		border-bottom: 5rpx solid #00aaff;
-		background-color: #f3ffff;
-		border-radius: 10rpx;
-		box-shadow: 3px 3px 5px #888888;
-	}
-
-	swiper {
-		height: 80vh;
-		// height: 100%;
-		width: 100%;
-		overflow: hidden;
-		text-align: center;
-		line-height: 300rpx;
-		/* background-color: red; */
-	}
-
-	.swiper-item {
-		overflow-y: scroll;
-		width: 99.5%;
-		height: 99%;
-		/* background-color: white; */
-		/* height: 99%; */
-		box-sizing: border-box;
-		padding: 1rpx;
-	}
-	//动态广场
-	.trends_square{
-		margin-top: 60rpx;
-		height:100%;
+	// 顶部tabs和搜索栏
+	.topBar {
+		background-color: #FFFFFF;
+		position: fixed;
+		top: 0;
+		z-index: 99;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+
+		// tabs
+		.tab_outside {}
+
+		//搜索栏
+		.search_outside {
+			width: 100%;
+		}
+
+	}
+
+	//动态广场
+	.trends_square {
+		margin-top: 150rpx;
+		height: 1200rpx;
+		width: 90%;
+
+		// display: flex;
+		// flex-direction: column;
+		// align-items: center;
 		// background-color: red;
 		// 动态卡片
-		.trends_card{
+		.trends_card {
+			border-radius: 38.96rpx;
+			box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+			background-color: rgba(223, 206, 222, 0.9);
 			margin-top: 55rpx;
-			width: 600rpx;
-			height: 500rpx;
-			background-color: blue;
+			margin-bottom: 55rpx;
+			// margin-bottom: 55rpx;
+			width: 100%;
+			// height: 500rpx;
+			// background-color: blue;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
 			// 卡片头部
-			.trends_card_head{
-				width: 100%;
+			.trends_card_head {
+				margin-top: 25rpx;
+				width: 96%;
 				height: 100rpx;
 				display: flex;
 				justify-content: flex-start;
-				background-color: red;
-				.avator{
-					height: 100%;
-					flex: 1;
-					background-color: yellow;
-					display: flex;
-					justify-content: space-evenly;
+
+				// background-color: red;
+				// 头像
+				.avator {
+					// height: 100%;
+					max-height: 100rpx;
+					max-width: 100rpx;
 					// flex: 1;
-					// margin: 10rpx;
-					// height: 75rpx;
-					// width: 75rpx;
-				}
-				.name{
-					background-color: green;
-					height: 100%;
-					flex: 1;
+					// background-color: yellow;
 					display: flex;
+					align-items: center;
+				}
+
+				// 名字
+				.name {
+					margin-left: 25rpx;
+					// background-color: green;
+					height: 100%;
+					// flex: 1;
+					display: flex;
+					align-items: center;
 					justify-content: space-evenly;
+				}
+
+				// 操作
+				.operate {
+					margin-left: auto;
+					padding: 25rpx;
 				}
 			}
+
 			// 卡片内容中部
-			.trends_card_content{
-				width: 100%;
-				height: 380rpx;
-				// background-color: yellow;
+			.trends_card_content {
+				width: 96%;
+
 				// 文字内容
-				.content_text{
+				.content_text {
 					width: 100%;
-					height: 150rpx;
-					// background-color: black;
+					// height: 150rpx;
 				}
 				// 图片内容
-				.content_img{
+				.content_img {
+					margin: 25rpx 0;
 					width: 100%;
-					height: 220rpx;
-					// background-color: green;
+					display: flex;
+					justify-content: space-evenly;
+					// height: 300rpx;
+					.content_img1 {
+						// max-width: 150rpx;
+						// max-height: 150rpx;
+						image {
+							max-width: 300rpx;
+							max-height: 300rpx;
+						}
+					}
 				}
-				
+
+			}
+			
+			// 卡片下部
+			.trends_card_bottom{
+				width: 98%;
+				height: 100rpx;
+				display: flex;
+				justify-content: space-evenly;
+				align-items: center;
+				// 点赞
+				.like{
+					display: flex;
+					text{
+						font-size: 24rpx;
+						margin-left: 10rpx;
+					}
+				}
+				// 评论
+				.comment{
+					display: flex;
+				}
+					
 			}
 		}
 	}
-	.clr{
-		 clear:both;
-		 font-size:0;
+	
+	//发布动态
+	.post_trends{
+		margin-top: 150rpx;
+		height: 1200rpx;
+		width: 100%;
+		// display: flex;
+		// justify-content: space-evenly;
+		.card{
+			margin: auto;
+			width: 95%;
+			border-radius: 38.96rpx;
+			box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+			background-color: rgba(223, 206, 222, 0.9);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			.context{
+				margin: 35rpx 20rpx;
+				width: 96%;
+				height: 500rpx;
+				.context_input{
+					width:100% ;
+				}
+			}
+			.upload_img{
+				
+			}
+		}
+		.submit{
+			width: 200rpx;
+			height: 75rpx;
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			border-radius: 25rpx;
+			box-shadow: 0px 5px 15px rgba(209, 213, 223, 0.5);
+			.btn_submit{
+				border-radius: 25rpx;
+				box-shadow: 0px 5px 15px rgba(209, 213, 223, 0.5);
+				background-color: rgba(9, 95, 223, 0.9);
+			}
+		}
 	}
 </style>

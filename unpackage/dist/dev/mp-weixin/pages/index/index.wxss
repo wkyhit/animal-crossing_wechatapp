@@ -24,13 +24,13 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.content.data-v-0279215f {
+.content.data-v-7fc59c5c {
   position: relative;
   background: url("https://i0.hdslb.com/bfs/article/1bbad7cad546d3499317ea4607960f7465970140.jpg@1320w_2346h.webp");
   background-size: 750rpx 1200rpx;
   height: 1200rpx;
 }
-.card.data-v-0279215f {
+.card.data-v-7fc59c5c {
   position: absolute;
   display: -webkit-box;
   display: -webkit-flex;
@@ -46,7 +46,7 @@
   -webkit-transform: translate(5%, 35%);
           transform: translate(5%, 35%);
 }
-.wrap.data-v-0279215f {
+.wrap.data-v-7fc59c5c {
   background-color: rgba(255, 255, 255, 0.7);
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
@@ -54,7 +54,7 @@
           border-radius: 15px;
   padding: 40rpx;
 }
-.grid_icon.data-v-0279215f {
+.grid_icon.data-v-7fc59c5c {
   margin-top: 30rpx;
   background-color: rgba(255, 255, 255, 0.6);
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
@@ -62,12 +62,12 @@
   -webkit-border-radius: 5px;
           border-radius: 5px;
 }
-.grid-text.data-v-0279215f {
+.grid-text.data-v-7fc59c5c {
   font-size: 28rpx;
   margin-top: 4rpx;
   color: #909399;
 }
-.uni-card.data-v-0279215f {
+.uni-card.data-v-7fc59c5c {
   margin: 20rpx 20rpx;
 }
 

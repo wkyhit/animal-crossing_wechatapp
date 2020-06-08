@@ -1,1 +1,1 @@
-<block wx:if="{{show}}"><view class="{{['u-loading data-v-f873ab44',mode=='circle'?'u-loading-circle':'u-loading-flower']}}" style="{{$root.s0}}"></view></block>
+<block wx:if="{{show}}"><view class="{{['u-loading data-v-b35bb37e',mode=='circle'?'u-loading-circle':'u-loading-flower']}}" style="{{$root.s0}}"></view></block>

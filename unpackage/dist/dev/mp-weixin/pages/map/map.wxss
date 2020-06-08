@@ -24,17 +24,17 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.topBar.data-v-51404933 {
+.topBar.data-v-21586aa0 {
   position: fixed;
   top: 0;
   z-index: 99;
   width: 100%;
 }
-.list.data-v-51404933 {
+.list.data-v-21586aa0 {
   height: 960rpx;
   margin-top: 145rpx;
 }
-.item.data-v-51404933 {
+.item.data-v-21586aa0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -49,17 +49,17 @@
   -webkit-align-items: center;
           align-items: center;
 }
-.item .description.data-v-51404933 {
+.item .description.data-v-21586aa0 {
   -webkit-box-flex: 1em;
   -webkit-flex: 1em;
           flex: 1em;
 }
-.item .price.data-v-51404933 {
+.item .price.data-v-21586aa0 {
   -webkit-box-flex: 1em;
   -webkit-flex: 1em;
           flex: 1em;
 }
-.collection.data-v-51404933 {
+.collection.data-v-21586aa0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -67,19 +67,19 @@
   -webkit-justify-content: flex-end;
           justify-content: flex-end;
 }
-.collection .btn_detail.data-v-51404933 {
+.collection .btn_detail.data-v-21586aa0 {
   position: absolute;
   left: 0;
   -webkit-transform: translate(50%);
           transform: translate(50%);
 }
-.collection .sw_button.data-v-51404933 {
+.collection .sw_button.data-v-21586aa0 {
   margin-left: 15rpx;
 }
-u-number-box.data-v-51404933 {
+u-number-box.data-v-21586aa0 {
   margin-left: 25rpx;
 }
-.fishAndinsects_view.data-v-51404933 {
+.fishAndinsects_view.data-v-21586aa0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -90,7 +90,7 @@ u-number-box.data-v-51404933 {
   -webkit-align-items: center;
           align-items: center;
 }
-.fishAndinsects_view .v_img.data-v-51404933 {
+.fishAndinsects_view .v_img.data-v-21586aa0 {
   margin: 15rpx 15rpx;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -98,12 +98,12 @@ u-number-box.data-v-51404933 {
   max-width: 70rpx;
   max-height: 75rpx;
 }
-.fishAndinsects_view .cell-group.data-v-51404933 {
+.fishAndinsects_view .cell-group.data-v-21586aa0 {
   -webkit-box-flex: 4;
   -webkit-flex: 4;
           flex: 4;
 }
-.artsAndfossil_view.data-v-51404933 {
+.artsAndfossil_view.data-v-21586aa0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -114,7 +114,7 @@ u-number-box.data-v-51404933 {
   -webkit-align-items: center;
           align-items: center;
 }
-.artsAndfossil_view .v_img.data-v-51404933 {
+.artsAndfossil_view .v_img.data-v-21586aa0 {
   margin: 15rpx 15rpx;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -122,12 +122,12 @@ u-number-box.data-v-51404933 {
   max-width: 70rpx;
   max-height: 75rpx;
 }
-.artsAndfossil_view .cell-group.data-v-51404933 {
+.artsAndfossil_view .cell-group.data-v-21586aa0 {
   -webkit-box-flex: 4;
   -webkit-flex: 4;
           flex: 4;
 }
-.villager_view.data-v-51404933 {
+.villager_view.data-v-21586aa0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -138,7 +138,7 @@ u-number-box.data-v-51404933 {
   -webkit-align-items: center;
           align-items: center;
 }
-.villager_view .v_img.data-v-51404933 {
+.villager_view .v_img.data-v-21586aa0 {
   margin: 15rpx 15rpx;
   max-width: 75rpx;
   max-height: 75rpx;
@@ -146,7 +146,7 @@ u-number-box.data-v-51404933 {
   -webkit-flex: 1;
           flex: 1;
 }
-.villager_view .cell-group.data-v-51404933 {
+.villager_view .cell-group.data-v-21586aa0 {
   -webkit-box-flex: 4;
   -webkit-flex: 4;
           flex: 4;

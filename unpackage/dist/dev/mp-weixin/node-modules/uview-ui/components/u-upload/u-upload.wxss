@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.u-upload.data-v-0ff4dc74 {
+.u-upload.data-v-0ff715d2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -34,7 +34,7 @@
   -webkit-align-items: center;
           align-items: center;
 }
-.u-list-item.data-v-0ff4dc74 {
+.u-list-item.data-v-0ff715d2 {
   width: 200rpx;
   height: 200rpx;
   overflow: hidden;
@@ -53,10 +53,10 @@
   -webkit-justify-content: center;
           justify-content: center;
 }
-.u-preview-wrap.data-v-0ff4dc74 {
+.u-preview-wrap.data-v-0ff715d2 {
   border: 1px solid #ebecee;
 }
-.u-add-wrap.data-v-0ff4dc74 {
+.u-add-wrap.data-v-0ff715d2 {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -64,18 +64,18 @@
   color: #606266;
   font-size: 28rpx;
 }
-.u-add-tips.data-v-0ff4dc74 {
+.u-add-tips.data-v-0ff715d2 {
   margin-top: 20rpx;
 }
-.u-add-wrap__hover.data-v-0ff4dc74 {
+.u-add-wrap__hover.data-v-0ff715d2 {
   background-color: #ebecee;
 }
-.u-preview-image.data-v-0ff4dc74 {
+.u-preview-image.data-v-0ff715d2 {
   display: block;
   width: 100%;
   height: 100%;
 }
-.u-delete-icon.data-v-0ff4dc74 {
+.u-delete-icon.data-v-0ff715d2 {
   position: absolute;
   top: 10rpx;
   right: 10rpx;
@@ -95,7 +95,7 @@
   -webkit-justify-content: center;
           justify-content: center;
 }
-.u-icon.data-v-0ff4dc74 {
+.u-icon.data-v-0ff715d2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -106,7 +106,7 @@
   -webkit-justify-content: center;
           justify-content: center;
 }
-.u-progress.data-v-0ff4dc74 {
+.u-progress.data-v-0ff715d2 {
   position: absolute;
   bottom: 10rpx;
   left: 8rpx;
@@ -114,7 +114,7 @@
   z-index: 9;
   width: auto;
 }
-.u-error-btn.data-v-0ff4dc74 {
+.u-error-btn.data-v-0ff715d2 {
   color: #FFFFFF;
   background-color: #fa3534;
   font-size: 20rpx;

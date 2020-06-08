@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.u-switch.data-v-7f70d5d4 {
+.u-switch.data-v-67806e77 {
   position: relative;
   display: inline-block;
   -webkit-box-sizing: initial;
@@ -46,7 +46,7 @@
   -webkit-transition: background-color var(--switch-transition-duration, 0.3s);
   transition: background-color var(--switch-transition-duration, 0.3s);
 }
-.u-switch__node.data-v-7f70d5d4 {
+.u-switch__node.data-v-67806e77 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -82,7 +82,7 @@
   transition: transform var(--switch-transition-duration, 0.3s) cubic-bezier(0.3, 1.05, 0.4, 1.05);
   transition: transform var(--switch-transition-duration, 0.3s) cubic-bezier(0.3, 1.05, 0.4, 1.05), -webkit-transform var(--switch-transition-duration, 0.3s) cubic-bezier(0.3, 1.05, 0.4, 1.05);
 }
-.u-switch__loading.data-v-7f70d5d4 {
+.u-switch__loading.data-v-67806e77 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -93,17 +93,17 @@
   -webkit-justify-content: center;
           justify-content: center;
 }
-.u-switch--on.data-v-7f70d5d4 {
+.u-switch--on.data-v-67806e77 {
   background-color: #1989fa;
   background-color: var(--switch-on-background-color, #1989fa);
 }
-.u-switch--on .u-switch__node.data-v-7f70d5d4 {
+.u-switch--on .u-switch__node.data-v-67806e77 {
   -webkit-transform: translateX(1em);
   transform: translateX(1em);
   -webkit-transform: translateX(calc(var(--switch-width, 2em) - var(--switch-node-size, 1em)));
   transform: translateX(calc(var(--switch-width, 2em) - var(--switch-node-size, 1em)));
 }
-.u-switch--disabled.data-v-7f70d5d4 {
+.u-switch--disabled.data-v-67806e77 {
   opacity: 0.4;
   opacity: var(--switch-disabled-opacity, 0.4);
 }
