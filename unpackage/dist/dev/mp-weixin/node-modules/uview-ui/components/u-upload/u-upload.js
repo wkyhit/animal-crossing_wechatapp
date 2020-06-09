@@ -457,7 +457,7 @@ __webpack_require__.r(__webpack_exports__);
         formData: this.formData,
         header: this.header,
         success: function success(res) {
-          if (res.statusCode != 200) {
+          if (res.statusCode != 200 && res.statusCode != 201) {
             _this3.uploadError(index, res.data);
           } else {
             // 上传成功

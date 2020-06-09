@@ -251,24 +251,54 @@ var _default =
       current_tab: 0,
       //搜索keyword
       keyword: "",
+      // 获取的动态
       trends: [],
-      //动态图片(临时)
-      img_test: "http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",
+      // 动态的页数
+      trendPageNum: 1,
+      // 动态总个数
+      trendsCount: 1,
+      //动态的图片 数组
+      trends_pic: [],
       //发布动态的内容
       new_trend: "",
+      // 图片上传地址
       action: "http://47.240.8.112/api/v1/private/upload/",
-      filesArr: [],
-      head: {} };
+      // 图片数组（上传）
+      // filesArr: [],
+      // 请求头部（上传图片）
+      head: {},
+      //提交动态的表单
+      post_trends_form: {
+        title: "",
+        content: "",
+        post_pic: "" } };
+
 
   },
   onLoad: function onLoad() {
     this.getTrends();
   },
+  computed: {
+    //动态图片的数组
+    trendPicture: function trendPicture() {
+      var len = this.trends.length;
+      var trend_pic = new Array(); //用来存每个trends多各pic的二维数组
+      for (var i = 0; i < len; i++) {
+        //用 ; 对图片字符串进行分割
+        var pic_array = new Array();
+        // console.log(this.trends[i].post_pic)
+        pic_array = this.trends[i].post_pic.split(";");
+        // console.log(pic_array)
+        trend_pic[i] = new Array(); //声明二维数组
+        for (var j = 0, len1 = pic_array.length; j < len1; j++) {
+          console.log(pic_array[j]);
+          trend_pic[i][j] = pic_array[j];
+        }
+      }
+      return trend_pic;
+    } },
+
   methods: {
-    onUploaded: function onUploaded(lists) {
-      this.filesArr = lists;
-      console.log(this.filesArr);
-    },
     //监听tabs change
     changeTab: function changeTab(index) {
       this.current_tab = index;
@@ -299,16 +329,71 @@ var _default =
                 // console.log("header: "+head.Authorization);
                 _context.next = 4;return _this.$myRequest({
                   method: 'GET',
-                  url: '/posts/',
+                  url: '/posts/?pagenum=' + _this.trendPageNum,
                   header: head });case 4:result = _context.sent;
 
-                _this.trends = [].concat(_toConsumableArray(_this.trends), _toConsumableArray(result.data.results));case 6:case "end":return _context.stop();}}}, _callee);}))();
+                // 获取动态总个数
+                _this.trendsCount = result.data.count;
+                _this.trends = [].concat(_toConsumableArray(_this.trends), _toConsumableArray(result.data.results));
+                console.log(_this.trends);case 8:case "end":return _context.stop();}}}, _callee);}))();
     },
-
+    // 获取剩余动态 pagenum>1,每页10条
+    getRemainTrends: function getRemainTrends() {
+      if (this.trendPageNum <= this.trendsCount / 10) {
+        this.trendPageNum++;
+        this.getTrends();
+      }
+    },
+    // 监听title input change 事件
+    titleChange: function titleChange(e) {
+      this.post_trends_form.title = e.detail.value;
+    },
+    // 监听content input change 事件
+    contentChange: function contentChange(e) {
+      this.post_trends_form.content = e.detail.value;
+    },
+    //图片上传事件
+    uploadChange: function uploadChange(res) {
+      // console.log(res)
+    },
+    //图片上传成功事件，lists为全部图片的数组集合
+    onUploaded: function onUploaded(lists) {
+      var tmp_post_pic = "";
+      var filesArr = lists;
+      var reg = /http:\/\/47\.240\.8\.112\/media\//;
+      for (var i = 0, len = lists.length; i < len; i++) {
+        var array = JSON.parse(filesArr[i].response);
+        var str = array.file;
+        str = str.replace(reg, "");
+        tmp_post_pic += str + ";";
+      }
+      //将临时图片url赋予表单的pic
+      this.post_trends_form.post_pic = tmp_post_pic;
+      console.log(tmp_post_pic);
+    },
     //提交动态
-    submitTrends: function submitTrends() {
+    submitTrends: function submitTrends() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context2.next = 4;return (
+                  _this2.$myRequest({
+                    method: 'POST',
+                    url: '/posts/',
+                    header: head,
+                    data: {
+                      title: _this2.post_trends_form.title,
+                      content: _this2.post_trends_form.content,
+                      post_pic: _this2.post_trends_form.post_pic } }));case 4:result = _context2.sent;
 
-    } },
+
+                //重置表单
+                _this2.post_trends_form.title = "";
+                _this2.post_trends_form.content = "";
+                _this2.$refs.uUpload.clear();
+                console.log(result);
+                // console.log(this.post_trends_form.title)
+                // console.log(this.post_trends_form.content)
+                // console.log(this.post_trends_form.post_pic)
+              case 9:case "end":return _context2.stop();}}}, _callee2);}))();} },
 
   onShow: function onShow() {
     var jwt = uni.getStorageSync("skey");

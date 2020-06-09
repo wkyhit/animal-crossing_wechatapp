@@ -203,7 +203,7 @@
           border-radius: 38.96rpx;
   -webkit-box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
           box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
-  background-color: rgba(223, 206, 222, 0.9);
+  background-color: rgba(175, 253, 214, 0.9);
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -215,12 +215,29 @@
   -webkit-align-items: center;
           align-items: center;
 }
+.post_trends .card .title {
+  -webkit-border-radius: 28rpx;
+          border-radius: 28rpx;
+  -webkit-box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+          box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+  background-color: rgba(253, 96, 48, 0.9);
+  width: 96%;
+  height: 85rpx;
+  margin: 15rpx 15rpx;
+}
+.post_trends .card .title .title_input {
+  color: white;
+  padding-left: 15rpx;
+  width: 100%;
+  height: 100%;
+}
 .post_trends .card .context {
   margin: 35rpx 20rpx;
   width: 96%;
   height: 500rpx;
 }
 .post_trends .card .context .context_input {
+  padding: 15rpx;
   width: 100%;
   height: 100%;
 }

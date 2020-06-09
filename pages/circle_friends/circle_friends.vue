@@ -10,17 +10,14 @@
 			</view>
 		</view>
 		<!-- 动态广场tab -->
-		<scroll-view v-show="current_tab===0" class="trends_square" :scroll-y="true">
+		<scroll-view v-show="current_tab===0" class="trends_square" :scroll-y="true" @scrolltolower="getRemainTrends">
 			<!-- 动态卡片 -->
 			<view class="trends_card" v-for="(item,index) in trends " :key="index">
 				<!-- 卡片头部 -->
 				<view class="trends_card_head">
 					<!-- 用户头像 -->
 					<view class="avator">
-						<!-- {{item.user_name}} -->
-						<!-- <text>{{item.user_name}}</text> -->
-						<!-- <image :src="item.user_img"></image> -->
-						<u-avatar :src="img_test" mode="square" size="mini" @click="toPastport(item.user)"></u-avatar>
+						<u-avatar :src="item.user.profile_pic" mode="square" size="mini" @click="toPastport(item.user)"></u-avatar>
 					</view>
 					<!-- 用户名字 -->
 					<view class="name">
@@ -43,9 +40,9 @@
 							{{item.content}}
 						</text>
 					</view>
-					<view class="content_img">
+					<view class="content_img" v-for="(item1,index) in trendPicture[item.id-1]" :key="index">
 						<view class="content_img1">
-							<image :src="img_test"></image>
+							<image :src="item1"></image>
 						</view>
 					</view>
 				</view>
@@ -71,12 +68,15 @@
 		<!-- 发布动态 -->
 		<view v-show="current_tab===1" class="post_trends">
 			<view class="card">
+				<view class="title">
+					<input class="title_input" placeholder="请输入标题" :value="post_trends_form.title" @input="titleChange" />
+				</view>
 				<view class="context">
-					<textarea class="context_input" placeholder="请输入内容..." maxlength=-1></textarea>
+					<textarea class="context_input" placeholder="请输入内容..." maxlength=-1 :value="post_trends_form.content" @input="contentChange"></textarea>
 					<!-- <input class="context_input" placeholder="请输入内容..."  /> -->
 				</view>
 				<view class="upload_img">
-					<u-upload :action="action" :header="head" name="file" :file-list="fileList" max-count="9" ref="uUpload" @on-uploaded="onUploaded"></u-upload>
+					<u-upload ref="uUpload" :action="action" :header="head" name="file" @on-change="uploadChange" :file-list="fileList" max-count="9"  @on-uploaded="onUploaded"></u-upload>
 				</view>
 				<!-- <view class="submit1">
 					<button class="btn_submit" :value="new_trend" @click="submitTrends">提交</button>
@@ -103,24 +103,54 @@
 				current_tab: 0,
 				//搜索keyword
 				keyword: "",
+				// 获取的动态
 				trends:[],
-				//动态图片(临时)
-				img_test:"http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",
+				// 动态的页数
+				trendPageNum:1,
+				// 动态总个数
+				trendsCount:1,
+				//动态的图片 数组
+				trends_pic:[],
 				//发布动态的内容
 				new_trend:"",
+				// 图片上传地址
 				action:"http://47.240.8.112/api/v1/private/upload/",
-				filesArr: [],
+				// 图片数组（上传）
+				// filesArr: [],
+				// 请求头部（上传图片）
 				head:{},
+				//提交动态的表单
+				post_trends_form:{
+					title:"",
+					content:"",
+					post_pic:"",
+				},
 			};
 		},
 		onLoad() {
 			this.getTrends();
 		},
-		methods: {
-			onUploaded(lists){
-				this.filesArr = lists;
-				console.log(this.filesArr)
+		computed:{
+			//动态图片的数组
+			trendPicture(){
+				let len = this.trends.length
+				let trend_pic=new Array() //用来存每个trends多各pic的二维数组
+				for(let i=0; i<len; i++){
+					//用 ; 对图片字符串进行分割
+					let pic_array = new Array()
+					// console.log(this.trends[i].post_pic)
+					pic_array = this.trends[i].post_pic.split(";")
+					// console.log(pic_array)
+					trend_pic[i] = new Array() //声明二维数组
+					for(let j=0,len1=pic_array.length; j<len1; j++){
+						console.log(pic_array[j])
+						trend_pic[i][j] = pic_array[j];
+					}
+				}
+				return trend_pic;
 			},
+		},
+		methods: {
 			//监听tabs change
 			changeTab(index) {
 				this.current_tab = index;
@@ -151,15 +181,70 @@
 				// console.log("header: "+head.Authorization);
 				const result = await this.$myRequest({
 					method: 'GET',
-					url: '/posts/',
+					url: '/posts/?pagenum=' + this.trendPageNum,
 					header: head,
 				})
+				// 获取动态总个数
+				this.trendsCount = result.data.count;
 				this.trends = [...this.trends, ...result.data.results]
-			}
-			,
+				console.log(this.trends)
+			},
+			// 获取剩余动态 pagenum>1,每页10条
+			getRemainTrends(){
+				if(this.trendPageNum <= this.trendsCount/10 ){
+					this.trendPageNum++;
+					this.getTrends();
+				}
+			},
+			// 监听title input change 事件
+			titleChange(e){
+				this.post_trends_form.title = e.detail.value
+			},
+			// 监听content input change 事件
+			contentChange(e){
+				this.post_trends_form.content = e.detail.value
+			},
+			//图片上传事件
+			uploadChange(res){
+				// console.log(res)
+			},
+			//图片上传成功事件，lists为全部图片的数组集合
+			onUploaded(lists){
+				let tmp_post_pic = ""
+				const filesArr = lists;
+				const reg = /http:\/\/47\.240\.8\.112\/media\//;
+				for(let i=0,len = lists.length; i < len; i++){
+					let array = JSON.parse(filesArr[i].response)
+					let str = array.file
+					str = str.replace(reg,"")
+					tmp_post_pic += str + ";"
+				}
+				//将临时图片url赋予表单的pic
+				this.post_trends_form.post_pic = tmp_post_pic
+				console.log(tmp_post_pic);
+			},
 			//提交动态
-			submitTrends(){
-				
+			async submitTrends(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'POST',
+					url: '/posts/',
+					header: head,
+					data: {
+						title:this.post_trends_form.title,
+						content:this.post_trends_form.content,
+						post_pic:this.post_trends_form.post_pic,
+					},
+				})
+				//重置表单
+				this.post_trends_form.title = ""
+				this.post_trends_form.content = ""
+				this.$refs.uUpload.clear()
+				console.log(result)
+				// console.log(this.post_trends_form.title)
+				// console.log(this.post_trends_form.content)
+				// console.log(this.post_trends_form.post_pic)
 			},
 		},
 		onShow() {
@@ -339,15 +424,31 @@
 			width: 95%;
 			border-radius: 38.96rpx;
 			box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
-			background-color: rgba(223, 206, 222, 0.9);
+			background-color: rgba(175, 253, 214, 0.9);
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			.title{
+				border-radius: 28rpx;
+				box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+				background-color: rgba(253, 96, 48, 0.9);
+				// border: 2rpx solid black;
+				width: 96%;
+				height: 85rpx;
+				margin: 15rpx 15rpx;	
+				.title_input{
+					color: white;
+					padding-left: 15rpx;
+					width: 100%;
+					height: 100%;
+				}
+			}
 			.context{
 				margin: 35rpx 20rpx;
 				width: 96%;
 				height: 500rpx;
 				.context_input{
+					padding: 15rpx;
 					width:100% ;
 					height: 100%;
 				}
