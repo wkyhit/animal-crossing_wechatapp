@@ -144,6 +144,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -153,19 +157,39 @@ var _default =
 
   },
   methods: {
-    getToken: function getToken() {
-      uni.request({
-        url: 'http://47.240.8.112/jwt_auth/',
-        method: 'POST',
-        header: {
-          'Content-Type': 'application/json' },
+    // authorize(e){
+    // 	const that = this;
+    // 	uni.authorize({
+    // 	    scope: 'scope.userLocation',
+    // 	    success() {
+    // 	        uni.getLocation({
+    // 	            type: 'wgs84',
+    // 	            success: function (res) {
+    // 	                console.log('当前位置的经度：' + res.longitude);
+    // 	                console.log('当前位置的纬度：' + res.latitude);
+    // 	            }
+    // 	        });
+    // 	    }
+    // 	})
+    // },
+    uploadImg: function uploadImg() {
+      var jwt = uni.getStorageSync("skey");
+      var head = { 'Authorization': "Bearer " + jwt };
+      uni.chooseImage({
+        success: function success(chooseImageRes) {
+          var tempFilePaths = chooseImageRes.tempFilePaths;
+          uni.uploadFile({
+            url: 'http://47.240.8.112/api/v1/private/upload/', //仅为示例，非真实的接口地址
+            filePath: tempFilePaths[0],
+            name: 'file',
+            header: head,
+            // formData: {
+            //     'user': 'test'
+            // },
+            success: function success(uploadFileRes) {
+              console.log(uploadFileRes.data);
+            } });
 
-        data: {
-          password: "123123",
-          username: "admin" },
-
-        success: function success(res) {
-          console.log(res);
         } });
 
     },

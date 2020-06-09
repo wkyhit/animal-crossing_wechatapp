@@ -12,6 +12,7 @@ Vue.config.productionTip = false
 
 App.mpType = 'app'
 
+
 //挂载goeasy
 Vue.prototype.goeasy = GoEasy({
 	host: 'hangzhou.goeasy.io',

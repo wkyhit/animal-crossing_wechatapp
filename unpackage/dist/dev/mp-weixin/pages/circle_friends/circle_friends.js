@@ -230,6 +230,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -248,17 +255,32 @@ var _default =
       //动态图片(临时)
       img_test: "http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",
       //发布动态的内容
-      new_trend: "" };
-
+      new_trend: "",
+      action: "http://47.240.8.112/api/v1/private/upload/",
+      filesArr: [],
+      head: {} };
 
   },
   onLoad: function onLoad() {
     this.getTrends();
   },
   methods: {
+    onUploaded: function onUploaded(lists) {
+      this.filesArr = lists;
+      console.log(this.filesArr);
+    },
     //监听tabs change
     changeTab: function changeTab(index) {
       this.current_tab = index;
+    },
+    // 点击头像,跳转到该用户个人护照页
+    // 接受用户护照基本信息
+    toPastport: function toPastport(userInfo) {
+      // console.log(userInfo);
+      this.info = userInfo;
+      uni.navigateTo({
+        url: '/pages/mysite/mysite?userinfo=' + encodeURIComponent(JSON.stringify(this.info)) });
+
     },
     clickLike: function clickLike() {
       console.log("click like");
@@ -286,7 +308,13 @@ var _default =
     //提交动态
     submitTrends: function submitTrends() {
 
-    } } };exports.default = _default;
+    } },
+
+  onShow: function onShow() {
+    var jwt = uni.getStorageSync("skey");
+    var headers = { 'Authorization': "Bearer " + jwt };
+    this.head = headers;
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

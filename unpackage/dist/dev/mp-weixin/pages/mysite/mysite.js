@@ -244,8 +244,7 @@ var _default =
       dexType: "fish",
       //已收集
       checked: false,
-      list: [
-      {
+      list: [{
         name: '鱼类' },
 
       {
@@ -258,13 +257,8 @@ var _default =
         name: '艺术品' }] }, _defineProperty(_ref, "current",
 
 
-    0), _defineProperty(_ref, "dataList",
-    [{ name: "蝌蚪", price: "120", des: "出现在池塘", checked: false }, { name: "青蛙", price: "520", des: "出现在池塘", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }, { name: "鲸鱼", price: "12000", des: "出现在海洋", checked: false }]), _defineProperty(_ref, "dataList1",
-    [{ name: "凤蝶", price: "120", des: "出现在树上", checked: false }, { name: "亚历山大蝶", price: "520", des: "出现在树上", checked: false }, { name: "幻蝶", price: "12000", des: "出现在树上", checked: false }]), _defineProperty(_ref, "artWork",
-    [{ name: "冲浪图", number: "1" }, { name: "星夜", number: "0" }, { name: "富春山居图", number: "2" }, { name: "清明上河图", number: "3" }]), _defineProperty(_ref, "fossil",
-    [{ name: "暴龙", number: "1" }, { name: "梁龙", number: "1" }, { name: "角龙", number: "0" }, { name: "腕龙", number: "3" }]), _defineProperty(_ref, "personinfo",
-    ["星辰岛", "北半球", "辣椒", "12344", "我就是我", "女"]), _defineProperty(_ref, "personinfo1",
-    [12, 33, 4, "2020-05-20"]), _ref;
+    0), _defineProperty(_ref, "user_info",
+    []), _ref;
 
   },
   methods: {
@@ -272,7 +266,12 @@ var _default =
     changecurrent: function changecurrent(index) {
       this.current = index;
 
-    } } };exports.default = _default;
+    } },
+
+  onLoad: function onLoad(option) {
+    this.user_info = JSON.parse(decodeURIComponent(option.userinfo));
+    // console.log(info);
+  } };exports.default = _default;
 
 /***/ }),
 

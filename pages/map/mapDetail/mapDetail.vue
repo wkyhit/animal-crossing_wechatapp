@@ -8,20 +8,20 @@
 		</uni-card>
 		<uni-card class="info_card">
 			<u-cell-group>
-				<u-cell-item icon="edit-pen-fill" title="名称" :arrow="false" :value="info.cn_sname"></u-cell-item>
-				<u-cell-item icon="integral-fill" title="价格" :arrow="false" :value="info.price"></u-cell-item>
-				<u-cell-item icon="hourglass-half-fill" title="出现月份(北半球)" :arrow="false" :value="info.north_month"></u-cell-item>
-				<u-cell-item icon="hourglass-half-fill" title="出现月份(南半球)" :arrow="false" :value="info.south_month"></u-cell-item>
-				<u-cell-item icon="clock-fill" title="时间段" :arrow="false" :value="info.time_show"></u-cell-item>
-				<u-cell-item v-if="dexType === 'fish'" icon="map-fill" title="出现地点" :arrow="false" :value="info.fish_place"></u-cell-item>
-				<u-cell-item v-if="dexType === 'insect'" icon="map-fill" title="出现地点" :arrow="false" :value="info.catch_place"></u-cell-item>
-				<u-cell-item v-if="dexType === 'insect'" icon="map-fill" title="出现天气" :arrow="false" :value="info.catch_weather"></u-cell-item>
-				<u-cell-item v-if="dexType === 'fish'" icon="eye-fill" title="鱼影大小" :arrow="false" :value="info.fish_size"></u-cell-item>
-				<u-cell-item icon="lock-opened-fill" title="解锁条件" :arrow="false" :value="info.unlock_difficulty"></u-cell-item>
-				<u-cell-item icon="tags-fill" title="描述" :arrow="false" :value="info.description"></u-cell-item>
-				<u-cell-item icon="heart-fill" title="已捕捉" :arrow="false">
+				<u-cell-item icon="edit-pen-fill" title="名称" :arrow="false" :value="info.cn_sname" hover-class="none"></u-cell-item>
+				<u-cell-item icon="integral-fill" title="价格" :arrow="false" :value="info.price" hover-class="none"></u-cell-item>
+				<u-cell-item icon="hourglass-half-fill" title="出现月份(北半球)" :arrow="false" :value="info.north_month" hover-class="none"></u-cell-item>
+				<u-cell-item icon="hourglass-half-fill" title="出现月份(南半球)" :arrow="false" :value="info.south_month" hover-class="none"></u-cell-item>
+				<u-cell-item icon="clock-fill" title="时间段" :arrow="false" :value="info.time_show" hover-class="none"></u-cell-item>
+				<u-cell-item v-if="dexType === 'fish'" icon="map-fill" title="出现地点" :arrow="false" :value="info.fish_place" hover-class="none"></u-cell-item>
+				<u-cell-item v-if="dexType === 'insect'" icon="map-fill" title="出现地点" :arrow="false" :value="info.catch_place" hover-class="none"></u-cell-item>
+				<u-cell-item v-if="dexType === 'insect'" icon="map-fill" title="出现天气" :arrow="false" :value="info.catch_weather" hover-class="none"></u-cell-item>
+				<u-cell-item v-if="dexType === 'fish'" icon="eye-fill" title="鱼影大小" :arrow="false" :value="info.fish_size" hover-class="none"></u-cell-item>
+				<u-cell-item icon="lock-opened-fill" title="解锁条件" :arrow="false" :value="info.unlock_difficulty" hover-class="none"></u-cell-item>
+				<u-cell-item icon="tags-fill" title="描述" :arrow="false" :value="info.description" hover-class="none"></u-cell-item>
+				<!-- <u-cell-item icon="heart-fill" title="已捕捉" :arrow="false" hover-class="none">
 					<u-switch slot="right-icon" v-model="catched"></u-switch>
-				</u-cell-item>
+				</u-cell-item> -->
 			</u-cell-group>
 		</uni-card>
 	</view>

@@ -8,7 +8,7 @@
 		</uni-card>
 		<uni-card class="info_card">
 			<u-cell-group>
-				<u-cell-item icon="edit-pen-fill" :arrow="false">
+				<u-cell-item icon="edit-pen-fill" :arrow="false" hover-class="none">
 					<view slot="title">
 						<text>{{info.cn_sname}}</text>
 					</view>
@@ -22,15 +22,15 @@
 						</view>
 					</view>
 				</u-cell-item>
-				<u-cell-item icon="edit-pen-fill"  title="获取方式" :arrow="false">
+				<u-cell-item icon="edit-pen-fill"  title="获取方式" :arrow="false" hover-class="none">
 					<view class="how_to_get" style="text-align: left;">
 						<text>{{info.how_to_get_formula}}</text>
 					</view>
 				</u-cell-item>
-				<u-cell-item icon="edit-pen-fill"  title="素材需求" :arrow="false" :value="info.required_material"></u-cell-item>
-				<u-cell-item icon="heart-fill" title="已有" :arrow="false">
+				<u-cell-item icon="edit-pen-fill"  title="素材需求" :arrow="false" :value="info.required_material" hover-class="none"></u-cell-item>
+				<!-- <u-cell-item icon="heart-fill" title="已有" :arrow="false" hover-class="none">
 					<u-switch slot="right-icon" v-model="catched"></u-switch>
-				</u-cell-item>
+				</u-cell-item> -->
 			</u-cell-group>
 		</uni-card>
 	</view>

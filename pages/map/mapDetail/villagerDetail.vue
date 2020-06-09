@@ -9,7 +9,7 @@
 		</uni-card>
 		<uni-card class="info_card">
 			<u-cell-group>
-				<u-cell-item icon="edit-pen-fill" :arrow="false">
+				<u-cell-item icon="edit-pen-fill" :arrow="false" hover-class="none">
 					<view slot="title">
 						<text>{{info.cn_sname}}</text>
 					</view>
@@ -21,18 +21,18 @@
 				</u-cell-item>
 				<!-- <u-cell-item icon="edit-pen-fill" title="英文名" :arrow="false" :value="info.en_name"></u-cell-item> -->
 				<!-- <u-cell-item icon="edit-pen-fill" title="日文名" :arrow="false" :value="info.jp_name"></u-cell-item> -->
-				<u-cell-item icon="integral-fill" title="生日" :arrow="false" :value="info.birth_month+'月'+info.birth_day+'日'"></u-cell-item>
-				<u-cell-item icon="tags-fill" title="种族" :arrow="false" :value="info.race"></u-cell-item>
-				<u-cell-item icon="tags-fill" title="性格" :arrow="false" :value="info.personality"></u-cell-item>
-				<u-cell-item icon="tags-fill" title="口头禅" :arrow="false" :value="info.phrase"></u-cell-item>
-				<u-cell-item icon="tags-fill" title="座右铭" :arrow="false" :value="info.bio"></u-cell-item>
-				<u-cell-item icon="tags-fill" title="爱好" :arrow="false" :value="info.hobby"></u-cell-item>
-				<u-cell-item icon="tags-fill" title="喜欢的颜色" :arrow="false" :value="info.fav_color_show"></u-cell-item>
-				<u-cell-item icon="tags-fill" title="喜欢的服装风格" :arrow="false" :value="info.fav_style_show"></u-cell-item>
-				<u-cell-item icon="tags-fill" title="喜欢的唱片" :arrow="false" :value="info.fav_album"></u-cell-item>
-				<u-cell-item icon="heart-fill" title="已入住" :arrow="false">
+				<u-cell-item icon="integral-fill" title="生日" :arrow="false" hover-class="none" :value="info.birth_month+'月'+info.birth_day+'日'"></u-cell-item>
+				<u-cell-item icon="tags-fill" title="种族" :arrow="false" :value="info.race" hover-class="none"></u-cell-item>
+				<u-cell-item icon="tags-fill" title="性格" :arrow="false" :value="info.personality" hover-class="none"></u-cell-item>
+				<u-cell-item icon="tags-fill" title="口头禅" :arrow="false" :value="info.phrase" hover-class="none"></u-cell-item>
+				<u-cell-item icon="tags-fill" title="座右铭" :arrow="false" :value="info.bio" hover-class="none"></u-cell-item>
+				<u-cell-item icon="tags-fill" title="爱好" :arrow="false" :value="info.hobby" hover-class="none"></u-cell-item>
+				<u-cell-item icon="tags-fill" title="喜欢的颜色" :arrow="false" :value="info.fav_color_show" hover-class="none"></u-cell-item>
+				<u-cell-item icon="tags-fill" title="喜欢的服装风格" :arrow="false" :value="info.fav_style_show" hover-class="none"></u-cell-item>
+				<u-cell-item icon="tags-fill" title="喜欢的唱片" :arrow="false" :value="info.fav_album" hover-class="none"></u-cell-item>
+				<!-- <u-cell-item icon="heart-fill" title="已入住" :arrow="false" hover-class="none">
 					<u-switch slot="right-icon" v-model="catched"></u-switch>
-				</u-cell-item>
+				</u-cell-item> -->
 			</u-cell-group>
 		</uni-card>
 		<uni-card class="houseInfo_card">

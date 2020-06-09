@@ -20,12 +20,16 @@
 						<!-- {{item.user_name}} -->
 						<!-- <text>{{item.user_name}}</text> -->
 						<!-- <image :src="item.user_img"></image> -->
-						<u-avatar :src="img_test" mode="square" size="mini"></u-avatar>
+						<u-avatar :src="img_test" mode="square" size="mini" @click="toPastport(item.user)"></u-avatar>
 					</view>
 					<!-- 用户名字 -->
 					<view class="name">
 						<!-- {{item.user_name}} -->
-						<text>{{item.user}}</text>
+						<text>{{item.user.nickname}}</text>
+					</view>
+					<!-- 标题 -->
+					<view class="title">
+						<text>{{item.title}}</text>
 					</view>
 					<!-- 操作 -->
 					<view class="operate">
@@ -55,7 +59,7 @@
 					<!-- 评论 -->
 					<view class="comment">
 						<u-icon name="weixin-fill"  size="36" @click="clickComment"></u-icon>
-						<text></text>
+						<text>{{item.comment_num}}</text>
 					</view>
 					<!-- 分享 -->
 					<view class="share">
@@ -72,8 +76,11 @@
 					<!-- <input class="context_input" placeholder="请输入内容..."  /> -->
 				</view>
 				<view class="upload_img">
-					<u-upload :action="action" :file-list="fileList" ></u-upload>
+					<u-upload :action="action" :header="head" name="file" :file-list="fileList" max-count="9" ref="uUpload" @on-uploaded="onUploaded"></u-upload>
 				</view>
+				<!-- <view class="submit1">
+					<button class="btn_submit" :value="new_trend" @click="submitTrends">提交</button>
+				</view> -->
 			</view>
 			<view class="submit">
 				<button class="btn_submit" :value="new_trend" @click="submitTrends">提交</button>
@@ -101,16 +108,31 @@
 				img_test:"http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",
 				//发布动态的内容
 				new_trend:"",
-				
+				action:"http://47.240.8.112/api/v1/private/upload/",
+				filesArr: [],
+				head:{},
 			};
 		},
 		onLoad() {
 			this.getTrends();
 		},
 		methods: {
+			onUploaded(lists){
+				this.filesArr = lists;
+				console.log(this.filesArr)
+			},
 			//监听tabs change
 			changeTab(index) {
 				this.current_tab = index;
+			},
+			// 点击头像,跳转到该用户个人护照页
+			// 接受用户护照基本信息
+			toPastport(userInfo){
+				// console.log(userInfo);
+				this.info = userInfo
+				uni.navigateTo({
+					url:'/pages/mysite/mysite?userinfo='+ encodeURIComponent(JSON.stringify(this.info))
+				});
 			},
 			clickLike(){
 				console.log("click like")
@@ -139,8 +161,11 @@
 			submitTrends(){
 				
 			},
-			
-			
+		},
+		onShow() {
+			const jwt = uni.getStorageSync("skey");
+			const headers = {'Authorization':"Bearer "+jwt};
+			this.head = headers;
 		}
 	}
 </script>
@@ -221,7 +246,6 @@
 					display: flex;
 					align-items: center;
 				}
-
 				// 名字
 				.name {
 					margin-left: 25rpx;
@@ -232,7 +256,13 @@
 					align-items: center;
 					justify-content: space-evenly;
 				}
-
+				.title{
+					margin-left: 35rpx;
+					height: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: space-evenly;
+				}
 				// 操作
 				.operate {
 					margin-left: auto;
@@ -246,6 +276,7 @@
 
 				// 文字内容
 				.content_text {
+					padding: 35rpx;
 					width: 100%;
 					// height: 150rpx;
 				}
@@ -286,6 +317,10 @@
 				// 评论
 				.comment{
 					display: flex;
+					text{
+						font-size: 24rpx;
+						margin-left: 10rpx;
+					}
 				}
 					
 			}
@@ -294,13 +329,13 @@
 	
 	//发布动态
 	.post_trends{
-		margin-top: 150rpx;
+		margin-top: 50rpx;
 		height: 1200rpx;
 		width: 100%;
-		// display: flex;
-		// justify-content: space-evenly;
+		display: flex;
+		flex-direction: column;
 		.card{
-			margin: auto;
+			margin: 80rpx auto;
 			width: 95%;
 			border-radius: 38.96rpx;
 			box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
@@ -314,22 +349,29 @@
 				height: 500rpx;
 				.context_input{
 					width:100% ;
+					height: 100%;
 				}
 			}
 			.upload_img{
 				
 			}
 		}
+		
 		.submit{
+			// margin-top: 25rpx;
+			align-self: center;
 			width: 200rpx;
 			height: 75rpx;
-			position: absolute;
-			bottom: 0;
-			left: 50%;
-			transform: translate(-50%,-50%);
+			// position: absolute;
+			// bottom: 0;
+			// left: 50%;
+			// transform: translate(-50%,-50%);
 			border-radius: 25rpx;
 			box-shadow: 0px 5px 15px rgba(209, 213, 223, 0.5);
 			.btn_submit{
+				// width: 100%;
+				// height: 100%;
+				color: white;
 				border-radius: 25rpx;
 				box-shadow: 0px 5px 15px rgba(209, 213, 223, 0.5);
 				background-color: rgba(9, 95, 223, 0.9);

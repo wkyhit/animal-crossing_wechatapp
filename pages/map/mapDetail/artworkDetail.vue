@@ -16,14 +16,14 @@
 		</uni-card>
 		<uni-card class="info_card">
 			<u-cell-group>
-				<u-cell-item icon="edit-pen-fill" title="名称:" :arrow="false" :value="info.cn_sname"></u-cell-item>
-				<u-cell-item icon="edit-pen-fill" title="原名:" :arrow="false" :value="info.real_name"></u-cell-item>
-				<u-cell-item icon="integral-fill" title="买入价" :arrow="false" :value="info.buy_price"></u-cell-item>
-				<u-cell-item icon="integral-fill" title="大小" :arrow="false" :value="info.size"></u-cell-item>
-				<u-cell-item icon="tags-fill" title="描述" :arrow="false" :value="info.tips"></u-cell-item>
-				<u-cell-item icon="heart-fill" title="已拥有" :arrow="false">
+				<u-cell-item icon="edit-pen-fill" title="名称:" :arrow="false" :value="info.cn_sname" hover-class="none"></u-cell-item>
+				<u-cell-item icon="edit-pen-fill" title="原名:" :arrow="false" :value="info.real_name" hover-class="none"></u-cell-item>
+				<u-cell-item icon="integral-fill" title="买入价" :arrow="false" :value="info.buy_price" hover-class="none"></u-cell-item>
+				<u-cell-item icon="integral-fill" title="大小" :arrow="false" :value="info.size" hover-class="none"></u-cell-item>
+				<u-cell-item icon="tags-fill" title="描述" :arrow="false" :value="info.tips" hover-class="none"></u-cell-item>
+				<!-- <u-cell-item icon="heart-fill" title="已拥有" :arrow="false" >
 					<u-switch slot="right-icon" v-model="catched"></u-switch>
-				</u-cell-item>
+				</u-cell-item> -->
 			</u-cell-group>
 		</uni-card>
 	</view>

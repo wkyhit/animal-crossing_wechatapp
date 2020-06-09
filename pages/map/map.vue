@@ -512,18 +512,40 @@
 			
 			//鱼类checked变化监听
 			fishCheckedChange(id){
-				// 传入改变的fishid,改变fish_checked数组
-				// 如果已经存在,则从中删除
-				// console.log("fishid:"+id);
-				if(this.fish_checked.includes(id)){
-					let index = this.fish_checked.indexOf(id);
-					this.fish_checked.splice(index,1);
-					this.deleteUserFishCollectedInfo(id)
-				}else{//如果不存在，则压入
-					// this.fish_checked.push(id);
-					this.createUserFishCollectedInfo(id);
+				//判断是否登录，若已经登录则执行以下操作
+				let jwt = uni.getStorageSync("skey");
+				if(jwt !== ''){
+					// 传入改变的fishid,改变fish_checked数组
+					// 如果已经存在,则从中删除
+					if(this.fish_checked.includes(id)){
+						let index = this.fish_checked.indexOf(id);
+						this.fish_checked.splice(index,1);
+						this.deleteUserFishCollectedInfo(id)
+					}else{//如果不存在，则压入
+						// this.fish_checked.push(id);
+						this.createUserFishCollectedInfo(id);
+					}
+					console.log("fish_checked: "+this.fish_checked)
+				}else{ //未登录：弹出未登录提示
+					uni.showModal({
+						title:"功能受限",
+						content:"需要授权登录！\n点击确认授权",
+						success(res) {
+							if(res.confirm){
+								// console.log("confirm")
+								uni.switchTab({
+									url:'/pages/setting/setting'
+								});
+							} else if(res.cancel){
+								uni.showToast({
+									title:"取消了授权",
+									icon: "none",
+								})
+							}
+						}
+					})
 				}
-				console.log("fish_checked: "+this.fish_checked)
+				
 			},
 			//虫类checked变化监听
 			insectCheckedChange(id){
@@ -1325,16 +1347,19 @@
 			this.getFishInfo();
 		},
 		onShow() {
-			//获取用户收集数据
-			this.getUserArtworkCollectedInfo()
-			this.getUserFossilCollectedInfo()
-			this.getUserFishCollectedInfo()
-			this.getUserInsectCollectedInfo()
-			this.getUserVillagerCollectedInfo()
-			this.getUserFurnitureCollectedInfo()
-			this.getUserDiyCollectedInfo()
-			this.getUserDressCollectedInfo()
-			this.getUserAlbumsCollectedInfo()
+			//判断是否登录，若已登录，则获取用户收集数据
+			let jwt = uni.getStorageSync("skey");
+			if(jwt !== ''){
+				this.getUserArtworkCollectedInfo()
+				this.getUserFossilCollectedInfo()
+				this.getUserFishCollectedInfo()
+				this.getUserInsectCollectedInfo()
+				this.getUserVillagerCollectedInfo()
+				this.getUserFurnitureCollectedInfo()
+				this.getUserDiyCollectedInfo()
+				this.getUserDressCollectedInfo()
+				this.getUserAlbumsCollectedInfo()
+			}
 		}
 	}
 </script>

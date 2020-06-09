@@ -2,7 +2,6 @@
   "usingComponents": {
     "uni-card": "/components/uni-card/uni-card",
     "u-cell-group": "/node-modules/uview-ui/components/u-cell-group/u-cell-group",
-    "u-cell-item": "/node-modules/uview-ui/components/u-cell-item/u-cell-item",
-    "u-switch": "/node-modules/uview-ui/components/u-switch/u-switch"
+    "u-cell-item": "/node-modules/uview-ui/components/u-cell-item/u-cell-item"
   }
 }

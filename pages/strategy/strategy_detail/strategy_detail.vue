@@ -5,6 +5,10 @@
 				<button @click="wxLogin">
 					点击登录授权
 				</button>
+				<button @click="authorize">
+					权限授权
+				</button>
+				<button @click="uploadImg">上传图片</button>
 			</uni-card>
 		</scroll-view>
 	</view>
@@ -19,21 +23,41 @@
 			};
 		},
 		methods: {
-			getToken() {
-				uni.request({
-					url: 'http://47.240.8.112/jwt_auth/',
-					method: 'POST',
-					header: {
-						'Content-Type': 'application/json'
-					},
-					data: {
-						password: "123123",
-						username: "admin"
-					},
-					success(res) {
-						console.log(res);
-					}
-				})
+			// authorize(e){
+			// 	const that = this;
+			// 	uni.authorize({
+			// 	    scope: 'scope.userLocation',
+			// 	    success() {
+			// 	        uni.getLocation({
+			// 	            type: 'wgs84',
+			// 	            success: function (res) {
+			// 	                console.log('当前位置的经度：' + res.longitude);
+			// 	                console.log('当前位置的纬度：' + res.latitude);
+			// 	            }
+			// 	        });
+			// 	    }
+			// 	})
+			// },
+			uploadImg(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				uni.chooseImage({
+				        success: function (chooseImageRes) {
+				            const tempFilePaths = chooseImageRes.tempFilePaths;
+				            uni.uploadFile({
+				                url: 'http://47.240.8.112/api/v1/private/upload/', //仅为示例，非真实的接口地址
+				                filePath: tempFilePaths[0],
+				                name: 'file',
+				                header:head,
+								// formData: {
+				                //     'user': 'test'
+				                // },
+				                success: function (uploadFileRes) {
+				                    console.log(uploadFileRes.data);
+				                }
+				            });
+				        }
+				    });
 			},
 			wxLogin(e) {
 				const that = this;

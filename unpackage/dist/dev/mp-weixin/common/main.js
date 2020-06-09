@@ -21,6 +21,7 @@ _vue.default.config.productionTip = false;
 
 _App.default.mpType = 'app';
 
+
 //挂载goeasy
 _vue.default.prototype.goeasy = (0, _goeasy.default)({
   host: 'hangzhou.goeasy.io',
