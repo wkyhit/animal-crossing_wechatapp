@@ -290,7 +290,7 @@ var _default =
         pic_array = this.trends[i].post_pic.split(";");
         // console.log(pic_array)
         trend_pic[i] = new Array(); //声明二维数组
-        for (var j = 0, len1 = pic_array.length; j < len1; j++) {
+        for (var j = 0, len1 = pic_array.length - 1; j < len1; j++) {
           console.log(pic_array[j]);
           trend_pic[i][j] = pic_array[j];
         }
