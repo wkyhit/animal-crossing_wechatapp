@@ -948,7 +948,7 @@
 				const head = {'Authorization':"Bearer "+jwt};
 				const result = await this.$myRequest({
 					method: 'POST',
-					url: '/user_fossil/',
+					url: '/posts/',
 					header: head,
 					data: {fossil:id},
 				})

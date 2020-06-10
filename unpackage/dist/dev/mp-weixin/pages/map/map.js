@@ -1105,7 +1105,7 @@ var _default =
                 head = { 'Authorization': "Bearer " + jwt };_context20.next = 4;return (
                   _this20.$myRequest({
                     method: 'POST',
-                    url: '/user_fossil/',
+                    url: '/posts/',
                     header: head,
                     data: { fossil: id } }));case 4:result = _context20.sent;
 

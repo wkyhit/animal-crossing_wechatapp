@@ -55,7 +55,7 @@
 					</view>
 					<!-- 评论 -->
 					<view class="comment">
-						<u-icon name="weixin-fill"  size="36" @click="clickComment"></u-icon>
+						<u-icon name="weixin-fill"  size="36" @click="clickComment(item)"></u-icon>
 						<text>{{item.comment_num}}</text>
 					</view>
 					<!-- 分享 -->
@@ -127,9 +127,6 @@
 				},
 			};
 		},
-		onLoad() {
-			this.getTrends();
-		},
 		computed:{
 			//动态图片的数组
 			trendPicture(){
@@ -142,7 +139,7 @@
 					pic_array = this.trends[i].post_pic.split(";")
 					// console.log(pic_array)
 					trend_pic[i] = new Array() //声明二维数组
-					for(let j=0,len1=pic_array.length-1; j<len1; j++){
+					for(let j=0,len1=pic_array.length; j<len1; j++){
 						console.log(pic_array[j])
 						trend_pic[i][j] = pic_array[j];
 					}
@@ -151,6 +148,15 @@
 			},
 		},
 		methods: {
+			// 监听下拉刷新
+			onPullDownRefresh(){
+				this.trends = []
+				this.trendPageNum = 1
+				setTimeout(()=>{
+					this.getTrends()
+					uni.stopPullDownRefresh() //停止下拉刷新
+				},1000)
+			},
 			//监听tabs change
 			changeTab(index) {
 				this.current_tab = index;
@@ -159,7 +165,7 @@
 			// 接受用户护照基本信息
 			toPastport(userInfo){
 				// console.log(userInfo);
-				this.info = userInfo
+				const info = userInfo
 				uni.navigateTo({
 					url:'/pages/mysite/mysite?userinfo='+ encodeURIComponent(JSON.stringify(this.info))
 				});
@@ -167,8 +173,12 @@
 			clickLike(){
 				console.log("click like")
 			},
-			clickComment(){
-				
+			// 监听评论按钮点击事件
+			clickComment(trends){
+				const trendsInfo = trends
+				uni.navigateTo({
+					url:"comments/comments?trendsInfo="+ encodeURIComponent(JSON.stringify(trendsInfo))
+				})
 			},
 			clickShare(){
 				
@@ -187,7 +197,7 @@
 				// 获取动态总个数
 				this.trendsCount = result.data.count;
 				this.trends = [...this.trends, ...result.data.results]
-				console.log(this.trends)
+				// console.log(this.trends)
 			},
 			// 获取剩余动态 pagenum>1,每页10条
 			getRemainTrends(){
@@ -217,6 +227,10 @@
 					let array = JSON.parse(filesArr[i].response)
 					let str = array.file
 					str = str.replace(reg,"")
+					if (i === lists.length-1){
+						tmp_post_pic += str
+						break;
+					}
 					tmp_post_pic += str + ";"
 				}
 				//将临时图片url赋予表单的pic
@@ -242,15 +256,21 @@
 				this.post_trends_form.content = ""
 				this.$refs.uUpload.clear()
 				console.log(result)
+				this.changeTab(0) //跳转回动态广场
+				// 触发下拉刷新
+				uni.startPullDownRefresh()
 				// console.log(this.post_trends_form.title)
 				// console.log(this.post_trends_form.content)
 				// console.log(this.post_trends_form.post_pic)
 			},
 		},
-		onShow() {
+		onLoad() {
 			const jwt = uni.getStorageSync("skey");
 			const headers = {'Authorization':"Bearer "+jwt};
 			this.head = headers;
+		},
+		onShow(){
+			uni.startPullDownRefresh()
 		}
 	}
 </script>

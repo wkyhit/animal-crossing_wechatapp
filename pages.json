@@ -42,7 +42,9 @@
         }
         ,{
             "path" : "pages/circle_friends/circle_friends",
-            "style" : {}
+            "style" : {
+				 "enablePullDownRefresh": true//下拉刷新
+			}
         },{
 			"path" : "pages/turnip-prices/turnip-prices",
 			"style" : {}
@@ -70,6 +72,10 @@
         }
         ,{
             "path" : "pages/map/mapDetail/diyDetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/circle_friends/comments/comments",
             "style" : {}
         }
     ],
