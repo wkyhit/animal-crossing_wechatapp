@@ -730,6 +730,8 @@ var _default =
       } else {//如果不存在，且村民数量未到10人，则压入
         // this.villager_checked.push(id);
         if (this.villager_checked.length < 10) {
+          //本地数组同步
+          this.villager_checked.push(id);
           this.createUserVillagerCollectedInfo(id);
         } else {
           return uni.showToast({
@@ -1105,7 +1107,7 @@ var _default =
                 head = { 'Authorization': "Bearer " + jwt };_context20.next = 4;return (
                   _this20.$myRequest({
                     method: 'POST',
-                    url: '/posts/',
+                    url: '/user_fossil/',
                     header: head,
                     data: { fossil: id } }));case 4:result = _context20.sent;
 
@@ -1305,12 +1307,12 @@ var _default =
                     method: 'POST',
                     url: '/user_dweller/',
                     header: head,
-                    data: { dweller: id } }));case 4:result = _context34.sent;
+                    data: { dweller: id } }));case 4:result = _context34.sent;case 5:case "end":return _context34.stop();}}}, _callee34);}))();
 
-                //本地数组同步
-                _this34.villager_checked.push(id);
-                // console.log(result);
-              case 6:case "end":return _context34.stop();}}}, _callee34);}))();},
+
+
+
+    },
     //向后端delete  user villager  收集信息
     deleteUserVillagerCollectedInfo: function deleteUserVillagerCollectedInfo(id) {var _this35 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee35() {var jwt, head, result;return _regenerator.default.wrap(function _callee35$(_context35) {while (1) {switch (_context35.prev = _context35.next) {case 0:
                 jwt = uni.getStorageSync("skey");

@@ -64,7 +64,7 @@
 						<view class="collection">
 							<u-button class="btn_detail" type="primary" size="mini" @click="onClickMoreInfo('fossil',item)">详情</u-button>
 							<p>已收集</p>
-							<u-number-box :value="fossilNumber[item.id-1]" :min="0" @plus="fossilNumberAdd(item.id)" @minus="fossilNumberMinus(item.id)" ></u-number-box>
+							<u-number-box :value="fossilNumber[item.id-1]" :min="0" :disabled-input="true" @plus="fossilNumberAdd(item.id)" @minus="fossilNumberMinus(item.id)" ></u-number-box>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -80,7 +80,7 @@
 						<view class="collection">
 							<u-button class="artwork_detail" type="primary" size="mini" @click="onClickMoreInfo('artwork',item)">详情</u-button>
 							<p v-if="item.number>0">(已捐)</p>
-							<u-number-box :value="artworkNumber[item.id-1]" :min="0" @plus="artworkNumberAdd(item.id)" @minus="artworkNumberMinus(item.id)" ></u-number-box>
+							<u-number-box :value="artworkNumber[item.id-1]" :min="0" :disabled-input="true" @plus="artworkNumberAdd(item.id)" @minus="artworkNumberMinus(item.id)" ></u-number-box>
 						</view>
 					</u-cell-item>
 				</u-cell-group>
@@ -573,6 +573,8 @@
 				}else{//如果不存在，且村民数量未到10人，则压入
 					// this.villager_checked.push(id);
 					if(this.villager_checked.length < 10){
+						//本地数组同步
+						this.villager_checked.push(id);
 						this.createUserVillagerCollectedInfo(id)
 					}else{
 						return uni.showToast({
@@ -948,7 +950,7 @@
 				const head = {'Authorization':"Bearer "+jwt};
 				const result = await this.$myRequest({
 					method: 'POST',
-					url: '/posts/',
+					url: '/user_fossil/',
 					header: head,
 					data: {fossil:id},
 				})
@@ -1151,7 +1153,7 @@
 					data: {dweller:id},
 				})
 				//本地数组同步
-				this.villager_checked.push(id);
+				// this.villager_checked.push(id);
 				// console.log(result);
 			},
 			//向后端delete  user villager  收集信息

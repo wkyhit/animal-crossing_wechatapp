@@ -40,7 +40,15 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
+			"current": -1,
+			"list": []
+		},
+		"gamePlugin": {
 			"current": -1,
 			"list": []
 		},
@@ -48,10 +56,16 @@
 			"current": 0,
 			"list": [
 				{
-					"name": "",
-					"query": "",
 					"id": 0,
-					"pathName": "pages/mysite/mysite"
+					"name": "",
+					"pathName": "pages/mysite/mysite",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/circle_friends/comments/comments",
+					"pathName": "pages/circle_friends/comments/comments",
+					"scene": null
 				}
 			]
 		}

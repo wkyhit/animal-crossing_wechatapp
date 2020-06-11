@@ -76,7 +76,9 @@
         }
         ,{
             "path" : "pages/circle_friends/comments/comments",
-            "style" : {}
+            "style" : {
+				"enablePullDownRefresh": true//下拉刷新
+			}
         }
     ],
 	"globalStyle": {

@@ -259,6 +259,8 @@ var _default =
       trendsCount: 1,
       //动态的图片 数组
       trends_pic: [],
+      // 点赞按钮状态 字典对象
+      like_icon: [],
       //发布动态的内容
       new_trend: "",
       // 图片上传地址
@@ -295,6 +297,14 @@ var _default =
         // }
       }
       return tmp_trend_pic;
+    },
+    //点赞按钮状态 数组
+    likeIcon: function likeIcon() {
+      // let icon_dic = {}
+      // for(let i=0,len=this.trends.length; i<len; i++){
+      // icon_dic[this.trends[i].id] = "heart"
+      // }
+      return this.like_icon;
     } },
 
   methods: {
@@ -320,8 +330,37 @@ var _default =
         url: '/pages/mysite/mysite?userinfo=' + encodeURIComponent(JSON.stringify(this.info)) });
 
     },
-    clickLike: function clickLike() {
-      console.log("click like");
+    clickLike: function clickLike(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result, _jwt, _head, _result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
+
+                _this2.like_icon[id] === "heart")) {_context.next = 9;break;}
+                // 点赞
+                // 调用Vue.set更新数组,使视图更新
+                _this2.$set(_this2.like_icon, id, "heart-fill");
+                // this.like_icon[id] = "heart-fill"
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context.next = 6;return (
+                  _this2.$myRequest({
+                    method: 'POST',
+                    url: '/likes/',
+                    header: head,
+                    data: {
+                      obj_liked: id,
+                      thumbs_up_type: 2 } }));case 6:result = _context.sent;_context.next = 15;break;case 9:
+
+
+
+                //取消点赞
+                // this.like_icon[id] = "heart"
+                _this2.$set(_this2.like_icon, id, "heart");
+                _jwt = uni.getStorageSync("skey");
+                _head = { 'Authorization': "Bearer " + _jwt };_context.next = 14;return (
+                  _this2.$myRequest({
+                    method: 'DELETE',
+                    url: '/likes/' + id + "/",
+                    header: _head }));case 14:_result = _context.sent;case 15:case "end":return _context.stop();}}}, _callee);}))();
+
+
+
     },
     // 监听评论按钮点击事件
     clickComment: function clickComment(trends) {
@@ -334,21 +373,26 @@ var _default =
 
     },
     //获取动态
-    getTrends: function getTrends() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    getTrends: function getTrends() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result, i, len;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 // console.log("jwt: "+jwt);
                 head = { 'Authorization': "Bearer " + jwt };
                 // console.log("header: "+head.Authorization);
-                _context.next = 4;return _this2.$myRequest({
+                _context2.next = 4;return _this3.$myRequest({
                   method: 'GET',
-                  url: '/posts/?pagenum=' + _this2.trendPageNum,
-                  header: head });case 4:result = _context.sent;
+                  url: '/posts/?pagenum=' + _this3.trendPageNum,
+                  header: head });case 4:result = _context2.sent;
 
                 // 获取动态总个数
-                _this2.trendsCount = result.data.count;
-                _this2.trends = [].concat(_toConsumableArray(_this2.trends), _toConsumableArray(result.data.results));
+                _this3.trendsCount = result.data.count;
+                _this3.trends = [].concat(_toConsumableArray(_this3.trends), _toConsumableArray(result.data.results));
+                for (i = 0, len = _this3.trends.length; i < len; i++) {
+                  _this3.like_icon[_this3.trends[i].id] = "heart";
+                }
+
+
                 // console.log(this.trends)
-              case 7:case "end":return _context.stop();}}}, _callee);}))();},
+              case 8:case "end":return _context2.stop();}}}, _callee2);}))();},
     // 获取剩余动态 pagenum>1,每页10条
     getRemainTrends: function getRemainTrends() {
       if (this.trendPageNum <= this.trendsCount / 10) {
@@ -399,31 +443,31 @@ var _default =
       console.log(tmp_post_pic);
     },
     //提交动态
-    submitTrends: function submitTrends() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+    submitTrends: function submitTrends() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var jwt, head, result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
                 jwt = uni.getStorageSync("skey");
-                head = { 'Authorization': "Bearer " + jwt };_context2.next = 4;return (
-                  _this3.$myRequest({
+                head = { 'Authorization': "Bearer " + jwt };_context3.next = 4;return (
+                  _this4.$myRequest({
                     method: 'POST',
                     url: '/posts/',
                     header: head,
                     data: {
-                      title: _this3.post_trends_form.title,
-                      content: _this3.post_trends_form.content,
-                      post_pic: _this3.post_trends_form.post_pic } }));case 4:result = _context2.sent;
+                      title: _this4.post_trends_form.title,
+                      content: _this4.post_trends_form.content,
+                      post_pic: _this4.post_trends_form.post_pic } }));case 4:result = _context3.sent;
 
 
                 //重置表单
-                _this3.post_trends_form.title = "";
-                _this3.post_trends_form.content = "";
-                _this3.$refs.uUpload.clear();
+                _this4.post_trends_form.title = "";
+                _this4.post_trends_form.content = "";
+                _this4.$refs.uUpload.clear();
                 uni.showToast({
                   title: "动态发布成功",
                   icon: "success" });
 
                 // console.log(result)
-                _this3.changeTab(0); //跳转回动态广场
+                _this4.changeTab(0); //跳转回动态广场
                 // 触发下拉刷新
-                uni.startPullDownRefresh();case 11:case "end":return _context2.stop();}}}, _callee2);}))();
+                uni.startPullDownRefresh();case 11:case "end":return _context3.stop();}}}, _callee3);}))();
     } },
 
   onLoad: function onLoad() {

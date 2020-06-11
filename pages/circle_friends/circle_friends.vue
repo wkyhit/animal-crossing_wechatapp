@@ -26,7 +26,7 @@
 					</view>
 					<!-- 标题 -->
 					<view class="title">
-						<text>{{item.title}}</text>
+						<text>{{"#标题: "+item.title}}</text>
 					</view>
 					<!-- 操作 -->
 					<view class="operate">
@@ -50,7 +50,7 @@
 				<view class="trends_card_bottom">
 					<!-- 点赞 -->
 					<view class="like" >
-						<u-icon name="heart" :hover-class="heart-fill" size="36" @click="clickLike"></u-icon>
+						<u-icon :name="like_icon[item.id]" size="36" @click="clickLike(item.id)"></u-icon>
 						<text>{{item.thumbs_up}}</text>
 					</view>
 					<!-- 评论 -->
@@ -111,6 +111,8 @@
 				trendsCount:1,
 				//动态的图片 数组
 				trends_pic:[],
+				// 点赞按钮状态 字典对象
+				like_icon:[],
 				//发布动态的内容
 				new_trend:"",
 				// 图片上传地址
@@ -148,6 +150,14 @@
 				}
 				return tmp_trend_pic;
 			},
+			//点赞按钮状态 数组
+			likeIcon(){
+				// let icon_dic = {}
+				// for(let i=0,len=this.trends.length; i<len; i++){
+					// icon_dic[this.trends[i].id] = "heart"
+				// }
+				return this.like_icon
+			},
 		},
 		methods: {
 			// 监听下拉刷新
@@ -172,8 +182,37 @@
 					url:'/pages/mysite/mysite?userinfo='+ encodeURIComponent(JSON.stringify(this.info))
 				});
 			},
-			clickLike(){
-				console.log("click like")
+			async clickLike(id){
+				// console.log("click like:"+this.like_icon[id])
+				if(this.like_icon[id] === "heart"){
+					// 点赞
+					// 调用Vue.set更新数组,使视图更新
+					this.$set(this.like_icon,id,"heart-fill")
+					// this.like_icon[id] = "heart-fill"
+					const jwt = uni.getStorageSync("skey");
+					const head = {'Authorization':"Bearer "+jwt};
+					const result = await this.$myRequest({
+						method: 'POST',
+						url: '/likes/',
+						header: head,
+						data: {
+							obj_liked:id,
+							thumbs_up_type:2,
+						},
+					})
+				}else{
+					//取消点赞
+					// this.like_icon[id] = "heart"
+					this.$set(this.like_icon,id,"heart")
+					const jwt = uni.getStorageSync("skey");
+					const head = {'Authorization':"Bearer "+jwt};
+					const result = await this.$myRequest({
+						method: 'DELETE',
+						url: '/likes/' +id+"/",
+						header: head,
+					})
+				}
+				// console.log("click like")
 			},
 			// 监听评论按钮点击事件
 			clickComment(trends){
@@ -199,6 +238,11 @@
 				// 获取动态总个数
 				this.trendsCount = result.data.count;
 				this.trends = [...this.trends, ...result.data.results]
+				for(let i=0,len=this.trends.length; i<len; i++){
+					this.like_icon[this.trends[i].id] = "heart"
+				}
+				
+				
 				// console.log(this.trends)
 			},
 			// 获取剩余动态 pagenum>1,每页10条

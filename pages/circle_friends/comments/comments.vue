@@ -80,8 +80,10 @@
 			</view>
 		</scroll-view>
 		<view class="comments_bar">
-			<input class="comment_input" placeholder="请输入评论" />
-			<button class="comment_submit">提交</button>
+			<input class="comment_input" placeholder="请输入评论" :value="post_comment_form_content" @input="commentContentChange" />
+			<view class="bt_submit ">
+				<button class="comment_submit" @click="submitComment">提交</button>
+			</view>
 		</view>
 	</view>
 </template>
@@ -100,11 +102,21 @@
 				comments_users_id:[],
 				// 评论用户的信息： object字典 用userid做索引
 				comments_users_info:{},
+				//提交评论的表单的内容
+				post_comment_form_content:"",
 				//临时头像图片
 				tmp_src: 'http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg',
 			};
 		},
 		methods: {
+			// 监听下拉刷新
+			onPullDownRefresh(){
+				this.comments_info = []
+				setTimeout(()=>{
+					this.getComments() //重新获取评论
+					uni.stopPullDownRefresh() //停止下拉刷新
+				})
+			},
 			//获取评论 根据动态帖子的id 获取其评论
 			async getComments(){
 				const jwt = uni.getStorageSync("skey");
@@ -148,7 +160,30 @@
 			},
 			// 获取剩余评论(配合上滑触底刷新)
 			getRemainComments() {
-
+				
+			},
+			// 监听发布评论框的input change事件
+			commentContentChange(e){
+				this.post_comment_form_content = e.detail.value
+			},
+			// 发布评论点击事件，调用create post_comment接口
+			async submitComment(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'POST',
+					url: '/post_comments/',
+					header: head,
+					data:{comment:this.post_comment_form_content,post:this.trend_info.id}
+				})
+				console.log(result)
+				// 清空
+				this.post_comment_form_content = ""
+				uni.showToast({
+					title:"评论成功!"
+				})
+				//刷新评论
+				uni.startPullDownRefresh()
 			},
 			//数组去重方法
 			getRidOfRepeatArray(array){
@@ -166,7 +201,8 @@
 			this.trend_info = JSON.parse(decodeURIComponent(option.trendsInfo));
 			this.trend_pic = JSON.parse(decodeURIComponent(option.trendpic))
 			console.log(this.trend_pic)
-			this.getComments()
+			uni.startPullDownRefresh()
+			// this.getComments()
 		}
 	}
 </script>
@@ -314,6 +350,7 @@
 		
 		// 评论卡片
 		.comments_card {
+			margin-bottom: 95rpx;
 			border-radius: 38.96rpx;
 			box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
 			background-color: rgba(223, 206, 222, 0.9);
@@ -381,19 +418,37 @@
 		position: fixed ;
 		bottom: 0;
 		width: 750rpx;
-		height: 75rpx;
+		height: 85rpx;
 		background-color: rgba(145, 152, 140, 0.9);
 		display: flex;
+		justify-content: space-evenly;
+		padding: 10rpx 15rpx;
 		.comment_input{
-			padding-left: 15rpx;
-			width: 74%;
+			background-color: white;
+			border-radius: 22rpx;
+			// padding-left: 15rpx;
+			width: 70%;
 			height: 100%;
 		}
-		.comment_submit{
-			background-color: rgb(77, 152, 136);
-			color: white;
-			width: 26%;
-			height: 100%;
+		.bt_submit{
+			background-color: white;
+			width: 20%;
+			border-radius: 12rpx;
+			box-sizing: border-box;
+			.comment_submit{
+				border-radius: 22rpx;
+				background-color: white;
+				color: black;
+				text-align: center;
+				vertical-align: middle;
+				border: 2rpx solid transparent;
+				padding: 5rpx 10rpx;
+				font-size: 14px;
+				line-height: 65rpx;
+				width: 100%;
+				height: 100%;
+			}
 		}
+		
 	}
 </style>

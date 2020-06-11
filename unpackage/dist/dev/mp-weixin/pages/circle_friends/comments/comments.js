@@ -225,6 +225,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 var _default =
 {
   data: function data() {
@@ -239,45 +241,55 @@ var _default =
       comments_users_id: [],
       // 评论用户的信息： object字典 用userid做索引
       comments_users_info: {},
+      //提交评论的表单的内容
+      post_comment_form_content: "",
       //临时头像图片
       tmp_src: 'http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg' };
 
   },
   methods: {
+    // 监听下拉刷新
+    onPullDownRefresh: function onPullDownRefresh() {var _this = this;
+      this.comments_info = [];
+      setTimeout(function () {
+        _this.getComments(); //重新获取评论
+        uni.stopPullDownRefresh(); //停止下拉刷新
+      });
+    },
     //获取评论 根据动态帖子的id 获取其评论
-    getComments: function getComments() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result, i, len, obj, _i, _len, userinfo;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    getComments: function getComments() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result, i, len, obj, _i, _len, userinfo;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 head = { 'Authorization': "Bearer " + jwt };_context.next = 4;return (
-                  _this.$myRequest({
+                  _this2.$myRequest({
                     method: 'GET',
-                    url: '/post_comments/?post=' + _this.trend_info.id,
+                    url: '/post_comments/?post=' + _this2.trend_info.id,
                     header: head }));case 4:result = _context.sent;
 
                 // console.log(result)
-                _this.comments_info = [].concat(_toConsumableArray(_this.comments_info), _toConsumableArray(result.data.results));
+                _this2.comments_info = [].concat(_toConsumableArray(_this2.comments_info), _toConsumableArray(result.data.results));
                 //获取评论的user id
-                for (i = 0, len = _this.comments_info.length; i < len; i++) {
-                  _this.comments_users_id.push(_this.comments_info[i].user);
+                for (i = 0, len = _this2.comments_info.length; i < len; i++) {
+                  _this2.comments_users_id.push(_this2.comments_info[i].user);
                 }
                 //user id 数组去重
-                _this.comments_users_id = _this.getRidOfRepeatArray(_this.comments_users_id);
+                _this2.comments_users_id = _this2.getRidOfRepeatArray(_this2.comments_users_id);
                 //userid获取评论的user的信息
                 // 临时字典obj 出去userid(key) 与其对应的 userinfo
                 obj = {};
-                _i = 0, _len = _this.comments_users_id.length;case 10:if (!(_i < _len)) {_context.next = 18;break;}_context.next = 13;return (
+                _i = 0, _len = _this2.comments_users_id.length;case 10:if (!(_i < _len)) {_context.next = 18;break;}_context.next = 13;return (
 
-                  _this.getCommentsUserInfo(_this.comments_users_id[_i]));case 13:userinfo = _context.sent;
+                  _this2.getCommentsUserInfo(_this2.comments_users_id[_i]));case 13:userinfo = _context.sent;
                 // console.log(userinfo)
                 //将字典的 key:userid 和 info: userid对应的信息 一一对应
-                obj[_this.comments_users_id[_i]] = userinfo;case 15:_i++;_context.next = 10;break;case 18:
+                obj[_this2.comments_users_id[_i]] = userinfo;case 15:_i++;_context.next = 10;break;case 18:
 
-                _this.comments_users_info = obj;case 19:case "end":return _context.stop();}}}, _callee);}))();
+                _this2.comments_users_info = obj;case 19:case "end":return _context.stop();}}}, _callee);}))();
     },
     // 根据评论用户的id 获取用户相关信息
-    getCommentsUserInfo: function getCommentsUserInfo(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+    getCommentsUserInfo: function getCommentsUserInfo(id) {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 head = { 'Authorization': "Bearer " + jwt };_context2.next = 4;return (
-                  _this2.$myRequest({
+                  _this3.$myRequest({
                     method: 'GET',
                     url: '/users/' + id + '/',
                     header: head }));case 4:result = _context2.sent;return _context2.abrupt("return",
@@ -288,6 +300,29 @@ var _default =
     // 获取剩余评论(配合上滑触底刷新)
     getRemainComments: function getRemainComments() {
 
+    },
+    // 监听发布评论框的input change事件
+    commentContentChange: function commentContentChange(e) {
+      this.post_comment_form_content = e.detail.value;
+    },
+    // 发布评论点击事件，调用create post_comment接口
+    submitComment: function submitComment() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var jwt, head, result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context3.next = 4;return (
+                  _this4.$myRequest({
+                    method: 'POST',
+                    url: '/post_comments/',
+                    header: head,
+                    data: { comment: _this4.post_comment_form_content, post: _this4.trend_info.id } }));case 4:result = _context3.sent;
+
+                console.log(result);
+                // 清空
+                _this4.post_comment_form_content = "";
+                uni.showToast({
+                  title: "评论成功!" });
+
+                //刷新评论
+                uni.startPullDownRefresh();case 9:case "end":return _context3.stop();}}}, _callee3);}))();
     },
     //数组去重方法
     getRidOfRepeatArray: function getRidOfRepeatArray(array) {
@@ -305,7 +340,8 @@ var _default =
     this.trend_info = JSON.parse(decodeURIComponent(option.trendsInfo));
     this.trend_pic = JSON.parse(decodeURIComponent(option.trendpic));
     console.log(this.trend_pic);
-    this.getComments();
+    uni.startPullDownRefresh();
+    // this.getComments()
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
