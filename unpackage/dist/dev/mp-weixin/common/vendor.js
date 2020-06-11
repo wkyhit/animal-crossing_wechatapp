@@ -10388,7 +10388,24 @@ toast;exports.default = _default;
 
 /***/ }),
 
-/***/ 328:
+/***/ 33:
+/*!****************************************************************************************!*\
+  !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/config/config.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 此版本发布于2020-05-18
+var version = '1.2.7';var _default =
+
+{
+  v: version,
+  version: version };exports.default = _default;
+
+/***/ }),
+
+/***/ 336:
 /*!**************************************************************************!*\
   !*** D:/wechatapp/develop/animal_crossing/components/uni-icons/icons.js ***!
   \**************************************************************************/
@@ -10527,23 +10544,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   "cloud-download-filled": "\uE8E9",
   "headphones": "\uE8BF",
   "shop": "\uE609" };exports.default = _default;
-
-/***/ }),
-
-/***/ 33:
-/*!****************************************************************************************!*\
-  !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/config/config.js ***!
-  \****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 此版本发布于2020-05-18
-var version = '1.2.7';var _default =
-
-{
-  v: version,
-  version: version };exports.default = _default;
 
 /***/ }),
 

@@ -40,9 +40,9 @@
 							{{item.content}}
 						</text>
 					</view>
-					<view class="content_img" v-for="(item1,index) in trendPicture[item.id-1]" :key="index">
-						<view class="content_img1">
-							<image :src="item1"></image>
+					<view class="content_img" >
+						<view class="content_img1" v-for="(item1,index1) in trendPicture[item.id]" :key="index1">
+							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1)"></image>
 						</view>
 					</view>
 				</view>
@@ -130,21 +130,23 @@
 		computed:{
 			//动态图片的数组
 			trendPicture(){
-				let len = this.trends.length
+				let tmp_trend_pic = {} //用来保存每个trend多个pic的字典，用trend的id做key索引
 				let trend_pic=new Array() //用来存每个trends多各pic的二维数组
+				let len = this.trends.length//动态帖子的数量
 				for(let i=0; i<len; i++){
 					//用 ; 对图片字符串进行分割
 					let pic_array = new Array()
-					// console.log(this.trends[i].post_pic)
 					pic_array = this.trends[i].post_pic.split(";")
-					// console.log(pic_array)
-					trend_pic[i] = new Array() //声明二维数组
-					for(let j=0,len1=pic_array.length; j<len1; j++){
-						console.log(pic_array[j])
-						trend_pic[i][j] = pic_array[j];
-					}
+					let trend_id = this.trends[i].id //获取当前trend的id
+					tmp_trend_pic[trend_id] = pic_array //以trend_id为key保存对应的图片url数组
+			
+					// trend_pic[i] = new Array() //声明二维数组
+					// for(let j=0,len1=pic_array.length; j<len1; j++){
+						// console.log(pic_array[j])
+						// trend_pic[i][j] = pic_array[j];
+					// }
 				}
-				return trend_pic;
+				return tmp_trend_pic;
 			},
 		},
 		methods: {
@@ -177,7 +179,7 @@
 			clickComment(trends){
 				const trendsInfo = trends
 				uni.navigateTo({
-					url:"comments/comments?trendsInfo="+ encodeURIComponent(JSON.stringify(trendsInfo))
+					url:"comments/comments?trendsInfo="+ encodeURIComponent(JSON.stringify(trendsInfo))+"&trendpic="+encodeURIComponent(JSON.stringify(this.trendPicture[trendsInfo.id]))
 				})
 			},
 			clickShare(){
@@ -213,6 +215,17 @@
 			// 监听content input change 事件
 			contentChange(e){
 				this.post_trends_form.content = e.detail.value
+			},
+			// 图片预览事件
+			clickToPreviewImage(list_id,img_index){
+				// let imgArr = imageList
+				let imgArr = this.trendPicture[list_id]
+				// console.log(this.trendPicture[list_id])
+				uni.previewImage({
+					urls:imgArr,
+					current:img_index
+				})
+				
 			},
 			//图片上传事件
 			uploadChange(res){
@@ -255,22 +268,25 @@
 				this.post_trends_form.title = ""
 				this.post_trends_form.content = ""
 				this.$refs.uUpload.clear()
-				console.log(result)
+				uni.showToast({
+					title:"动态发布成功",
+					icon: "success"
+				})
+				// console.log(result)
 				this.changeTab(0) //跳转回动态广场
 				// 触发下拉刷新
 				uni.startPullDownRefresh()
-				// console.log(this.post_trends_form.title)
-				// console.log(this.post_trends_form.content)
-				// console.log(this.post_trends_form.post_pic)
 			},
 		},
 		onLoad() {
 			const jwt = uni.getStorageSync("skey");
 			const headers = {'Authorization':"Bearer "+jwt};
 			this.head = headers;
+			uni.startPullDownRefresh()
+			// console.log("onload friends")
 		},
 		onShow(){
-			uni.startPullDownRefresh()
+			// uni.startPullDownRefresh()
 		}
 	}
 </script>
@@ -374,11 +390,9 @@
 					padding: 25rpx;
 				}
 			}
-
 			// 卡片内容中部
 			.trends_card_content {
 				width: 96%;
-
 				// 文字内容
 				.content_text {
 					padding: 35rpx;
@@ -390,14 +404,23 @@
 					margin: 25rpx 0;
 					width: 100%;
 					display: flex;
+					flex-wrap: wrap;
 					justify-content: space-evenly;
 					// height: 300rpx;
 					.content_img1 {
 						// max-width: 150rpx;
 						// max-height: 150rpx;
+						// border: solid 2rpx white;
+						border-radius: 26rpx;
+						box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+						width: 200rpx;
+						height: 200rpx;
 						image {
-							max-width: 300rpx;
-							max-height: 300rpx;
+							// border: solid 2rpx white;
+							border-radius: 26rpx;
+							box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+							max-width: 200rpx;
+							max-height: 200rpx;
 						}
 					}
 				}
@@ -466,7 +489,7 @@
 			.context{
 				margin: 35rpx 20rpx;
 				width: 96%;
-				height: 500rpx;
+				height: 400rpx;
 				.context_input{
 					padding: 15rpx;
 					width:100% ;
@@ -474,6 +497,9 @@
 				}
 			}
 			.upload_img{
+				display:flex ;
+				flex-wrap: wrap;
+				justify-content:space-evenly ;
 				
 			}
 		}

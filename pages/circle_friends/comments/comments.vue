@@ -31,8 +31,8 @@
 							{{trend_info.content}}
 						</text>
 					</view>
-					<view class="content_img" v-for="(item1,index) in trendPicture[item.id-1]" :key="index">
-						<view class="content_img1">
+					<view class="content_img" >
+						<view class="content_img1" v-for="(item1,index1) in trend_pic" :key="index1">
 							<image :src="item1"></image>
 						</view>
 					</view>
@@ -92,6 +92,8 @@
 			return {
 				//circle_friends页面传过来动态帖子的数据
 				trend_info: [],
+				//circle_friends传来的动态帖子的图片
+				trend_pic:{},
 				// 评论信息
 				comments_info:[],
 				// 评论用户的id
@@ -162,6 +164,8 @@
 		},
 		onLoad(option) {
 			this.trend_info = JSON.parse(decodeURIComponent(option.trendsInfo));
+			this.trend_pic = JSON.parse(decodeURIComponent(option.trendpic))
+			console.log(this.trend_pic)
 			this.getComments()
 		}
 	}
@@ -260,16 +264,20 @@
 					margin: 25rpx 0;
 					width: 100%;
 					display: flex;
+					flex-wrap: wrap;
 					justify-content: space-evenly;
 
 					// height: 300rpx;
 					.content_img1 {
-
-						// max-width: 150rpx;
-						// max-height: 150rpx;
+						border-radius: 26rpx;
+						box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+						width: 200rpx;
+						height: 200rpx;
 						image {
-							max-width: 300rpx;
-							max-height: 300rpx;
+							border-radius: 26rpx;
+							box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+							max-width: 200rpx;
+							max-height: 200rpx;
 						}
 					}
 				}
@@ -287,17 +295,14 @@
 				// 点赞
 				.like {
 					display: flex;
-
 					text {
 						font-size: 24rpx;
 						margin-left: 10rpx;
 					}
 				}
-
 				// 评论
 				.comment {
 					display: flex;
-
 					text {
 						font-size: 24rpx;
 						margin-left: 10rpx;
@@ -335,7 +340,6 @@
 					// 头像
 					.avator {
 						// height: 100%;
-						
 						max-height: 100rpx;
 						max-width: 100rpx;
 						display: flex;
@@ -359,7 +363,6 @@
 						align-items: center;
 						justify-content: space-evenly;
 					}
-					
 				}
 				//评论内容
 				.comment_body_content{

@@ -94,19 +94,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uTabs: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 218))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 226))
   },
   uSearch: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 225))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 233))
   },
   uAvatar: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 274))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 282))
   },
   uIcon: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 183))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 191))
   },
   uUpload: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-upload/u-upload */ "node-modules/uview-ui/components/u-upload/u-upload").then(__webpack_require__.bind(null, /*! uview-ui/components/u-upload/u-upload.vue */ 295))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-upload/u-upload */ "node-modules/uview-ui/components/u-upload/u-upload").then(__webpack_require__.bind(null, /*! uview-ui/components/u-upload/u-upload.vue */ 303))
   }
 }
 var render = function() {
@@ -278,21 +278,23 @@ var _default =
   computed: {
     //动态图片的数组
     trendPicture: function trendPicture() {
-      var len = this.trends.length;
+      var tmp_trend_pic = {}; //用来保存每个trend多个pic的字典，用trend的id做key索引
       var trend_pic = new Array(); //用来存每个trends多各pic的二维数组
+      var len = this.trends.length; //动态帖子的数量
       for (var i = 0; i < len; i++) {
         //用 ; 对图片字符串进行分割
         var pic_array = new Array();
-        // console.log(this.trends[i].post_pic)
         pic_array = this.trends[i].post_pic.split(";");
-        // console.log(pic_array)
-        trend_pic[i] = new Array(); //声明二维数组
-        for (var j = 0, len1 = pic_array.length; j < len1; j++) {
-          console.log(pic_array[j]);
-          trend_pic[i][j] = pic_array[j];
-        }
+        var trend_id = this.trends[i].id; //获取当前trend的id
+        tmp_trend_pic[trend_id] = pic_array; //以trend_id为key保存对应的图片url数组
+
+        // trend_pic[i] = new Array() //声明二维数组
+        // for(let j=0,len1=pic_array.length; j<len1; j++){
+        // console.log(pic_array[j])
+        // trend_pic[i][j] = pic_array[j];
+        // }
       }
-      return trend_pic;
+      return tmp_trend_pic;
     } },
 
   methods: {
@@ -325,7 +327,7 @@ var _default =
     clickComment: function clickComment(trends) {
       var trendsInfo = trends;
       uni.navigateTo({
-        url: "comments/comments?trendsInfo=" + encodeURIComponent(JSON.stringify(trendsInfo)) });
+        url: "comments/comments?trendsInfo=" + encodeURIComponent(JSON.stringify(trendsInfo)) + "&trendpic=" + encodeURIComponent(JSON.stringify(this.trendPicture[trendsInfo.id])) });
 
     },
     clickShare: function clickShare() {
@@ -361,6 +363,17 @@ var _default =
     // 监听content input change 事件
     contentChange: function contentChange(e) {
       this.post_trends_form.content = e.detail.value;
+    },
+    // 图片预览事件
+    clickToPreviewImage: function clickToPreviewImage(list_id, img_index) {
+      // let imgArr = imageList
+      var imgArr = this.trendPicture[list_id];
+      // console.log(this.trendPicture[list_id])
+      uni.previewImage({
+        urls: imgArr,
+        current: img_index });
+
+
     },
     //图片上传事件
     uploadChange: function uploadChange(res) {
@@ -403,22 +416,25 @@ var _default =
                 _this3.post_trends_form.title = "";
                 _this3.post_trends_form.content = "";
                 _this3.$refs.uUpload.clear();
-                console.log(result);
+                uni.showToast({
+                  title: "动态发布成功",
+                  icon: "success" });
+
+                // console.log(result)
                 _this3.changeTab(0); //跳转回动态广场
                 // 触发下拉刷新
-                uni.startPullDownRefresh();
-                // console.log(this.post_trends_form.title)
-                // console.log(this.post_trends_form.content)
-                // console.log(this.post_trends_form.post_pic)
-              case 11:case "end":return _context2.stop();}}}, _callee2);}))();} },
+                uni.startPullDownRefresh();case 11:case "end":return _context2.stop();}}}, _callee2);}))();
+    } },
 
   onLoad: function onLoad() {
     var jwt = uni.getStorageSync("skey");
     var headers = { 'Authorization': "Bearer " + jwt };
     this.head = headers;
+    uni.startPullDownRefresh();
+    // console.log("onload friends")
   },
   onShow: function onShow() {
-    uni.startPullDownRefresh();
+    // uni.startPullDownRefresh()
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

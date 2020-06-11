@@ -145,13 +145,27 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
   -webkit-box-pack: space-evenly;
   -webkit-justify-content: space-evenly;
           justify-content: space-evenly;
 }
+.trends_square .trends_card .trends_card_content .content_img .content_img1 {
+  -webkit-border-radius: 26rpx;
+          border-radius: 26rpx;
+  -webkit-box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+          box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+  width: 200rpx;
+  height: 200rpx;
+}
 .trends_square .trends_card .trends_card_content .content_img .content_img1 image {
-  max-width: 300rpx;
-  max-height: 300rpx;
+  -webkit-border-radius: 26rpx;
+          border-radius: 26rpx;
+  -webkit-box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+          box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+  max-width: 200rpx;
+  max-height: 200rpx;
 }
 .trends_square .trends_card .trends_card_bottom {
   width: 98%;
@@ -234,12 +248,22 @@
 .post_trends .card .context {
   margin: 35rpx 20rpx;
   width: 96%;
-  height: 500rpx;
+  height: 400rpx;
 }
 .post_trends .card .context .context_input {
   padding: 15rpx;
   width: 100%;
   height: 100%;
+}
+.post_trends .card .upload_img {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+          justify-content: space-evenly;
 }
 .post_trends .submit {
   -webkit-align-self: center;

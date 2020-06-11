@@ -94,7 +94,7 @@
 				<!-- <u-avatar :src="item.pic_url" mode="square" size="large"></u-avatar> -->
 				<u-cell-group class="cell-group">
 					<u-cell-item :title="item.cn_sname" :arrow="false" hover-class="none">
-						<view class="item" @click="onClickMoreInfo('villager')">
+						<view class="item">
 							<!-- <p class="name">{{item.name}}</p> -->
 							<p class="description">{{item.race}}</p>
 							<p class="price">{{item.birth_month}}月{{item.birth_day}}日</p>
