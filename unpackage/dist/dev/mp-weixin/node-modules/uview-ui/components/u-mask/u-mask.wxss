@@ -31,11 +31,9 @@
   right: 0;
   bottom: 0;
   opacity: 0;
-  visibility: hidden;
 }
 .u-mask-show.data-v-f0ef1792 {
   opacity: 1;
-  visibility: visible;
   -webkit-transform: scale(1);
           transform: scale(1);
 }

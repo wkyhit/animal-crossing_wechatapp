@@ -65,8 +65,8 @@
   color: #909399;
 }
 .u-close-wrap.data-v-372630f7 {
-  width: 34rpx;
-  height: 34rpx;
+  width: 40rpx;
+  height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -76,7 +76,6 @@
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;
-  background-color: #c8cbcc;
   -webkit-border-radius: 50%;
           border-radius: 50%;
 }

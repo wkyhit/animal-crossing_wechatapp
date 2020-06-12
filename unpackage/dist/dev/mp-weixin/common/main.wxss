@@ -3095,6 +3095,12 @@ u-icon {
   -webkit-align-items: center;
           align-items: center;
 }
+u-grid {
+  width: 100%;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 100%;
+          flex: 0 0 100%;
+}
 
 /* end-微信小程序编译后页面有组件名的元素，特别处理--end */
 /* start--iPhoneX底部安全区定义--start */
@@ -3132,6 +3138,7 @@ u-icon {
 }
 .u-line-2, .u-line-3, .u-line-4, .u-line-5 {
   overflow: hidden;
+  word-break: break-all;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -3152,21 +3159,21 @@ u-icon {
 .u-border-top-bottom:after,
 .u-border-top:after,
 .u-border:after {
-  content: " ";
+  content: ' ';
   position: absolute;
+  left: 0;
+  top: 0;
   pointer-events: none;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  -webkit-transform-origin: center;
-  transform-origin: center;
-  top: -50%;
-  left: -50%;
-  right: -50%;
-  bottom: -50%;
-  -webkit-transform: scale(0.5);
-  transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  width: 199.8%;
+  height: 199.7%;
+  -webkit-transform: scale(0.5, 0.5);
+          transform: scale(0.5, 0.5);
   border: 0 solid #e4e7ed;
-  z-index: 0;
+  z-index: 2;
 }
 .u-border-top:after {
   border-top-width: 1px;

@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "u-select": "/node-modules/uview-ui/components/u-select/u-select",
     "u-upload": "/node-modules/uview-ui/components/u-upload/u-upload"
   }
 }

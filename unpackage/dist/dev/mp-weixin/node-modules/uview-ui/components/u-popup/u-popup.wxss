@@ -38,8 +38,8 @@
   display: block;
   position: absolute;
   z-index: 1003;
-  -webkit-transition: all 0.25s linear;
-  transition: all 0.25s linear;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
 }
 .u-drawer-left.data-v-aeb8db3e {
   top: 0;
@@ -105,22 +105,6 @@
 .u-drawer-content-visible.data-v-aeb8db3e {
   -webkit-transform: translate3D(0px, 0px, 0px) !important;
           transform: translate3D(0px, 0px, 0px) !important;
-}
-.u-drawer-mask.data-v-aeb8db3e {
-  display: block;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  -webkit-transition: opacity 0.25s;
-  transition: opacity 0.25s;
-}
-.u-drawer-mask-visible.data-v-aeb8db3e {
-  display: block;
-  opacity: 1;
 }
 .u-close.data-v-aeb8db3e {
   position: absolute;

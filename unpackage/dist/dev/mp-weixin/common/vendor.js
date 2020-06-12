@@ -1693,14 +1693,14 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 125:
+/***/ 127:
 /*!*******************************************************************************!*\
   !*** D:/wechatapp/develop/animal_crossing/pages/turnip-prices/predictions.js ***!
   \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _regeneratorRuntime = __webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 17);var _PATTERN_COUNTS, _PATTERN$FLUCTUATING, _PATTERN$LARGE_SPIKE, _PATTERN$DECREASING, _PATTERN$SMALL_SPIKE, _PROBABILITY_MATRIX;function _createForOfIteratorHelper(o) {if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var it,normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var _marked = /*#__PURE__*/_regeneratorRuntime.mark(
+var _regeneratorRuntime = __webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 54);var _PATTERN_COUNTS, _PATTERN$FLUCTUATING, _PATTERN$LARGE_SPIKE, _PATTERN$DECREASING, _PATTERN$SMALL_SPIKE, _PROBABILITY_MATRIX;function _createForOfIteratorHelper(o) {if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var it,normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var _marked = /*#__PURE__*/_regeneratorRuntime.mark(
 
 
 
@@ -2432,19 +2432,24 @@ var _type2icon = _interopRequireDefault(__webpack_require__(/*! ./libs/function/
 
 var _randomArray = _interopRequireDefault(__webpack_require__(/*! ./libs/function/randomArray.js */ 28));
 
+var _deepClone = _interopRequireDefault(__webpack_require__(/*! ./libs/function/deepClone.js */ 18));
 
-var _test = _interopRequireDefault(__webpack_require__(/*! ./libs/function/test.js */ 29));
-
-var _random = _interopRequireDefault(__webpack_require__(/*! ./libs/function/random.js */ 30));
-
-var _trim = _interopRequireDefault(__webpack_require__(/*! ./libs/function/trim.js */ 31));
-
-var _toast = _interopRequireDefault(__webpack_require__(/*! ./libs/function/toast.js */ 32));
+var _deepMerge = _interopRequireDefault(__webpack_require__(/*! ./libs/function/deepMerge.js */ 17));
 
 
-var _config = _interopRequireDefault(__webpack_require__(/*! ./libs/config/config.js */ 33));
+var _test = _interopRequireDefault(__webpack_require__(/*! ./libs/function/test.js */ 19));
 
-var _zIndex = _interopRequireDefault(__webpack_require__(/*! ./libs/config/zIndex.js */ 34));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} // 引入全局mixin
+var _random = _interopRequireDefault(__webpack_require__(/*! ./libs/function/random.js */ 29));
+
+var _trim = _interopRequireDefault(__webpack_require__(/*! ./libs/function/trim.js */ 30));
+
+var _toast = _interopRequireDefault(__webpack_require__(/*! ./libs/function/toast.js */ 31));
+
+
+
+var _config = _interopRequireDefault(__webpack_require__(/*! ./libs/config/config.js */ 32));
+
+var _zIndex = _interopRequireDefault(__webpack_require__(/*! ./libs/config/zIndex.js */ 33));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} // 引入全局mixin
 // 引入关于是否mixin集成小程序分享的配置
 // 全局挂载引入http相关请求拦截插件
 function wranning(str) {// 开发环境进行信息输出,主要是一些报错信息
@@ -2466,6 +2471,8 @@ var $u = { queryParams: _queryParams.default, route: _route.default, timeFormat:
   rgbToHex: _colorGradient.default.rgbToHex,
   test: _test.default,
   random: _random.default,
+  deepClone: _deepClone.default,
+  deepMerge: _deepMerge.default,
   trim: _trim.default,
   type: ['primary', 'success', 'error', 'warning', 'info'],
   http: _request.default,
@@ -2518,15 +2525,8 @@ var install = function install(Vue) {
     // 查询节点信息
     $uGetRect: function $uGetRect(selector, all) {var _this = this;
       return new Promise(function (resolve) {
-        var query = null;
-        // 支付宝小程序不能加后面的.in(this)，是它自身的限制
-
-        query = uni.createSelectorQuery().in(_this);
-
-
-
-
-        query[all ? 'selectAll' : 'select'](selector).
+        uni.createSelectorQuery().
+        in(_this)[all ? 'selectAll' : 'select'](selector).
         boundingClientRect(function (rect) {
           if (all && Array.isArray(rect) && rect.length) {
             resolve(rect);
@@ -2576,102 +2576,100 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var Request = /*#__PURE__*/function () {_createClass(Request, [{ key: "setConfig",
-
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _deepMerge = _interopRequireDefault(__webpack_require__(/*! ../function/deepMerge */ 17));
+var _test = _interopRequireDefault(__webpack_require__(/*! ../function/test */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+Request = /*#__PURE__*/function () {_createClass(Request, [{ key: "setConfig",
     // 设置全局默认配置
     value: function setConfig(customConfig) {
-      this.config = Object.assign(this.config, customConfig);
+      // 深度合并对象，否则会造成对象深层属性丢失
+      this.config = (0, _deepMerge.default)(this.config, customConfig);
     }
 
     // 主要请求部分
-  }, { key: "request", value: function () {var _request = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;var options,tmpConfig,interceptorReuest,_args = arguments;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:options = _args.length > 0 && _args[0] !== undefined ? _args[0] : {};if (!(
+  }, { key: "request", value: function request() {var _this = this;var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      // 检查请求拦截
+      if (this.interceptor.request && typeof this.interceptor.request === 'function') {
+        var tmpConfig = {};
+        var interceptorReuest = this.interceptor.request(options);
+        if (interceptorReuest === false) {
+          return false;
+        }
+        this.options = interceptorReuest;
+      }
 
-                this.interceptor.request && typeof this.interceptor.request === 'function')) {_context.next = 7;break;}
-                tmpConfig = {};
-                interceptorReuest = this.interceptor.request(options);if (!(
-                interceptorReuest === false)) {_context.next = 6;break;}return _context.abrupt("return",
-                false);case 6:
+      options.dataType = options.dataType || this.config.dataType;
+      options.responseType = options.responseType || this.config.responseType;
+      options.url = options.url || '';
+      options.params = options.params || {};
+      options.header = Object.assign(this.config.header, options.header);
+      options.method = options.method || this.config.method;
 
-                this.options = interceptorReuest;case 7:
+      return new Promise(function (resolve, reject) {
+        options.complete = function (response) {
+          // 请求返回后，隐藏loading(如果请求返回快的话，可能会没有loading)
+          uni.hideLoading();
+          // 清除定时器，如果请求回来了，就无需loading
+          clearTimeout(_this.config.timer);
+          // 判断用户对拦截返回数据的要求，如果originalData为true，返回所有的数据(response)到拦截器，否则只返回response.data
+          if (_this.config.originalData) {
+            // 判断是否存在拦截器
+            if (_this.interceptor.response && typeof _this.interceptor.response === 'function') {
+              var resInterceptors = _this.interceptor.response(response);
+              // 如果拦截器不返回false，就将拦截器返回的内容给this.$u.post的then回调
+              if (resInterceptors !== false) {
+                resolve(resInterceptors);
+              } else {
+                // 如果拦截器返回false，意味着拦截器定义者认为返回有问题，直接接入catch回调
+                reject(response);
+              }
+            } else {
+              // 如果要求返回原始数据，就算没有拦截器，也返回最原始的数据
+              resolve(response);
+            }
+          } else {
+            if (response.statusCode == 200) {
+              if (_this.interceptor.response && typeof _this.interceptor.response === 'function') {
+                var _resInterceptors = _this.interceptor.response(response.data);
+                if (_resInterceptors !== false) {
+                  resolve(_resInterceptors);
+                } else {
+                  reject(response.data);
+                }
+              } else {
+                // 如果不是返回原始数据(originalData=false)，且没有拦截器的情况下，返回纯数据给then回调
+                resolve(response.data);
+              }
+            } else {
+              // 不返回原始数据的情况下，服务器状态码不为200，modal弹框提示
+              if (response.errMsg) {
+                uni.showModal({
+                  title: response.errMsg });
 
+              }
+              reject(response);
+            }
+          }
+        };
 
-                options.dataType = options.dataType || this.config.dataType;
-                options.responseType = options.responseType || this.config.responseType;
-                options.url = options.url || '';
-                options.params = options.params || {};
-                options.header = Object.assign(this.config.header, options.header);
-                options.method = options.method || this.config.method;return _context.abrupt("return",
+        // 判断用户传递的URL是否/开头,如果不是,加上/，这里使用了uView的test.js验证库的url()方法
+        options.url = _test.default.url(options.url) ? options.url : _this.config.baseUrl + (options.url.indexOf('/') == 0 ?
+        options.url : '/' + options.url);
 
-                new Promise(function (resolve, reject) {
-                  options.complete = function (response) {
-                    // 请求返回后，隐藏loading(如果请求返回快的话，可能会没有loading)
-                    uni.hideLoading();
-                    // 清除定时器，如果请求回来了，就无需loading
-                    clearTimeout(_this.config.timer);
-                    // 判断用户对拦截返回数据的要求，如果originalData为true，返回所有的数据(response)到拦截器，否则只返回response.data
-                    if (_this.config.originalData) {
-                      // 判断是否存在拦截器
-                      if (_this.interceptor.response && typeof _this.interceptor.response === 'function') {
-                        var resInterceptors = _this.interceptor.response(response);
-                        // 如果拦截器不返回false，就将拦截器返回的内容给this.$u.post的then回调
-                        if (resInterceptors !== false) {
-                          resolve(resInterceptors);
-                        } else {
-                          // 如果拦截器返回false，意味着拦截器定义者认为返回有问题，直接接入catch回调
-                          reject(response);
-                        }
-                      } else {
-                        // 如果要求返回原始数据，就算没有拦截器，也返回最原始的数据
-                        resolve(response);
-                      }
-                    } else {
-                      if (response.statusCode == 200) {
-                        if (_this.interceptor.response && typeof _this.interceptor.response === 'function') {
-                          var _resInterceptors = _this.interceptor.response(response.data);
-                          if (_resInterceptors !== false) {
-                            resolve(_resInterceptors);
-                          } else {
-                            reject(response);
-                          }
-                        } else {
-                          // 如果不是返回原始数据(originalData=false)，且没有拦截器的情况下，返回纯数据给then回调
-                          resolve(response.data);
-                        }
-                      } else {
-                        // 不返回原始数据的情况下，服务器状态码不为200，modal弹框提示
-                        if (response.errMsg) {
-                          uni.showModal({
-                            title: response.errMsg });
+        // 是否显示loading
+        // 加一个是否已有timer定时器的判断，否则有两个同时请求的时候，后者会清除前者的定时器id
+        // 而没有清除前者的定时器，导致前者超时，一直显示loading
+        if (_this.config.showLoading && !_this.config.timer) {
+          _this.config.timer = setTimeout(function () {
+            uni.showLoading({
+              title: _this.config.loadingText,
+              mask: _this.config.loadingMask });
 
-                        }
-                        reject(response);
-                      }
-                    }
-                  };
-
-                  // 判断用户传递的URL是否/开头,如果不是,加上/
-                  options.url = Request.isHttp(options.url) ? options.url : _this.config.baseUrl + (options.url.indexOf('/') == 0 ?
-                  options.url : '/' + options.url);
-
-                  // 是否显示loading
-                  // 加一个是否已有timer定时器的判断，否则有两个同时请求的时候，后者会清除前者的定时器id
-                  // 而没有清除前者的定时器，导致前者超时，一直显示loading
-                  if (_this.config.showLoading && !_this.config.timer) {
-                    _this.config.timer = setTimeout(function () {
-                      uni.showLoading({
-                        title: _this.config.loadingText,
-                        mask: _this.config.loadingMask });
-
-                      _this.config.timer = null;
-                    }, _this.config.loadingTime);
-                  }
-                  uni.request(options);
-                }));case 14:case "end":return _context.stop();}}}, _callee, this);}));function request() {return _request.apply(this, arguments);}return request;}() }], [{ key: "isHttp", // 判断是否http|https开头的URL
-    value: function isHttp(url) {return /(http|https):\/\/([\w.]+\/?)\S*/.test(url);} }]);
+            _this.config.timer = null;
+          }, _this.config.loadingTime);
+        }
+        uni.request(options);
+      });
+    } }]);
 
   function Request() {var _this2 = this;_classCallCheck(this, Request);
     this.config = {
@@ -2749,792 +2747,267 @@ new Request();exports.default = _default;
 
 /***/ 17:
 /*!*********************************************************************************************!*\
-  !*** ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator/index.js ***!
+  !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/function/deepMerge.js ***!
   \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 18);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _deepClone = _interopRequireDefault(__webpack_require__(/*! ./deepClone */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// JS对象深度合并
+function deepMerge() {var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var source = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  target = (0, _deepClone.default)(target);
+  if (typeof target !== 'object' || typeof source !== 'object') return false;
+  for (var prop in source) {
+    if (!source.hasOwnProperty(prop)) continue;
+    if (prop in target) {
+      if (typeof target[prop] !== 'object') {
+        target[prop] = source[prop];
+      } else {
+        if (typeof source[prop] !== 'object') {
+          target[prop] = source[prop];
+        } else {
+          if (target[prop].concat && source[prop].concat) {
+            target[prop] = target[prop].concat(source[prop]);
+          } else {
+            target[prop] = deepMerge(target[prop], source[prop]);
+          }
+        }
+      }
+    } else {
+      target[prop] = source[prop];
+    }
+  }
+  return target;
+}var _default =
+
+deepMerge;exports.default = _default;
 
 /***/ }),
 
 /***/ 18:
-/*!************************************************************!*\
-  !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
-  \************************************************************/
+/*!*********************************************************************************************!*\
+  !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/function/deepClone.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-// This method of obtaining a reference to the global object needs to be
-// kept identical to the way it is obtained in runtime.js
-var g = (function() {
-  return this || (typeof self === "object" && self);
-})() || Function("return this")();
-
-// Use `getOwnPropertyNames` because not all browsers support calling
-// `hasOwnProperty` on the global `self` object in a worker. See #183.
-var hadRuntime = g.regeneratorRuntime &&
-  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
-
-// Save the old regeneratorRuntime in case it needs to be restored later.
-var oldRuntime = hadRuntime && g.regeneratorRuntime;
-
-// Force reevalutation of runtime.js.
-g.regeneratorRuntime = undefined;
-
-module.exports = __webpack_require__(/*! ./runtime */ 19);
-
-if (hadRuntime) {
-  // Restore the original runtime.
-  g.regeneratorRuntime = oldRuntime;
-} else {
-  // Remove the global property added by runtime.js.
-  try {
-    delete g.regeneratorRuntime;
-  } catch(e) {
-    g.regeneratorRuntime = undefined;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 对象深度克隆
+function deepClone() {var object = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var o, i, j, k;
+  if (typeof object !== "object" || object === null) return object;
+  if (object instanceof Array) {
+    o = [];
+    i = 0;
+    j = object.length;
+    for (; i < j; i++) {
+      if (typeof object[i] === "object" && object[i] != null) {
+        o[i] = deepClone(object[i]);
+      } else {
+        o[i] = object[i];
+      }
+    }
+  } else {
+    o = {};
+    for (i in object) {
+      if (typeof object[i] === "object" && object[i] !== null) {
+        o[i] = deepClone(object[i]);
+      } else {
+        o[i] = object[i];
+      }
+    }
   }
-}
+  return o;
+}var _default =
 
+deepClone;exports.default = _default;
 
 /***/ }),
 
 /***/ 19:
-/*!*****************************************************!*\
-  !*** ./node_modules/regenerator-runtime/runtime.js ***!
-  \*****************************************************/
+/*!****************************************************************************************!*\
+  !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/function/test.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 验证电子邮箱格式
+                                                                                                      */
+function email(value) {
+  return /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/.test(value);
+}
 
 /**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+   * 验证手机格式
+   */
+function mobile(value) {
+  return /^1[23456789]\d{9}$/.test(value);
+}
 
-!(function(global) {
-  "use strict";
+/**
+   * 验证URL格式
+   */
+function url(value) {
+  return /^((https|http|ftp|rtsp|mms):\/\/)(([0-9a-zA-Z_!~*'().&=+$%-]+: )?[0-9a-zA-Z_!~*'().&=+$%-]+@)?(([0-9]{1,3}.){3}[0-9]{1,3}|([0-9a-zA-Z_!~*'()-]+.)*([0-9a-zA-Z][0-9a-zA-Z-]{0,61})?[0-9a-zA-Z].[a-zA-Z]{2,6})(:[0-9]{1,4})?((\/?)|(\/[0-9a-zA-Z_!~*'().;?:@&=+$,%#-]+)+\/?)$/.
+  test(value);
+}
 
-  var Op = Object.prototype;
-  var hasOwn = Op.hasOwnProperty;
-  var undefined; // More compressible than void 0.
-  var $Symbol = typeof Symbol === "function" ? Symbol : {};
-  var iteratorSymbol = $Symbol.iterator || "@@iterator";
-  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
-  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+/**
+   * 验证日期格式
+   */
+function date(value) {
+  return !/Invalid|NaN/.test(new Date(value).toString());
+}
 
-  var inModule = typeof module === "object";
-  var runtime = global.regeneratorRuntime;
-  if (runtime) {
-    if (inModule) {
-      // If regeneratorRuntime is defined globally and we're in a module,
-      // make the exports object identical to regeneratorRuntime.
-      module.exports = runtime;
-    }
-    // Don't bother evaluating the rest of this file if the runtime was
-    // already defined globally.
-    return;
+/**
+   * 验证ISO类型的日期格式
+   */
+function dateISO(value) {
+  return /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(value);
+}
+
+/**
+   * 验证十进制数字
+   */
+function number(value) {
+  return /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(value);
+}
+
+/**
+   * 验证整数
+   */
+function digits(value) {
+  return /^\d+$/.test(value);
+}
+
+/**
+   * 验证身份证号码
+   */
+function idCard(value) {
+  return /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(
+  value);
+}
+
+/**
+   * 是否车牌号
+   */
+function carNo(value) {
+  // 新能源车牌
+  var xreg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([0-9]{5}[DF]$)|([DF][A-HJ-NP-Z0-9][0-9]{4}$))/;
+  // 旧车牌
+  var creg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳]{1}$/;
+  if (value.length === 7) {
+    return creg.test(value);
+  } else if (value.length === 8) {
+    return xreg.test(value);
+  } else {
+    return false;
   }
+}
 
-  // Define the runtime globally (as expected by generated code) as either
-  // module.exports (if we're in a module) or a new, empty object.
-  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
+/**
+   * 金额,只允许2位小数
+   */
+function amount(value) {
+  //金额，只允许保留两位小数
+  return /^[1-9]\d*(,\d{3})*(\.\d{1,2})?$|^0.\d{1,2}$/.test(value);
+}
 
-  function wrap(innerFn, outerFn, self, tryLocsList) {
-    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
-    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-    var generator = Object.create(protoGenerator.prototype);
-    var context = new Context(tryLocsList || []);
+/**
+   * 中文
+   */
+function chinese(value) {
+  var reg = /^[\u4e00-\u9fa5]+$/gi;
+  return reg.test(value);
+}
 
-    // The ._invoke method unifies the implementations of the .next,
-    // .throw, and .return methods.
-    generator._invoke = makeInvokeMethod(innerFn, self, context);
+/**
+   * 只能输入字母
+   */
+function letter(value) {
+  return /^[a-zA-Z]*$/.test(value);
+}
 
-    return generator;
-  }
-  runtime.wrap = wrap;
+/**
+   * 只能是字母或者数字
+   */
+function enOrNum(value) {
+  //英文或者数字
+  var reg = /^[0-9a-zA-Z]*$/g;
+  return reg.test(value);
+}
 
-  // Try/catch helper to minimize deoptimizations. Returns a completion
-  // record like context.tryEntries[i].completion. This interface could
-  // have been (and was previously) designed to take a closure to be
-  // invoked without arguments, but in all the cases we care about we
-  // already have an existing method we want to call, so there's no need
-  // to create a new function object. We can even get away with assuming
-  // the method takes exactly one argument, since that happens to be true
-  // in every case, so we don't have to touch the arguments object. The
-  // only additional allocation required is the completion record, which
-  // has a stable shape and so hopefully should be cheap to allocate.
-  function tryCatch(fn, obj, arg) {
-    try {
-      return { type: "normal", arg: fn.call(obj, arg) };
-    } catch (err) {
-      return { type: "throw", arg: err };
-    }
-  }
+/**
+   * 验证是否包含某个值
+   */
+function contains(value, param) {
+  return value.indexOf(param) >= 0;
+}
 
-  var GenStateSuspendedStart = "suspendedStart";
-  var GenStateSuspendedYield = "suspendedYield";
-  var GenStateExecuting = "executing";
-  var GenStateCompleted = "completed";
+/**
+   * 验证一个值范围[min, max]
+   */
+function range(value, param) {
+  return value >= param[0] && value <= param[1];
+}
 
-  // Returning this object from the innerFn has the same effect as
-  // breaking out of the dispatch switch statement.
-  var ContinueSentinel = {};
+/**
+   * 验证一个长度范围[min, max]
+   */
+function rangeLength(value, param) {
+  return value.length >= param[0] && value.length <= param[1];
+}
 
-  // Dummy constructor functions that we use as the .constructor and
-  // .constructor.prototype properties for functions that return Generator
-  // objects. For full spec compliance, you may wish to configure your
-  // minifier not to mangle the names of these two functions.
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-
-  // This is a polyfill for %IteratorPrototype% for environments that
-  // don't natively support it.
-  var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
-    return this;
-  };
-
-  var getProto = Object.getPrototypeOf;
-  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-  if (NativeIteratorPrototype &&
-      NativeIteratorPrototype !== Op &&
-      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
-    // This environment has a native %IteratorPrototype%; use it instead
-    // of the polyfill.
-    IteratorPrototype = NativeIteratorPrototype;
-  }
-
-  var Gp = GeneratorFunctionPrototype.prototype =
-    Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displayName = "GeneratorFunction";
-
-  // Helper for defining the .next, .throw, and .return methods of the
-  // Iterator interface in terms of a single ._invoke method.
-  function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
-        return this._invoke(method, arg);
-      };
-    });
-  }
-
-  runtime.isGeneratorFunction = function(genFun) {
-    var ctor = typeof genFun === "function" && genFun.constructor;
-    return ctor
-      ? ctor === GeneratorFunction ||
-        // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .name property.
-        (ctor.displayName || ctor.name) === "GeneratorFunction"
-      : false;
-  };
-
-  runtime.mark = function(genFun) {
-    if (Object.setPrototypeOf) {
-      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
-    } else {
-      genFun.__proto__ = GeneratorFunctionPrototype;
-      if (!(toStringTagSymbol in genFun)) {
-        genFun[toStringTagSymbol] = "GeneratorFunction";
+/**
+   * 判断是否为空
+   */
+function empty(value) {
+  switch (typeof value) {
+    case 'undefined':
+      return true;
+    case 'string':
+      if (value.replace(/(^[ \t\n\r]*)|([ \t\n\r]*$)/g, '').length == 0) return true;
+      break;
+    case 'boolean':
+      if (!value) return true;
+      break;
+    case 'number':
+      if (0 === value || isNaN(value)) return true;
+      break;
+    case 'object':
+      if (null === value || value.length === 0) return true;
+      for (var i in value) {
+        return false;
       }
-    }
-    genFun.prototype = Object.create(Gp);
-    return genFun;
-  };
-
-  // Within the body of any async function, `await x` is transformed to
-  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
-  // `hasOwn.call(value, "__await")` to determine if the yielded value is
-  // meant to be awaited.
-  runtime.awrap = function(arg) {
-    return { __await: arg };
-  };
-
-  function AsyncIterator(generator) {
-    function invoke(method, arg, resolve, reject) {
-      var record = tryCatch(generator[method], generator, arg);
-      if (record.type === "throw") {
-        reject(record.arg);
-      } else {
-        var result = record.arg;
-        var value = result.value;
-        if (value &&
-            typeof value === "object" &&
-            hasOwn.call(value, "__await")) {
-          return Promise.resolve(value.__await).then(function(value) {
-            invoke("next", value, resolve, reject);
-          }, function(err) {
-            invoke("throw", err, resolve, reject);
-          });
-        }
-
-        return Promise.resolve(value).then(function(unwrapped) {
-          // When a yielded Promise is resolved, its final value becomes
-          // the .value of the Promise<{value,done}> result for the
-          // current iteration.
-          result.value = unwrapped;
-          resolve(result);
-        }, function(error) {
-          // If a rejected Promise was yielded, throw the rejection back
-          // into the async generator function so it can be handled there.
-          return invoke("throw", error, resolve, reject);
-        });
-      }
-    }
-
-    var previousPromise;
-
-    function enqueue(method, arg) {
-      function callInvokeWithMethodAndArg() {
-        return new Promise(function(resolve, reject) {
-          invoke(method, arg, resolve, reject);
-        });
-      }
-
-      return previousPromise =
-        // If enqueue has been called before, then we want to wait until
-        // all previous Promises have been resolved before calling invoke,
-        // so that results are always delivered in the correct order. If
-        // enqueue has not been called before, then it is important to
-        // call invoke immediately, without waiting on a callback to fire,
-        // so that the async generator function has the opportunity to do
-        // any necessary setup in a predictable way. This predictability
-        // is why the Promise constructor synchronously invokes its
-        // executor callback, and why async functions synchronously
-        // execute code before the first await. Since we implement simple
-        // async functions in terms of async generators, it is especially
-        // important to get this right, even though it requires care.
-        previousPromise ? previousPromise.then(
-          callInvokeWithMethodAndArg,
-          // Avoid propagating failures to Promises returned by later
-          // invocations of the iterator.
-          callInvokeWithMethodAndArg
-        ) : callInvokeWithMethodAndArg();
-    }
-
-    // Define the unified helper method that is used to implement .next,
-    // .throw, and .return (see defineIteratorMethods).
-    this._invoke = enqueue;
-  }
-
-  defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
-    return this;
-  };
-  runtime.AsyncIterator = AsyncIterator;
-
-  // Note that simple async functions are implemented on top of
-  // AsyncIterator objects; they just return a Promise for the value of
-  // the final result produced by the iterator.
-  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
-    var iter = new AsyncIterator(
-      wrap(innerFn, outerFn, self, tryLocsList)
-    );
-
-    return runtime.isGeneratorFunction(outerFn)
-      ? iter // If outerFn is a generator, return the full iterator.
-      : iter.next().then(function(result) {
-          return result.done ? result.value : iter.next();
-        });
-  };
-
-  function makeInvokeMethod(innerFn, self, context) {
-    var state = GenStateSuspendedStart;
-
-    return function invoke(method, arg) {
-      if (state === GenStateExecuting) {
-        throw new Error("Generator is already running");
-      }
-
-      if (state === GenStateCompleted) {
-        if (method === "throw") {
-          throw arg;
-        }
-
-        // Be forgiving, per 25.3.3.3.3 of the spec:
-        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
-        return doneResult();
-      }
-
-      context.method = method;
-      context.arg = arg;
-
-      while (true) {
-        var delegate = context.delegate;
-        if (delegate) {
-          var delegateResult = maybeInvokeDelegate(delegate, context);
-          if (delegateResult) {
-            if (delegateResult === ContinueSentinel) continue;
-            return delegateResult;
-          }
-        }
-
-        if (context.method === "next") {
-          // Setting context._sent for legacy support of Babel's
-          // function.sent implementation.
-          context.sent = context._sent = context.arg;
-
-        } else if (context.method === "throw") {
-          if (state === GenStateSuspendedStart) {
-            state = GenStateCompleted;
-            throw context.arg;
-          }
-
-          context.dispatchException(context.arg);
-
-        } else if (context.method === "return") {
-          context.abrupt("return", context.arg);
-        }
-
-        state = GenStateExecuting;
-
-        var record = tryCatch(innerFn, self, context);
-        if (record.type === "normal") {
-          // If an exception is thrown from innerFn, we leave state ===
-          // GenStateExecuting and loop back for another invocation.
-          state = context.done
-            ? GenStateCompleted
-            : GenStateSuspendedYield;
-
-          if (record.arg === ContinueSentinel) {
-            continue;
-          }
-
-          return {
-            value: record.arg,
-            done: context.done
-          };
-
-        } else if (record.type === "throw") {
-          state = GenStateCompleted;
-          // Dispatch the exception by looping back around to the
-          // context.dispatchException(context.arg) call above.
-          context.method = "throw";
-          context.arg = record.arg;
-        }
-      }
-    };
-  }
-
-  // Call delegate.iterator[context.method](context.arg) and handle the
-  // result, either by returning a { value, done } result from the
-  // delegate iterator, or by modifying context.method and context.arg,
-  // setting context.delegate to null, and returning the ContinueSentinel.
-  function maybeInvokeDelegate(delegate, context) {
-    var method = delegate.iterator[context.method];
-    if (method === undefined) {
-      // A .throw or .return when the delegate iterator has no .throw
-      // method always terminates the yield* loop.
-      context.delegate = null;
-
-      if (context.method === "throw") {
-        if (delegate.iterator.return) {
-          // If the delegate iterator has a return method, give it a
-          // chance to clean up.
-          context.method = "return";
-          context.arg = undefined;
-          maybeInvokeDelegate(delegate, context);
-
-          if (context.method === "throw") {
-            // If maybeInvokeDelegate(context) changed context.method from
-            // "return" to "throw", let that override the TypeError below.
-            return ContinueSentinel;
-          }
-        }
-
-        context.method = "throw";
-        context.arg = new TypeError(
-          "The iterator does not provide a 'throw' method");
-      }
-
-      return ContinueSentinel;
-    }
-
-    var record = tryCatch(method, delegate.iterator, context.arg);
-
-    if (record.type === "throw") {
-      context.method = "throw";
-      context.arg = record.arg;
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    var info = record.arg;
-
-    if (! info) {
-      context.method = "throw";
-      context.arg = new TypeError("iterator result is not an object");
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    if (info.done) {
-      // Assign the result of the finished delegate to the temporary
-      // variable specified by delegate.resultName (see delegateYield).
-      context[delegate.resultName] = info.value;
-
-      // Resume execution at the desired location (see delegateYield).
-      context.next = delegate.nextLoc;
-
-      // If context.method was "throw" but the delegate handled the
-      // exception, let the outer generator proceed normally. If
-      // context.method was "next", forget context.arg since it has been
-      // "consumed" by the delegate iterator. If context.method was
-      // "return", allow the original .return call to continue in the
-      // outer generator.
-      if (context.method !== "return") {
-        context.method = "next";
-        context.arg = undefined;
-      }
-
-    } else {
-      // Re-yield the result returned by the delegate method.
-      return info;
-    }
-
-    // The delegate iterator is finished, so forget it and continue with
-    // the outer generator.
-    context.delegate = null;
-    return ContinueSentinel;
-  }
-
-  // Define Generator.prototype.{next,throw,return} in terms of the
-  // unified ._invoke helper method.
-  defineIteratorMethods(Gp);
-
-  Gp[toStringTagSymbol] = "Generator";
-
-  // A Generator should always return itself as the iterator object when the
-  // @@iterator function is called on it. Some browsers' implementations of the
-  // iterator prototype chain incorrectly implement this, causing the Generator
-  // object to not be returned from this call. This ensures that doesn't happen.
-  // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
-    return this;
-  };
-
-  Gp.toString = function() {
-    return "[object Generator]";
-  };
-
-  function pushTryEntry(locs) {
-    var entry = { tryLoc: locs[0] };
-
-    if (1 in locs) {
-      entry.catchLoc = locs[1];
-    }
-
-    if (2 in locs) {
-      entry.finallyLoc = locs[2];
-      entry.afterLoc = locs[3];
-    }
-
-    this.tryEntries.push(entry);
-  }
-
-  function resetTryEntry(entry) {
-    var record = entry.completion || {};
-    record.type = "normal";
-    delete record.arg;
-    entry.completion = record;
-  }
-
-  function Context(tryLocsList) {
-    // The root entry object (effectively a try statement without a catch
-    // or a finally block) gives us a place to store values thrown from
-    // locations where there is no enclosing try statement.
-    this.tryEntries = [{ tryLoc: "root" }];
-    tryLocsList.forEach(pushTryEntry, this);
-    this.reset(true);
-  }
-
-  runtime.keys = function(object) {
-    var keys = [];
-    for (var key in object) {
-      keys.push(key);
-    }
-    keys.reverse();
-
-    // Rather than returning an object with a next method, we keep
-    // things simple and return the next function itself.
-    return function next() {
-      while (keys.length) {
-        var key = keys.pop();
-        if (key in object) {
-          next.value = key;
-          next.done = false;
-          return next;
-        }
-      }
-
-      // To avoid creating an additional object, we just hang the .value
-      // and .done properties off the next function object itself. This
-      // also ensures that the minifier will not anonymize the function.
-      next.done = true;
-      return next;
-    };
-  };
-
-  function values(iterable) {
-    if (iterable) {
-      var iteratorMethod = iterable[iteratorSymbol];
-      if (iteratorMethod) {
-        return iteratorMethod.call(iterable);
-      }
-
-      if (typeof iterable.next === "function") {
-        return iterable;
-      }
-
-      if (!isNaN(iterable.length)) {
-        var i = -1, next = function next() {
-          while (++i < iterable.length) {
-            if (hasOwn.call(iterable, i)) {
-              next.value = iterable[i];
-              next.done = false;
-              return next;
-            }
-          }
-
-          next.value = undefined;
-          next.done = true;
-
-          return next;
-        };
-
-        return next.next = next;
-      }
-    }
-
-    // Return an iterator with no values.
-    return { next: doneResult };
-  }
-  runtime.values = values;
-
-  function doneResult() {
-    return { value: undefined, done: true };
-  }
-
-  Context.prototype = {
-    constructor: Context,
-
-    reset: function(skipTempReset) {
-      this.prev = 0;
-      this.next = 0;
-      // Resetting context._sent for legacy support of Babel's
-      // function.sent implementation.
-      this.sent = this._sent = undefined;
-      this.done = false;
-      this.delegate = null;
-
-      this.method = "next";
-      this.arg = undefined;
-
-      this.tryEntries.forEach(resetTryEntry);
-
-      if (!skipTempReset) {
-        for (var name in this) {
-          // Not sure about the optimal order of these conditions:
-          if (name.charAt(0) === "t" &&
-              hasOwn.call(this, name) &&
-              !isNaN(+name.slice(1))) {
-            this[name] = undefined;
-          }
-        }
-      }
-    },
-
-    stop: function() {
-      this.done = true;
-
-      var rootEntry = this.tryEntries[0];
-      var rootRecord = rootEntry.completion;
-      if (rootRecord.type === "throw") {
-        throw rootRecord.arg;
-      }
-
-      return this.rval;
-    },
-
-    dispatchException: function(exception) {
-      if (this.done) {
-        throw exception;
-      }
-
-      var context = this;
-      function handle(loc, caught) {
-        record.type = "throw";
-        record.arg = exception;
-        context.next = loc;
-
-        if (caught) {
-          // If the dispatched exception was caught by a catch block,
-          // then let that catch block handle the exception normally.
-          context.method = "next";
-          context.arg = undefined;
-        }
-
-        return !! caught;
-      }
-
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        var record = entry.completion;
-
-        if (entry.tryLoc === "root") {
-          // Exception thrown outside of any try block that could handle
-          // it, so set the completion value of the entire function to
-          // throw the exception.
-          return handle("end");
-        }
-
-        if (entry.tryLoc <= this.prev) {
-          var hasCatch = hasOwn.call(entry, "catchLoc");
-          var hasFinally = hasOwn.call(entry, "finallyLoc");
-
-          if (hasCatch && hasFinally) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            } else if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else if (hasCatch) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            }
-
-          } else if (hasFinally) {
-            if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else {
-            throw new Error("try statement without catch or finally");
-          }
-        }
-      }
-    },
-
-    abrupt: function(type, arg) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc <= this.prev &&
-            hasOwn.call(entry, "finallyLoc") &&
-            this.prev < entry.finallyLoc) {
-          var finallyEntry = entry;
-          break;
-        }
-      }
-
-      if (finallyEntry &&
-          (type === "break" ||
-           type === "continue") &&
-          finallyEntry.tryLoc <= arg &&
-          arg <= finallyEntry.finallyLoc) {
-        // Ignore the finally entry if control is not jumping to a
-        // location outside the try/catch block.
-        finallyEntry = null;
-      }
-
-      var record = finallyEntry ? finallyEntry.completion : {};
-      record.type = type;
-      record.arg = arg;
-
-      if (finallyEntry) {
-        this.method = "next";
-        this.next = finallyEntry.finallyLoc;
-        return ContinueSentinel;
-      }
-
-      return this.complete(record);
-    },
-
-    complete: function(record, afterLoc) {
-      if (record.type === "throw") {
-        throw record.arg;
-      }
-
-      if (record.type === "break" ||
-          record.type === "continue") {
-        this.next = record.arg;
-      } else if (record.type === "return") {
-        this.rval = this.arg = record.arg;
-        this.method = "return";
-        this.next = "end";
-      } else if (record.type === "normal" && afterLoc) {
-        this.next = afterLoc;
-      }
-
-      return ContinueSentinel;
-    },
-
-    finish: function(finallyLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.finallyLoc === finallyLoc) {
-          this.complete(entry.completion, entry.afterLoc);
-          resetTryEntry(entry);
-          return ContinueSentinel;
-        }
-      }
-    },
-
-    "catch": function(tryLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc === tryLoc) {
-          var record = entry.completion;
-          if (record.type === "throw") {
-            var thrown = record.arg;
-            resetTryEntry(entry);
-          }
-          return thrown;
-        }
-      }
-
-      // The context.catch method must only be called with a location
-      // argument that corresponds to a known catch block.
-      throw new Error("illegal catch attempt");
-    },
-
-    delegateYield: function(iterable, resultName, nextLoc) {
-      this.delegate = {
-        iterator: values(iterable),
-        resultName: resultName,
-        nextLoc: nextLoc
-      };
-
-      if (this.method === "next") {
-        // Deliberately forget the last sent value so that we don't
-        // accidentally pass it on to the delegate.
-        this.arg = undefined;
-      }
-
-      return ContinueSentinel;
-    }
-  };
-})(
-  // In sloppy mode, unbound `this` refers to the global object, fallback to
-  // Function constructor if we're in global strict mode. That is sadly a form
-  // of indirect eval which violates Content Security Policy.
-  (function() {
-    return this || (typeof self === "object" && self);
-  })() || Function("return this")()
-);
-
+      return true;}
+
+  return false;
+}var _default =
+
+
+{
+  email: email,
+  mobile: mobile,
+  url: url,
+  date: date,
+  dateISO: dateISO,
+  number: number,
+  digits: digits,
+  idCard: idCard,
+  carNo: carNo,
+  amount: amount,
+  chinese: chinese,
+  letter: letter,
+  enOrNum: enOrNum,
+  contains: contains,
+  range: range,
+  rangeLength: rangeLength,
+  empty: empty,
+  isEmpty: empty };exports.default = _default;
 
 /***/ }),
 
@@ -9799,7 +9272,6 @@ function timeFrom() {var timestamp = arguments.length > 0 && arguments[0] !== un
   timer = parseInt(timer / 1000);
   // 如果小于5分钟,则返回"刚刚",其他以此类推
   var tips = '';
-  console.log(timer);
   switch (true) {
     case timer < 300:
       tips = '刚刚';
@@ -10105,187 +9577,23 @@ randomArray;exports.default = _default;
 /***/ }),
 
 /***/ 29:
-/*!****************************************************************************************!*\
-  !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/function/test.js ***!
-  \****************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/function/random.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                      * 验证电子邮箱格式
-                                                                                                      */
-function email(value) {
-  return /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/.test(value);
-}
-
-/**
-   * 验证手机格式
-   */
-function mobile(value) {
-  return /^1[23456789]\d{9}$/.test(value);
-}
-
-/**
-   * 验证URL格式
-   */
-function url(value) {
-  return /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.
-  test(value);
-}
-
-/**
-   * 验证日期格式
-   */
-function date(value) {
-  return !/Invalid|NaN/.test(new Date(value).toString());
-}
-
-/**
-   * 验证ISO类型的日期格式
-   */
-function dateISO(value) {
-  return /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(value);
-}
-
-/**
-   * 验证十进制数字
-   */
-function number(value) {
-  return /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(value);
-}
-
-/**
-   * 验证整数
-   */
-function digits(value) {
-  return /^\d+$/.test(value);
-}
-
-/**
-   * 验证身份证号码
-   */
-function idCard(value) {
-  return /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(
-  value);
-}
-
-/**
-   * 是否车牌号
-   */
-function carNo(value) {
-  // 新能源车牌
-  var xreg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([0-9]{5}[DF]$)|([DF][A-HJ-NP-Z0-9][0-9]{4}$))/;
-  // 旧车牌
-  var creg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳]{1}$/;
-  if (value.length === 7) {
-    return creg.test(value);
-  } else if (value.length === 8) {
-    return xreg.test(value);
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function random(min, max) {
+  if (min >= 0 && max > 0 && max >= min) {
+    var gab = max - min + 1;
+    return Math.floor(Math.random() * gab + min);
   } else {
-    return false;
+    return 0;
   }
-}
-
-/**
-   * 金额,只允许2位小数
-   */
-function amount(value) {
-  //金额，只允许保留两位小数
-  return /^[1-9]\d*(,\d{3})*(\.\d{1,2})?$|^0.\d{1,2}$/.test(value);
-}
-
-/**
-   * 中文
-   */
-function chinese(value) {
-  var reg = /^[\u4e00-\u9fa5]+$/gi;
-  return reg.test(value);
-}
-
-/**
-   * 只能输入字母
-   */
-function letter(value) {
-  return /^[a-zA-Z]*$/.test(value);
-}
-
-/**
-   * 只能是字母或者数字
-   */
-function enOrNum(value) {
-  //英文或者数字
-  var reg = /^[0-9a-zA-Z]*$/g;
-  return reg.test(value);
-}
-
-/**
-   * 验证是否包含某个值
-   */
-function contains(value, param) {
-  return value.indexOf(param) >= 0;
-}
-
-/**
-   * 验证一个值范围[min, max]
-   */
-function range(value, param) {
-  return value >= param[0] && value <= param[1];
-}
-
-/**
-   * 验证一个长度范围[min, max]
-   */
-function rangeLength(value, param) {
-  return value.length >= param[0] && value.length <= param[1];
-}
-
-/**
-   * 判断是否为空
-   */
-function empty(value) {
-  switch (typeof value) {
-    case 'undefined':
-      return true;
-    case 'string':
-      if (value.replace(/(^[ \t\n\r]*)|([ \t\n\r]*$)/g, '').length == 0) return true;
-      break;
-    case 'boolean':
-      if (!value) return true;
-      break;
-    case 'number':
-      if (0 === value || isNaN(value)) return true;
-      break;
-    case 'object':
-      if (null === value || value.length === 0) return true;
-      for (var i in value) {
-        return false;
-      }
-      return true;}
-
-  return false;
 }var _default =
 
-
-{
-  email: email,
-  mobile: mobile,
-  url: url,
-  date: date,
-  dateISO: dateISO,
-  number: number,
-  digits: digits,
-  idCard: idCard,
-  carNo: carNo,
-  amount: amount,
-  chinese: chinese,
-  letter: letter,
-  enOrNum: enOrNum,
-  contains: contains,
-  range: range,
-  rangeLength: rangeLength,
-  empty: empty,
-  isEmpty: empty };exports.default = _default;
+random;exports.default = _default;
 
 /***/ }),
 
@@ -10321,27 +9629,6 @@ module.exports = g;
 /***/ }),
 
 /***/ 30:
-/*!******************************************************************************************!*\
-  !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/function/random.js ***!
-  \******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function random(min, max) {
-  if (min >= 0 && max > 0 && max >= min) {
-    var gab = max - min + 1;
-    return Math.floor(Math.random() * gab + min);
-  } else {
-    return 0;
-  }
-}var _default =
-
-random;exports.default = _default;
-
-/***/ }),
-
-/***/ 31:
 /*!****************************************************************************************!*\
   !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/function/trim.js ***!
   \****************************************************************************************/
@@ -10367,7 +9654,7 @@ trim;exports.default = _default;
 
 /***/ }),
 
-/***/ 32:
+/***/ 31:
 /*!*****************************************************************************************!*\
   !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/function/toast.js ***!
   \*****************************************************************************************/
@@ -10388,7 +9675,7 @@ toast;exports.default = _default;
 
 /***/ }),
 
-/***/ 33:
+/***/ 32:
 /*!****************************************************************************************!*\
   !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/config/config.js ***!
   \****************************************************************************************/
@@ -10396,8 +9683,8 @@ toast;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 此版本发布于2020-05-18
-var version = '1.2.7';var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 此版本发布于2020-06-12
+var version = '1.3.4';var _default =
 
 {
   v: version,
@@ -10405,7 +9692,7 @@ var version = '1.2.7';var _default =
 
 /***/ }),
 
-/***/ 34:
+/***/ 33:
 /*!****************************************************************************************!*\
   !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/config/zIndex.js ***!
   \****************************************************************************************/
@@ -10422,11 +9709,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
  */var _default =
 
 {
-  toast: 1090,
-  noNetwork: 1080,
+  toast: 10090,
+  noNetwork: 10080,
   // popup包含popup，actionsheet，keyboard，picker的值
-  popup: 1075,
-  mask: 1070,
+  popup: 10075,
+  mask: 10070,
   navbar: 980,
   topTips: 975,
   sticky: 970,
@@ -10434,7 +9721,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 35:
+/***/ 34:
 /*!********************************************************!*\
   !*** D:/wechatapp/develop/animal_crossing/util/api.js ***!
   \********************************************************/
@@ -10474,7 +9761,22 @@ var myRequest = function myRequest(options) {
 
 /***/ }),
 
-/***/ 351:
+/***/ 35:
+/*!*************************************************************************!*\
+  !*** D:/wechatapp/develop/animal_crossing/node_modules/goeasy/index.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(uni, Buffer) {// [AIV_SHORT]  Build version: 1.0.11 - Friday, May 8th, 2020, 6:31:02 PM  
+!function (t, e) { true ? module.exports = e() : undefined;}(this, function () {return function (t) {function e(o) {if (n[o]) return n[o].exports;var i = n[o] = { exports: {}, id: o, loaded: !1 };return t[o].call(i.exports, i, i.exports, e), i.loaded = !0, i.exports;}var n = {};return e.m = t, e.c = n, e.p = "", e(0);}([function (t, e, n) {"use strict";function o() {if (g() && uni.overrideShowHideAlready !== !0 && "undefined" != typeof getApp().$options) {uni.overrideShowHideAlready = !0;var t = getApp().$options.onShow[0],e = getApp().$options.onHide[0];getApp().$options.onShow[0] = function () {getApp().uniAppRunningBackend = !1, t();}, getApp().$options.onHide[0] = function () {getApp().uniAppRunningBackend = !0, e();};}}var i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},r = n(1),s = n(35),c = [],a = !1,u = function u(t) {if (a) {var e = new Date().formatDate("yy-MM-dd hh:mm:ss.S");c.push(e + " " + t + "\n");}},p = function p() {this.currentNumber = this.initialCurrentNumber();};p.prototype = { maxNumber: parseInt("10"), number: function number() {return this.currentNumber;}, initialCurrentNumber: function initialCurrentNumber() {var t = this;return k() ? t.currentNumber = parseInt(f("goeasyNode")) : t.currentNumber || (t.currentNumber = m(1, parseInt("10"))), t.currentNumber > 0 && t.currentNumber < this.maxNumber ? t.currentNumber = t.currentNumber + 1 : t.currentNumber == this.maxNumber ? t.currentNumber = 1 : t.currentNumber = Math.floor(Math.random() * this.maxNumber + 1), k() && l("goeasyNode", t.currentNumber), t.currentNumber;} };var h = function h(t) {var e,n = new RegExp("(^| )" + t + "=([^;]*)(;|$)");return (e = document.cookie.match(n)) ? unescape(e[2]) : null;},f = function f(t) {return window.localStorage ? window.localStorage.getItem(t) : h(t);},d = function d(t, e) {var n = 30,o = new Date();o.setTime(o.getTime() + 24 * n * 60 * 60 * 1e3), document.cookie = t + "=" + escape(e) + ";expires=" + o.toGMTString();},l = function l(t, e) {window.localStorage ? window.localStorage.setItem(t, e) : d(t, e);},y = function y() {Array.apply(this);},m = function m(t, e) {return Math.floor(Math.random() * (t - e) + e);},b = function b() {return !("undefined" == typeof wx || !wx.getLocation) && ("function" != typeof WebSocket || "function" != typeof XMLHttpRequest);},g = function g() {return !("object" !== ("undefined" == typeof uni ? "undefined" : i(uni)) || !uni.getSystemInfo);},v = function v() {return !("object" !== ("undefined" == typeof tt ? "undefined" : i(tt)) || !tt.getSystemInfo);},k = function k() {return g() ? "function" == typeof WebSocket && "function" == typeof XMLHttpRequest : !(S() || b() || v());},S = function S() {return "undefined" != typeof navigator && "ReactNative" == navigator.product;},w = new p(),x = function x(t) {if (u("GoEasy() Create GoEasy object:" + JSON.stringify(t)), this._isEmpty(t.appkey)) return void ("undefined" != typeof t.onConnectFailed && t.onConnectFailed({ code: 400, content: "appkey is required" }));if (this._copyConfig(t), "undefined" == typeof t.host) return void t.onConnectFailed({ code: 400, content: "host is required" });var e = "://" + w.number() + t.host,n = "";k() ? (n = t.forceTLS === !1 ? "http" + e + ":80" : "https" + e + ":443", this.socket = r.connect(n, { transports: ["polling", "websocket"], timeout: 1500 })) : (n = "https://wx-" + t.host + ":443", this.socket = r(n, { transports: ["websocket"], reconnectionDelayMax: 3e3 })), this._callbackEvents(t);};x.goEasyDomainNumber = w, "undefined" != typeof window && (window._GoEasy_ = x), Date.prototype.formatDate = function (t) {var e = { "M+": this.getMonth() + 1, "d+": this.getDate(), "h+": this.getHours(), "m+": this.getMinutes(), "s+": this.getSeconds(), "q+": Math.floor((this.getMonth() + 3) / 3), S: this.getMilliseconds() };/(y+)/.test(t) && (t = t.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length)));for (var n in e) {e.hasOwnProperty(n) && new RegExp("(" + n + ")").test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? e[n] : ("00" + e[n]).substr(("" + e[n]).length)));}return t;}, y.prototype = new Array(), y.prototype.indexOfGuid = function (t) {for (var e = 0; e < this.length; e++) {if (this[e] == t) return e;}return -1;}, y.prototype.unshiftGuid = function (t) {var e = !1,n = this.indexOfGuid(t);for (n > -1 && (e = !0, this.splice(n, 1)), this.unshift(t); this.length > 300;) {this.pop();}return e;}, x.prototype = { debug: !1, socket: null, networkStatus: "initial", authorizeResult: null, subscribeBuffer: [], subscriptions: [], subscriptionChannelUUIDs: [], maxRetries: 3, _manualConnect: !1, _manualDisconnectStatus: "initial", authorizeStatus: "initial", receivedGuids: new y(), _copyConfig: function _copyConfig(t) {this._appkey = t.appkey, this._otp = t.otp, this._isEmpty(t.userId) ? (this._userId = "anonymous-" + Math.floor(1e5 * Math.random() + 1), t.userId = this._userId) : this._userId = this._trim(t.userId), this._isEmpty(t.userData) ? this._userData = "" : this._userData = this._trim(t.userData), 1 == t.debug && (this.debug = !0);}, validateSubscription: function validateSubscription(t) {var e = t.channel,n = t.channels;if ("undefined" == typeof e && "undefined" == typeof n) return t.onFailed({ code: 400, content: "channel is required" }), !1;if ("undefined" != typeof e && "undefined" != typeof n) return t.onFailed({ code: 400, content: "subscribe to either channel or channels, not both" }), !1;if ("undefined" != typeof e) {if ("number" == typeof e && (e = e.toString()), this._isEmpty(e) && "undefined" != typeof t.onFailed) return t.onFailed({ code: 400, content: "channel is required" }), !1;} else {if (!this._isArray(n) || 0 === n.length) return t.onFailed({ code: 400, content: "channels must be an array" }), !1;if (this._isArray(n) && n.length > 500) return t.onFailed({ code: 400, content: "channels over max length:500" }), !1;}return !0;}, subscribe: function subscribe(t) {if (o(), u("subscribe() subscribe:" + JSON.stringify(t)), this.validateSubscription(t)) {var e = t.channel;if ("undefined" != typeof e) {"number" == typeof e && (e = e.toString());var n = [];n.push(e), t.channels = n;}this.handleSubscribe(t);}}, handleSubscribe: function handleSubscribe(t) {t.uuid = this.uuid_goeasy(), this.subscribeBuffer[t.uuid] = t;var e = this;null != e.authorizeResult && "connected" == e.networkStatus && (t.checking = !0, e.doSubscribeAndCheckAck(t));}, doSubscribe: function doSubscribe(t) {u("doSubscribe() with subscription:" + JSON.stringify(t));var e = this;if (200 == e.authorizeResult.code) {var n = { channels: t.channels, sid: e.authorizeResult.sid };u("doSubscribe() emit subscribe params:" + JSON.stringify(n)), e.socket.emit("subscribe", n, function (n) {if (u("doSubscribe() receive subscribe ack:" + JSON.stringify(n)), 1 != t.finish) if (t.finish = !0, delete e.subscribeBuffer[t.uuid], u("doSubscribe() delete subscription from subscribeBuffer:" + JSON.stringify(t)), 200 == n.resultCode) {e.subscriptions[t.uuid] = t;for (var o = 0; o < t.channels.length; o++) {var i = t.channels[o];"number" == typeof i && (i = i.toString()), e.subscriptionChannelUUIDs[i] = t.uuid;}"undefined" != typeof t.onSuccess && t.onSuccess();} else "undefined" != typeof t.onFailed && t.onFailed({ code: n.resultCode, content: n.content });});} else u("doSubscribe() return with authorize code:" + e.authorizeResult.code);}, doSubscribeAndCheckAck: function doSubscribeAndCheckAck(t) {u("doSubscribeAndCheckAck():" + JSON.stringify(t)), t.finish = !1;var e = this;e.doSubscribe(t);var n = setInterval(function () {t.finish || "connected" != e.networkStatus ? (u("doSubscribeAndCheckAck() clean doSubscribeAndCheckAck:" + JSON.stringify(t)), t.checking = !1, clearInterval(n)) : (u("doSubscribeAndCheckAck() retry doSubscribe:" + JSON.stringify(t)), e.doSubscribe(t));}, 1300);}, subscribePresence: function subscribePresence(t) {if (this.validateSubscription(t)) {var e = t.channels,n = [];if (this._isArray(e)) {for (var o = 0; o < e.length; o++) {var i = e[o];"number" == typeof i && (i = i.toString());var r = i + "_presence";n.push(r);}t.channels = n;} else {var s = t.channel;"number" == typeof s && (s = s.toString()), n.push(s + "_presence"), t.channels = n;}this.handleSubscribe(t);}}, unsubscribe: function unsubscribe(t) {function e() {200 == i.authorizeResult.code ? i.socket.emit("unsubscribe", { sid: i.authorizeResult.sid, channel: t.channel }, function (e) {if (r = !0, 200 == e.resultCode) {delete i.subscriptionChannelUUIDs[t.channel];for (var n = i.subscriptions[o], s = n.channels, c = 0; c < s.length; c++) {(t.channel = s[c]) && s.splice(c, 1);}u("doUnsubscribe() delete from channels:" + JSON.stringify(t)), "undefined" != typeof t.onSuccess && t.onSuccess();} else "undefined" != typeof t.onFailed && t.onFailed({ code: e.resultCode, content: e.content });}) : (r = !0, "undefined" != typeof t.onFailed && t.onFailed({ code: i.authorizeResult.code, content: i.authorizeResult.content }));}function n() {e();var n = setInterval(function () {!r && "connected" == i.networkStatus && s < 0 ? (s++, e()) : s == i.maxRetries ? (clearInterval(n), "undefined" != typeof t.onFailed && t.onFailed({ code: 408, content: "Server unreachable or timeout" })) : clearInterval(n);}, 1e3);}if ("number" == typeof t.channel && (t.channel = t.channel.toString()), this._isEmpty(t.channel)) return this.log("'channel' is required."), void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "channel is required" }));var o = this.subscriptionChannelUUIDs[t.channel];if (this._isEmpty(o)) return this.log("'channel' is not subscribed."), void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "channel[" + t.channel + "] is not subscribed" }));var i = this,r = !1,s = 0;if (null != this.authorizeResult && "connected" == i.networkStatus) n();else var c = setInterval(function () {null != i.authorizeResult && "connected" == i.networkStatus ? (clearInterval(c), n()) : (s++, s == i.maxRetries && (clearInterval(c), "undefined" != typeof t.onFailed && t.onFailed({ code: 408, content: "Server unreachable or timeout" })));}, 1e3);}, unsubscribePresence: function unsubscribePresence(t) {return "number" == typeof t.channel && (t.channel = t.channel.toString()), this._isEmpty(t.channel) ? void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "channel is required" })) : (t.channel = t.channel + "_presence", void this.unsubscribe(t));}, publish: function publish(t) {function e(e) {200 == i.authorizeResult.code ? i.socket.emit("publish", { sid: i.authorizeResult.sid, channel: t.channel, content: t.message, guid: e, retried: s }, function (e) {r = !0, 200 == e.resultCode ? "undefined" != typeof t.onSuccess && t.onSuccess() : "undefined" != typeof t.onFailed && t.onFailed({ code: e.resultCode, content: e.content });}) : (r = !0, "undefined" != typeof t.onFailed && t.onFailed({ code: i.authorizeResult.code, content: i.authorizeResult.content }));}function n() {var n = i.uuid_goeasy();e(n);var o = setInterval(function () {!r && s < i.maxRetries ? (s++, e(n)) : s == i.maxRetries ? (clearInterval(o), "undefined" != typeof t.onFailed && t.onFailed({ code: 408, content: "Server unreachable or timeout" })) : clearInterval(o);}, 1e3);}if (o(), "number" == typeof t.channel && (t.channel = t.channel.toString()), this._isEmpty(t.channel)) return this.log("'channel' is required."), void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "channel is required" }));if (this._isEmpty(t.message)) return this.log("'message' is required."), void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "message is required" }));var i = this,r = !1,s = 0;if (null != this.authorizeResult && "connected" == i.networkStatus) n();else var c = setInterval(function () {null != i.authorizeResult && "connected" == i.networkStatus ? (clearInterval(c), n()) : (s++, s == i.maxRetries && (clearInterval(c), "undefined" != typeof t.onFailed && t.onFailed({ code: 408, content: "Server unreachable or timeout" })));}, 1e3);}, hereNow: function hereNow(t, e) {var n = { channels: [], includeUsers: !1, distinct: !1 };if ("undefined" !== t.channels) for (var o = 0; o < t.channels.length; o++) {var i = t.channels[o];"number" == typeof i && (i = i.toString()), n.channels.push(i);}1 == t.includeUsers && (n.includeUsers = !0), 1 == t.distinct && (n.distinct = !0), this.socket.emit("hereNow", n, function (t) {"undefined" != typeof e && e(t);});}, hereNowByUserIds: function hereNowByUserIds(t, e) {var n = { userIds: [], distinct: !0 };"undefined" !== t.userIds && (n.userIds = t.userIds), 0 == t.distinct && (n.distinct = !1), "undefined" != typeof e && (0 === n.userIds.length ? e({ code: 400, content: "userIds is required" }) : n.userIds.length > 500 ? e({ code: 400, content: "userIds is over max length 500" }) : this.socket.emit("hereNowByUserIds", n, function (t) {e(t);}));}, history: function history(t, e) {return "number" == typeof t.channel && (t.channel = t.channel.toString()), this._isEmpty(t.channel) ? void ("undefined" != typeof e && e({ code: 400, content: "channel is required" })) : void this.socket.emit("historyMessages", t, function (t) {"undefined" != typeof e && e(t);});}, disconnect: function disconnect() {var t = this;if (this._manualDisconnectStatus = "disconnecting", "connected" === this.networkStatus && "authorized" === this.authorizeStatus && 200 === this.authorizeResult.code) {var e = function e() {t.socket.disconnect();},n = function n() {t._manualDisconnectStatus = "disconnected";};t.tryEmit("manualDisconnect", null, e, n);} else this.socket.disconnect();}, disconnected: function disconnected() {return "disconnected" === this.networkStatus;}, reconnect: function reconnect() {this._manualConnect = !0, this.socket.connect();}, tryEmit: function tryEmit(t, e, n, o) {function i() {r.socket.emit(t, e, function (t) {s = !0, "undefined" != typeof o && o(t);});}var r = this,s = !1,c = 0;i();var a = setInterval(function () {var t = c === r.maxRetries;s || t ? (clearInterval(a), t && "undefined" != typeof n && n()) : (c++, i());}, 1e3);}, _callbackEvents: function _callbackEvents(t) {var e = this;this.socket.on("message", function (t, n) {var o = JSON.parse(t);if (!e.receivedGuids.unshiftGuid(o.i)) {o.a && e.socket.emit("ack", { publishGuid: o.i });var i = e.subscriptionChannelUUIDs[o.n];e._endWith(o.n, "presence") ? "undefined" != typeof e.subscriptions[i].onPresence && e.subscriptions[i].onPresence(JSON.parse(o.c)) : "undefined" != typeof e.subscriptions[i].onMessage && e.subscriptions[i].onMessage({ time: o.t, channel: o.n, content: o.c });}}), this.socket.on("connect", function () {function n() {u("doAuthorize() emit authorize params:" + JSON.stringify(i)), e._isEmpty(i.artifactVersion) && e.sendlogs(), e.socket.emit("authorize", i, function (n) {if (u("doAuthorize() received authorize ack:" + JSON.stringify(n)), !r) if (r = !0, e.authorizeStatus = "authorized", e._manualDisconnectStatus = "initial", null == e.authorizeResult && (e.authorizeResult = {}), e.authorizeResult.code = n.resultCode, e.authorizeResult.content = n.content, 200 == n.resultCode) {if (o(), null == e.authorizeResult.sid) e.authorizeResult.sid = n.sid;else if (e.authorizeResult.sid != n.sid) {e.authorizeResult.sid = n.sid;for (var i in e.subscriptions) {e.subscriptions.hasOwnProperty(i) && (u("doAuthorize() sid expired and will call doSubscribeAndCheckAck for channels:" + JSON.stringify(e.subscriptions[i])), e.doSubscribeAndCheckAck(e.subscriptions[i]));}}for (var s in e.subscribeBuffer) {e.subscribeBuffer.hasOwnProperty(s) && (u("doAuthorize() will doSubscribeAndCheckAck from subscribeBuffer:" + JSON.stringify(e.subscribeBuffer[s])), e.doSubscribeAndCheckAck(e.subscribeBuffer[s]));}"undefined" != typeof t.onConnected && t.onConnected();} else "undefined" != typeof t.onConnectFailed && t.onConnectFailed({ code: n.resultCode, content: n.content });});}if ("disconnecting" !== e._manualDisconnectStatus && "disconnected" !== e._manualDisconnectStatus || e._manualConnect) {e.authorizeStatus = "authorizing", e.networkStatus = "connected";var i = { appkey: e._appkey, userId: e._userId, userData: e._userData, otp: e._otp, artifactVersion: "1.0.11", manual: e._manualConnect };null != e.authorizeResult && (i.sid = e.authorizeResult.sid);var r = !1;n();var s = setInterval(function () {r || "connected" != e.networkStatus ? clearInterval(s) : n();}, 1300);}}), this.socket.on("connect_error", function (e) {"undefined" != typeof t.onConnectFailed && t.onConnectFailed({ code: 408, content: e });}), this.socket.on("disconnect", function () {e.networkStatus = "disconnected", e.authorizeStatus = "initial", e._manualConnect = !1, null == e.authorizeResult && (e.authorizeResult = {}), e.authorizeResult.code = 408, e.authorizeResult.content = "Server unreachable or timeout", "undefined" != typeof t.onDisconnected && t.onDisconnected();});}, _isEmpty: function _isEmpty(t) {return "undefined" == typeof t || null == t || 0 == this._trim(t).length;}, _trim: function _trim(t) {return t.replace(/(^\s*)|(\s*$)/g, "");}, _endWith: function _endWith(t, e) {var n = new RegExp(e + "$");return n.test(t);}, _isArray: function _isArray(t) {return "[object Array]" == Object.prototype.toString.call(t);}, log: function log(t) {"undefined" != typeof window && window.console && this.debug && console.log(t);}, uuid_goeasy: function uuid_goeasy() {var t = s();return t.replace(/-/g, "");}, sendlogs: function sendlogs() {a && this.socket.emit("log", { logs: c });} };var A = function () {var t;return function (e) {return t && !t.disconnected() || (t = new x(e)), t;};}();t.exports = A;}, function (t, e, n) {"use strict";function o(t, e) {"object" === ("undefined" == typeof t ? "undefined" : i(t)) && (e = t, t = void 0), e = e || {};var n,o = r(t),s = o.source,u = o.id,p = o.path,h = a[u] && p in a[u].nsps,f = e.forceNew || e["force new connection"] || !1 === e.multiplex || h;return f ? n = c(s, e) : (a[u] || (a[u] = c(s, e)), n = a[u]), o.query && !e.query && (e.query = o.query), n.socket(o.path, e);}var i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},r = n(2),s = n(5),c = n(8);n(4)("socket.io-client");t.exports = e = o;var a = e.managers = {};e.protocol = s.protocol, e.connect = o, e.Manager = n(8), e.Socket = n(30);}, function (t, e, n) {"use strict";function o(t, e) {var n = t;e = e || "undefined" != typeof location && location, null == t && (t = e.protocol + "//" + e.host), "string" == typeof t && ("/" === t.charAt(0) && (t = "/" === t.charAt(1) ? e.protocol + t : e.host + t), /^(https?|wss?):\/\//.test(t) || (t = "undefined" != typeof e ? e.protocol + "//" + t : "https://" + t), n = i(t)), n.port || (/^(http|ws)$/.test(n.protocol) ? n.port = "80" : /^(http|ws)s$/.test(n.protocol) && (n.port = "443")), n.path = n.path || "/";var o = n.host.indexOf(":") !== -1,r = o ? "[" + n.host + "]" : n.host;return n.id = n.protocol + "://" + r + ":" + n.port, n.href = n.protocol + "://" + r + (e && e.port === n.port ? "" : ":" + n.port), n;}var i = n(3);n(4)("socket.io-client:url");t.exports = o;}, function (t, e) {var n = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,o = ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"];t.exports = function (t) {var e = t,i = t.indexOf("["),r = t.indexOf("]");i != -1 && r != -1 && (t = t.substring(0, i) + t.substring(i, r).replace(/:/g, ";") + t.substring(r, t.length));for (var s = n.exec(t || ""), c = {}, a = 14; a--;) {c[o[a]] = s[a] || "";}return i != -1 && r != -1 && (c.source = e, c.host = c.host.substring(1, c.host.length - 1).replace(/;/g, ":"), c.authority = c.authority.replace("[", "").replace("]", "").replace(/;/g, ":"), c.ipv6uri = !0), c;};}, function (t, e) {"use strict";t.exports = function () {return function () {};};}, function (t, e, n) {"use strict";function o() {}function i(t) {var n = "" + t.type;if (e.BINARY_EVENT !== t.type && e.BINARY_ACK !== t.type || (n += t.attachments + "-"), t.nsp && "/" !== t.nsp && (n += t.nsp + ","), null != t.id && (n += t.id), null != t.data) {var o = r(t.data);if (o === !1) return d;n += o;}return n;}function r(t) {try {return JSON.stringify(t);} catch (t) {return !1;}}function s() {this.reconstructor = null;}function c(t) {var n = 0,o = { type: Number(t.charAt(0)) };if (null == e.types[o.type]) return p("unknown packet type " + o.type);if (e.BINARY_EVENT === o.type || e.BINARY_ACK === o.type) {for (var i = ""; "-" !== t.charAt(++n) && (i += t.charAt(n), n != t.length);) {;}if (i != Number(i) || "-" !== t.charAt(n)) throw new Error("Illegal attachments");o.attachments = Number(i);}if ("/" === t.charAt(n + 1)) for (o.nsp = ""; ++n;) {var r = t.charAt(n);if ("," === r) break;if (o.nsp += r, n === t.length) break;} else o.nsp = "/";var s = t.charAt(n + 1);if ("" !== s && Number(s) == s) {for (o.id = ""; ++n;) {var r = t.charAt(n);if (null == r || Number(r) != r) {--n;break;}if (o.id += t.charAt(n), n === t.length) break;}o.id = Number(o.id);}if (t.charAt(++n)) {var c = a(t.substr(n)),u = c !== !1 && (o.type === e.ERROR || f(c));if (!u) return p("invalid payload");o.data = c;}return o;}function a(t) {try {return JSON.parse(t);} catch (t) {return !1;}}function u(t) {this.reconPack = t, this.buffers = [];}function p(t) {return { type: e.ERROR, data: "parser error: " + t };}var h = (n(4)("socket.io-parser"), n(6)),f = n(7);e.protocol = 4, e.types = ["CONNECT", "DISCONNECT", "EVENT", "ACK", "ERROR", "BINARY_EVENT", "BINARY_ACK"], e.CONNECT = 0, e.DISCONNECT = 1, e.EVENT = 2, e.ACK = 3, e.ERROR = 4, e.BINARY_EVENT = 5, e.BINARY_ACK = 6, e.Encoder = o, e.Decoder = s;var d = e.ERROR + '"encode error"';o.prototype.encode = function (t, e) {var n = i(t);e([n]);}, h(s.prototype), s.prototype.add = function (t) {var e;if ("string" != typeof t) throw new Error("Unknown type: " + t);e = c(t), this.emit("decoded", e);}, s.prototype.destroy = function () {this.reconstructor && this.reconstructor.finishedReconstruction();}, u.prototype.takeBinaryData = function (t) {if (this.buffers.push(t), this.buffers.length === this.reconPack.attachments) {var e = binary.reconstructPacket(this.reconPack, this.buffers);return this.finishedReconstruction(), e;}return null;}, u.prototype.finishedReconstruction = function () {this.reconPack = null, this.buffers = [];};}, function (t, e, n) {function o(t) {if (t) return i(t);}function i(t) {for (var e in o.prototype) {t[e] = o.prototype[e];}return t;}t.exports = o, o.prototype.on = o.prototype.addEventListener = function (t, e) {return this._callbacks = this._callbacks || {}, (this._callbacks["$" + t] = this._callbacks["$" + t] || []).push(e), this;}, o.prototype.once = function (t, e) {function n() {this.off(t, n), e.apply(this, arguments);}return n.fn = e, this.on(t, n), this;}, o.prototype.off = o.prototype.removeListener = o.prototype.removeAllListeners = o.prototype.removeEventListener = function (t, e) {if (this._callbacks = this._callbacks || {}, 0 == arguments.length) return this._callbacks = {}, this;var n = this._callbacks["$" + t];if (!n) return this;if (1 == arguments.length) return delete this._callbacks["$" + t], this;for (var o, i = 0; i < n.length; i++) {if (o = n[i], o === e || o.fn === e) {n.splice(i, 1);break;}}return this;}, o.prototype.emit = function (t) {this._callbacks = this._callbacks || {};var e = [].slice.call(arguments, 1),n = this._callbacks["$" + t];if (n) {n = n.slice(0);for (var o = 0, i = n.length; o < i; ++o) {n[o].apply(this, e);}}return this;}, o.prototype.listeners = function (t) {return this._callbacks = this._callbacks || {}, this._callbacks["$" + t] || [];}, o.prototype.hasListeners = function (t) {return !!this.listeners(t).length;};}, function (t, e) {var n = {}.toString;t.exports = Array.isArray || function (t) {return "[object Array]" == n.call(t);};}, function (t, e, n) {"use strict";function o(t, e) {if (!(this instanceof o)) return new o(t, e);t && "object" === ("undefined" == typeof t ? "undefined" : r(t)) && (e = t, t = void 0), e = e || {}, e.path = e.path || "/socket.io", this.nsps = {}, this.subs = [], this.opts = e, this.reconnection(e.reconnection !== !1), this.reconnectionAttempts(e.reconnectionAttempts || 1 / 0), this.reconnectionDelay(e.reconnectionDelay || 1e3), this.reconnectionDelayMax(e.reconnectionDelayMax || 5e3), this.randomizationFactor(e.randomizationFactor || .5), this.backoff = new d({ min: this.reconnectionDelay(), max: this.reconnectionDelayMax(), jitter: this.randomizationFactor() }), this.timeout(null == e.timeout ? 2e4 : e.timeout), this.readyState = "closed", this.uri = t, this.connecting = [], this.lastPing = null, this.encoding = !1, this.packetBuffer = [];var n = e.parser || u;this.encoder = new n.Encoder(), this.decoder = new n.Decoder(), this.autoConnect = e.autoConnect !== !1, this.autoConnect && this.open();}function i() {var t = !1;return "object" === ("undefined" == typeof uni ? "undefined" : r(uni)) && uni.getSystemInfo && (t = !0), t && getApp().uniAppRunningBackend === !0;}var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},s = n(9),c = n(30),a = n(6),u = n(5),p = n(32),h = n(33),f = (n(4)("socket.io-client:manager"), n(29)),d = n(34),l = Object.prototype.hasOwnProperty;t.exports = o, o.prototype.emitAll = function () {this.emit.apply(this, arguments);for (var t in this.nsps) {l.call(this.nsps, t) && this.nsps[t].emit.apply(this.nsps[t], arguments);}}, o.prototype.updateSocketIds = function () {for (var t in this.nsps) {l.call(this.nsps, t) && (this.nsps[t].id = this.generateId(t));}}, o.prototype.generateId = function (t) {return ("/" === t ? "" : t + "#") + this.engine.id;}, a(o.prototype), o.prototype.reconnection = function (t) {return arguments.length ? (this._reconnection = !!t, this) : this._reconnection;}, o.prototype.reconnectionAttempts = function (t) {return arguments.length ? (this._reconnectionAttempts = t, this) : this._reconnectionAttempts;}, o.prototype.reconnectionDelay = function (t) {return arguments.length ? (this._reconnectionDelay = t, this.backoff && this.backoff.setMin(t), this) : this._reconnectionDelay;}, o.prototype.randomizationFactor = function (t) {return arguments.length ? (this._randomizationFactor = t, this.backoff && this.backoff.setJitter(t), this) : this._randomizationFactor;}, o.prototype.reconnectionDelayMax = function (t) {return arguments.length ? (this._reconnectionDelayMax = t, this.backoff && this.backoff.setMax(t), this) : this._reconnectionDelayMax;}, o.prototype.timeout = function (t) {return arguments.length ? (this._timeout = t, this) : this._timeout;}, o.prototype.maybeReconnectOnOpen = function () {!this.reconnecting && this._reconnection && 0 === this.backoff.attempts && this.reconnect();}, o.prototype.open = o.prototype.connect = function (t, e) {if (~this.readyState.indexOf("open")) return this;this.engine = s(this.uri, this.opts);var n = this.engine,o = this;this.readyState = "opening", this.skipReconnect = !1;var i = p(n, "open", function () {o.onopen(), t && t();}),r = p(n, "error", function (e) {if ("undefined" != typeof window) {var n = /[1-9][0-9]*/g,i = parseInt(o.uri.match(n)[0]),r = window._GoEasy_.goEasyDomainNumber.initialCurrentNumber();o.uri = o.uri.replace(i, r);}if (o.cleanup(), o.readyState = "closed", o.emitAll("connect_error", e), t) {var s = new Error("Connection error");s.data = e, t(s);} else o.maybeReconnectOnOpen();});if (!1 !== this._timeout) {var c = this._timeout,a = setTimeout(function () {i.destroy(), n.close(), n.emit("error", "timeout"), o.emitAll("connect_timeout", c);}, c);this.subs.push({ destroy: function destroy() {clearTimeout(a);} });}return this.subs.push(i), this.subs.push(r), this;}, o.prototype.onopen = function () {this.cleanup(), this.readyState = "open", this.emit("open");var t = this.engine;this.subs.push(p(t, "data", h(this, "ondata"))), this.subs.push(p(t, "ping", h(this, "onping"))), this.subs.push(p(t, "pong", h(this, "onpong"))), this.subs.push(p(t, "error", h(this, "onerror"))), this.subs.push(p(t, "close", h(this, "onclose"))), this.subs.push(p(this.decoder, "decoded", h(this, "ondecoded")));}, o.prototype.onping = function () {this.lastPing = new Date(), this.emitAll("ping");}, o.prototype.onpong = function () {this.emitAll("pong", new Date() - this.lastPing);}, o.prototype.ondata = function (t) {this.decoder.add(t);}, o.prototype.ondecoded = function (t) {this.emit("packet", t);}, o.prototype.onerror = function (t) {this.emitAll("error", t);}, o.prototype.socket = function (t, e) {function n() {~f(i.connecting, o) || i.connecting.push(o);}var o = this.nsps[t];if (!o) {o = new c(this, t, e), this.nsps[t] = o;var i = this;o.on("connecting", n), o.on("connect", function () {o.id = i.generateId(t);}), this.autoConnect && n();}return o;}, o.prototype.destroy = function (t) {var e = f(this.connecting, t);~e && this.connecting.splice(e, 1), this.connecting.length || this.close();}, o.prototype.packet = function (t) {var e = this;t.query && 0 === t.type && (t.nsp += "?" + t.query), e.encoding ? e.packetBuffer.push(t) : (e.encoding = !0, this.encoder.encode(t, function (n) {for (var o = 0; o < n.length; o++) {e.engine.write(n[o], t.options);}e.encoding = !1, e.processPacketQueue();}));}, o.prototype.processPacketQueue = function () {if (this.packetBuffer.length > 0 && !this.encoding) {var t = this.packetBuffer.shift();this.packet(t);}}, o.prototype.cleanup = function () {for (var t = this.subs.length, e = 0; e < t; e++) {var n = this.subs.shift();n.destroy();}this.packetBuffer = [], this.encoding = !1, this.lastPing = null, this.decoder.destroy();}, o.prototype.close = o.prototype.disconnect = function () {this.skipReconnect = !0, this.reconnecting = !1, "opening" === this.readyState && this.cleanup(), this.backoff.reset(), this.readyState = "closed", this.engine && this.engine.close();}, o.prototype.onclose = function (t) {this.cleanup(), this.backoff.reset(), this.readyState = "closed", this.emit("close", t), this._reconnection && !this.skipReconnect && this.reconnect();}, o.prototype.reconnect = function () {if (this.reconnecting || this.skipReconnect) return this;var t = this;if (this.backoff.attempts >= this._reconnectionAttempts) this.backoff.reset(), this.emitAll("reconnect_failed"), this.reconnecting = !1;else {var e = this.backoff.duration();this.reconnecting = !0;var n = setTimeout(function () {t.skipReconnect || (t.emitAll("reconnect_attempt", t.backoff.attempts), t.emitAll("reconnecting", t.backoff.attempts), t.skipReconnect || (i() ? (t.reconnecting = !1, t.reconnect(), t.emitAll("reconnect_error", "Uniapp running backend, skipped reconnect...")) : t.open(function (e) {e ? (t.reconnecting = !1, t.reconnect(), t.emitAll("reconnect_error", e.data)) : t.onreconnect();})));}, e);this.subs.push({ destroy: function destroy() {clearTimeout(n);} });}}, o.prototype.onreconnect = function () {var t = this.backoff.attempts;this.reconnecting = !1, this.backoff.reset(), this.updateSocketIds(), this.emitAll("reconnect", t);};}, function (t, e, n) {"use strict";t.exports = n(10), t.exports.parser = n(15);}, function (t, e, n) {"use strict";function o(t, e) {return this instanceof o ? (e = e || {}, t && "object" === ("undefined" == typeof t ? "undefined" : r(t)) && (e = t, t = null), t ? (t = p(t), e.hostname = t.host, e.secure = "https" === t.protocol || "wss" === t.protocol, e.port = t.port, t.query && (e.query = t.query)) : e.host && (e.hostname = p(e.host).host), this.secure = null != e.secure ? e.secure : "undefined" != typeof location && "https:" === location.protocol, e.hostname && !e.port && (e.port = this.secure ? "443" : "80"), this.agent = e.agent || !1, this.hostname = e.hostname || ("undefined" != typeof location ? location.hostname : "localhost"), this.port = e.port || ("undefined" != typeof location && location.port ? location.port : this.secure ? 443 : 80), this.query = e.query || {}, "string" == typeof this.query && (this.query = h.decode(this.query)), this.upgrade = !1 !== e.upgrade, this.path = (e.path || "/engine.io").replace(/\/$/, "") + "/", this.forceJSONP = !!e.forceJSONP, this.jsonp = !1 !== e.jsonp, this.forceBase64 = !!e.forceBase64, this.enablesXDR = !!e.enablesXDR, this.timestampParam = e.timestampParam || "t", this.timestampRequests = e.timestampRequests, this.transports = e.transports || ["polling", "websocket"], this.transportOptions = e.transportOptions || {}, this.readyState = "", this.writeBuffer = [], this.prevBufferLen = 0, this.policyPort = e.policyPort || 843, this.rememberUpgrade = e.rememberUpgrade || !1, this.binaryType = null, this.onlyBinaryUpgrades = e.onlyBinaryUpgrades, this.perMessageDeflate = !1 !== e.perMessageDeflate && (e.perMessageDeflate || {}), !0 === this.perMessageDeflate && (this.perMessageDeflate = {}), this.perMessageDeflate && null == this.perMessageDeflate.threshold && (this.perMessageDeflate.threshold = 1024), this.pfx = e.pfx || null, this.key = e.key || null, this.passphrase = e.passphrase || null, this.cert = e.cert || null, this.ca = e.ca || null, this.ciphers = e.ciphers || null, this.rejectUnauthorized = void 0 === e.rejectUnauthorized || e.rejectUnauthorized, this.forceNode = !!e.forceNode, this.isReactNative = "undefined" != typeof navigator && "string" == typeof navigator.product && "reactnative" === navigator.product.toLowerCase(), ("undefined" == typeof self || this.isReactNative) && (e.extraHeaders && Object.keys(e.extraHeaders).length > 0 && (this.extraHeaders = e.extraHeaders), e.localAddress && (this.localAddress = e.localAddress)), this.id = null, this.upgrades = null, this.pingInterval = null, this.pingTimeout = null, this.pingIntervalTimer = null, this.pingTimeoutTimer = null, void this.open()) : new o(t, e);}function i(t) {var e = {};for (var n in t) {t.hasOwnProperty(n) && (e[n] = t[n]);}return e;}var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},s = n(11),c = n(6),a = (n(4)("engine.io-client:socket"), n(29)),u = n(15),p = n(3),h = n(22);t.exports = o, o.priorWebsocketSuccess = !1, c(o.prototype), o.protocol = u.protocol, o.Socket = o, o.Transport = n(14), o.transports = n(11), o.parser = n(15), o.prototype.createTransport = function (t) {var e = i(this.query);e.EIO = u.protocol, e.transport = t;var n = this.transportOptions[t] || {};this.id && (e.sid = this.id);var o = new s[t]({ query: e, socket: this, agent: n.agent || this.agent, hostname: n.hostname || this.hostname, port: n.port || this.port, secure: n.secure || this.secure, path: n.path || this.path, forceJSONP: n.forceJSONP || this.forceJSONP, jsonp: n.jsonp || this.jsonp, forceBase64: n.forceBase64 || this.forceBase64, enablesXDR: n.enablesXDR || this.enablesXDR, timestampRequests: n.timestampRequests || this.timestampRequests, timestampParam: n.timestampParam || this.timestampParam, policyPort: n.policyPort || this.policyPort, pfx: n.pfx || this.pfx, key: n.key || this.key, passphrase: n.passphrase || this.passphrase, cert: n.cert || this.cert, ca: n.ca || this.ca, ciphers: n.ciphers || this.ciphers, rejectUnauthorized: n.rejectUnauthorized || this.rejectUnauthorized, perMessageDeflate: n.perMessageDeflate || this.perMessageDeflate, extraHeaders: n.extraHeaders || this.extraHeaders, forceNode: n.forceNode || this.forceNode, localAddress: n.localAddress || this.localAddress, requestTimeout: n.requestTimeout || this.requestTimeout, protocols: n.protocols || void 0, isReactNative: this.isReactNative });return o;}, o.prototype.open = function () {var t;if (this.rememberUpgrade && o.priorWebsocketSuccess && this.transports.indexOf("websocket") !== -1) t = "websocket";else {
+        if (0 === this.transports.length) {var e = this;return void setTimeout(function () {e.emit("error", "No transports available");}, 0);}t = this.transports[0];}this.readyState = "opening";try {t = this.createTransport(t);} catch (t) {return this.transports.shift(), void this.open();}t.open(), this.setTransport(t);}, o.prototype.setTransport = function (t) {var e = this;this.transport && this.transport.removeAllListeners(), this.transport = t, t.on("drain", function () {e.onDrain();}).on("packet", function (t) {e.onPacket(t);}).on("error", function (t) {e.onError(t);}).on("close", function () {e.onClose("transport close");});}, o.prototype.probe = function (t) {function e() {if (h.onlyBinaryUpgrades) {var t = !this.supportsBinary && h.transport.supportsBinary;p = p || t;}p || (u.send([{ type: "ping", data: "probe" }]), u.once("packet", function (t) {if (!p) if ("pong" === t.type && "probe" === t.data) {if (h.upgrading = !0, h.emit("upgrading", u), !u) return;o.priorWebsocketSuccess = "websocket" === u.name, h.transport.pause(function () {p || "closed" !== h.readyState && (a(), h.setTransport(u), u.send([{ type: "upgrade" }]), h.emit("upgrade", u), u = null, h.upgrading = !1, h.flush());});} else {var e = new Error("probe error");e.transport = u.name, h.emit("upgradeError", e);}}));}function n() {p || (p = !0, a(), u.close(), u = null);}function i(t) {var e = new Error("probe error: " + t);e.transport = u.name, n(), h.emit("upgradeError", e);}function r() {i("transport closed");}function s() {i("socket closed");}function c(t) {u && t.name !== u.name && n();}function a() {u.removeListener("open", e), u.removeListener("error", i), u.removeListener("close", r), h.removeListener("close", s), h.removeListener("upgrading", c);}var u = this.createTransport(t, { probe: 1 }),p = !1,h = this;o.priorWebsocketSuccess = !1, u.once("open", e), u.once("error", i), u.once("close", r), this.once("close", s), this.once("upgrading", c), u.open();}, o.prototype.onOpen = function () {if (this.readyState = "open", o.priorWebsocketSuccess = "websocket" === this.transport.name, this.emit("open"), this.flush(), "open" === this.readyState && this.upgrade && this.transport.pause) for (var t = 0, e = this.upgrades.length; t < e; t++) {this.probe(this.upgrades[t]);}}, o.prototype.onPacket = function (t) {if ("opening" === this.readyState || "open" === this.readyState || "closing" === this.readyState) switch (this.emit("packet", t), this.emit("heartbeat"), t.type) {case "open":this.onHandshake(JSON.parse(t.data));break;case "pong":this.setPing(), this.emit("pong");break;case "error":var e = new Error("server error");e.code = t.data, this.onError(e);break;case "message":this.emit("data", t.data), this.emit("message", t.data);}}, o.prototype.onHandshake = function (t) {this.emit("handshake", t), this.id = t.sid, this.transport.query.sid = t.sid, this.upgrades = this.filterUpgrades(t.upgrades), this.pingInterval = t.pingInterval, this.pingTimeout = t.pingTimeout, this.onOpen(), "closed" !== this.readyState && (this.setPing(), this.removeListener("heartbeat", this.onHeartbeat), this.on("heartbeat", this.onHeartbeat));}, o.prototype.onHeartbeat = function (t) {clearTimeout(this.pingTimeoutTimer);var e = this;e.pingTimeoutTimer = setTimeout(function () {"closed" !== e.readyState && e.onClose("ping timeout");}, t || e.pingInterval + e.pingTimeout);}, o.prototype.setPing = function () {var t = this;clearTimeout(t.pingIntervalTimer), t.pingIntervalTimer = setTimeout(function () {t.ping(), t.onHeartbeat(t.pingTimeout);}, t.pingInterval);}, o.prototype.ping = function () {var t = this;this.sendPacket("ping", function () {t.emit("ping");});}, o.prototype.onDrain = function () {this.writeBuffer.splice(0, this.prevBufferLen), this.prevBufferLen = 0, 0 === this.writeBuffer.length ? this.emit("drain") : this.flush();}, o.prototype.flush = function () {"closed" !== this.readyState && this.transport.writable && !this.upgrading && this.writeBuffer.length && (this.transport.send(this.writeBuffer), this.prevBufferLen = this.writeBuffer.length, this.emit("flush"));}, o.prototype.write = o.prototype.send = function (t, e, n) {return this.sendPacket("message", t, e, n), this;}, o.prototype.sendPacket = function (t, e, n, o) {if ("function" == typeof e && (o = e, e = void 0), "function" == typeof n && (o = n, n = null), "closing" !== this.readyState && "closed" !== this.readyState) {n = n || {}, n.compress = !1 !== n.compress;var i = { type: t, data: e, options: n };this.emit("packetCreate", i), this.writeBuffer.push(i), o && this.once("flush", o), this.flush();}}, o.prototype.close = function () {function t() {o.onClose("forced close"), o.transport.close();}function e() {o.removeListener("upgrade", e), o.removeListener("upgradeError", e), t();}function n() {o.once("upgrade", e), o.once("upgradeError", e);}if ("opening" === this.readyState || "open" === this.readyState) {this.readyState = "closing";var o = this;this.writeBuffer.length ? this.once("drain", function () {this.upgrading ? n() : t();}) : this.upgrading ? n() : t();}return this;}, o.prototype.onError = function (t) {o.priorWebsocketSuccess = !1, this.emit("error", t), this.onClose("transport error", t);}, o.prototype.onClose = function (t, e) {if ("opening" === this.readyState || "open" === this.readyState || "closing" === this.readyState) {var n = this;clearTimeout(this.pingIntervalTimer), clearTimeout(this.pingTimeoutTimer), this.transport.removeAllListeners("close"), this.transport.close(), this.transport.removeAllListeners(), this.readyState = "closed", this.id = null, this.emit("close", t, e), n.writeBuffer = [], n.prevBufferLen = 0;}}, o.prototype.filterUpgrades = function (t) {for (var e = [], n = 0, o = t.length; n < o; n++) {~a(this.transports, t[n]) && e.push(t[n]);}return e;};}, function (t, e, n) {"use strict";function o(t) {var e = !1,n = !1;!1 !== t.jsonp;if ("undefined" != typeof location) {var o = "https:" === location.protocol,r = location.port;r || (r = o ? 443 : 80), e = t.hostname !== location.hostname || r !== t.port, n = t.secure !== o;}return t.xdomain = e, t.xscheme = n, new i(t);}var i = n(12),r = n(27);e.polling = o, e.websocket = r;}, function (t, e, n) {(function (e) {"use strict";function o() {}function i() {return "undefined" != typeof self ? self : "undefined" != typeof window ? window : "undefined" != typeof e ? e : {};}function r(t) {if (s.call(this, t), this.query = this.query || {}, !a) {var e = i();a = e.___eio = e.___eio || [];}this.index = a.length;var n = this;a.push(function (t) {n.onData(t);}), this.query.j = this.index, "function" == typeof addEventListener && addEventListener("beforeunload", function () {n.script && (n.script.onerror = o);}, !1);}var s = n(13),c = n(23);t.exports = r;var a,u = /\n/g,p = /\\n/g;c(r, s), r.prototype.supportsBinary = !1, r.prototype.doClose = function () {this.script && (this.script.parentNode.removeChild(this.script), this.script = null), this.form && (this.form.parentNode.removeChild(this.form), this.form = null, this.iframe = null), s.prototype.doClose.call(this);}, r.prototype.doPoll = function () {var t = this,e = document.createElement("script");this.script && (this.script.parentNode.removeChild(this.script), this.script = null), e.async = !0, e.src = this.uri(), e.onerror = function (e) {t.onError("jsonp poll error", e);};var n = document.getElementsByTagName("script")[0];n ? n.parentNode.insertBefore(e, n) : (document.head || document.body).appendChild(e), this.script = e;var o = "undefined" != typeof navigator && /gecko/i.test(navigator.userAgent);o && setTimeout(function () {var t = document.createElement("iframe");document.body.appendChild(t), document.body.removeChild(t);}, 100);}, r.prototype.doWrite = function (t, e) {function n() {o(), e();}function o() {if (i.iframe) try {i.form.removeChild(i.iframe);} catch (t) {i.onError("jsonp polling iframe removal error", t);}try {var t = '<iframe src="javascript:0" name="' + i.iframeId + '">';r = document.createElement(t);} catch (t) {r = document.createElement("iframe"), r.name = i.iframeId, r.src = "javascript:0";}r.id = i.iframeId, i.form.appendChild(r), i.iframe = r;}var i = this;if (!this.form) {var r,s = document.createElement("form"),c = document.createElement("textarea"),a = this.iframeId = "eio_iframe_" + this.index;s.className = "socketio", s.style.position = "absolute", s.style.top = "-1000px", s.style.left = "-1000px", s.target = a, s.method = "POST", s.setAttribute("accept-charset", "utf-8"), c.name = "d", s.appendChild(c), document.body.appendChild(s), this.form = s, this.area = c;}this.form.action = this.uri(), o(), t = t.replace(p, "\\\n"), this.area.value = t.replace(u, "\\n");try {this.form.submit();} catch (t) {}this.iframe.attachEvent ? this.iframe.onreadystatechange = function () {"complete" === i.iframe.readyState && n();} : this.iframe.onload = n;};}).call(e, function () {return this;}());}, function (t, e, n) {"use strict";function o(t) {var e = t && t.forceBase64;u && !e || (this.supportsBinary = !1), i.call(this, t);}var i = n(14),r = n(22),s = n(15),c = n(23),a = n(24);n(4)("engine.io-client:polling");t.exports = o;var u = function () {var t = n(25),e = new t({ xdomain: !1 });return null != e.responseType;}();c(o, i), o.prototype.name = "polling", o.prototype.doOpen = function () {this.poll();}, o.prototype.pause = function (t) {function e() {n.readyState = "paused", t();}var n = this;if (this.readyState = "pausing", this.polling || !this.writable) {var o = 0;this.polling && (o++, this.once("pollComplete", function () {--o || e();})), this.writable || (o++, this.once("drain", function () {--o || e();}));} else e();}, o.prototype.poll = function () {this.polling = !0, this.doPoll(), this.emit("poll");}, o.prototype.onData = function (t) {var e = this,n = function n(t, _n, o) {return "opening" === e.readyState && e.onOpen(), "close" === t.type ? (e.onClose(), !1) : void e.onPacket(t);};s.decodePayload(t, this.socket.binaryType, n), "closed" !== this.readyState && (this.polling = !1, this.emit("pollComplete"), "open" === this.readyState && this.poll());}, o.prototype.doClose = function () {function t() {e.write([{ type: "close" }]);}var e = this;"open" === this.readyState ? t() : this.once("open", t);}, o.prototype.write = function (t) {var e = this;this.writable = !1;var n = function n() {e.writable = !0, e.emit("drain");};s.encodePayload(t, this.supportsBinary, function (t) {e.doWrite(t, n);});}, o.prototype.uri = function () {var t = this.query || {},e = this.secure ? "https" : "http",n = "";!1 !== this.timestampRequests && (t[this.timestampParam] = a()), this.supportsBinary || t.sid || (t.b64 = 1), t = r.encode(t), this.port && ("https" === e && 443 !== Number(this.port) || "http" === e && 80 !== Number(this.port)) && (n = ":" + this.port), t.length && (t = "?" + t);var o = this.hostname.indexOf(":") !== -1;return e + "://" + (o ? "[" + this.hostname + "]" : this.hostname) + n + this.path + t;};}, function (t, e, n) {"use strict";function o(t) {this.path = t.path, this.hostname = t.hostname, this.port = t.port, this.secure = t.secure, this.query = t.query, this.timestampParam = t.timestampParam, this.timestampRequests = t.timestampRequests, this.readyState = "", this.agent = t.agent || !1, this.socket = t.socket, this.enablesXDR = t.enablesXDR, this.pfx = t.pfx, this.key = t.key, this.passphrase = t.passphrase, this.cert = t.cert, this.ca = t.ca, this.ciphers = t.ciphers, this.rejectUnauthorized = t.rejectUnauthorized, this.forceNode = t.forceNode, this.isReactNative = t.isReactNative, this.extraHeaders = t.extraHeaders, this.localAddress = t.localAddress;}var i = n(15),r = n(6);t.exports = o, r(o.prototype), o.prototype.onError = function (t, e) {var n = new Error(t);return n.type = "TransportError", n.description = e, this.emit("error", n), this;}, o.prototype.open = function () {return "closed" !== this.readyState && "" !== this.readyState || (this.readyState = "opening", this.doOpen()), this;}, o.prototype.close = function () {return "opening" !== this.readyState && "open" !== this.readyState || (this.doClose(), this.onClose()), this;}, o.prototype.send = function (t) {if ("open" !== this.readyState) throw new Error("Transport not open");this.write(t);}, o.prototype.onOpen = function () {this.readyState = "open", this.writable = !0, this.emit("open");}, o.prototype.onData = function (t) {var e = i.decodePacket(t, this.socket.binaryType);this.onPacket(e);}, o.prototype.onPacket = function (t) {this.emit("packet", t);}, o.prototype.onClose = function () {this.readyState = "closed", this.emit("close");};}, function (t, e, n) {"use strict";function o(t) {try {t = a.decode(t, { strict: !1 });} catch (t) {return !1;}return t;}function i(t, e, n) {for (var o = new Array(t.length), i = c(t.length, n), r = function r(t, n, i) {e(n, function (e, n) {o[t] = n, i(e, o);});}, s = 0; s < t.length; s++) {r(s, t[s], i);}}var r = n(16),s = n(17),c = n(19),a = n(20);"undefined" != typeof navigator && /Android/i.test(navigator.userAgent), "undefined" != typeof navigator && /PhantomJS/i.test(navigator.userAgent);e.protocol = 3;var u = e.packets = { open: 0, close: 1, ping: 2, pong: 3, message: 4, upgrade: 5, noop: 6 },p = r(u),h = { type: "error", data: "parser error" },f = n(21);e.encodePacket = function (t, e, n, o) {"function" == typeof e && (o = e, e = !1), "function" == typeof n && (o = n, n = null);var i = (void 0 === t.data ? void 0 : t.data.buffer || t.data, u[t.type]);return void 0 !== t.data && (i += n ? a.encode(String(t.data), { strict: !1 }) : String(t.data)), o("" + i);}, e.decodePacket = function (t, e, n) {if (void 0 === t) return h;if ("string" == typeof t) {if (n && (t = o(t), t === !1)) return h;var i = t.charAt(0);return Number(i) == i && p[i] ? t.length > 1 ? { type: p[i], data: t.substring(1) } : { type: p[i] } : h;}var r = new Uint8Array(t),i = r[0],s = sliceBuffer(t, 1);return f && "blob" === e && (s = new f([s])), { type: p[i], data: s };}, e.encodePayload = function (t, n, o) {function r(t) {return t.length + ":" + t;}function c(t, o) {e.encodePacket(t, !!a && n, !0, function (t) {o(null, r(t));});}"function" == typeof n && (o = n, n = null);var a = s(t);return t.length ? void i(t, c, function (t, e) {return o(e.join(""));}) : o("0:");}, e.decodePayload = function (t, n, o) {"function" == typeof n && (o = n, n = null);var i;if ("" === t) return o(h, 0, 1);for (var r, s, c = "", a = 0, u = t.length; a < u; a++) {var p = t.charAt(a);if (":" === p) {if ("" === c || c != (r = Number(c))) return o(h, 0, 1);if (s = t.substr(a + 1, r), c != s.length) return o(h, 0, 1);if (s.length) {if (i = e.decodePacket(s, n, !0), h.type === i.type && h.data === i.data) return o(h, 0, 1);var f = o(i, a + r, u);if (!1 === f) return;}a += r, c = "";} else c += p;}return "" !== c ? o(h, 0, 1) : void 0;};}, function (t, e) {"use strict";t.exports = Object.keys || function (t) {var e = [],n = Object.prototype.hasOwnProperty;for (var o in t) {n.call(t, o) && e.push(o);}return e;};}, function (t, e, n) {function o(t) {if (!t || "object" != typeof t) return !1;if (i(t)) {for (var e = 0, n = t.length; e < n; e++) {if (o(t[e])) return !0;}return !1;}if ("function" == typeof Buffer && Buffer.isBuffer && Buffer.isBuffer(t) || "function" == typeof ArrayBuffer && t instanceof ArrayBuffer || s && t instanceof Blob || c && t instanceof File) return !0;if (t.toJSON && "function" == typeof t.toJSON && 1 === arguments.length) return o(t.toJSON(), !0);for (var r in t) {if (Object.prototype.hasOwnProperty.call(t, r) && o(t[r])) return !0;}return !1;}var i = n(18),r = Object.prototype.toString,s = "function" == typeof Blob || "undefined" != typeof Blob && "[object BlobConstructor]" === r.call(Blob),c = "function" == typeof File || "undefined" != typeof File && "[object FileConstructor]" === r.call(File);t.exports = o;}, function (t, e) {var n = {}.toString;t.exports = Array.isArray || function (t) {return "[object Array]" == n.call(t);};}, function (t, e) {function n(t, e, n) {function i(t, o) {if (i.count <= 0) throw new Error("after called too many times");--i.count, t ? (r = !0, e(t), e = n) : 0 !== i.count || r || e(null, o);}var r = !1;return n = n || o, i.count = t, 0 === t ? e() : i;}function o() {}t.exports = n;}, function (t, e) {"use strict";function n(t) {for (var e, n, o = [], i = 0, r = t.length; i < r;) {e = t.charCodeAt(i++), e >= 55296 && e <= 56319 && i < r ? (n = t.charCodeAt(i++), 56320 == (64512 & n) ? o.push(((1023 & e) << 10) + (1023 & n) + 65536) : (o.push(e), i--)) : o.push(e);}return o;}function o(t) {for (var e, n = t.length, o = -1, i = ""; ++o < n;) {e = t[o], e > 65535 && (e -= 65536, i += l(e >>> 10 & 1023 | 55296), e = 56320 | 1023 & e), i += l(e);}return i;}function i(t, e) {if (t >= 55296 && t <= 57343) {if (e) throw Error("Lone surrogate U+" + t.toString(16).toUpperCase() + " is not a scalar value");return !1;}return !0;}function r(t, e) {return l(t >> e & 63 | 128);}function s(t, e) {if (0 == (4294967168 & t)) return l(t);var n = "";return 0 == (4294965248 & t) ? n = l(t >> 6 & 31 | 192) : 0 == (4294901760 & t) ? (i(t, e) || (t = 65533), n = l(t >> 12 & 15 | 224), n += r(t, 6)) : 0 == (4292870144 & t) && (n = l(t >> 18 & 7 | 240), n += r(t, 12), n += r(t, 6)), n += l(63 & t | 128);}function c(t, e) {e = e || {};for (var o, i = !1 !== e.strict, r = n(t), c = r.length, a = -1, u = ""; ++a < c;) {o = r[a], u += s(o, i);}return u;}function a() {if (d >= f) throw Error("Invalid byte index");var t = 255 & h[d];if (d++, 128 == (192 & t)) return 63 & t;throw Error("Invalid continuation byte");}function u(t) {var e, n, o, r, s;if (d > f) throw Error("Invalid byte index");if (d == f) return !1;if (e = 255 & h[d], d++, 0 == (128 & e)) return e;if (192 == (224 & e)) {if (n = a(), s = (31 & e) << 6 | n, s >= 128) return s;throw Error("Invalid continuation byte");}if (224 == (240 & e)) {if (n = a(), o = a(), s = (15 & e) << 12 | n << 6 | o, s >= 2048) return i(s, t) ? s : 65533;throw Error("Invalid continuation byte");}if (240 == (248 & e) && (n = a(), o = a(), r = a(), s = (7 & e) << 18 | n << 12 | o << 6 | r, s >= 65536 && s <= 1114111)) return s;throw Error("Invalid UTF-8 detected");}function p(t, e) {e = e || {};var i = !1 !== e.strict;h = n(t), f = h.length, d = 0;for (var r, s = []; (r = u(i)) !== !1;) {s.push(r);}return o(s);} /*! https://mths.be/utf8js v2.1.2 by @mathias */
+    var h,f,d,l = String.fromCharCode;t.exports = { version: "2.1.2", encode: c, decode: p };}, function (t, e) {function n(t) {return t.map(function (t) {if (t.buffer instanceof ArrayBuffer) {var e = t.buffer;if (t.byteLength !== e.byteLength) {var n = new Uint8Array(t.byteLength);n.set(new Uint8Array(e, t.byteOffset, t.byteLength)), e = n.buffer;}return e;}return t;});}function o(t, e) {e = e || {};var o = new r();return n(t).forEach(function (t) {o.append(t);}), e.type ? o.getBlob(e.type) : o.getBlob();}function i(t, e) {return new Blob(n(t), e || {});}var r = "undefined" != typeof r ? r : "undefined" != typeof WebKitBlobBuilder ? WebKitBlobBuilder : "undefined" != typeof MSBlobBuilder ? MSBlobBuilder : "undefined" != typeof MozBlobBuilder && MozBlobBuilder,s = function () {try {var t = new Blob(["hi"]);return 2 === t.size;} catch (t) {return !1;}}(),c = s && function () {try {var t = new Blob([new Uint8Array([1, 2])]);return 2 === t.size;} catch (t) {return !1;}}(),a = r && r.prototype.append && r.prototype.getBlob;"undefined" != typeof Blob && (o.prototype = Blob.prototype, i.prototype = Blob.prototype), t.exports = function () {return s ? c ? Blob : i : a ? o : void 0;}();}, function (t, e) {e.encode = function (t) {var e = "";for (var n in t) {t.hasOwnProperty(n) && (e.length && (e += "&"), e += encodeURIComponent(n) + "=" + encodeURIComponent(t[n]));}return e;}, e.decode = function (t) {for (var e = {}, n = t.split("&"), o = 0, i = n.length; o < i; o++) {var r = n[o].split("=");e[decodeURIComponent(r[0])] = decodeURIComponent(r[1]);}return e;};}, function (t, e) {t.exports = function (t, e) {var n = function n() {};n.prototype = e.prototype, t.prototype = new n(), t.prototype.constructor = t;};}, function (t, e) {"use strict";function n(t) {var e = "";do {e = s[t % c] + e, t = Math.floor(t / c);} while (t > 0);return e;}function o(t) {var e = 0;for (p = 0; p < t.length; p++) {e = e * c + a[t.charAt(p)];}return e;}function i() {var t = n(+new Date());return t !== r ? (u = 0, r = t) : t + "." + n(u++);}for (var r, s = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_".split(""), c = 64, a = {}, u = 0, p = 0; p < c; p++) {a[s[p]] = p;}i.encode = n, i.decode = o, t.exports = i;}, function (t, e, n) {"use strict";var o = n(26);t.exports = function (t) {var e = t.xdomain,n = t.xscheme,i = t.enablesXDR;try {if ("undefined" != typeof XMLHttpRequest && (!e || o)) return new XMLHttpRequest();} catch (t) {}try {if ("undefined" != typeof XDomainRequest && !n && i) return new XDomainRequest();} catch (t) {}if (!e) try {return new self[["Active"].concat("Object").join("X")]("Microsoft.XMLHTTP");} catch (t) {}};}, function (t, e) {try {t.exports = "undefined" != typeof XMLHttpRequest && "withCredentials" in new XMLHttpRequest();} catch (e) {t.exports = !1;}}, function (t, e, n) {"use strict";function o(t) {var e = t && t.forceBase64;e && (this.supportsBinary = !1), ("undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket) && (this.perMessageDeflate = t.perMessageDeflate, this.usingBrowserWebSocket = i && !t.forceNode, this.protocols = t.protocols, this.usingBrowserWebSocket || (f = r)), c.call(this, t);}var i,r,s = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},c = n(14),a = n(15),u = n(22),p = n(23),h = n(24);n(4)("engine.io-client:websocket");if ("undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket) if ("undefined" != typeof WebSocket) i = WebSocket;else if ("undefined" != typeof self) i = self.WebSocket || self.MozWebSocket;else try {r = n(28);} catch (t) {}var f = i || r;"undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket || (f = function f(t) {var e = this;if (e.onopen = function () {}, e.onclose = function () {}, e.onmessage = function (t) {}, e.onerror = function (t) {}, "object" === ("undefined" == typeof tt ? "undefined" : s(tt)) && tt.getSystemInfo) {var n = tt.connectSocket({ url: t });e.send = function (t) {n.send({ data: t });}, e.close = function () {n.close();}, n.onOpen(function () {e.onopen();}), n.onError(function (t) {e.onerror(t);}), n.onMessage(function (t) {e.onmessage(t);}), n.onClose(function () {e.onclose();});} else "undefined" != typeof uni ? (e.send = function (t) {uni.sendSocketMessage({ data: t });}, e.close = function () {uni.closeSocket();}, uni.onSocketOpen(function (t) {e.onopen();}), uni.onSocketError(function (t) {e.onerror(t);}), uni.onSocketMessage(function (t) {e.onmessage(t);}), uni.onSocketClose(function (t) {e.onclose();}), uni.connectSocket({ url: t })) : (e.send = function (t) {wx.sendSocketMessage({ data: t });}, e.close = function () {wx.closeSocket();}, wx.onSocketOpen(function (t) {e.onopen();}), wx.onSocketError(function (t) {e.onerror(t);}), wx.onSocketMessage(function (t) {e.onmessage(t);}), wx.onSocketClose(function (t) {e.onclose();}), wx.connectSocket({ url: t }));}), t.exports = o, p(o, c), o.prototype.name = "websocket", o.prototype.supportsBinary = !1, o.prototype.doOpen = function () {if (this.check()) {var t,e = this.uri();("undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket) && (t = this.protocols);var n;n = "undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket ? { agent: this.agent, perMessageDeflate: this.perMessageDeflate } : { agent: this.agent }, n.pfx = this.pfx, n.key = this.key, n.passphrase = this.passphrase, n.cert = this.cert, n.ca = this.ca, n.ciphers = this.ciphers, n.rejectUnauthorized = this.rejectUnauthorized, this.extraHeaders && (n.headers = this.extraHeaders), this.localAddress && (n.localAddress = this.localAddress);try {"undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket ? this.ws = this.usingBrowserWebSocket && !this.isReactNative ? t ? new f(e, t) : new f(e) : new f(e, t, n) : this.ws = new f(e);} catch (t) {return this.emit("error", t);}void 0 === this.ws.binaryType && (this.supportsBinary = !1), this.ws.supports && this.ws.supports.binary ? (this.supportsBinary = !0, this.ws.binaryType = "nodebuffer") : this.ws.binaryType = "arraybuffer", this.addEventListeners();}}, o.prototype.addEventListeners = function () {var t = this;this.ws.onopen = function () {t.onOpen();}, this.ws.onclose = function () {t.onClose();}, this.ws.onmessage = function (e) {t.onData(e.data);}, this.ws.onerror = function (e) {t.onError("websocket error", e);};}, o.prototype.write = function (t) {function e() {n.emit("flush"), setTimeout(function () {n.writable = !0, n.emit("drain");}, 0);}var n = this;this.writable = !1;for (var o = t.length, i = 0, r = o; i < r; i++) {!function (t) {a.encodePacket(t, n.supportsBinary, function (i) {if ("undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket) {if (!n.usingBrowserWebSocket) {var r = {};if (t.options && (r.compress = t.options.compress), n.perMessageDeflate) {var s = "string" == typeof i ? Buffer.byteLength(i) : i.length;s < n.perMessageDeflate.threshold && (r.compress = !1);}}try {n.usingBrowserWebSocket ? n.ws.send(i) : n.ws.send(i, r);} catch (t) {}} else try {n.ws.send(i);} catch (t) {}--o || e();});}(t[i]);}}, o.prototype.onClose = function () {c.prototype.onClose.call(this);}, o.prototype.doClose = function () {"undefined" != typeof this.ws && this.ws.close();}, o.prototype.uri = function () {var t = this.query || {},e = this.secure ? "wss" : "ws",n = "";this.port && ("wss" === e && 443 !== Number(this.port) || "ws" === e && 80 !== Number(this.port)) && (n = ":" + this.port), this.timestampRequests && (t[this.timestampParam] = h()), this.supportsBinary || (t.b64 = 1), t = u.encode(t), t.length && (t = "?" + t);var o = this.hostname.indexOf(":") !== -1;return e + "://" + (o ? "[" + this.hostname + "]" : this.hostname) + n + this.path + t;}, o.prototype.check = function () {return !(!f || "__initialize" in f && this.name === o.prototype.name);};}, function (t, e) {}, function (t, e) {var n = [].indexOf;t.exports = function (t, e) {if (n) return t.indexOf(e);for (var o = 0; o < t.length; ++o) {if (t[o] === e) return o;}return -1;};}, function (t, e, n) {"use strict";function o(t, e, n) {this.io = t, this.nsp = e, this.json = this, this.ids = 0, this.acks = {}, this.receiveBuffer = [], this.sendBuffer = [], this.connected = !1, this.disconnected = !0, this.flags = {}, n && n.query && (this.query = n.query), this.io.autoConnect && this.open();}var i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},r = n(5),s = n(6),c = n(31),a = n(32),u = n(33),p = (n(4)("socket.io-client:socket"), n(22)),h = n(17);t.exports = e = o;var f = { connect: 1, connect_error: 1, connect_timeout: 1, connecting: 1, disconnect: 1, error: 1, reconnect: 1, reconnect_attempt: 1, reconnect_failed: 1, reconnect_error: 1, reconnecting: 1, ping: 1, pong: 1 },d = s.prototype.emit;s(o.prototype), o.prototype.subEvents = function () {if (!this.subs) {var t = this.io;this.subs = [a(t, "open", u(this, "onopen")), a(t, "packet", u(this, "onpacket")), a(t, "close", u(this, "onclose"))];}}, o.prototype.open = o.prototype.connect = function () {return this.connected ? this : (this.subEvents(), this.io.open(), "open" === this.io.readyState && this.onopen(), this.emit("connecting"), this);}, o.prototype.send = function () {var t = c(arguments);return t.unshift("message"), this.emit.apply(this, t), this;}, o.prototype.emit = function (t) {if (f.hasOwnProperty(t)) return d.apply(this, arguments), this;var e = c(arguments),n = { type: (void 0 !== this.flags.binary ? this.flags.binary : h(e)) ? r.BINARY_EVENT : r.EVENT, data: e };return n.options = {}, n.options.compress = !this.flags || !1 !== this.flags.compress, "function" == typeof e[e.length - 1] && (this.acks[this.ids] = e.pop(), n.id = this.ids++), this.connected ? this.packet(n) : this.sendBuffer.push(n), this.flags = {}, this;}, o.prototype.packet = function (t) {t.nsp = this.nsp, this.io.packet(t);}, o.prototype.onopen = function () {if ("/" !== this.nsp) if (this.query) {var t = "object" === i(this.query) ? p.encode(this.query) : this.query;this.packet({ type: r.CONNECT, query: t });} else this.packet({ type: r.CONNECT });}, o.prototype.onclose = function (t) {this.connected = !1, this.disconnected = !0, delete this.id, this.emit("disconnect", t);}, o.prototype.onpacket = function (t) {var e = t.nsp === this.nsp,n = t.type === r.ERROR && "/" === t.nsp;if (e || n) switch (t.type) {case r.CONNECT:this.onconnect();break;case r.EVENT:this.onevent(t);break;case r.BINARY_EVENT:this.onevent(t);break;case r.ACK:this.onack(t);break;case r.BINARY_ACK:this.onack(t);break;case r.DISCONNECT:this.ondisconnect();break;case r.ERROR:this.emit("error", t.data);}}, o.prototype.onevent = function (t) {var e = t.data || [];null != t.id && e.push(this.ack(t.id)), this.connected ? d.apply(this, e) : this.receiveBuffer.push(e);}, o.prototype.ack = function (t) {var e = this,n = !1;return function () {if (!n) {n = !0;var o = c(arguments);e.packet({ type: h(o) ? r.BINARY_ACK : r.ACK, id: t, data: o });}};}, o.prototype.onack = function (t) {var e = this.acks[t.id];"function" == typeof e && (e.apply(this, t.data), delete this.acks[t.id]);}, o.prototype.onconnect = function () {this.connected = !0, this.disconnected = !1, this.emit("connect"), this.emitBuffered();}, o.prototype.emitBuffered = function () {var t;for (t = 0; t < this.receiveBuffer.length; t++) {d.apply(this, this.receiveBuffer[t]);}for (this.receiveBuffer = [], t = 0; t < this.sendBuffer.length; t++) {this.packet(this.sendBuffer[t]);}this.sendBuffer = [];}, o.prototype.ondisconnect = function () {this.destroy(), this.onclose("io server disconnect");}, o.prototype.destroy = function () {if (this.subs) {for (var t = 0; t < this.subs.length; t++) {this.subs[t].destroy();}this.subs = null;}this.io.destroy(this);}, o.prototype.close = o.prototype.disconnect = function () {return this.connected && this.packet({ type: r.DISCONNECT }), this.destroy(), this.connected && this.onclose("io client disconnect"), this;}, o.prototype.compress = function (t) {return this.flags.compress = t, this;}, o.prototype.binary = function (t) {return this.flags.binary = t, this;};}, function (t, e) {function n(t, e) {var n = [];e = e || 0;for (var o = e || 0; o < t.length; o++) {n[o - e] = t[o];}return n;}t.exports = n;}, function (t, e) {"use strict";function n(t, e, n) {return t.on(e, n), { destroy: function destroy() {t.removeListener(e, n);} };}t.exports = n;}, function (t, e) {var n = [].slice;t.exports = function (t, e) {if ("string" == typeof e && (e = t[e]), "function" != typeof e) throw new Error("bind() requires a function");var o = n.call(arguments, 2);return function () {return e.apply(t, o.concat(n.call(arguments)));};};}, function (t, e) {function n(t) {t = t || {}, this.ms = t.min || 100, this.max = t.max || 1e4, this.factor = t.factor || 2, this.jitter = t.jitter > 0 && t.jitter <= 1 ? t.jitter : 0, this.attempts = 0;}t.exports = n, n.prototype.duration = function () {var t = this.ms * Math.pow(this.factor, this.attempts++);if (this.jitter) {var e = Math.random(),n = Math.floor(e * this.jitter * t);t = 0 == (1 & Math.floor(10 * e)) ? t - n : t + n;}return 0 | Math.min(t, this.max);}, n.prototype.reset = function () {this.attempts = 0;}, n.prototype.setMin = function (t) {this.ms = t;}, n.prototype.setMax = function (t) {this.max = t;}, n.prototype.setJitter = function (t) {this.jitter = t;};}, function (t, e, n) {function o(t, e, n) {var o = e && n || 0,p = e || [];t = t || {};var h = t.node || i,f = void 0 !== t.clockseq ? t.clockseq : r;if (null == h || null == f) {var d = s();null == h && (h = i = [1 | d[0], d[1], d[2], d[3], d[4], d[5]]), null == f && (f = r = 16383 & (d[6] << 8 | d[7]));}var l = void 0 !== t.msecs ? t.msecs : new Date().getTime(),y = void 0 !== t.nsecs ? t.nsecs : u + 1,m = l - a + (y - u) / 1e4;if (m < 0 && void 0 === t.clockseq && (f = f + 1 & 16383), (m < 0 || l > a) && void 0 === t.nsecs && (y = 0), y >= 1e4) throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");a = l, u = y, r = f, l += 122192928e5;var b = (1e4 * (268435455 & l) + y) % 4294967296;p[o++] = b >>> 24 & 255, p[o++] = b >>> 16 & 255, p[o++] = b >>> 8 & 255, p[o++] = 255 & b;var g = l / 4294967296 * 1e4 & 268435455;p[o++] = g >>> 8 & 255, p[o++] = 255 & g, p[o++] = g >>> 24 & 15 | 16, p[o++] = g >>> 16 & 255, p[o++] = f >>> 8 | 128, p[o++] = 255 & f;for (var v = 0; v < 6; ++v) {p[o + v] = h[v];}return e ? e : c(p);}var i,r,s = n(36),c = n(37),a = 0,u = 0;t.exports = o;}, function (t, e) {var n = "undefined" != typeof crypto && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || "undefined" != typeof smsCrypto && "function" == typeof window.msCrypto.getRandomValues && msCrypto.getRandomValues.bind(msCrypto);if (n) {var o = new Uint8Array(16);t.exports = function () {return n(o), o;};} else {var i = new Array(16);t.exports = function () {for (var t, e = 0; e < 16; e++) {0 === (3 & e) && (t = 4294967296 * Math.random()), i[e] = t >>> ((3 & e) << 3) & 255;}return i;};}}, function (t, e) {function n(t, e) {var n = e || 0,i = o;return [i[t[n++]], i[t[n++]], i[t[n++]], i[t[n++]], "-", i[t[n++]], i[t[n++]], "-", i[t[n++]], i[t[n++]], "-", i[t[n++]], i[t[n++]], "-", i[t[n++]], i[t[n++]], i[t[n++]], i[t[n++]], i[t[n++]], i[t[n++]]].join("");}for (var o = [], i = 0; i < 256; ++i) {o[i] = (i + 256).toString(16).substr(1);}t.exports = n;}]);});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./../../../../../software/HBuilderX/HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 36).Buffer))
+
+/***/ }),
+
+/***/ 353:
 /*!**************************************************************************!*\
   !*** D:/wechatapp/develop/animal_crossing/components/uni-icons/icons.js ***!
   \**************************************************************************/
@@ -10617,21 +9919,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 36:
-/*!*************************************************************************!*\
-  !*** D:/wechatapp/develop/animal_crossing/node_modules/goeasy/index.js ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(uni, Buffer) {// [AIV_SHORT]  Build version: 1.0.11 - Friday, May 8th, 2020, 6:31:02 PM  
-!function (t, e) { true ? module.exports = e() : undefined;}(this, function () {return function (t) {function e(o) {if (n[o]) return n[o].exports;var i = n[o] = { exports: {}, id: o, loaded: !1 };return t[o].call(i.exports, i, i.exports, e), i.loaded = !0, i.exports;}var n = {};return e.m = t, e.c = n, e.p = "", e(0);}([function (t, e, n) {"use strict";function o() {if (g() && uni.overrideShowHideAlready !== !0 && "undefined" != typeof getApp().$options) {uni.overrideShowHideAlready = !0;var t = getApp().$options.onShow[0],e = getApp().$options.onHide[0];getApp().$options.onShow[0] = function () {getApp().uniAppRunningBackend = !1, t();}, getApp().$options.onHide[0] = function () {getApp().uniAppRunningBackend = !0, e();};}}var i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},r = n(1),s = n(35),c = [],a = !1,u = function u(t) {if (a) {var e = new Date().formatDate("yy-MM-dd hh:mm:ss.S");c.push(e + " " + t + "\n");}},p = function p() {this.currentNumber = this.initialCurrentNumber();};p.prototype = { maxNumber: parseInt("10"), number: function number() {return this.currentNumber;}, initialCurrentNumber: function initialCurrentNumber() {var t = this;return k() ? t.currentNumber = parseInt(f("goeasyNode")) : t.currentNumber || (t.currentNumber = m(1, parseInt("10"))), t.currentNumber > 0 && t.currentNumber < this.maxNumber ? t.currentNumber = t.currentNumber + 1 : t.currentNumber == this.maxNumber ? t.currentNumber = 1 : t.currentNumber = Math.floor(Math.random() * this.maxNumber + 1), k() && l("goeasyNode", t.currentNumber), t.currentNumber;} };var h = function h(t) {var e,n = new RegExp("(^| )" + t + "=([^;]*)(;|$)");return (e = document.cookie.match(n)) ? unescape(e[2]) : null;},f = function f(t) {return window.localStorage ? window.localStorage.getItem(t) : h(t);},d = function d(t, e) {var n = 30,o = new Date();o.setTime(o.getTime() + 24 * n * 60 * 60 * 1e3), document.cookie = t + "=" + escape(e) + ";expires=" + o.toGMTString();},l = function l(t, e) {window.localStorage ? window.localStorage.setItem(t, e) : d(t, e);},y = function y() {Array.apply(this);},m = function m(t, e) {return Math.floor(Math.random() * (t - e) + e);},b = function b() {return !("undefined" == typeof wx || !wx.getLocation) && ("function" != typeof WebSocket || "function" != typeof XMLHttpRequest);},g = function g() {return !("object" !== ("undefined" == typeof uni ? "undefined" : i(uni)) || !uni.getSystemInfo);},v = function v() {return !("object" !== ("undefined" == typeof tt ? "undefined" : i(tt)) || !tt.getSystemInfo);},k = function k() {return g() ? "function" == typeof WebSocket && "function" == typeof XMLHttpRequest : !(S() || b() || v());},S = function S() {return "undefined" != typeof navigator && "ReactNative" == navigator.product;},w = new p(),x = function x(t) {if (u("GoEasy() Create GoEasy object:" + JSON.stringify(t)), this._isEmpty(t.appkey)) return void ("undefined" != typeof t.onConnectFailed && t.onConnectFailed({ code: 400, content: "appkey is required" }));if (this._copyConfig(t), "undefined" == typeof t.host) return void t.onConnectFailed({ code: 400, content: "host is required" });var e = "://" + w.number() + t.host,n = "";k() ? (n = t.forceTLS === !1 ? "http" + e + ":80" : "https" + e + ":443", this.socket = r.connect(n, { transports: ["polling", "websocket"], timeout: 1500 })) : (n = "https://wx-" + t.host + ":443", this.socket = r(n, { transports: ["websocket"], reconnectionDelayMax: 3e3 })), this._callbackEvents(t);};x.goEasyDomainNumber = w, "undefined" != typeof window && (window._GoEasy_ = x), Date.prototype.formatDate = function (t) {var e = { "M+": this.getMonth() + 1, "d+": this.getDate(), "h+": this.getHours(), "m+": this.getMinutes(), "s+": this.getSeconds(), "q+": Math.floor((this.getMonth() + 3) / 3), S: this.getMilliseconds() };/(y+)/.test(t) && (t = t.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length)));for (var n in e) {e.hasOwnProperty(n) && new RegExp("(" + n + ")").test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? e[n] : ("00" + e[n]).substr(("" + e[n]).length)));}return t;}, y.prototype = new Array(), y.prototype.indexOfGuid = function (t) {for (var e = 0; e < this.length; e++) {if (this[e] == t) return e;}return -1;}, y.prototype.unshiftGuid = function (t) {var e = !1,n = this.indexOfGuid(t);for (n > -1 && (e = !0, this.splice(n, 1)), this.unshift(t); this.length > 300;) {this.pop();}return e;}, x.prototype = { debug: !1, socket: null, networkStatus: "initial", authorizeResult: null, subscribeBuffer: [], subscriptions: [], subscriptionChannelUUIDs: [], maxRetries: 3, _manualConnect: !1, _manualDisconnectStatus: "initial", authorizeStatus: "initial", receivedGuids: new y(), _copyConfig: function _copyConfig(t) {this._appkey = t.appkey, this._otp = t.otp, this._isEmpty(t.userId) ? (this._userId = "anonymous-" + Math.floor(1e5 * Math.random() + 1), t.userId = this._userId) : this._userId = this._trim(t.userId), this._isEmpty(t.userData) ? this._userData = "" : this._userData = this._trim(t.userData), 1 == t.debug && (this.debug = !0);}, validateSubscription: function validateSubscription(t) {var e = t.channel,n = t.channels;if ("undefined" == typeof e && "undefined" == typeof n) return t.onFailed({ code: 400, content: "channel is required" }), !1;if ("undefined" != typeof e && "undefined" != typeof n) return t.onFailed({ code: 400, content: "subscribe to either channel or channels, not both" }), !1;if ("undefined" != typeof e) {if ("number" == typeof e && (e = e.toString()), this._isEmpty(e) && "undefined" != typeof t.onFailed) return t.onFailed({ code: 400, content: "channel is required" }), !1;} else {if (!this._isArray(n) || 0 === n.length) return t.onFailed({ code: 400, content: "channels must be an array" }), !1;if (this._isArray(n) && n.length > 500) return t.onFailed({ code: 400, content: "channels over max length:500" }), !1;}return !0;}, subscribe: function subscribe(t) {if (o(), u("subscribe() subscribe:" + JSON.stringify(t)), this.validateSubscription(t)) {var e = t.channel;if ("undefined" != typeof e) {"number" == typeof e && (e = e.toString());var n = [];n.push(e), t.channels = n;}this.handleSubscribe(t);}}, handleSubscribe: function handleSubscribe(t) {t.uuid = this.uuid_goeasy(), this.subscribeBuffer[t.uuid] = t;var e = this;null != e.authorizeResult && "connected" == e.networkStatus && (t.checking = !0, e.doSubscribeAndCheckAck(t));}, doSubscribe: function doSubscribe(t) {u("doSubscribe() with subscription:" + JSON.stringify(t));var e = this;if (200 == e.authorizeResult.code) {var n = { channels: t.channels, sid: e.authorizeResult.sid };u("doSubscribe() emit subscribe params:" + JSON.stringify(n)), e.socket.emit("subscribe", n, function (n) {if (u("doSubscribe() receive subscribe ack:" + JSON.stringify(n)), 1 != t.finish) if (t.finish = !0, delete e.subscribeBuffer[t.uuid], u("doSubscribe() delete subscription from subscribeBuffer:" + JSON.stringify(t)), 200 == n.resultCode) {e.subscriptions[t.uuid] = t;for (var o = 0; o < t.channels.length; o++) {var i = t.channels[o];"number" == typeof i && (i = i.toString()), e.subscriptionChannelUUIDs[i] = t.uuid;}"undefined" != typeof t.onSuccess && t.onSuccess();} else "undefined" != typeof t.onFailed && t.onFailed({ code: n.resultCode, content: n.content });});} else u("doSubscribe() return with authorize code:" + e.authorizeResult.code);}, doSubscribeAndCheckAck: function doSubscribeAndCheckAck(t) {u("doSubscribeAndCheckAck():" + JSON.stringify(t)), t.finish = !1;var e = this;e.doSubscribe(t);var n = setInterval(function () {t.finish || "connected" != e.networkStatus ? (u("doSubscribeAndCheckAck() clean doSubscribeAndCheckAck:" + JSON.stringify(t)), t.checking = !1, clearInterval(n)) : (u("doSubscribeAndCheckAck() retry doSubscribe:" + JSON.stringify(t)), e.doSubscribe(t));}, 1300);}, subscribePresence: function subscribePresence(t) {if (this.validateSubscription(t)) {var e = t.channels,n = [];if (this._isArray(e)) {for (var o = 0; o < e.length; o++) {var i = e[o];"number" == typeof i && (i = i.toString());var r = i + "_presence";n.push(r);}t.channels = n;} else {var s = t.channel;"number" == typeof s && (s = s.toString()), n.push(s + "_presence"), t.channels = n;}this.handleSubscribe(t);}}, unsubscribe: function unsubscribe(t) {function e() {200 == i.authorizeResult.code ? i.socket.emit("unsubscribe", { sid: i.authorizeResult.sid, channel: t.channel }, function (e) {if (r = !0, 200 == e.resultCode) {delete i.subscriptionChannelUUIDs[t.channel];for (var n = i.subscriptions[o], s = n.channels, c = 0; c < s.length; c++) {(t.channel = s[c]) && s.splice(c, 1);}u("doUnsubscribe() delete from channels:" + JSON.stringify(t)), "undefined" != typeof t.onSuccess && t.onSuccess();} else "undefined" != typeof t.onFailed && t.onFailed({ code: e.resultCode, content: e.content });}) : (r = !0, "undefined" != typeof t.onFailed && t.onFailed({ code: i.authorizeResult.code, content: i.authorizeResult.content }));}function n() {e();var n = setInterval(function () {!r && "connected" == i.networkStatus && s < 0 ? (s++, e()) : s == i.maxRetries ? (clearInterval(n), "undefined" != typeof t.onFailed && t.onFailed({ code: 408, content: "Server unreachable or timeout" })) : clearInterval(n);}, 1e3);}if ("number" == typeof t.channel && (t.channel = t.channel.toString()), this._isEmpty(t.channel)) return this.log("'channel' is required."), void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "channel is required" }));var o = this.subscriptionChannelUUIDs[t.channel];if (this._isEmpty(o)) return this.log("'channel' is not subscribed."), void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "channel[" + t.channel + "] is not subscribed" }));var i = this,r = !1,s = 0;if (null != this.authorizeResult && "connected" == i.networkStatus) n();else var c = setInterval(function () {null != i.authorizeResult && "connected" == i.networkStatus ? (clearInterval(c), n()) : (s++, s == i.maxRetries && (clearInterval(c), "undefined" != typeof t.onFailed && t.onFailed({ code: 408, content: "Server unreachable or timeout" })));}, 1e3);}, unsubscribePresence: function unsubscribePresence(t) {return "number" == typeof t.channel && (t.channel = t.channel.toString()), this._isEmpty(t.channel) ? void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "channel is required" })) : (t.channel = t.channel + "_presence", void this.unsubscribe(t));}, publish: function publish(t) {function e(e) {200 == i.authorizeResult.code ? i.socket.emit("publish", { sid: i.authorizeResult.sid, channel: t.channel, content: t.message, guid: e, retried: s }, function (e) {r = !0, 200 == e.resultCode ? "undefined" != typeof t.onSuccess && t.onSuccess() : "undefined" != typeof t.onFailed && t.onFailed({ code: e.resultCode, content: e.content });}) : (r = !0, "undefined" != typeof t.onFailed && t.onFailed({ code: i.authorizeResult.code, content: i.authorizeResult.content }));}function n() {var n = i.uuid_goeasy();e(n);var o = setInterval(function () {!r && s < i.maxRetries ? (s++, e(n)) : s == i.maxRetries ? (clearInterval(o), "undefined" != typeof t.onFailed && t.onFailed({ code: 408, content: "Server unreachable or timeout" })) : clearInterval(o);}, 1e3);}if (o(), "number" == typeof t.channel && (t.channel = t.channel.toString()), this._isEmpty(t.channel)) return this.log("'channel' is required."), void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "channel is required" }));if (this._isEmpty(t.message)) return this.log("'message' is required."), void ("undefined" != typeof t.onFailed && t.onFailed({ code: 400, content: "message is required" }));var i = this,r = !1,s = 0;if (null != this.authorizeResult && "connected" == i.networkStatus) n();else var c = setInterval(function () {null != i.authorizeResult && "connected" == i.networkStatus ? (clearInterval(c), n()) : (s++, s == i.maxRetries && (clearInterval(c), "undefined" != typeof t.onFailed && t.onFailed({ code: 408, content: "Server unreachable or timeout" })));}, 1e3);}, hereNow: function hereNow(t, e) {var n = { channels: [], includeUsers: !1, distinct: !1 };if ("undefined" !== t.channels) for (var o = 0; o < t.channels.length; o++) {var i = t.channels[o];"number" == typeof i && (i = i.toString()), n.channels.push(i);}1 == t.includeUsers && (n.includeUsers = !0), 1 == t.distinct && (n.distinct = !0), this.socket.emit("hereNow", n, function (t) {"undefined" != typeof e && e(t);});}, hereNowByUserIds: function hereNowByUserIds(t, e) {var n = { userIds: [], distinct: !0 };"undefined" !== t.userIds && (n.userIds = t.userIds), 0 == t.distinct && (n.distinct = !1), "undefined" != typeof e && (0 === n.userIds.length ? e({ code: 400, content: "userIds is required" }) : n.userIds.length > 500 ? e({ code: 400, content: "userIds is over max length 500" }) : this.socket.emit("hereNowByUserIds", n, function (t) {e(t);}));}, history: function history(t, e) {return "number" == typeof t.channel && (t.channel = t.channel.toString()), this._isEmpty(t.channel) ? void ("undefined" != typeof e && e({ code: 400, content: "channel is required" })) : void this.socket.emit("historyMessages", t, function (t) {"undefined" != typeof e && e(t);});}, disconnect: function disconnect() {var t = this;if (this._manualDisconnectStatus = "disconnecting", "connected" === this.networkStatus && "authorized" === this.authorizeStatus && 200 === this.authorizeResult.code) {var e = function e() {t.socket.disconnect();},n = function n() {t._manualDisconnectStatus = "disconnected";};t.tryEmit("manualDisconnect", null, e, n);} else this.socket.disconnect();}, disconnected: function disconnected() {return "disconnected" === this.networkStatus;}, reconnect: function reconnect() {this._manualConnect = !0, this.socket.connect();}, tryEmit: function tryEmit(t, e, n, o) {function i() {r.socket.emit(t, e, function (t) {s = !0, "undefined" != typeof o && o(t);});}var r = this,s = !1,c = 0;i();var a = setInterval(function () {var t = c === r.maxRetries;s || t ? (clearInterval(a), t && "undefined" != typeof n && n()) : (c++, i());}, 1e3);}, _callbackEvents: function _callbackEvents(t) {var e = this;this.socket.on("message", function (t, n) {var o = JSON.parse(t);if (!e.receivedGuids.unshiftGuid(o.i)) {o.a && e.socket.emit("ack", { publishGuid: o.i });var i = e.subscriptionChannelUUIDs[o.n];e._endWith(o.n, "presence") ? "undefined" != typeof e.subscriptions[i].onPresence && e.subscriptions[i].onPresence(JSON.parse(o.c)) : "undefined" != typeof e.subscriptions[i].onMessage && e.subscriptions[i].onMessage({ time: o.t, channel: o.n, content: o.c });}}), this.socket.on("connect", function () {function n() {u("doAuthorize() emit authorize params:" + JSON.stringify(i)), e._isEmpty(i.artifactVersion) && e.sendlogs(), e.socket.emit("authorize", i, function (n) {if (u("doAuthorize() received authorize ack:" + JSON.stringify(n)), !r) if (r = !0, e.authorizeStatus = "authorized", e._manualDisconnectStatus = "initial", null == e.authorizeResult && (e.authorizeResult = {}), e.authorizeResult.code = n.resultCode, e.authorizeResult.content = n.content, 200 == n.resultCode) {if (o(), null == e.authorizeResult.sid) e.authorizeResult.sid = n.sid;else if (e.authorizeResult.sid != n.sid) {e.authorizeResult.sid = n.sid;for (var i in e.subscriptions) {e.subscriptions.hasOwnProperty(i) && (u("doAuthorize() sid expired and will call doSubscribeAndCheckAck for channels:" + JSON.stringify(e.subscriptions[i])), e.doSubscribeAndCheckAck(e.subscriptions[i]));}}for (var s in e.subscribeBuffer) {e.subscribeBuffer.hasOwnProperty(s) && (u("doAuthorize() will doSubscribeAndCheckAck from subscribeBuffer:" + JSON.stringify(e.subscribeBuffer[s])), e.doSubscribeAndCheckAck(e.subscribeBuffer[s]));}"undefined" != typeof t.onConnected && t.onConnected();} else "undefined" != typeof t.onConnectFailed && t.onConnectFailed({ code: n.resultCode, content: n.content });});}if ("disconnecting" !== e._manualDisconnectStatus && "disconnected" !== e._manualDisconnectStatus || e._manualConnect) {e.authorizeStatus = "authorizing", e.networkStatus = "connected";var i = { appkey: e._appkey, userId: e._userId, userData: e._userData, otp: e._otp, artifactVersion: "1.0.11", manual: e._manualConnect };null != e.authorizeResult && (i.sid = e.authorizeResult.sid);var r = !1;n();var s = setInterval(function () {r || "connected" != e.networkStatus ? clearInterval(s) : n();}, 1300);}}), this.socket.on("connect_error", function (e) {"undefined" != typeof t.onConnectFailed && t.onConnectFailed({ code: 408, content: e });}), this.socket.on("disconnect", function () {e.networkStatus = "disconnected", e.authorizeStatus = "initial", e._manualConnect = !1, null == e.authorizeResult && (e.authorizeResult = {}), e.authorizeResult.code = 408, e.authorizeResult.content = "Server unreachable or timeout", "undefined" != typeof t.onDisconnected && t.onDisconnected();});}, _isEmpty: function _isEmpty(t) {return "undefined" == typeof t || null == t || 0 == this._trim(t).length;}, _trim: function _trim(t) {return t.replace(/(^\s*)|(\s*$)/g, "");}, _endWith: function _endWith(t, e) {var n = new RegExp(e + "$");return n.test(t);}, _isArray: function _isArray(t) {return "[object Array]" == Object.prototype.toString.call(t);}, log: function log(t) {"undefined" != typeof window && window.console && this.debug && console.log(t);}, uuid_goeasy: function uuid_goeasy() {var t = s();return t.replace(/-/g, "");}, sendlogs: function sendlogs() {a && this.socket.emit("log", { logs: c });} };var A = function () {var t;return function (e) {return t && !t.disconnected() || (t = new x(e)), t;};}();t.exports = A;}, function (t, e, n) {"use strict";function o(t, e) {"object" === ("undefined" == typeof t ? "undefined" : i(t)) && (e = t, t = void 0), e = e || {};var n,o = r(t),s = o.source,u = o.id,p = o.path,h = a[u] && p in a[u].nsps,f = e.forceNew || e["force new connection"] || !1 === e.multiplex || h;return f ? n = c(s, e) : (a[u] || (a[u] = c(s, e)), n = a[u]), o.query && !e.query && (e.query = o.query), n.socket(o.path, e);}var i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},r = n(2),s = n(5),c = n(8);n(4)("socket.io-client");t.exports = e = o;var a = e.managers = {};e.protocol = s.protocol, e.connect = o, e.Manager = n(8), e.Socket = n(30);}, function (t, e, n) {"use strict";function o(t, e) {var n = t;e = e || "undefined" != typeof location && location, null == t && (t = e.protocol + "//" + e.host), "string" == typeof t && ("/" === t.charAt(0) && (t = "/" === t.charAt(1) ? e.protocol + t : e.host + t), /^(https?|wss?):\/\//.test(t) || (t = "undefined" != typeof e ? e.protocol + "//" + t : "https://" + t), n = i(t)), n.port || (/^(http|ws)$/.test(n.protocol) ? n.port = "80" : /^(http|ws)s$/.test(n.protocol) && (n.port = "443")), n.path = n.path || "/";var o = n.host.indexOf(":") !== -1,r = o ? "[" + n.host + "]" : n.host;return n.id = n.protocol + "://" + r + ":" + n.port, n.href = n.protocol + "://" + r + (e && e.port === n.port ? "" : ":" + n.port), n;}var i = n(3);n(4)("socket.io-client:url");t.exports = o;}, function (t, e) {var n = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,o = ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"];t.exports = function (t) {var e = t,i = t.indexOf("["),r = t.indexOf("]");i != -1 && r != -1 && (t = t.substring(0, i) + t.substring(i, r).replace(/:/g, ";") + t.substring(r, t.length));for (var s = n.exec(t || ""), c = {}, a = 14; a--;) {c[o[a]] = s[a] || "";}return i != -1 && r != -1 && (c.source = e, c.host = c.host.substring(1, c.host.length - 1).replace(/;/g, ":"), c.authority = c.authority.replace("[", "").replace("]", "").replace(/;/g, ":"), c.ipv6uri = !0), c;};}, function (t, e) {"use strict";t.exports = function () {return function () {};};}, function (t, e, n) {"use strict";function o() {}function i(t) {var n = "" + t.type;if (e.BINARY_EVENT !== t.type && e.BINARY_ACK !== t.type || (n += t.attachments + "-"), t.nsp && "/" !== t.nsp && (n += t.nsp + ","), null != t.id && (n += t.id), null != t.data) {var o = r(t.data);if (o === !1) return d;n += o;}return n;}function r(t) {try {return JSON.stringify(t);} catch (t) {return !1;}}function s() {this.reconstructor = null;}function c(t) {var n = 0,o = { type: Number(t.charAt(0)) };if (null == e.types[o.type]) return p("unknown packet type " + o.type);if (e.BINARY_EVENT === o.type || e.BINARY_ACK === o.type) {for (var i = ""; "-" !== t.charAt(++n) && (i += t.charAt(n), n != t.length);) {;}if (i != Number(i) || "-" !== t.charAt(n)) throw new Error("Illegal attachments");o.attachments = Number(i);}if ("/" === t.charAt(n + 1)) for (o.nsp = ""; ++n;) {var r = t.charAt(n);if ("," === r) break;if (o.nsp += r, n === t.length) break;} else o.nsp = "/";var s = t.charAt(n + 1);if ("" !== s && Number(s) == s) {for (o.id = ""; ++n;) {var r = t.charAt(n);if (null == r || Number(r) != r) {--n;break;}if (o.id += t.charAt(n), n === t.length) break;}o.id = Number(o.id);}if (t.charAt(++n)) {var c = a(t.substr(n)),u = c !== !1 && (o.type === e.ERROR || f(c));if (!u) return p("invalid payload");o.data = c;}return o;}function a(t) {try {return JSON.parse(t);} catch (t) {return !1;}}function u(t) {this.reconPack = t, this.buffers = [];}function p(t) {return { type: e.ERROR, data: "parser error: " + t };}var h = (n(4)("socket.io-parser"), n(6)),f = n(7);e.protocol = 4, e.types = ["CONNECT", "DISCONNECT", "EVENT", "ACK", "ERROR", "BINARY_EVENT", "BINARY_ACK"], e.CONNECT = 0, e.DISCONNECT = 1, e.EVENT = 2, e.ACK = 3, e.ERROR = 4, e.BINARY_EVENT = 5, e.BINARY_ACK = 6, e.Encoder = o, e.Decoder = s;var d = e.ERROR + '"encode error"';o.prototype.encode = function (t, e) {var n = i(t);e([n]);}, h(s.prototype), s.prototype.add = function (t) {var e;if ("string" != typeof t) throw new Error("Unknown type: " + t);e = c(t), this.emit("decoded", e);}, s.prototype.destroy = function () {this.reconstructor && this.reconstructor.finishedReconstruction();}, u.prototype.takeBinaryData = function (t) {if (this.buffers.push(t), this.buffers.length === this.reconPack.attachments) {var e = binary.reconstructPacket(this.reconPack, this.buffers);return this.finishedReconstruction(), e;}return null;}, u.prototype.finishedReconstruction = function () {this.reconPack = null, this.buffers = [];};}, function (t, e, n) {function o(t) {if (t) return i(t);}function i(t) {for (var e in o.prototype) {t[e] = o.prototype[e];}return t;}t.exports = o, o.prototype.on = o.prototype.addEventListener = function (t, e) {return this._callbacks = this._callbacks || {}, (this._callbacks["$" + t] = this._callbacks["$" + t] || []).push(e), this;}, o.prototype.once = function (t, e) {function n() {this.off(t, n), e.apply(this, arguments);}return n.fn = e, this.on(t, n), this;}, o.prototype.off = o.prototype.removeListener = o.prototype.removeAllListeners = o.prototype.removeEventListener = function (t, e) {if (this._callbacks = this._callbacks || {}, 0 == arguments.length) return this._callbacks = {}, this;var n = this._callbacks["$" + t];if (!n) return this;if (1 == arguments.length) return delete this._callbacks["$" + t], this;for (var o, i = 0; i < n.length; i++) {if (o = n[i], o === e || o.fn === e) {n.splice(i, 1);break;}}return this;}, o.prototype.emit = function (t) {this._callbacks = this._callbacks || {};var e = [].slice.call(arguments, 1),n = this._callbacks["$" + t];if (n) {n = n.slice(0);for (var o = 0, i = n.length; o < i; ++o) {n[o].apply(this, e);}}return this;}, o.prototype.listeners = function (t) {return this._callbacks = this._callbacks || {}, this._callbacks["$" + t] || [];}, o.prototype.hasListeners = function (t) {return !!this.listeners(t).length;};}, function (t, e) {var n = {}.toString;t.exports = Array.isArray || function (t) {return "[object Array]" == n.call(t);};}, function (t, e, n) {"use strict";function o(t, e) {if (!(this instanceof o)) return new o(t, e);t && "object" === ("undefined" == typeof t ? "undefined" : r(t)) && (e = t, t = void 0), e = e || {}, e.path = e.path || "/socket.io", this.nsps = {}, this.subs = [], this.opts = e, this.reconnection(e.reconnection !== !1), this.reconnectionAttempts(e.reconnectionAttempts || 1 / 0), this.reconnectionDelay(e.reconnectionDelay || 1e3), this.reconnectionDelayMax(e.reconnectionDelayMax || 5e3), this.randomizationFactor(e.randomizationFactor || .5), this.backoff = new d({ min: this.reconnectionDelay(), max: this.reconnectionDelayMax(), jitter: this.randomizationFactor() }), this.timeout(null == e.timeout ? 2e4 : e.timeout), this.readyState = "closed", this.uri = t, this.connecting = [], this.lastPing = null, this.encoding = !1, this.packetBuffer = [];var n = e.parser || u;this.encoder = new n.Encoder(), this.decoder = new n.Decoder(), this.autoConnect = e.autoConnect !== !1, this.autoConnect && this.open();}function i() {var t = !1;return "object" === ("undefined" == typeof uni ? "undefined" : r(uni)) && uni.getSystemInfo && (t = !0), t && getApp().uniAppRunningBackend === !0;}var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},s = n(9),c = n(30),a = n(6),u = n(5),p = n(32),h = n(33),f = (n(4)("socket.io-client:manager"), n(29)),d = n(34),l = Object.prototype.hasOwnProperty;t.exports = o, o.prototype.emitAll = function () {this.emit.apply(this, arguments);for (var t in this.nsps) {l.call(this.nsps, t) && this.nsps[t].emit.apply(this.nsps[t], arguments);}}, o.prototype.updateSocketIds = function () {for (var t in this.nsps) {l.call(this.nsps, t) && (this.nsps[t].id = this.generateId(t));}}, o.prototype.generateId = function (t) {return ("/" === t ? "" : t + "#") + this.engine.id;}, a(o.prototype), o.prototype.reconnection = function (t) {return arguments.length ? (this._reconnection = !!t, this) : this._reconnection;}, o.prototype.reconnectionAttempts = function (t) {return arguments.length ? (this._reconnectionAttempts = t, this) : this._reconnectionAttempts;}, o.prototype.reconnectionDelay = function (t) {return arguments.length ? (this._reconnectionDelay = t, this.backoff && this.backoff.setMin(t), this) : this._reconnectionDelay;}, o.prototype.randomizationFactor = function (t) {return arguments.length ? (this._randomizationFactor = t, this.backoff && this.backoff.setJitter(t), this) : this._randomizationFactor;}, o.prototype.reconnectionDelayMax = function (t) {return arguments.length ? (this._reconnectionDelayMax = t, this.backoff && this.backoff.setMax(t), this) : this._reconnectionDelayMax;}, o.prototype.timeout = function (t) {return arguments.length ? (this._timeout = t, this) : this._timeout;}, o.prototype.maybeReconnectOnOpen = function () {!this.reconnecting && this._reconnection && 0 === this.backoff.attempts && this.reconnect();}, o.prototype.open = o.prototype.connect = function (t, e) {if (~this.readyState.indexOf("open")) return this;this.engine = s(this.uri, this.opts);var n = this.engine,o = this;this.readyState = "opening", this.skipReconnect = !1;var i = p(n, "open", function () {o.onopen(), t && t();}),r = p(n, "error", function (e) {if ("undefined" != typeof window) {var n = /[1-9][0-9]*/g,i = parseInt(o.uri.match(n)[0]),r = window._GoEasy_.goEasyDomainNumber.initialCurrentNumber();o.uri = o.uri.replace(i, r);}if (o.cleanup(), o.readyState = "closed", o.emitAll("connect_error", e), t) {var s = new Error("Connection error");s.data = e, t(s);} else o.maybeReconnectOnOpen();});if (!1 !== this._timeout) {var c = this._timeout,a = setTimeout(function () {i.destroy(), n.close(), n.emit("error", "timeout"), o.emitAll("connect_timeout", c);}, c);this.subs.push({ destroy: function destroy() {clearTimeout(a);} });}return this.subs.push(i), this.subs.push(r), this;}, o.prototype.onopen = function () {this.cleanup(), this.readyState = "open", this.emit("open");var t = this.engine;this.subs.push(p(t, "data", h(this, "ondata"))), this.subs.push(p(t, "ping", h(this, "onping"))), this.subs.push(p(t, "pong", h(this, "onpong"))), this.subs.push(p(t, "error", h(this, "onerror"))), this.subs.push(p(t, "close", h(this, "onclose"))), this.subs.push(p(this.decoder, "decoded", h(this, "ondecoded")));}, o.prototype.onping = function () {this.lastPing = new Date(), this.emitAll("ping");}, o.prototype.onpong = function () {this.emitAll("pong", new Date() - this.lastPing);}, o.prototype.ondata = function (t) {this.decoder.add(t);}, o.prototype.ondecoded = function (t) {this.emit("packet", t);}, o.prototype.onerror = function (t) {this.emitAll("error", t);}, o.prototype.socket = function (t, e) {function n() {~f(i.connecting, o) || i.connecting.push(o);}var o = this.nsps[t];if (!o) {o = new c(this, t, e), this.nsps[t] = o;var i = this;o.on("connecting", n), o.on("connect", function () {o.id = i.generateId(t);}), this.autoConnect && n();}return o;}, o.prototype.destroy = function (t) {var e = f(this.connecting, t);~e && this.connecting.splice(e, 1), this.connecting.length || this.close();}, o.prototype.packet = function (t) {var e = this;t.query && 0 === t.type && (t.nsp += "?" + t.query), e.encoding ? e.packetBuffer.push(t) : (e.encoding = !0, this.encoder.encode(t, function (n) {for (var o = 0; o < n.length; o++) {e.engine.write(n[o], t.options);}e.encoding = !1, e.processPacketQueue();}));}, o.prototype.processPacketQueue = function () {if (this.packetBuffer.length > 0 && !this.encoding) {var t = this.packetBuffer.shift();this.packet(t);}}, o.prototype.cleanup = function () {for (var t = this.subs.length, e = 0; e < t; e++) {var n = this.subs.shift();n.destroy();}this.packetBuffer = [], this.encoding = !1, this.lastPing = null, this.decoder.destroy();}, o.prototype.close = o.prototype.disconnect = function () {this.skipReconnect = !0, this.reconnecting = !1, "opening" === this.readyState && this.cleanup(), this.backoff.reset(), this.readyState = "closed", this.engine && this.engine.close();}, o.prototype.onclose = function (t) {this.cleanup(), this.backoff.reset(), this.readyState = "closed", this.emit("close", t), this._reconnection && !this.skipReconnect && this.reconnect();}, o.prototype.reconnect = function () {if (this.reconnecting || this.skipReconnect) return this;var t = this;if (this.backoff.attempts >= this._reconnectionAttempts) this.backoff.reset(), this.emitAll("reconnect_failed"), this.reconnecting = !1;else {var e = this.backoff.duration();this.reconnecting = !0;var n = setTimeout(function () {t.skipReconnect || (t.emitAll("reconnect_attempt", t.backoff.attempts), t.emitAll("reconnecting", t.backoff.attempts), t.skipReconnect || (i() ? (t.reconnecting = !1, t.reconnect(), t.emitAll("reconnect_error", "Uniapp running backend, skipped reconnect...")) : t.open(function (e) {e ? (t.reconnecting = !1, t.reconnect(), t.emitAll("reconnect_error", e.data)) : t.onreconnect();})));}, e);this.subs.push({ destroy: function destroy() {clearTimeout(n);} });}}, o.prototype.onreconnect = function () {var t = this.backoff.attempts;this.reconnecting = !1, this.backoff.reset(), this.updateSocketIds(), this.emitAll("reconnect", t);};}, function (t, e, n) {"use strict";t.exports = n(10), t.exports.parser = n(15);}, function (t, e, n) {"use strict";function o(t, e) {return this instanceof o ? (e = e || {}, t && "object" === ("undefined" == typeof t ? "undefined" : r(t)) && (e = t, t = null), t ? (t = p(t), e.hostname = t.host, e.secure = "https" === t.protocol || "wss" === t.protocol, e.port = t.port, t.query && (e.query = t.query)) : e.host && (e.hostname = p(e.host).host), this.secure = null != e.secure ? e.secure : "undefined" != typeof location && "https:" === location.protocol, e.hostname && !e.port && (e.port = this.secure ? "443" : "80"), this.agent = e.agent || !1, this.hostname = e.hostname || ("undefined" != typeof location ? location.hostname : "localhost"), this.port = e.port || ("undefined" != typeof location && location.port ? location.port : this.secure ? 443 : 80), this.query = e.query || {}, "string" == typeof this.query && (this.query = h.decode(this.query)), this.upgrade = !1 !== e.upgrade, this.path = (e.path || "/engine.io").replace(/\/$/, "") + "/", this.forceJSONP = !!e.forceJSONP, this.jsonp = !1 !== e.jsonp, this.forceBase64 = !!e.forceBase64, this.enablesXDR = !!e.enablesXDR, this.timestampParam = e.timestampParam || "t", this.timestampRequests = e.timestampRequests, this.transports = e.transports || ["polling", "websocket"], this.transportOptions = e.transportOptions || {}, this.readyState = "", this.writeBuffer = [], this.prevBufferLen = 0, this.policyPort = e.policyPort || 843, this.rememberUpgrade = e.rememberUpgrade || !1, this.binaryType = null, this.onlyBinaryUpgrades = e.onlyBinaryUpgrades, this.perMessageDeflate = !1 !== e.perMessageDeflate && (e.perMessageDeflate || {}), !0 === this.perMessageDeflate && (this.perMessageDeflate = {}), this.perMessageDeflate && null == this.perMessageDeflate.threshold && (this.perMessageDeflate.threshold = 1024), this.pfx = e.pfx || null, this.key = e.key || null, this.passphrase = e.passphrase || null, this.cert = e.cert || null, this.ca = e.ca || null, this.ciphers = e.ciphers || null, this.rejectUnauthorized = void 0 === e.rejectUnauthorized || e.rejectUnauthorized, this.forceNode = !!e.forceNode, this.isReactNative = "undefined" != typeof navigator && "string" == typeof navigator.product && "reactnative" === navigator.product.toLowerCase(), ("undefined" == typeof self || this.isReactNative) && (e.extraHeaders && Object.keys(e.extraHeaders).length > 0 && (this.extraHeaders = e.extraHeaders), e.localAddress && (this.localAddress = e.localAddress)), this.id = null, this.upgrades = null, this.pingInterval = null, this.pingTimeout = null, this.pingIntervalTimer = null, this.pingTimeoutTimer = null, void this.open()) : new o(t, e);}function i(t) {var e = {};for (var n in t) {t.hasOwnProperty(n) && (e[n] = t[n]);}return e;}var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},s = n(11),c = n(6),a = (n(4)("engine.io-client:socket"), n(29)),u = n(15),p = n(3),h = n(22);t.exports = o, o.priorWebsocketSuccess = !1, c(o.prototype), o.protocol = u.protocol, o.Socket = o, o.Transport = n(14), o.transports = n(11), o.parser = n(15), o.prototype.createTransport = function (t) {var e = i(this.query);e.EIO = u.protocol, e.transport = t;var n = this.transportOptions[t] || {};this.id && (e.sid = this.id);var o = new s[t]({ query: e, socket: this, agent: n.agent || this.agent, hostname: n.hostname || this.hostname, port: n.port || this.port, secure: n.secure || this.secure, path: n.path || this.path, forceJSONP: n.forceJSONP || this.forceJSONP, jsonp: n.jsonp || this.jsonp, forceBase64: n.forceBase64 || this.forceBase64, enablesXDR: n.enablesXDR || this.enablesXDR, timestampRequests: n.timestampRequests || this.timestampRequests, timestampParam: n.timestampParam || this.timestampParam, policyPort: n.policyPort || this.policyPort, pfx: n.pfx || this.pfx, key: n.key || this.key, passphrase: n.passphrase || this.passphrase, cert: n.cert || this.cert, ca: n.ca || this.ca, ciphers: n.ciphers || this.ciphers, rejectUnauthorized: n.rejectUnauthorized || this.rejectUnauthorized, perMessageDeflate: n.perMessageDeflate || this.perMessageDeflate, extraHeaders: n.extraHeaders || this.extraHeaders, forceNode: n.forceNode || this.forceNode, localAddress: n.localAddress || this.localAddress, requestTimeout: n.requestTimeout || this.requestTimeout, protocols: n.protocols || void 0, isReactNative: this.isReactNative });return o;}, o.prototype.open = function () {var t;if (this.rememberUpgrade && o.priorWebsocketSuccess && this.transports.indexOf("websocket") !== -1) t = "websocket";else {
-        if (0 === this.transports.length) {var e = this;return void setTimeout(function () {e.emit("error", "No transports available");}, 0);}t = this.transports[0];}this.readyState = "opening";try {t = this.createTransport(t);} catch (t) {return this.transports.shift(), void this.open();}t.open(), this.setTransport(t);}, o.prototype.setTransport = function (t) {var e = this;this.transport && this.transport.removeAllListeners(), this.transport = t, t.on("drain", function () {e.onDrain();}).on("packet", function (t) {e.onPacket(t);}).on("error", function (t) {e.onError(t);}).on("close", function () {e.onClose("transport close");});}, o.prototype.probe = function (t) {function e() {if (h.onlyBinaryUpgrades) {var t = !this.supportsBinary && h.transport.supportsBinary;p = p || t;}p || (u.send([{ type: "ping", data: "probe" }]), u.once("packet", function (t) {if (!p) if ("pong" === t.type && "probe" === t.data) {if (h.upgrading = !0, h.emit("upgrading", u), !u) return;o.priorWebsocketSuccess = "websocket" === u.name, h.transport.pause(function () {p || "closed" !== h.readyState && (a(), h.setTransport(u), u.send([{ type: "upgrade" }]), h.emit("upgrade", u), u = null, h.upgrading = !1, h.flush());});} else {var e = new Error("probe error");e.transport = u.name, h.emit("upgradeError", e);}}));}function n() {p || (p = !0, a(), u.close(), u = null);}function i(t) {var e = new Error("probe error: " + t);e.transport = u.name, n(), h.emit("upgradeError", e);}function r() {i("transport closed");}function s() {i("socket closed");}function c(t) {u && t.name !== u.name && n();}function a() {u.removeListener("open", e), u.removeListener("error", i), u.removeListener("close", r), h.removeListener("close", s), h.removeListener("upgrading", c);}var u = this.createTransport(t, { probe: 1 }),p = !1,h = this;o.priorWebsocketSuccess = !1, u.once("open", e), u.once("error", i), u.once("close", r), this.once("close", s), this.once("upgrading", c), u.open();}, o.prototype.onOpen = function () {if (this.readyState = "open", o.priorWebsocketSuccess = "websocket" === this.transport.name, this.emit("open"), this.flush(), "open" === this.readyState && this.upgrade && this.transport.pause) for (var t = 0, e = this.upgrades.length; t < e; t++) {this.probe(this.upgrades[t]);}}, o.prototype.onPacket = function (t) {if ("opening" === this.readyState || "open" === this.readyState || "closing" === this.readyState) switch (this.emit("packet", t), this.emit("heartbeat"), t.type) {case "open":this.onHandshake(JSON.parse(t.data));break;case "pong":this.setPing(), this.emit("pong");break;case "error":var e = new Error("server error");e.code = t.data, this.onError(e);break;case "message":this.emit("data", t.data), this.emit("message", t.data);}}, o.prototype.onHandshake = function (t) {this.emit("handshake", t), this.id = t.sid, this.transport.query.sid = t.sid, this.upgrades = this.filterUpgrades(t.upgrades), this.pingInterval = t.pingInterval, this.pingTimeout = t.pingTimeout, this.onOpen(), "closed" !== this.readyState && (this.setPing(), this.removeListener("heartbeat", this.onHeartbeat), this.on("heartbeat", this.onHeartbeat));}, o.prototype.onHeartbeat = function (t) {clearTimeout(this.pingTimeoutTimer);var e = this;e.pingTimeoutTimer = setTimeout(function () {"closed" !== e.readyState && e.onClose("ping timeout");}, t || e.pingInterval + e.pingTimeout);}, o.prototype.setPing = function () {var t = this;clearTimeout(t.pingIntervalTimer), t.pingIntervalTimer = setTimeout(function () {t.ping(), t.onHeartbeat(t.pingTimeout);}, t.pingInterval);}, o.prototype.ping = function () {var t = this;this.sendPacket("ping", function () {t.emit("ping");});}, o.prototype.onDrain = function () {this.writeBuffer.splice(0, this.prevBufferLen), this.prevBufferLen = 0, 0 === this.writeBuffer.length ? this.emit("drain") : this.flush();}, o.prototype.flush = function () {"closed" !== this.readyState && this.transport.writable && !this.upgrading && this.writeBuffer.length && (this.transport.send(this.writeBuffer), this.prevBufferLen = this.writeBuffer.length, this.emit("flush"));}, o.prototype.write = o.prototype.send = function (t, e, n) {return this.sendPacket("message", t, e, n), this;}, o.prototype.sendPacket = function (t, e, n, o) {if ("function" == typeof e && (o = e, e = void 0), "function" == typeof n && (o = n, n = null), "closing" !== this.readyState && "closed" !== this.readyState) {n = n || {}, n.compress = !1 !== n.compress;var i = { type: t, data: e, options: n };this.emit("packetCreate", i), this.writeBuffer.push(i), o && this.once("flush", o), this.flush();}}, o.prototype.close = function () {function t() {o.onClose("forced close"), o.transport.close();}function e() {o.removeListener("upgrade", e), o.removeListener("upgradeError", e), t();}function n() {o.once("upgrade", e), o.once("upgradeError", e);}if ("opening" === this.readyState || "open" === this.readyState) {this.readyState = "closing";var o = this;this.writeBuffer.length ? this.once("drain", function () {this.upgrading ? n() : t();}) : this.upgrading ? n() : t();}return this;}, o.prototype.onError = function (t) {o.priorWebsocketSuccess = !1, this.emit("error", t), this.onClose("transport error", t);}, o.prototype.onClose = function (t, e) {if ("opening" === this.readyState || "open" === this.readyState || "closing" === this.readyState) {var n = this;clearTimeout(this.pingIntervalTimer), clearTimeout(this.pingTimeoutTimer), this.transport.removeAllListeners("close"), this.transport.close(), this.transport.removeAllListeners(), this.readyState = "closed", this.id = null, this.emit("close", t, e), n.writeBuffer = [], n.prevBufferLen = 0;}}, o.prototype.filterUpgrades = function (t) {for (var e = [], n = 0, o = t.length; n < o; n++) {~a(this.transports, t[n]) && e.push(t[n]);}return e;};}, function (t, e, n) {"use strict";function o(t) {var e = !1,n = !1;!1 !== t.jsonp;if ("undefined" != typeof location) {var o = "https:" === location.protocol,r = location.port;r || (r = o ? 443 : 80), e = t.hostname !== location.hostname || r !== t.port, n = t.secure !== o;}return t.xdomain = e, t.xscheme = n, new i(t);}var i = n(12),r = n(27);e.polling = o, e.websocket = r;}, function (t, e, n) {(function (e) {"use strict";function o() {}function i() {return "undefined" != typeof self ? self : "undefined" != typeof window ? window : "undefined" != typeof e ? e : {};}function r(t) {if (s.call(this, t), this.query = this.query || {}, !a) {var e = i();a = e.___eio = e.___eio || [];}this.index = a.length;var n = this;a.push(function (t) {n.onData(t);}), this.query.j = this.index, "function" == typeof addEventListener && addEventListener("beforeunload", function () {n.script && (n.script.onerror = o);}, !1);}var s = n(13),c = n(23);t.exports = r;var a,u = /\n/g,p = /\\n/g;c(r, s), r.prototype.supportsBinary = !1, r.prototype.doClose = function () {this.script && (this.script.parentNode.removeChild(this.script), this.script = null), this.form && (this.form.parentNode.removeChild(this.form), this.form = null, this.iframe = null), s.prototype.doClose.call(this);}, r.prototype.doPoll = function () {var t = this,e = document.createElement("script");this.script && (this.script.parentNode.removeChild(this.script), this.script = null), e.async = !0, e.src = this.uri(), e.onerror = function (e) {t.onError("jsonp poll error", e);};var n = document.getElementsByTagName("script")[0];n ? n.parentNode.insertBefore(e, n) : (document.head || document.body).appendChild(e), this.script = e;var o = "undefined" != typeof navigator && /gecko/i.test(navigator.userAgent);o && setTimeout(function () {var t = document.createElement("iframe");document.body.appendChild(t), document.body.removeChild(t);}, 100);}, r.prototype.doWrite = function (t, e) {function n() {o(), e();}function o() {if (i.iframe) try {i.form.removeChild(i.iframe);} catch (t) {i.onError("jsonp polling iframe removal error", t);}try {var t = '<iframe src="javascript:0" name="' + i.iframeId + '">';r = document.createElement(t);} catch (t) {r = document.createElement("iframe"), r.name = i.iframeId, r.src = "javascript:0";}r.id = i.iframeId, i.form.appendChild(r), i.iframe = r;}var i = this;if (!this.form) {var r,s = document.createElement("form"),c = document.createElement("textarea"),a = this.iframeId = "eio_iframe_" + this.index;s.className = "socketio", s.style.position = "absolute", s.style.top = "-1000px", s.style.left = "-1000px", s.target = a, s.method = "POST", s.setAttribute("accept-charset", "utf-8"), c.name = "d", s.appendChild(c), document.body.appendChild(s), this.form = s, this.area = c;}this.form.action = this.uri(), o(), t = t.replace(p, "\\\n"), this.area.value = t.replace(u, "\\n");try {this.form.submit();} catch (t) {}this.iframe.attachEvent ? this.iframe.onreadystatechange = function () {"complete" === i.iframe.readyState && n();} : this.iframe.onload = n;};}).call(e, function () {return this;}());}, function (t, e, n) {"use strict";function o(t) {var e = t && t.forceBase64;u && !e || (this.supportsBinary = !1), i.call(this, t);}var i = n(14),r = n(22),s = n(15),c = n(23),a = n(24);n(4)("engine.io-client:polling");t.exports = o;var u = function () {var t = n(25),e = new t({ xdomain: !1 });return null != e.responseType;}();c(o, i), o.prototype.name = "polling", o.prototype.doOpen = function () {this.poll();}, o.prototype.pause = function (t) {function e() {n.readyState = "paused", t();}var n = this;if (this.readyState = "pausing", this.polling || !this.writable) {var o = 0;this.polling && (o++, this.once("pollComplete", function () {--o || e();})), this.writable || (o++, this.once("drain", function () {--o || e();}));} else e();}, o.prototype.poll = function () {this.polling = !0, this.doPoll(), this.emit("poll");}, o.prototype.onData = function (t) {var e = this,n = function n(t, _n, o) {return "opening" === e.readyState && e.onOpen(), "close" === t.type ? (e.onClose(), !1) : void e.onPacket(t);};s.decodePayload(t, this.socket.binaryType, n), "closed" !== this.readyState && (this.polling = !1, this.emit("pollComplete"), "open" === this.readyState && this.poll());}, o.prototype.doClose = function () {function t() {e.write([{ type: "close" }]);}var e = this;"open" === this.readyState ? t() : this.once("open", t);}, o.prototype.write = function (t) {var e = this;this.writable = !1;var n = function n() {e.writable = !0, e.emit("drain");};s.encodePayload(t, this.supportsBinary, function (t) {e.doWrite(t, n);});}, o.prototype.uri = function () {var t = this.query || {},e = this.secure ? "https" : "http",n = "";!1 !== this.timestampRequests && (t[this.timestampParam] = a()), this.supportsBinary || t.sid || (t.b64 = 1), t = r.encode(t), this.port && ("https" === e && 443 !== Number(this.port) || "http" === e && 80 !== Number(this.port)) && (n = ":" + this.port), t.length && (t = "?" + t);var o = this.hostname.indexOf(":") !== -1;return e + "://" + (o ? "[" + this.hostname + "]" : this.hostname) + n + this.path + t;};}, function (t, e, n) {"use strict";function o(t) {this.path = t.path, this.hostname = t.hostname, this.port = t.port, this.secure = t.secure, this.query = t.query, this.timestampParam = t.timestampParam, this.timestampRequests = t.timestampRequests, this.readyState = "", this.agent = t.agent || !1, this.socket = t.socket, this.enablesXDR = t.enablesXDR, this.pfx = t.pfx, this.key = t.key, this.passphrase = t.passphrase, this.cert = t.cert, this.ca = t.ca, this.ciphers = t.ciphers, this.rejectUnauthorized = t.rejectUnauthorized, this.forceNode = t.forceNode, this.isReactNative = t.isReactNative, this.extraHeaders = t.extraHeaders, this.localAddress = t.localAddress;}var i = n(15),r = n(6);t.exports = o, r(o.prototype), o.prototype.onError = function (t, e) {var n = new Error(t);return n.type = "TransportError", n.description = e, this.emit("error", n), this;}, o.prototype.open = function () {return "closed" !== this.readyState && "" !== this.readyState || (this.readyState = "opening", this.doOpen()), this;}, o.prototype.close = function () {return "opening" !== this.readyState && "open" !== this.readyState || (this.doClose(), this.onClose()), this;}, o.prototype.send = function (t) {if ("open" !== this.readyState) throw new Error("Transport not open");this.write(t);}, o.prototype.onOpen = function () {this.readyState = "open", this.writable = !0, this.emit("open");}, o.prototype.onData = function (t) {var e = i.decodePacket(t, this.socket.binaryType);this.onPacket(e);}, o.prototype.onPacket = function (t) {this.emit("packet", t);}, o.prototype.onClose = function () {this.readyState = "closed", this.emit("close");};}, function (t, e, n) {"use strict";function o(t) {try {t = a.decode(t, { strict: !1 });} catch (t) {return !1;}return t;}function i(t, e, n) {for (var o = new Array(t.length), i = c(t.length, n), r = function r(t, n, i) {e(n, function (e, n) {o[t] = n, i(e, o);});}, s = 0; s < t.length; s++) {r(s, t[s], i);}}var r = n(16),s = n(17),c = n(19),a = n(20);"undefined" != typeof navigator && /Android/i.test(navigator.userAgent), "undefined" != typeof navigator && /PhantomJS/i.test(navigator.userAgent);e.protocol = 3;var u = e.packets = { open: 0, close: 1, ping: 2, pong: 3, message: 4, upgrade: 5, noop: 6 },p = r(u),h = { type: "error", data: "parser error" },f = n(21);e.encodePacket = function (t, e, n, o) {"function" == typeof e && (o = e, e = !1), "function" == typeof n && (o = n, n = null);var i = (void 0 === t.data ? void 0 : t.data.buffer || t.data, u[t.type]);return void 0 !== t.data && (i += n ? a.encode(String(t.data), { strict: !1 }) : String(t.data)), o("" + i);}, e.decodePacket = function (t, e, n) {if (void 0 === t) return h;if ("string" == typeof t) {if (n && (t = o(t), t === !1)) return h;var i = t.charAt(0);return Number(i) == i && p[i] ? t.length > 1 ? { type: p[i], data: t.substring(1) } : { type: p[i] } : h;}var r = new Uint8Array(t),i = r[0],s = sliceBuffer(t, 1);return f && "blob" === e && (s = new f([s])), { type: p[i], data: s };}, e.encodePayload = function (t, n, o) {function r(t) {return t.length + ":" + t;}function c(t, o) {e.encodePacket(t, !!a && n, !0, function (t) {o(null, r(t));});}"function" == typeof n && (o = n, n = null);var a = s(t);return t.length ? void i(t, c, function (t, e) {return o(e.join(""));}) : o("0:");}, e.decodePayload = function (t, n, o) {"function" == typeof n && (o = n, n = null);var i;if ("" === t) return o(h, 0, 1);for (var r, s, c = "", a = 0, u = t.length; a < u; a++) {var p = t.charAt(a);if (":" === p) {if ("" === c || c != (r = Number(c))) return o(h, 0, 1);if (s = t.substr(a + 1, r), c != s.length) return o(h, 0, 1);if (s.length) {if (i = e.decodePacket(s, n, !0), h.type === i.type && h.data === i.data) return o(h, 0, 1);var f = o(i, a + r, u);if (!1 === f) return;}a += r, c = "";} else c += p;}return "" !== c ? o(h, 0, 1) : void 0;};}, function (t, e) {"use strict";t.exports = Object.keys || function (t) {var e = [],n = Object.prototype.hasOwnProperty;for (var o in t) {n.call(t, o) && e.push(o);}return e;};}, function (t, e, n) {function o(t) {if (!t || "object" != typeof t) return !1;if (i(t)) {for (var e = 0, n = t.length; e < n; e++) {if (o(t[e])) return !0;}return !1;}if ("function" == typeof Buffer && Buffer.isBuffer && Buffer.isBuffer(t) || "function" == typeof ArrayBuffer && t instanceof ArrayBuffer || s && t instanceof Blob || c && t instanceof File) return !0;if (t.toJSON && "function" == typeof t.toJSON && 1 === arguments.length) return o(t.toJSON(), !0);for (var r in t) {if (Object.prototype.hasOwnProperty.call(t, r) && o(t[r])) return !0;}return !1;}var i = n(18),r = Object.prototype.toString,s = "function" == typeof Blob || "undefined" != typeof Blob && "[object BlobConstructor]" === r.call(Blob),c = "function" == typeof File || "undefined" != typeof File && "[object FileConstructor]" === r.call(File);t.exports = o;}, function (t, e) {var n = {}.toString;t.exports = Array.isArray || function (t) {return "[object Array]" == n.call(t);};}, function (t, e) {function n(t, e, n) {function i(t, o) {if (i.count <= 0) throw new Error("after called too many times");--i.count, t ? (r = !0, e(t), e = n) : 0 !== i.count || r || e(null, o);}var r = !1;return n = n || o, i.count = t, 0 === t ? e() : i;}function o() {}t.exports = n;}, function (t, e) {"use strict";function n(t) {for (var e, n, o = [], i = 0, r = t.length; i < r;) {e = t.charCodeAt(i++), e >= 55296 && e <= 56319 && i < r ? (n = t.charCodeAt(i++), 56320 == (64512 & n) ? o.push(((1023 & e) << 10) + (1023 & n) + 65536) : (o.push(e), i--)) : o.push(e);}return o;}function o(t) {for (var e, n = t.length, o = -1, i = ""; ++o < n;) {e = t[o], e > 65535 && (e -= 65536, i += l(e >>> 10 & 1023 | 55296), e = 56320 | 1023 & e), i += l(e);}return i;}function i(t, e) {if (t >= 55296 && t <= 57343) {if (e) throw Error("Lone surrogate U+" + t.toString(16).toUpperCase() + " is not a scalar value");return !1;}return !0;}function r(t, e) {return l(t >> e & 63 | 128);}function s(t, e) {if (0 == (4294967168 & t)) return l(t);var n = "";return 0 == (4294965248 & t) ? n = l(t >> 6 & 31 | 192) : 0 == (4294901760 & t) ? (i(t, e) || (t = 65533), n = l(t >> 12 & 15 | 224), n += r(t, 6)) : 0 == (4292870144 & t) && (n = l(t >> 18 & 7 | 240), n += r(t, 12), n += r(t, 6)), n += l(63 & t | 128);}function c(t, e) {e = e || {};for (var o, i = !1 !== e.strict, r = n(t), c = r.length, a = -1, u = ""; ++a < c;) {o = r[a], u += s(o, i);}return u;}function a() {if (d >= f) throw Error("Invalid byte index");var t = 255 & h[d];if (d++, 128 == (192 & t)) return 63 & t;throw Error("Invalid continuation byte");}function u(t) {var e, n, o, r, s;if (d > f) throw Error("Invalid byte index");if (d == f) return !1;if (e = 255 & h[d], d++, 0 == (128 & e)) return e;if (192 == (224 & e)) {if (n = a(), s = (31 & e) << 6 | n, s >= 128) return s;throw Error("Invalid continuation byte");}if (224 == (240 & e)) {if (n = a(), o = a(), s = (15 & e) << 12 | n << 6 | o, s >= 2048) return i(s, t) ? s : 65533;throw Error("Invalid continuation byte");}if (240 == (248 & e) && (n = a(), o = a(), r = a(), s = (7 & e) << 18 | n << 12 | o << 6 | r, s >= 65536 && s <= 1114111)) return s;throw Error("Invalid UTF-8 detected");}function p(t, e) {e = e || {};var i = !1 !== e.strict;h = n(t), f = h.length, d = 0;for (var r, s = []; (r = u(i)) !== !1;) {s.push(r);}return o(s);} /*! https://mths.be/utf8js v2.1.2 by @mathias */
-    var h,f,d,l = String.fromCharCode;t.exports = { version: "2.1.2", encode: c, decode: p };}, function (t, e) {function n(t) {return t.map(function (t) {if (t.buffer instanceof ArrayBuffer) {var e = t.buffer;if (t.byteLength !== e.byteLength) {var n = new Uint8Array(t.byteLength);n.set(new Uint8Array(e, t.byteOffset, t.byteLength)), e = n.buffer;}return e;}return t;});}function o(t, e) {e = e || {};var o = new r();return n(t).forEach(function (t) {o.append(t);}), e.type ? o.getBlob(e.type) : o.getBlob();}function i(t, e) {return new Blob(n(t), e || {});}var r = "undefined" != typeof r ? r : "undefined" != typeof WebKitBlobBuilder ? WebKitBlobBuilder : "undefined" != typeof MSBlobBuilder ? MSBlobBuilder : "undefined" != typeof MozBlobBuilder && MozBlobBuilder,s = function () {try {var t = new Blob(["hi"]);return 2 === t.size;} catch (t) {return !1;}}(),c = s && function () {try {var t = new Blob([new Uint8Array([1, 2])]);return 2 === t.size;} catch (t) {return !1;}}(),a = r && r.prototype.append && r.prototype.getBlob;"undefined" != typeof Blob && (o.prototype = Blob.prototype, i.prototype = Blob.prototype), t.exports = function () {return s ? c ? Blob : i : a ? o : void 0;}();}, function (t, e) {e.encode = function (t) {var e = "";for (var n in t) {t.hasOwnProperty(n) && (e.length && (e += "&"), e += encodeURIComponent(n) + "=" + encodeURIComponent(t[n]));}return e;}, e.decode = function (t) {for (var e = {}, n = t.split("&"), o = 0, i = n.length; o < i; o++) {var r = n[o].split("=");e[decodeURIComponent(r[0])] = decodeURIComponent(r[1]);}return e;};}, function (t, e) {t.exports = function (t, e) {var n = function n() {};n.prototype = e.prototype, t.prototype = new n(), t.prototype.constructor = t;};}, function (t, e) {"use strict";function n(t) {var e = "";do {e = s[t % c] + e, t = Math.floor(t / c);} while (t > 0);return e;}function o(t) {var e = 0;for (p = 0; p < t.length; p++) {e = e * c + a[t.charAt(p)];}return e;}function i() {var t = n(+new Date());return t !== r ? (u = 0, r = t) : t + "." + n(u++);}for (var r, s = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_".split(""), c = 64, a = {}, u = 0, p = 0; p < c; p++) {a[s[p]] = p;}i.encode = n, i.decode = o, t.exports = i;}, function (t, e, n) {"use strict";var o = n(26);t.exports = function (t) {var e = t.xdomain,n = t.xscheme,i = t.enablesXDR;try {if ("undefined" != typeof XMLHttpRequest && (!e || o)) return new XMLHttpRequest();} catch (t) {}try {if ("undefined" != typeof XDomainRequest && !n && i) return new XDomainRequest();} catch (t) {}if (!e) try {return new self[["Active"].concat("Object").join("X")]("Microsoft.XMLHTTP");} catch (t) {}};}, function (t, e) {try {t.exports = "undefined" != typeof XMLHttpRequest && "withCredentials" in new XMLHttpRequest();} catch (e) {t.exports = !1;}}, function (t, e, n) {"use strict";function o(t) {var e = t && t.forceBase64;e && (this.supportsBinary = !1), ("undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket) && (this.perMessageDeflate = t.perMessageDeflate, this.usingBrowserWebSocket = i && !t.forceNode, this.protocols = t.protocols, this.usingBrowserWebSocket || (f = r)), c.call(this, t);}var i,r,s = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},c = n(14),a = n(15),u = n(22),p = n(23),h = n(24);n(4)("engine.io-client:websocket");if ("undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket) if ("undefined" != typeof WebSocket) i = WebSocket;else if ("undefined" != typeof self) i = self.WebSocket || self.MozWebSocket;else try {r = n(28);} catch (t) {}var f = i || r;"undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket || (f = function f(t) {var e = this;if (e.onopen = function () {}, e.onclose = function () {}, e.onmessage = function (t) {}, e.onerror = function (t) {}, "object" === ("undefined" == typeof tt ? "undefined" : s(tt)) && tt.getSystemInfo) {var n = tt.connectSocket({ url: t });e.send = function (t) {n.send({ data: t });}, e.close = function () {n.close();}, n.onOpen(function () {e.onopen();}), n.onError(function (t) {e.onerror(t);}), n.onMessage(function (t) {e.onmessage(t);}), n.onClose(function () {e.onclose();});} else "undefined" != typeof uni ? (e.send = function (t) {uni.sendSocketMessage({ data: t });}, e.close = function () {uni.closeSocket();}, uni.onSocketOpen(function (t) {e.onopen();}), uni.onSocketError(function (t) {e.onerror(t);}), uni.onSocketMessage(function (t) {e.onmessage(t);}), uni.onSocketClose(function (t) {e.onclose();}), uni.connectSocket({ url: t })) : (e.send = function (t) {wx.sendSocketMessage({ data: t });}, e.close = function () {wx.closeSocket();}, wx.onSocketOpen(function (t) {e.onopen();}), wx.onSocketError(function (t) {e.onerror(t);}), wx.onSocketMessage(function (t) {e.onmessage(t);}), wx.onSocketClose(function (t) {e.onclose();}), wx.connectSocket({ url: t }));}), t.exports = o, p(o, c), o.prototype.name = "websocket", o.prototype.supportsBinary = !1, o.prototype.doOpen = function () {if (this.check()) {var t,e = this.uri();("undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket) && (t = this.protocols);var n;n = "undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket ? { agent: this.agent, perMessageDeflate: this.perMessageDeflate } : { agent: this.agent }, n.pfx = this.pfx, n.key = this.key, n.passphrase = this.passphrase, n.cert = this.cert, n.ca = this.ca, n.ciphers = this.ciphers, n.rejectUnauthorized = this.rejectUnauthorized, this.extraHeaders && (n.headers = this.extraHeaders), this.localAddress && (n.localAddress = this.localAddress);try {"undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket ? this.ws = this.usingBrowserWebSocket && !this.isReactNative ? t ? new f(e, t) : new f(e) : new f(e, t, n) : this.ws = new f(e);} catch (t) {return this.emit("error", t);}void 0 === this.ws.binaryType && (this.supportsBinary = !1), this.ws.supports && this.ws.supports.binary ? (this.supportsBinary = !0, this.ws.binaryType = "nodebuffer") : this.ws.binaryType = "arraybuffer", this.addEventListeners();}}, o.prototype.addEventListeners = function () {var t = this;this.ws.onopen = function () {t.onOpen();}, this.ws.onclose = function () {t.onClose();}, this.ws.onmessage = function (e) {t.onData(e.data);}, this.ws.onerror = function (e) {t.onError("websocket error", e);};}, o.prototype.write = function (t) {function e() {n.emit("flush"), setTimeout(function () {n.writable = !0, n.emit("drain");}, 0);}var n = this;this.writable = !1;for (var o = t.length, i = 0, r = o; i < r; i++) {!function (t) {a.encodePacket(t, n.supportsBinary, function (i) {if ("undefined" == typeof uni && "undefined" == typeof wx || "undefined" != typeof WebSocket) {if (!n.usingBrowserWebSocket) {var r = {};if (t.options && (r.compress = t.options.compress), n.perMessageDeflate) {var s = "string" == typeof i ? Buffer.byteLength(i) : i.length;s < n.perMessageDeflate.threshold && (r.compress = !1);}}try {n.usingBrowserWebSocket ? n.ws.send(i) : n.ws.send(i, r);} catch (t) {}} else try {n.ws.send(i);} catch (t) {}--o || e();});}(t[i]);}}, o.prototype.onClose = function () {c.prototype.onClose.call(this);}, o.prototype.doClose = function () {"undefined" != typeof this.ws && this.ws.close();}, o.prototype.uri = function () {var t = this.query || {},e = this.secure ? "wss" : "ws",n = "";this.port && ("wss" === e && 443 !== Number(this.port) || "ws" === e && 80 !== Number(this.port)) && (n = ":" + this.port), this.timestampRequests && (t[this.timestampParam] = h()), this.supportsBinary || (t.b64 = 1), t = u.encode(t), t.length && (t = "?" + t);var o = this.hostname.indexOf(":") !== -1;return e + "://" + (o ? "[" + this.hostname + "]" : this.hostname) + n + this.path + t;}, o.prototype.check = function () {return !(!f || "__initialize" in f && this.name === o.prototype.name);};}, function (t, e) {}, function (t, e) {var n = [].indexOf;t.exports = function (t, e) {if (n) return t.indexOf(e);for (var o = 0; o < t.length; ++o) {if (t[o] === e) return o;}return -1;};}, function (t, e, n) {"use strict";function o(t, e, n) {this.io = t, this.nsp = e, this.json = this, this.ids = 0, this.acks = {}, this.receiveBuffer = [], this.sendBuffer = [], this.connected = !1, this.disconnected = !0, this.flags = {}, n && n.query && (this.query = n.query), this.io.autoConnect && this.open();}var i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {return typeof t;} : function (t) {return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;},r = n(5),s = n(6),c = n(31),a = n(32),u = n(33),p = (n(4)("socket.io-client:socket"), n(22)),h = n(17);t.exports = e = o;var f = { connect: 1, connect_error: 1, connect_timeout: 1, connecting: 1, disconnect: 1, error: 1, reconnect: 1, reconnect_attempt: 1, reconnect_failed: 1, reconnect_error: 1, reconnecting: 1, ping: 1, pong: 1 },d = s.prototype.emit;s(o.prototype), o.prototype.subEvents = function () {if (!this.subs) {var t = this.io;this.subs = [a(t, "open", u(this, "onopen")), a(t, "packet", u(this, "onpacket")), a(t, "close", u(this, "onclose"))];}}, o.prototype.open = o.prototype.connect = function () {return this.connected ? this : (this.subEvents(), this.io.open(), "open" === this.io.readyState && this.onopen(), this.emit("connecting"), this);}, o.prototype.send = function () {var t = c(arguments);return t.unshift("message"), this.emit.apply(this, t), this;}, o.prototype.emit = function (t) {if (f.hasOwnProperty(t)) return d.apply(this, arguments), this;var e = c(arguments),n = { type: (void 0 !== this.flags.binary ? this.flags.binary : h(e)) ? r.BINARY_EVENT : r.EVENT, data: e };return n.options = {}, n.options.compress = !this.flags || !1 !== this.flags.compress, "function" == typeof e[e.length - 1] && (this.acks[this.ids] = e.pop(), n.id = this.ids++), this.connected ? this.packet(n) : this.sendBuffer.push(n), this.flags = {}, this;}, o.prototype.packet = function (t) {t.nsp = this.nsp, this.io.packet(t);}, o.prototype.onopen = function () {if ("/" !== this.nsp) if (this.query) {var t = "object" === i(this.query) ? p.encode(this.query) : this.query;this.packet({ type: r.CONNECT, query: t });} else this.packet({ type: r.CONNECT });}, o.prototype.onclose = function (t) {this.connected = !1, this.disconnected = !0, delete this.id, this.emit("disconnect", t);}, o.prototype.onpacket = function (t) {var e = t.nsp === this.nsp,n = t.type === r.ERROR && "/" === t.nsp;if (e || n) switch (t.type) {case r.CONNECT:this.onconnect();break;case r.EVENT:this.onevent(t);break;case r.BINARY_EVENT:this.onevent(t);break;case r.ACK:this.onack(t);break;case r.BINARY_ACK:this.onack(t);break;case r.DISCONNECT:this.ondisconnect();break;case r.ERROR:this.emit("error", t.data);}}, o.prototype.onevent = function (t) {var e = t.data || [];null != t.id && e.push(this.ack(t.id)), this.connected ? d.apply(this, e) : this.receiveBuffer.push(e);}, o.prototype.ack = function (t) {var e = this,n = !1;return function () {if (!n) {n = !0;var o = c(arguments);e.packet({ type: h(o) ? r.BINARY_ACK : r.ACK, id: t, data: o });}};}, o.prototype.onack = function (t) {var e = this.acks[t.id];"function" == typeof e && (e.apply(this, t.data), delete this.acks[t.id]);}, o.prototype.onconnect = function () {this.connected = !0, this.disconnected = !1, this.emit("connect"), this.emitBuffered();}, o.prototype.emitBuffered = function () {var t;for (t = 0; t < this.receiveBuffer.length; t++) {d.apply(this, this.receiveBuffer[t]);}for (this.receiveBuffer = [], t = 0; t < this.sendBuffer.length; t++) {this.packet(this.sendBuffer[t]);}this.sendBuffer = [];}, o.prototype.ondisconnect = function () {this.destroy(), this.onclose("io server disconnect");}, o.prototype.destroy = function () {if (this.subs) {for (var t = 0; t < this.subs.length; t++) {this.subs[t].destroy();}this.subs = null;}this.io.destroy(this);}, o.prototype.close = o.prototype.disconnect = function () {return this.connected && this.packet({ type: r.DISCONNECT }), this.destroy(), this.connected && this.onclose("io client disconnect"), this;}, o.prototype.compress = function (t) {return this.flags.compress = t, this;}, o.prototype.binary = function (t) {return this.flags.binary = t, this;};}, function (t, e) {function n(t, e) {var n = [];e = e || 0;for (var o = e || 0; o < t.length; o++) {n[o - e] = t[o];}return n;}t.exports = n;}, function (t, e) {"use strict";function n(t, e, n) {return t.on(e, n), { destroy: function destroy() {t.removeListener(e, n);} };}t.exports = n;}, function (t, e) {var n = [].slice;t.exports = function (t, e) {if ("string" == typeof e && (e = t[e]), "function" != typeof e) throw new Error("bind() requires a function");var o = n.call(arguments, 2);return function () {return e.apply(t, o.concat(n.call(arguments)));};};}, function (t, e) {function n(t) {t = t || {}, this.ms = t.min || 100, this.max = t.max || 1e4, this.factor = t.factor || 2, this.jitter = t.jitter > 0 && t.jitter <= 1 ? t.jitter : 0, this.attempts = 0;}t.exports = n, n.prototype.duration = function () {var t = this.ms * Math.pow(this.factor, this.attempts++);if (this.jitter) {var e = Math.random(),n = Math.floor(e * this.jitter * t);t = 0 == (1 & Math.floor(10 * e)) ? t - n : t + n;}return 0 | Math.min(t, this.max);}, n.prototype.reset = function () {this.attempts = 0;}, n.prototype.setMin = function (t) {this.ms = t;}, n.prototype.setMax = function (t) {this.max = t;}, n.prototype.setJitter = function (t) {this.jitter = t;};}, function (t, e, n) {function o(t, e, n) {var o = e && n || 0,p = e || [];t = t || {};var h = t.node || i,f = void 0 !== t.clockseq ? t.clockseq : r;if (null == h || null == f) {var d = s();null == h && (h = i = [1 | d[0], d[1], d[2], d[3], d[4], d[5]]), null == f && (f = r = 16383 & (d[6] << 8 | d[7]));}var l = void 0 !== t.msecs ? t.msecs : new Date().getTime(),y = void 0 !== t.nsecs ? t.nsecs : u + 1,m = l - a + (y - u) / 1e4;if (m < 0 && void 0 === t.clockseq && (f = f + 1 & 16383), (m < 0 || l > a) && void 0 === t.nsecs && (y = 0), y >= 1e4) throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");a = l, u = y, r = f, l += 122192928e5;var b = (1e4 * (268435455 & l) + y) % 4294967296;p[o++] = b >>> 24 & 255, p[o++] = b >>> 16 & 255, p[o++] = b >>> 8 & 255, p[o++] = 255 & b;var g = l / 4294967296 * 1e4 & 268435455;p[o++] = g >>> 8 & 255, p[o++] = 255 & g, p[o++] = g >>> 24 & 15 | 16, p[o++] = g >>> 16 & 255, p[o++] = f >>> 8 | 128, p[o++] = 255 & f;for (var v = 0; v < 6; ++v) {p[o + v] = h[v];}return e ? e : c(p);}var i,r,s = n(36),c = n(37),a = 0,u = 0;t.exports = o;}, function (t, e) {var n = "undefined" != typeof crypto && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || "undefined" != typeof smsCrypto && "function" == typeof window.msCrypto.getRandomValues && msCrypto.getRandomValues.bind(msCrypto);if (n) {var o = new Uint8Array(16);t.exports = function () {return n(o), o;};} else {var i = new Array(16);t.exports = function () {for (var t, e = 0; e < 16; e++) {0 === (3 & e) && (t = 4294967296 * Math.random()), i[e] = t >>> ((3 & e) << 3) & 255;}return i;};}}, function (t, e) {function n(t, e) {var n = e || 0,i = o;return [i[t[n++]], i[t[n++]], i[t[n++]], i[t[n++]], "-", i[t[n++]], i[t[n++]], "-", i[t[n++]], i[t[n++]], "-", i[t[n++]], i[t[n++]], "-", i[t[n++]], i[t[n++]], i[t[n++]], i[t[n++]], i[t[n++]], i[t[n++]]].join("");}for (var o = [], i = 0; i < 256; ++i) {o[i] = (i + 256).toString(16).substr(1);}t.exports = n;}]);});
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./../../../../../software/HBuilderX/HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 37).Buffer))
-
-/***/ }),
-
-/***/ 37:
 /*!**************************************!*\
   !*** ./node_modules/buffer/index.js ***!
   \**************************************/
@@ -10649,9 +9936,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var base64 = __webpack_require__(/*! base64-js */ 38)
-var ieee754 = __webpack_require__(/*! ieee754 */ 39)
-var isArray = __webpack_require__(/*! isarray */ 40)
+var base64 = __webpack_require__(/*! base64-js */ 37)
+var ieee754 = __webpack_require__(/*! ieee754 */ 38)
+var isArray = __webpack_require__(/*! isarray */ 39)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -12433,7 +11720,7 @@ function isnan (val) {
 
 /***/ }),
 
-/***/ 38:
+/***/ 37:
 /*!*****************************************!*\
   !*** ./node_modules/base64-js/index.js ***!
   \*****************************************/
@@ -12597,7 +11884,7 @@ function fromByteArray (uint8) {
 
 /***/ }),
 
-/***/ 39:
+/***/ 38:
 /*!***************************************!*\
   !*** ./node_modules/ieee754/index.js ***!
   \***************************************/
@@ -12692,18 +11979,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 /***/ }),
 
-/***/ 4:
-/*!*******************************************************!*\
-  !*** D:/wechatapp/develop/animal_crossing/pages.json ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ 40:
+/***/ 39:
 /*!***************************************!*\
   !*** ./node_modules/isarray/index.js ***!
   \***************************************/
@@ -12715,6 +11991,808 @@ var toString = {}.toString;
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
+
+
+/***/ }),
+
+/***/ 4:
+/*!*******************************************************!*\
+  !*** D:/wechatapp/develop/animal_crossing/pages.json ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 54:
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator/index.js ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ 55);
+
+/***/ }),
+
+/***/ 55:
+/*!************************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// This method of obtaining a reference to the global object needs to be
+// kept identical to the way it is obtained in runtime.js
+var g = (function() {
+  return this || (typeof self === "object" && self);
+})() || Function("return this")();
+
+// Use `getOwnPropertyNames` because not all browsers support calling
+// `hasOwnProperty` on the global `self` object in a worker. See #183.
+var hadRuntime = g.regeneratorRuntime &&
+  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
+
+// Save the old regeneratorRuntime in case it needs to be restored later.
+var oldRuntime = hadRuntime && g.regeneratorRuntime;
+
+// Force reevalutation of runtime.js.
+g.regeneratorRuntime = undefined;
+
+module.exports = __webpack_require__(/*! ./runtime */ 56);
+
+if (hadRuntime) {
+  // Restore the original runtime.
+  g.regeneratorRuntime = oldRuntime;
+} else {
+  // Remove the global property added by runtime.js.
+  try {
+    delete g.regeneratorRuntime;
+  } catch(e) {
+    g.regeneratorRuntime = undefined;
+  }
+}
+
+
+/***/ }),
+
+/***/ 56:
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+!(function(global) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  var inModule = typeof module === "object";
+  var runtime = global.regeneratorRuntime;
+  if (runtime) {
+    if (inModule) {
+      // If regeneratorRuntime is defined globally and we're in a module,
+      // make the exports object identical to regeneratorRuntime.
+      module.exports = runtime;
+    }
+    // Don't bother evaluating the rest of this file if the runtime was
+    // already defined globally.
+    return;
+  }
+
+  // Define the runtime globally (as expected by generated code) as either
+  // module.exports (if we're in a module) or a new, empty object.
+  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  runtime.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  runtime.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  runtime.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  runtime.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  runtime.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return runtime.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        if (delegate.iterator.return) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  runtime.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  runtime.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+})(
+  // In sloppy mode, unbound `this` refers to the global object, fallback to
+  // Function constructor if we're in global strict mode. That is sadly a form
+  // of indirect eval which violates Content Security Policy.
+  (function() {
+    return this || (typeof self === "object" && self);
+  })() || Function("return this")()
+);
 
 
 /***/ })
