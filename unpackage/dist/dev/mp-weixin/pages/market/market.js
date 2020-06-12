@@ -431,17 +431,112 @@ var _default =
       free_trades: [],
       free_pagenum: 1,
       free_trade_count: 1,
+      // 点赞按钮状态 字典对象
+      like_icon: [],
+      //点赞数组 api获取
+      likes: [],
       //动态图片(临时)
-      img_test: "http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",
+      // img_test:"http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",
       //发布动态的内容
       new_trend: "" };
 
 
   },
+  computed: {
+    //大头菜市场的图片数组
+    turnipPicture: function turnipPicture() {
+      var tmp_trend_pic = {}; //用来保存每个trend多个pic的字典，用trend的id做key索引
+      var len = this.turnip_trades.length; //动态帖子的数量
+      for (var i = 0; i < len; i++) {
+        //用 ; 对图片字符串进行分割
+        var pic_array = new Array();
+        pic_array = this.turnip_trades[i].trade_pic.split(";");
+        var trend_id = this.turnip_trades[i].id; //获取当前trend的id
+        tmp_trend_pic[trend_id] = pic_array; //以trend_id为key保存对应的图片url数组
+      }
+      return tmp_trend_pic;
+    },
+    //DIY市场的图片数组
+    diyPicture: function diyPicture() {
+      var tmp_trend_pic = {}; //用来保存每个trend多个pic的字典，用trend的id做key索引
+      var len = this.diy_trades.length; //动态帖子的数量
+      for (var i = 0; i < len; i++) {
+        //用 ; 对图片字符串进行分割
+        var pic_array = new Array();
+        pic_array = this.diy_trades[i].trade_pic.split(";");
+        var trend_id = this.diy_trades[i].id; //获取当前trend的id
+        tmp_trend_pic[trend_id] = pic_array; //以trend_id为key保存对应的图片url数组
+      }
+      return tmp_trend_pic;
+    },
+    // 化石市场的图片数组
+    fossilPicture: function fossilPicture() {
+      var tmp_trend_pic = {}; //用来保存每个trend多个pic的字典，用trend的id做key索引
+      var len = this.fossil_trades.length; //动态帖子的数量
+      for (var i = 0; i < len; i++) {
+        //用 ; 对图片字符串进行分割
+        var pic_array = new Array();
+        pic_array = this.fossil_trades[i].trade_pic.split(";");
+        var trend_id = this.fossil_trades[i].id; //获取当前trend的id
+        tmp_trend_pic[trend_id] = pic_array; //以trend_id为key保存对应的图片url数组
+      }
+      return tmp_trend_pic;
+    },
+    // 自由市场的图片数组
+    freePicture: function freePicture() {
+      var tmp_trend_pic = {}; //用来保存每个trend多个pic的字典，用trend的id做key索引
+      var len = this.free_trades.length; //动态帖子的数量
+      for (var i = 0; i < len; i++) {
+        //用 ; 对图片字符串进行分割
+        var pic_array = new Array();
+        pic_array = this.free_trades[i].trade_pic.split(";");
+        var trend_id = this.free_trades[i].id; //获取当前trend的id
+        tmp_trend_pic[trend_id] = pic_array; //以trend_id为key保存对应的图片url数组
+      }
+      return tmp_trend_pic;
+    } },
+
   onLoad: function onLoad() {
-    this.getTurnipTrades();
+    uni.startPullDownRefresh();
+    // this.getTurnipTrades()
   },
   methods: {
+    // 监听下拉刷新
+    onPullDownRefresh: function onPullDownRefresh() {var _this = this;
+      if (this.current_tab === 0) {
+        this.turnip_trades = [];
+        this.likes = [];
+        setTimeout(function () {
+          _this.getUserLikeInfo();
+          _this.getTurnipTrades();
+          uni.stopPullDownRefresh(); //停止下拉刷新
+        }, 1000);
+      } else if (this.current_tab === 1) {
+        this.diy_trades = [];
+        this.likes = [];
+        setTimeout(function () {
+          _this.getUserLikeInfo();
+          _this.getDiyTrades();
+          uni.stopPullDownRefresh(); //停止下拉刷新
+        }, 1000);
+      } else if (this.current_tab === 2) {
+        this.fossil_trades = [];
+        this.likes = [];
+        setTimeout(function () {
+          _this.getUserLikeInfo();
+          _this.getFossilTrades();
+          uni.stopPullDownRefresh(); //停止下拉刷新
+        }, 1000);
+      } else if (this.current_tab === 3) {
+        this.free_trades = [];
+        this.likes = [];
+        setTimeout(function () {
+          _this.getUserLikeInfo();
+          _this.getFreeTrades();
+          uni.stopPullDownRefresh(); //停止下拉刷新
+        }, 1000);
+      }
+    },
     //监听tabs change
     changeTab: function changeTab(index) {
       this.current_tab = index;
@@ -461,8 +556,37 @@ var _default =
         url: "addTrade/addTrade" });
 
     },
-    clickLike: function clickLike() {
-      console.log("click like");
+    // 点赞按钮点击事件
+    clickLike: function clickLike(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result, _jwt, _head, _result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
+                _this2.like_icon[id] === "heart")) {_context.next = 9;break;}
+                // 点赞
+                // 调用Vue.set更新数组,使视图更新
+                _this2.$set(_this2.like_icon, id, "heart-fill");
+                // this.like_icon[id] = "heart-fill"
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context.next = 6;return (
+                  _this2.$myRequest({
+                    method: 'POST',
+                    url: '/likes/',
+                    header: head,
+                    data: {
+                      obj_liked: id,
+                      thumbs_up_type: 1 } }));case 6:result = _context.sent;_context.next = 15;break;case 9:
+
+
+
+                //取消点赞
+                // this.like_icon[id] = "heart"
+                _this2.$set(_this2.like_icon, id, "heart");
+                _jwt = uni.getStorageSync("skey");
+                _head = { 'Authorization': "Bearer " + _jwt };_context.next = 14;return (
+                  _this2.$myRequest({
+                    method: 'DELETE',
+                    url: '/likes/' + id + "/",
+                    header: _head }));case 14:_result = _context.sent;case 15:case "end":return _context.stop();}}}, _callee);}))();
+
+
+
     },
     clickComment: function clickComment() {
 
@@ -470,86 +594,158 @@ var _default =
     clickShare: function clickShare() {
 
     },
-    //获取大头菜交易帖
-    getTurnipTrades: function getTurnipTrades() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                jwt = uni.getStorageSync("skey");
-                // console.log("jwt: "+jwt);
-                head = { 'Authorization': "Bearer " + jwt };
-                // console.log("header: "+head.Authorization);
-                _context.next = 4;return _this.$myRequest({
-                  method: 'GET',
-                  url: '/trades/?topic=1&pagenum=' + _this.turnip_pagenum,
-                  header: head });case 4:result = _context.sent;
+    // 图片预览事件
+    clickToPreviewImage: function clickToPreviewImage(list_id, img_index, type) {
+      var imgArr;
+      if (type === "turnip") {
+        imgArr = this.turnipPicture[list_id];
+      } else if (type === "diy") {
+        imgArr = this.diyPicture[list_id];
+      } else if (type === "fossil") {
+        imgArr = this.fossilPicture[list_id];
+      } else if (type === "free") {
+        imgArr = this.freePicture[list_id];
+      }
+      // let imgArr = imageList
+      // console.log(this.trendPicture[list_id])
+      uni.previewImage({
+        urls: imgArr,
+        current: img_index });
 
-                _this.turnip_trade_count = result.data.count;
-                _this.turnip_trades = [].concat(_toConsumableArray(_this.turnip_trades), _toConsumableArray(result.data.results));case 7:case "end":return _context.stop();}}}, _callee);}))();
     },
-    //获取remain大头菜交易帖
-    getRemainTurnipTrades: function getRemainTurnipTrades() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-                if (_this2.turnip_pagenum <= _this2.turnip_trade_count / 10) {
-                  _this2.turnip_pagenum++;
-                  _this2.getTurnipTrades();
-                }case 1:case "end":return _context2.stop();}}}, _callee2);}))();
-    },
-    //获取diy交易帖
-    getDiyTrades: function getDiyTrades() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var jwt, head, result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+    // 获取用户点赞信息
+    getUserLikeInfo: function getUserLikeInfo() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context2.next = 4;return (
+                  _this3.$myRequest({
+                    method: 'GET',
+                    url: '/likes/',
+                    header: head }));case 4:result = _context2.sent;
+
+                _this3.likes = result.data;
+                // console.log(result)
+                // return result.data
+              case 6:case "end":return _context2.stop();}}}, _callee2);}))();},
+    //获取大头菜交易帖
+    getTurnipTrades: function getTurnipTrades() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var jwt, head, result, i, len, j, _len;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 // console.log("jwt: "+jwt);
                 head = { 'Authorization': "Bearer " + jwt };
                 // console.log("header: "+head.Authorization);
-                _context3.next = 4;return _this3.$myRequest({
+                _context3.next = 4;return _this4.$myRequest({
                   method: 'GET',
-                  url: '/trades/?topic=2&pagenum=' + _this3.diy_pagenum,
+                  url: '/trades/?topic=1&pagenum=' + _this4.turnip_pagenum,
                   header: head });case 4:result = _context3.sent;
 
-                _this3.diy_trade_count = result.data.count;
-                _this3.diy_trades = [].concat(_toConsumableArray(_this3.diy_trades), _toConsumableArray(result.data.results));case 7:case "end":return _context3.stop();}}}, _callee3);}))();
+                _this4.turnip_trade_count = result.data.count;
+                _this4.turnip_trades = [].concat(_toConsumableArray(_this4.turnip_trades), _toConsumableArray(result.data.results));
+                // 初始化点赞图标
+                for (i = 0, len = _this4.turnip_trades.length; i < len; i++) {
+                  _this4.like_icon[_this4.turnip_trades[i].id] = "heart";
+                }
+                //处理该用户点赞信息
+                for (j = 0, _len = _this4.likes.length; j < _len; j++) {
+                  if (_this4.likes[j].thumbs_up_type === 1) {
+                    _this4.like_icon[_this4.likes[j].obj_liked] = "heart-fill";
+                  }
+                }case 9:case "end":return _context3.stop();}}}, _callee3);}))();
+    },
+    //获取remain大头菜交易帖
+    getRemainTurnipTrades: function getRemainTurnipTrades() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+                if (_this5.turnip_pagenum <= (_this5.turnip_trade_count - 1) / 10) {
+                  _this5.turnip_pagenum++;
+                  _this5.getTurnipTrades();
+                }case 1:case "end":return _context4.stop();}}}, _callee4);}))();
+    },
+    //获取diy交易帖
+    getDiyTrades: function getDiyTrades() {var _this6 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var jwt, head, result, i, len, j, _len2;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                // console.log("jwt: "+jwt);
+                head = { 'Authorization': "Bearer " + jwt };
+                // console.log("header: "+head.Authorization);
+                _context5.next = 4;return _this6.$myRequest({
+                  method: 'GET',
+                  url: '/trades/?topic=2&pagenum=' + _this6.diy_pagenum,
+                  header: head });case 4:result = _context5.sent;
+
+                _this6.diy_trade_count = result.data.count;
+                _this6.diy_trades = [].concat(_toConsumableArray(_this6.diy_trades), _toConsumableArray(result.data.results));
+                // 初始化点赞图标
+                for (i = 0, len = _this6.diy_trades.length; i < len; i++) {
+                  _this6.like_icon[_this6.diy_trades[i].id] = "heart";
+                }
+                //处理该用户点赞信息
+                for (j = 0, _len2 = _this6.likes.length; j < _len2; j++) {
+                  if (_this6.likes[j].thumbs_up_type === 1) {
+                    _this6.like_icon[_this6.likes[j].obj_liked] = "heart-fill";
+                  }
+                }case 9:case "end":return _context5.stop();}}}, _callee5);}))();
     },
     // 获取remain diy交易帖
     getRemainDiyTrades: function getRemainDiyTrades() {
-      if (this.diy_pagenum <= this.diy_trade_count / 10) {
+      if (this.diy_pagenum <= (this.diy_trade_count - 1) / 10) {
         this.diy_pagenum++;
         this.getDiyTrades();
       }
     },
     //获取fossil交易帖
-    getFossilTrades: function getFossilTrades() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var jwt, head, result;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+    getFossilTrades: function getFossilTrades() {var _this7 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6() {var jwt, head, result, i, len, j, _len3;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 // console.log("jwt: "+jwt);
                 head = { 'Authorization': "Bearer " + jwt };
                 // console.log("header: "+head.Authorization);
-                _context4.next = 4;return _this4.$myRequest({
+                _context6.next = 4;return _this7.$myRequest({
                   method: 'GET',
-                  url: '/trades/?topic=3&pagenum=' + _this4.fossil_pagenum,
-                  header: head });case 4:result = _context4.sent;
+                  url: '/trades/?topic=3&pagenum=' + _this7.fossil_pagenum,
+                  header: head });case 4:result = _context6.sent;
 
-                _this4.fossil_trade_count = result.data.count;
-                _this4.fossil_trades = [].concat(_toConsumableArray(_this4.fossil_trades), _toConsumableArray(result.data.results));case 7:case "end":return _context4.stop();}}}, _callee4);}))();
+                _this7.fossil_trade_count = result.data.count;
+                _this7.fossil_trades = [].concat(_toConsumableArray(_this7.fossil_trades), _toConsumableArray(result.data.results));
+                // 初始化点赞图标
+                for (i = 0, len = _this7.fossil_trades.length; i < len; i++) {
+                  _this7.like_icon[_this7.fossil_trades[i].id] = "heart";
+                }
+                //处理该用户点赞信息
+                for (j = 0, _len3 = _this7.likes.length; j < _len3; j++) {
+                  if (_this7.likes[j].thumbs_up_type === 1) {
+                    _this7.like_icon[_this7.likes[j].obj_liked] = "heart-fill";
+                  }
+                }case 9:case "end":return _context6.stop();}}}, _callee6);}))();
     },
     // 获取remain fossil交易帖
     getRemainFossilTrades: function getRemainFossilTrades() {
-      if (this.fossil_pagenum <= this.fossil_trade_count / 10) {
+      if (this.fossil_pagenum <= (this.fossil_trade_count - 1) / 10) {
         this.fossil_pagenum++;
         this.getFossilTrades();
       }
     },
     //获取自由交易帖
-    getFreeTrades: function getFreeTrades() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var jwt, head, result;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:
+    getFreeTrades: function getFreeTrades() {var _this8 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7() {var jwt, head, result, i, len, j, _len4;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 // console.log("jwt: "+jwt);
                 head = { 'Authorization': "Bearer " + jwt };
                 // console.log("header: "+head.Authorization);
-                _context5.next = 4;return _this5.$myRequest({
+                _context7.next = 4;return _this8.$myRequest({
                   method: 'GET',
-                  url: '/trades/?topic=4&pagenum=' + _this5.free_pagenum,
-                  header: head });case 4:result = _context5.sent;
+                  url: '/trades/?topic=4&pagenum=' + _this8.free_pagenum,
+                  header: head });case 4:result = _context7.sent;
 
-                _this5.free_trade_count = result.data.count;
-                _this5.free_trades = [].concat(_toConsumableArray(_this5.free_trades), _toConsumableArray(result.data.results));case 7:case "end":return _context5.stop();}}}, _callee5);}))();
+                _this8.free_trade_count = result.data.count;
+                _this8.free_trades = [].concat(_toConsumableArray(_this8.free_trades), _toConsumableArray(result.data.results));
+                // 初始化点赞图标
+                for (i = 0, len = _this8.free_trades.length; i < len; i++) {
+                  _this8.like_icon[_this8.free_trades[i].id] = "heart";
+                }
+                //处理该用户点赞信息
+                for (j = 0, _len4 = _this8.likes.length; j < _len4; j++) {
+                  if (_this8.likes[j].thumbs_up_type === 1) {
+                    _this8.like_icon[_this8.likes[j].obj_liked] = "heart-fill";
+                  }
+                }case 9:case "end":return _context7.stop();}}}, _callee7);}))();
     },
     //获取remain自由交易帖
     getRemainFreeTrades: function getRemainFreeTrades() {
-      if (this.free_pagenum <= this.free_trade_count / 10) {
+      if (this.free_pagenum <= (this.free_trade_count - 1) / 10) {
         this.free_pagenum++;
         this.getFreeTrades();
       }

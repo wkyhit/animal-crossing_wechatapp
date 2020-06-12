@@ -265,6 +265,16 @@
   -webkit-justify-content: space-evenly;
           justify-content: space-evenly;
 }
+.post_trends .card .upload_img .u-upload {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+          justify-content: space-evenly;
+}
 .post_trends .submit {
   -webkit-align-self: center;
           align-self: center;

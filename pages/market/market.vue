@@ -46,8 +46,8 @@
 						</text>
 					</view>
 					<view class="content_img" >
-						<view class="content_img1" v-for="(item1,index1) in trendPicture[item.id]" :key="index1">
-							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1)"></image>
+						<view class="content_img1" v-for="(item1,index1) in turnipPicture[item.id]" :key="index1">
+							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1,'turnip')"></image>
 						</view>
 					</view>
 				</view>
@@ -103,8 +103,8 @@
 						</text>
 					</view>
 					<view class="content_img" >
-						<view class="content_img1" v-for="(item1,index1) in trendPicture[item.id]" :key="index1">
-							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1)"></image>
+						<view class="content_img1" v-for="(item1,index1) in diyPicture[item.id]" :key="index1">
+							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1,'diy')"></image>
 						</view>
 					</view>
 				</view>
@@ -160,8 +160,8 @@
 						</text>
 					</view>
 					<view class="content_img" >
-						<view class="content_img1" v-for="(item1,index1) in trendPicture[item.id]" :key="index1">
-							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1)"></image>
+						<view class="content_img1" v-for="(item1,index1) in fossilPicture[item.id]" :key="index1">
+							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1,'fossil')"></image>
 						</view>
 					</view>
 				</view>
@@ -217,8 +217,8 @@
 						</text>
 					</view>
 					<view class="content_img" >
-						<view class="content_img1" v-for="(item1,index1) in trendPicture[item.id]" :key="index1">
-							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1)"></image>
+						<view class="content_img1" v-for="(item1,index1) in freePicture[item.id]" :key="index1">
+							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1,'free')"></image>
 						</view>
 					</view>
 				</view>
@@ -286,17 +286,112 @@
 				free_trades:[],
 				free_pagenum:1,
 				free_trade_count:1,
+				// 点赞按钮状态 字典对象
+				like_icon:[],
+				//点赞数组 api获取
+				likes:[],
 				//动态图片(临时)
-				img_test:"http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",
+				// img_test:"http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",
 				//发布动态的内容
 				new_trend:"",
 				
 			};
 		},
+		computed:{
+			//大头菜市场的图片数组
+			turnipPicture(){
+				let tmp_trend_pic = {} //用来保存每个trend多个pic的字典，用trend的id做key索引
+				let len = this.turnip_trades.length//动态帖子的数量
+				for(let i=0; i<len; i++){
+					//用 ; 对图片字符串进行分割
+					let pic_array = new Array()
+					pic_array = this.turnip_trades[i].trade_pic.split(";")
+					let trend_id = this.turnip_trades[i].id //获取当前trend的id
+					tmp_trend_pic[trend_id] = pic_array //以trend_id为key保存对应的图片url数组
+				}
+				return tmp_trend_pic;
+			},
+			//DIY市场的图片数组
+			diyPicture(){
+				let tmp_trend_pic = {} //用来保存每个trend多个pic的字典，用trend的id做key索引
+				let len = this.diy_trades.length//动态帖子的数量
+				for(let i=0; i<len; i++){
+					//用 ; 对图片字符串进行分割
+					let pic_array = new Array()
+					pic_array = this.diy_trades[i].trade_pic.split(";")
+					let trend_id = this.diy_trades[i].id //获取当前trend的id
+					tmp_trend_pic[trend_id] = pic_array //以trend_id为key保存对应的图片url数组
+				}
+				return tmp_trend_pic;
+			},
+			// 化石市场的图片数组
+			fossilPicture(){
+				let tmp_trend_pic = {} //用来保存每个trend多个pic的字典，用trend的id做key索引
+				let len = this.fossil_trades.length//动态帖子的数量
+				for(let i=0; i<len; i++){
+					//用 ; 对图片字符串进行分割
+					let pic_array = new Array()
+					pic_array = this.fossil_trades[i].trade_pic.split(";")
+					let trend_id = this.fossil_trades[i].id //获取当前trend的id
+					tmp_trend_pic[trend_id] = pic_array //以trend_id为key保存对应的图片url数组
+				}
+				return tmp_trend_pic;
+			},
+			// 自由市场的图片数组
+			freePicture(){
+				let tmp_trend_pic = {} //用来保存每个trend多个pic的字典，用trend的id做key索引
+				let len = this.free_trades.length//动态帖子的数量
+				for(let i=0; i<len; i++){
+					//用 ; 对图片字符串进行分割
+					let pic_array = new Array()
+					pic_array = this.free_trades[i].trade_pic.split(";")
+					let trend_id = this.free_trades[i].id //获取当前trend的id
+					tmp_trend_pic[trend_id] = pic_array //以trend_id为key保存对应的图片url数组
+				}
+				return tmp_trend_pic;
+			}
+		},
 		onLoad() {
-			this.getTurnipTrades()
+			uni.startPullDownRefresh()
+			// this.getTurnipTrades()
 		},
 		methods: {
+			// 监听下拉刷新
+			onPullDownRefresh(){
+				if(this.current_tab === 0){
+					this.turnip_trades = []
+					this.likes = []
+					setTimeout(()=>{
+						this.getUserLikeInfo()
+						this.getTurnipTrades()
+						uni.stopPullDownRefresh() //停止下拉刷新
+					},1000)
+				}else if(this.current_tab === 1){
+					this.diy_trades = []
+					this.likes = []
+					setTimeout(()=>{
+						this.getUserLikeInfo()
+						this.getDiyTrades()
+						uni.stopPullDownRefresh() //停止下拉刷新
+					},1000)
+				}else if(this.current_tab === 2){
+					this.fossil_trades = []
+					this.likes = []
+					setTimeout(()=>{
+						this.getUserLikeInfo()
+						this.getFossilTrades()
+						uni.stopPullDownRefresh() //停止下拉刷新
+					},1000)
+				}else if(this.current_tab === 3){
+					this.free_trades = []
+					this.likes = []
+					setTimeout(()=>{
+						this.getUserLikeInfo()
+						this.getFreeTrades()
+						uni.stopPullDownRefresh() //停止下拉刷新
+					},1000)
+				}
+			},
 			//监听tabs change
 			changeTab(index) {
 				this.current_tab = index;
@@ -316,14 +411,75 @@
 					url:"addTrade/addTrade"
 				})
 			},
-			clickLike(){
-				console.log("click like")
+			// 点赞按钮点击事件
+			async clickLike(id){
+				if(this.like_icon[id] === "heart"){
+					// 点赞
+					// 调用Vue.set更新数组,使视图更新
+					this.$set(this.like_icon,id,"heart-fill")
+					// this.like_icon[id] = "heart-fill"
+					const jwt = uni.getStorageSync("skey");
+					const head = {'Authorization':"Bearer "+jwt};
+					const result = await this.$myRequest({
+						method: 'POST',
+						url: '/likes/',
+						header: head,
+						data: {
+							obj_liked:id,
+							thumbs_up_type:1,
+						},
+					})
+				}else{
+					//取消点赞
+					// this.like_icon[id] = "heart"
+					this.$set(this.like_icon,id,"heart")
+					const jwt = uni.getStorageSync("skey");
+					const head = {'Authorization':"Bearer "+jwt};
+					const result = await this.$myRequest({
+						method: 'DELETE',
+						url: '/likes/' +id+"/",
+						header: head,
+					})
+				}
+				// console.log("click like")
 			},
 			clickComment(){
 				
 			},
 			clickShare(){
 				
+			},
+			// 图片预览事件
+			clickToPreviewImage(list_id,img_index,type){
+				var imgArr;
+				if(type === "turnip"){
+					imgArr = this.turnipPicture[list_id]
+				}else if(type === "diy"){
+					imgArr = this.diyPicture[list_id]
+				}else if(type === "fossil"){
+					imgArr = this.fossilPicture[list_id]
+				}else if(type === "free"){
+					imgArr = this.freePicture[list_id]
+				}
+				// let imgArr = imageList
+				// console.log(this.trendPicture[list_id])
+				uni.previewImage({
+					urls:imgArr,
+					current:img_index
+				})
+			},
+			// 获取用户点赞信息
+			async getUserLikeInfo(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/likes/',
+					header: head,
+				})
+				this.likes = result.data
+				// console.log(result)
+				// return result.data
 			},
 			//获取大头菜交易帖
 			async getTurnipTrades(){
@@ -338,10 +494,20 @@
 				})
 				this.turnip_trade_count = result.data.count
 				this.turnip_trades = [...this.turnip_trades, ...result.data.results]
+				// 初始化点赞图标
+				for(let i=0,len=this.turnip_trades.length; i<len; i++){
+					this.like_icon[this.turnip_trades[i].id] = "heart"
+				}
+				//处理该用户点赞信息
+				for(let j=0,len=this.likes.length; j<len; j++){
+					if(this.likes[j].thumbs_up_type === 1){
+						this.like_icon[this.likes[j].obj_liked] = "heart-fill"
+					}
+				}
 			},
 			//获取remain大头菜交易帖
 			async getRemainTurnipTrades(){
-				if(this.turnip_pagenum <= this.turnip_trade_count/10){
+				if(this.turnip_pagenum <= (this.turnip_trade_count-1)/10){
 					this.turnip_pagenum++;
 					this.getTurnipTrades()
 				}
@@ -359,10 +525,20 @@
 				})
 				this.diy_trade_count = result.data.count
 				this.diy_trades = [...this.diy_trades, ...result.data.results]
+				// 初始化点赞图标
+				for(let i=0,len=this.diy_trades.length; i<len; i++){
+					this.like_icon[this.diy_trades[i].id] = "heart"
+				}
+				//处理该用户点赞信息
+				for(let j=0,len=this.likes.length; j<len; j++){
+					if(this.likes[j].thumbs_up_type === 1){
+						this.like_icon[this.likes[j].obj_liked] = "heart-fill"
+					}
+				}
 			},
 			// 获取remain diy交易帖
 			getRemainDiyTrades(){
-				if(this.diy_pagenum <= this.diy_trade_count/10){
+				if(this.diy_pagenum <= (this.diy_trade_count-1)/10){
 					this.diy_pagenum++;
 					this.getDiyTrades()
 				}
@@ -380,10 +556,20 @@
 				})
 				this.fossil_trade_count = result.data.count
 				this.fossil_trades = [...this.fossil_trades, ...result.data.results]
+				// 初始化点赞图标
+				for(let i=0,len=this.fossil_trades.length; i<len; i++){
+					this.like_icon[this.fossil_trades[i].id] = "heart"
+				}
+				//处理该用户点赞信息
+				for(let j=0,len=this.likes.length; j<len; j++){
+					if(this.likes[j].thumbs_up_type === 1){
+						this.like_icon[this.likes[j].obj_liked] = "heart-fill"
+					}
+				}
 			},
 			// 获取remain fossil交易帖
 			getRemainFossilTrades(){
-				if(this.fossil_pagenum <= this.fossil_trade_count/10){
+				if(this.fossil_pagenum <= (this.fossil_trade_count-1)/10){
 					this.fossil_pagenum++;
 					this.getFossilTrades()
 				}
@@ -401,10 +587,20 @@
 				})
 				this.free_trade_count = result.data.count
 				this.free_trades = [...this.free_trades, ...result.data.results]
+				// 初始化点赞图标
+				for(let i=0,len=this.free_trades.length; i<len; i++){
+					this.like_icon[this.free_trades[i].id] = "heart"
+				}
+				//处理该用户点赞信息
+				for(let j=0,len=this.likes.length; j<len; j++){
+					if(this.likes[j].thumbs_up_type === 1){
+						this.like_icon[this.likes[j].obj_liked] = "heart-fill"
+					}
+				}
 			},
 			//获取remain自由交易帖
 			getRemainFreeTrades(){
-				if(this.free_pagenum <= this.free_trade_count/10){
+				if(this.free_pagenum <= (this.free_trade_count-1)/10){
 					this.free_pagenum++;
 					this.getFreeTrades()
 				}	

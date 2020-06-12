@@ -261,6 +261,8 @@ var _default =
       trends_pic: [],
       // 点赞按钮状态 字典对象
       like_icon: [],
+      //点赞数组 api获取
+      likes: [],
       //发布动态的内容
       new_trend: "",
       // 图片上传地址
@@ -281,7 +283,7 @@ var _default =
     //动态图片的数组
     trendPicture: function trendPicture() {
       var tmp_trend_pic = {}; //用来保存每个trend多个pic的字典，用trend的id做key索引
-      var trend_pic = new Array(); //用来存每个trends多各pic的二维数组
+      // let trend_pic=new Array() //用来存每个trends多各pic的二维数组
       var len = this.trends.length; //动态帖子的数量
       for (var i = 0; i < len; i++) {
         //用 ; 对图片字符串进行分割
@@ -311,8 +313,10 @@ var _default =
     // 监听下拉刷新
     onPullDownRefresh: function onPullDownRefresh() {var _this = this;
       this.trends = [];
+      this.likes = [];
       this.trendPageNum = 1;
       setTimeout(function () {
+        _this.getUserLikeInfo();
         _this.getTrends();
         uni.stopPullDownRefresh(); //停止下拉刷新
       }, 1000);
@@ -330,6 +334,7 @@ var _default =
         url: '/pages/mysite/mysite?userinfo=' + encodeURIComponent(JSON.stringify(this.info)) });
 
     },
+    // 点赞按钮点击事件
     clickLike: function clickLike(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result, _jwt, _head, _result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
 
                 _this2.like_icon[id] === "heart")) {_context.next = 9;break;}
@@ -373,7 +378,7 @@ var _default =
 
     },
     //获取动态
-    getTrends: function getTrends() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result, i, len;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+    getTrends: function getTrends() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result, i, len, j, _len;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 // console.log("jwt: "+jwt);
                 head = { 'Authorization': "Bearer " + jwt };
@@ -385,21 +390,39 @@ var _default =
 
                 // 获取动态总个数
                 _this3.trendsCount = result.data.count;
-                _this3.trends = [].concat(_toConsumableArray(_this3.trends), _toConsumableArray(result.data.results));
+                _this3.trends = [].concat(_toConsumableArray(_this3.trends), _toConsumableArray(result.data.results.reverse()));
+                // this.trends.reverse()
                 for (i = 0, len = _this3.trends.length; i < len; i++) {
                   _this3.like_icon[_this3.trends[i].id] = "heart";
                 }
-
-
+                //处理该用户点赞信息
+                for (j = 0, _len = _this3.likes.length; j < _len; j++) {
+                  if (_this3.likes[j].thumbs_up_type === 2) {
+                    _this3.like_icon[_this3.likes[j].obj_liked] = "heart-fill";
+                  }
+                }
                 // console.log(this.trends)
-              case 8:case "end":return _context2.stop();}}}, _callee2);}))();},
+              case 9:case "end":return _context2.stop();}}}, _callee2);}))();},
     // 获取剩余动态 pagenum>1,每页10条
     getRemainTrends: function getRemainTrends() {
-      if (this.trendPageNum <= this.trendsCount / 10) {
+      if (this.trendPageNum <= (this.trendsCount - 1) / 10) {
         this.trendPageNum++;
         this.getTrends();
       }
     },
+    // 获取用户点赞信息
+    getUserLikeInfo: function getUserLikeInfo() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var jwt, head, result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = { 'Authorization': "Bearer " + jwt };_context3.next = 4;return (
+                  _this4.$myRequest({
+                    method: 'GET',
+                    url: '/likes/',
+                    header: head }));case 4:result = _context3.sent;
+
+                _this4.likes = result.data;
+                // console.log(result)
+                // return result.data
+              case 6:case "end":return _context3.stop();}}}, _callee3);}))();},
     // 监听title input change 事件
     titleChange: function titleChange(e) {
       this.post_trends_form.title = e.detail.value;
@@ -416,7 +439,6 @@ var _default =
       uni.previewImage({
         urls: imgArr,
         current: img_index });
-
 
     },
     //图片上传事件
@@ -443,31 +465,31 @@ var _default =
       console.log(tmp_post_pic);
     },
     //提交动态
-    submitTrends: function submitTrends() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var jwt, head, result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+    submitTrends: function submitTrends() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var jwt, head, result;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
                 jwt = uni.getStorageSync("skey");
-                head = { 'Authorization': "Bearer " + jwt };_context3.next = 4;return (
-                  _this4.$myRequest({
+                head = { 'Authorization': "Bearer " + jwt };_context4.next = 4;return (
+                  _this5.$myRequest({
                     method: 'POST',
                     url: '/posts/',
                     header: head,
                     data: {
-                      title: _this4.post_trends_form.title,
-                      content: _this4.post_trends_form.content,
-                      post_pic: _this4.post_trends_form.post_pic } }));case 4:result = _context3.sent;
+                      title: _this5.post_trends_form.title,
+                      content: _this5.post_trends_form.content,
+                      post_pic: _this5.post_trends_form.post_pic } }));case 4:result = _context4.sent;
 
 
                 //重置表单
-                _this4.post_trends_form.title = "";
-                _this4.post_trends_form.content = "";
-                _this4.$refs.uUpload.clear();
+                _this5.post_trends_form.title = "";
+                _this5.post_trends_form.content = "";
+                _this5.$refs.uUpload.clear();
                 uni.showToast({
                   title: "动态发布成功",
                   icon: "success" });
 
                 // console.log(result)
-                _this4.changeTab(0); //跳转回动态广场
+                _this5.changeTab(0); //跳转回动态广场
                 // 触发下拉刷新
-                uni.startPullDownRefresh();case 11:case "end":return _context3.stop();}}}, _callee3);}))();
+                uni.startPullDownRefresh();case 11:case "end":return _context4.stop();}}}, _callee4);}))();
     } },
 
   onLoad: function onLoad() {

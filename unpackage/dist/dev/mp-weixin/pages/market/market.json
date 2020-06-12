@@ -1,4 +1,5 @@
 {
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "u-tabs": "/node-modules/uview-ui/components/u-tabs/u-tabs",
     "u-search": "/node-modules/uview-ui/components/u-search/u-search",

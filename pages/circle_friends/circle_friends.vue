@@ -113,6 +113,8 @@
 				trends_pic:[],
 				// 点赞按钮状态 字典对象
 				like_icon:[],
+				//点赞数组 api获取
+				likes:[],
 				//发布动态的内容
 				new_trend:"",
 				// 图片上传地址
@@ -133,7 +135,7 @@
 			//动态图片的数组
 			trendPicture(){
 				let tmp_trend_pic = {} //用来保存每个trend多个pic的字典，用trend的id做key索引
-				let trend_pic=new Array() //用来存每个trends多各pic的二维数组
+				// let trend_pic=new Array() //用来存每个trends多各pic的二维数组
 				let len = this.trends.length//动态帖子的数量
 				for(let i=0; i<len; i++){
 					//用 ; 对图片字符串进行分割
@@ -163,8 +165,10 @@
 			// 监听下拉刷新
 			onPullDownRefresh(){
 				this.trends = []
+				this.likes = []
 				this.trendPageNum = 1
 				setTimeout(()=>{
+					this.getUserLikeInfo()
 					this.getTrends()
 					uni.stopPullDownRefresh() //停止下拉刷新
 				},1000)
@@ -182,6 +186,7 @@
 					url:'/pages/mysite/mysite?userinfo='+ encodeURIComponent(JSON.stringify(this.info))
 				});
 			},
+			// 点赞按钮点击事件
 			async clickLike(id){
 				// console.log("click like:"+this.like_icon[id])
 				if(this.like_icon[id] === "heart"){
@@ -237,20 +242,38 @@
 				})
 				// 获取动态总个数
 				this.trendsCount = result.data.count;
-				this.trends = [...this.trends, ...result.data.results]
+				this.trends = [...this.trends, ...result.data.results.reverse()]
+				// this.trends.reverse()
 				for(let i=0,len=this.trends.length; i<len; i++){
 					this.like_icon[this.trends[i].id] = "heart"
 				}
-				
-				
+				//处理该用户点赞信息
+				for(let j=0,len=this.likes.length; j<len; j++){
+					if(this.likes[j].thumbs_up_type === 2){
+						this.like_icon[this.likes[j].obj_liked] = "heart-fill"
+					}
+				}
 				// console.log(this.trends)
 			},
 			// 获取剩余动态 pagenum>1,每页10条
 			getRemainTrends(){
-				if(this.trendPageNum <= this.trendsCount/10 ){
+				if(this.trendPageNum <= (this.trendsCount-1)/10 ){
 					this.trendPageNum++;
 					this.getTrends();
 				}
+			},
+			// 获取用户点赞信息
+			async getUserLikeInfo(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {'Authorization':"Bearer "+jwt};
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/likes/',
+					header: head,
+				})
+				this.likes = result.data
+				// console.log(result)
+				// return result.data
 			},
 			// 监听title input change 事件
 			titleChange(e){
@@ -269,7 +292,6 @@
 					urls:imgArr,
 					current:img_index
 				})
-				
 			},
 			//图片上传事件
 			uploadChange(res){
@@ -541,9 +563,14 @@
 				}
 			}
 			.upload_img{
-				display:flex ;
+				display:flex;
 				flex-wrap: wrap;
-				justify-content:space-evenly ;
+				justify-content:space-evenly;
+				.u-upload{
+					display:flex;
+					flex-wrap: wrap;
+					justify-content:space-evenly;
+				}
 				
 			}
 		}
