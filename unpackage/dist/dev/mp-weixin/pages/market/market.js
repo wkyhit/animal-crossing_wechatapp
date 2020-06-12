@@ -94,19 +94,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uTabs: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 226))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 234))
   },
   uSearch: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 233))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 241))
   },
   uAvatar: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 282))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 290))
   },
   uIcon: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 191))
-  },
-  uUpload: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-upload/u-upload */ "node-modules/uview-ui/components/u-upload/u-upload").then(__webpack_require__.bind(null, /*! uview-ui/components/u-upload/u-upload.vue */ 303))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 199))
   }
 }
 var render = function() {
@@ -230,21 +227,210 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
       //上方tabs list
-      list: [{
-        name: "动态广场" },
+      list: [
       {
-        name: "发布动态" }],
+        name: "大头菜" },
+
+      {
+        name: "DIY交换" },
+
+      {
+        name: "化石交换" },
+
+      {
+        name: "自由交换" }],
+
 
       //当前tab
       current_tab: 0,
       //搜索keyword
       keyword: "",
-      trends: [],
+      //大头菜交易贴数组
+      turnip_trades: [],
+      // 大头菜交易帖页数
+      turnip_pagenum: 1,
+      // 大头菜帖子总数
+      turnip_trade_count: 1,
+      //diy交易贴数组
+      diy_trades: [],
+      diy_pagenum: 1,
+      diy_trade_count: 1,
+      //化石交易贴数组
+      fossil_trades: [],
+      fossil_pagenum: 1,
+      fossil_trade_count: 1,
+      //自由交易贴数组
+      free_trades: [],
+      free_pagenum: 1,
+      free_trade_count: 1,
       //动态图片(临时)
       img_test: "http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",
       //发布动态的内容
@@ -253,12 +439,27 @@ var _default =
 
   },
   onLoad: function onLoad() {
-    this.getTrends();
+    this.getTurnipTrades();
   },
   methods: {
     //监听tabs change
     changeTab: function changeTab(index) {
       this.current_tab = index;
+      if (this.current_tab === 0 && this.turnip_trades.length === 0) {
+        this.getTurnipTrades();
+      } else if (this.current_tab === 1 && this.diy_trades.length === 0) {
+        this.getDiyTrades();
+      } else if (this.current_tab === 2 && this.fossil_trades.length === 0) {
+        this.getFossilTrades();
+      } else if (this.current_tab === 3 && this.free_trades.length === 0) {
+        this.getFreeTrades();
+      }
+    },
+    // 跳转到addTrade
+    clickToAddTrade: function clickToAddTrade() {
+      uni.navigateTo({
+        url: "addTrade/addTrade" });
+
     },
     clickLike: function clickLike() {
       console.log("click like");
@@ -269,20 +470,90 @@ var _default =
     clickShare: function clickShare() {
 
     },
-    //获取动态
-    getTrends: function getTrends() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    //获取大头菜交易帖
+    getTurnipTrades: function getTurnipTrades() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 // console.log("jwt: "+jwt);
                 head = { 'Authorization': "Bearer " + jwt };
                 // console.log("header: "+head.Authorization);
                 _context.next = 4;return _this.$myRequest({
                   method: 'GET',
-                  url: '/posts/',
+                  url: '/trades/?topic=1&pagenum=' + _this.turnip_pagenum,
                   header: head });case 4:result = _context.sent;
 
-                _this.trends = [].concat(_toConsumableArray(_this.trends), _toConsumableArray(result.data.results));case 6:case "end":return _context.stop();}}}, _callee);}))();
+                _this.turnip_trade_count = result.data.count;
+                _this.turnip_trades = [].concat(_toConsumableArray(_this.turnip_trades), _toConsumableArray(result.data.results));case 7:case "end":return _context.stop();}}}, _callee);}))();
     },
+    //获取remain大头菜交易帖
+    getRemainTurnipTrades: function getRemainTurnipTrades() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                if (_this2.turnip_pagenum <= _this2.turnip_trade_count / 10) {
+                  _this2.turnip_pagenum++;
+                  _this2.getTurnipTrades();
+                }case 1:case "end":return _context2.stop();}}}, _callee2);}))();
+    },
+    //获取diy交易帖
+    getDiyTrades: function getDiyTrades() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var jwt, head, result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                // console.log("jwt: "+jwt);
+                head = { 'Authorization': "Bearer " + jwt };
+                // console.log("header: "+head.Authorization);
+                _context3.next = 4;return _this3.$myRequest({
+                  method: 'GET',
+                  url: '/trades/?topic=2&pagenum=' + _this3.diy_pagenum,
+                  header: head });case 4:result = _context3.sent;
 
+                _this3.diy_trade_count = result.data.count;
+                _this3.diy_trades = [].concat(_toConsumableArray(_this3.diy_trades), _toConsumableArray(result.data.results));case 7:case "end":return _context3.stop();}}}, _callee3);}))();
+    },
+    // 获取remain diy交易帖
+    getRemainDiyTrades: function getRemainDiyTrades() {
+      if (this.diy_pagenum <= this.diy_trade_count / 10) {
+        this.diy_pagenum++;
+        this.getDiyTrades();
+      }
+    },
+    //获取fossil交易帖
+    getFossilTrades: function getFossilTrades() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var jwt, head, result;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                // console.log("jwt: "+jwt);
+                head = { 'Authorization': "Bearer " + jwt };
+                // console.log("header: "+head.Authorization);
+                _context4.next = 4;return _this4.$myRequest({
+                  method: 'GET',
+                  url: '/trades/?topic=3&pagenum=' + _this4.fossil_pagenum,
+                  header: head });case 4:result = _context4.sent;
+
+                _this4.fossil_trade_count = result.data.count;
+                _this4.fossil_trades = [].concat(_toConsumableArray(_this4.fossil_trades), _toConsumableArray(result.data.results));case 7:case "end":return _context4.stop();}}}, _callee4);}))();
+    },
+    // 获取remain fossil交易帖
+    getRemainFossilTrades: function getRemainFossilTrades() {
+      if (this.fossil_pagenum <= this.fossil_trade_count / 10) {
+        this.fossil_pagenum++;
+        this.getFossilTrades();
+      }
+    },
+    //获取自由交易帖
+    getFreeTrades: function getFreeTrades() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var jwt, head, result;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                // console.log("jwt: "+jwt);
+                head = { 'Authorization': "Bearer " + jwt };
+                // console.log("header: "+head.Authorization);
+                _context5.next = 4;return _this5.$myRequest({
+                  method: 'GET',
+                  url: '/trades/?topic=4&pagenum=' + _this5.free_pagenum,
+                  header: head });case 4:result = _context5.sent;
+
+                _this5.free_trade_count = result.data.count;
+                _this5.free_trades = [].concat(_toConsumableArray(_this5.free_trades), _toConsumableArray(result.data.results));case 7:case "end":return _context5.stop();}}}, _callee5);}))();
+    },
+    //获取remain自由交易帖
+    getRemainFreeTrades: function getRemainFreeTrades() {
+      if (this.free_pagenum <= this.free_trade_count / 10) {
+        this.free_pagenum++;
+        this.getFreeTrades();
+      }
+    },
     //提交动态
     submitTrends: function submitTrends() {
 

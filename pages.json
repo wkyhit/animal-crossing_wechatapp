@@ -80,6 +80,10 @@
 				"enablePullDownRefresh": true//下拉刷新
 			}
         }
+        ,{
+            "path" : "pages/market/addTrade/addTrade",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

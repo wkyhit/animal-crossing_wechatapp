@@ -1,31 +1,37 @@
 <template>
 	<view class="content">
 		<view class="topBar">
-			<view class="tab_outside" style="width: 600rpx;">
-				<u-tabs :list="list" :is-scroll="true" gutter="80" :current="current_tab" @change="changeTab"></u-tabs>
+			<view class="tab_outside">
+				<u-tabs :list="list" :is-scroll="true" :current="current_tab" @change="changeTab"></u-tabs>
 			</view>
-			<view class="search_outside" v-show="current_tab === 0">
+			<view class="search_outside">
 				<u-search placeholder="输入名称可模糊搜索" v-model="keyword" :clearabled="true" shape="round" :show-action="true"
 				 action-text="搜索" :animation="true"></u-search>
 			</view>
+			<view class="add_trade_outside">
+				<button class="btn_add_trade" @click="clickToAddTrade" >
+					发布交易
+				</button>
+			</view>
 		</view>
-		<!-- 动态广场tab -->
-		<scroll-view v-show="current_tab===0" class="trends_square" :scroll-y="true">
+		<!-- 大头菜市场tab -->
+		<scroll-view v-show="current_tab===0" class="trends_square" :scroll-y="true" @scrolltolower="getRemainTurnipTrades">
 			<!-- 动态卡片 -->
-			<view class="trends_card" v-for="(item,index) in trends " :key="index">
+			<view class="trends_card" v-for="(item,index) in turnip_trades " :key="index" v-if="item.topic === '1' ">
 				<!-- 卡片头部 -->
 				<view class="trends_card_head">
 					<!-- 用户头像 -->
 					<view class="avator">
-						<!-- {{item.user_name}} -->
-						<!-- <text>{{item.user_name}}</text> -->
-						<!-- <image :src="item.user_img"></image> -->
-						<u-avatar :src="img_test" mode="square" size="mini"></u-avatar>
+						<u-avatar :src="item.user.profile_pic" mode="square" size="mini" @click="toPastport(item.user)"></u-avatar>
 					</view>
 					<!-- 用户名字 -->
 					<view class="name">
 						<!-- {{item.user_name}} -->
-						<text>{{item.user}}</text>
+						<text>{{item.user.nickname}}</text>
+					</view>
+					<!-- 标题 -->
+					<view class="title">
+						<text>{{"#标题: "+item.title}}</text>
 					</view>
 					<!-- 操作 -->
 					<view class="operate">
@@ -39,9 +45,9 @@
 							{{item.content}}
 						</text>
 					</view>
-					<view class="content_img">
-						<view class="content_img1">
-							<image :src="img_test"></image>
+					<view class="content_img" >
+						<view class="content_img1" v-for="(item1,index1) in trendPicture[item.id]" :key="index1">
+							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1)"></image>
 						</view>
 					</view>
 				</view>
@@ -49,13 +55,13 @@
 				<view class="trends_card_bottom">
 					<!-- 点赞 -->
 					<view class="like" >
-						<u-icon name="heart" :hover-class="heart-fill" size="36" @click="clickLike"></u-icon>
+						<u-icon :name="like_icon[item.id]" size="36" @click="clickLike(item.id)"></u-icon>
 						<text>{{item.thumbs_up}}</text>
 					</view>
 					<!-- 评论 -->
 					<view class="comment">
-						<u-icon name="weixin-fill"  size="36" @click="clickComment"></u-icon>
-						<text></text>
+						<u-icon name="weixin-fill"  size="36" @click="clickComment(item)"></u-icon>
+						<text>{{item.comment_num}}</text>
 					</view>
 					<!-- 分享 -->
 					<view class="share">
@@ -64,21 +70,178 @@
 				</view>
 			</view>
 		</scroll-view>
-		<!-- 发布动态 -->
-		<view v-show="current_tab===1" class="post_trends">
-			<view class="card">
-				<view class="context">
-					<textarea class="context_input" placeholder="请输入内容..." maxlength=-1></textarea>
-					<!-- <input class="context_input" placeholder="请输入内容..."  /> -->
+		
+		<!-- DIY市场tab -->
+		<scroll-view v-show="current_tab===1" class="trends_square" :scroll-y="true" @scrolltolower="getRemainDiyTrades">
+			<!-- 动态卡片 -->
+			<view class="trends_card" v-for="(item,index) in diy_trades " :key="index" v-if="item.topic === '2' " >
+				<!-- 卡片头部 -->
+				<view class="trends_card_head">
+					<!-- 用户头像 -->
+					<view class="avator">
+						<u-avatar :src="item.user.profile_pic" mode="square" size="mini" @click="toPastport(item.user)"></u-avatar>
+					</view>
+					<!-- 用户名字 -->
+					<view class="name">
+						<!-- {{item.user_name}} -->
+						<text>{{item.user.nickname}}</text>
+					</view>
+					<!-- 标题 -->
+					<view class="title">
+						<text>{{"#标题: "+item.title}}</text>
+					</view>
+					<!-- 操作 -->
+					<view class="operate">
+						<u-icon name="more-dot-fill" size="36"></u-icon>
+					</view>
 				</view>
-				<view class="upload_img">
-					<u-upload :action="action" :file-list="fileList" ></u-upload>
+				<!-- 卡片中部内容 -->
+				<view class="trends_card_content">
+					<view class="content_text">
+						<text>
+							{{item.content}}
+						</text>
+					</view>
+					<view class="content_img" >
+						<view class="content_img1" v-for="(item1,index1) in trendPicture[item.id]" :key="index1">
+							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1)"></image>
+						</view>
+					</view>
+				</view>
+				<!-- 卡片下部内容 -->
+				<view class="trends_card_bottom">
+					<!-- 点赞 -->
+					<view class="like" >
+						<u-icon :name="like_icon[item.id]" size="36" @click="clickLike(item.id)"></u-icon>
+						<text>{{item.thumbs_up}}</text>
+					</view>
+					<!-- 评论 -->
+					<view class="comment">
+						<u-icon name="weixin-fill"  size="36" @click="clickComment(item)"></u-icon>
+						<text>{{item.comment_num}}</text>
+					</view>
+					<!-- 分享 -->
+					<view class="share">
+						<u-icon name="share"  :hover-class="share-fill" size="36" @click="clickShare"></u-icon>
+					</view>
 				</view>
 			</view>
-			<view class="submit">
-				<button class="btn_submit" :value="new_trend" @click="submitTrends">提交</button>
+		</scroll-view>
+		
+		<!-- 化石市场tab -->
+		<scroll-view v-show="current_tab===2" class="trends_square" :scroll-y="true" @scrolltolower="getRemainFossilTrades">
+			<!-- 动态卡片 -->
+			<view class="trends_card" v-for="(item,index) in fossil_trades " :key="index" v-if="item.topic === '3' ">
+				<!-- 卡片头部 -->
+				<view class="trends_card_head">
+					<!-- 用户头像 -->
+					<view class="avator">
+						<u-avatar :src="item.user.profile_pic" mode="square" size="mini" @click="toPastport(item.user)"></u-avatar>
+					</view>
+					<!-- 用户名字 -->
+					<view class="name">
+						<!-- {{item.user_name}} -->
+						<text>{{item.user.nickname}}</text>
+					</view>
+					<!-- 标题 -->
+					<view class="title">
+						<text>{{"#标题: "+item.title}}</text>
+					</view>
+					<!-- 操作 -->
+					<view class="operate">
+						<u-icon name="more-dot-fill" size="36"></u-icon>
+					</view>
+				</view>
+				<!-- 卡片中部内容 -->
+				<view class="trends_card_content">
+					<view class="content_text">
+						<text>
+							{{item.content}}
+						</text>
+					</view>
+					<view class="content_img" >
+						<view class="content_img1" v-for="(item1,index1) in trendPicture[item.id]" :key="index1">
+							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1)"></image>
+						</view>
+					</view>
+				</view>
+				<!-- 卡片下部内容 -->
+				<view class="trends_card_bottom">
+					<!-- 点赞 -->
+					<view class="like" >
+						<u-icon :name="like_icon[item.id]" size="36" @click="clickLike(item.id)"></u-icon>
+						<text>{{item.thumbs_up}}</text>
+					</view>
+					<!-- 评论 -->
+					<view class="comment">
+						<u-icon name="weixin-fill"  size="36" @click="clickComment(item)"></u-icon>
+						<text>{{item.comment_num}}</text>
+					</view>
+					<!-- 分享 -->
+					<view class="share">
+						<u-icon name="share"  :hover-class="share-fill" size="36" @click="clickShare"></u-icon>
+					</view>
+				</view>
 			</view>
-		</view>
+		</scroll-view>
+		
+		<!-- 自由市场tab -->
+		<scroll-view v-show="current_tab===3" class="trends_square" :scroll-y="true" @scrolltolower="getRemainFreeTrades">
+			<!-- 动态卡片 -->
+			<view class="trends_card" v-for="(item,index) in free_trades " :key="index" v-if="item.topic === '4' ">
+				<!-- 卡片头部 -->
+				<view class="trends_card_head">
+					<!-- 用户头像 -->
+					<view class="avator">
+						<u-avatar :src="item.user.profile_pic" mode="square" size="mini" @click="toPastport(item.user)"></u-avatar>
+					</view>
+					<!-- 用户名字 -->
+					<view class="name">
+						<!-- {{item.user_name}} -->
+						<text>{{item.user.nickname}}</text>
+					</view>
+					<!-- 标题 -->
+					<view class="title">
+						<text>{{"#标题: "+item.title}}</text>
+					</view>
+					<!-- 操作 -->
+					<view class="operate">
+						<u-icon name="more-dot-fill" size="36"></u-icon>
+					</view>
+				</view>
+				<!-- 卡片中部内容 -->
+				<view class="trends_card_content">
+					<view class="content_text">
+						<text>
+							{{item.content}}
+						</text>
+					</view>
+					<view class="content_img" >
+						<view class="content_img1" v-for="(item1,index1) in trendPicture[item.id]" :key="index1">
+							<image :src="item1" :lazy-load="true" :mode="aspectFill" @click="clickToPreviewImage(item.id,index1)"></image>
+						</view>
+					</view>
+				</view>
+				<!-- 卡片下部内容 -->
+				<view class="trends_card_bottom">
+					<!-- 点赞 -->
+					<view class="like" >
+						<u-icon :name="like_icon[item.id]" size="36" @click="clickLike(item.id)"></u-icon>
+						<text>{{item.thumbs_up}}</text>
+					</view>
+					<!-- 评论 -->
+					<view class="comment">
+						<u-icon name="weixin-fill"  size="36" @click="clickComment(item)"></u-icon>
+						<text>{{item.comment_num}}</text>
+					</view>
+					<!-- 分享 -->
+					<view class="share">
+						<u-icon name="share"  :hover-class="share-fill" size="36" @click="clickShare"></u-icon>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+		
 	</view>
 </template>
 
@@ -87,16 +250,42 @@
 		data() {
 			return {
 				//上方tabs list
-				list: [{
-					name: "动态广场"
-				}, {
-					name: "发布动态"
-				}],
+				list: [
+					{
+					name: "大头菜"
+					}, 
+					{
+					name: "DIY交换"
+					},
+					{
+					name: "化石交换"
+					},
+					{
+					name: "自由交换"
+					},
+					],
 				//当前tab
 				current_tab: 0,
 				//搜索keyword
 				keyword: "",
-				trends:[],
+				//大头菜交易贴数组
+				turnip_trades:[],
+				// 大头菜交易帖页数
+				turnip_pagenum:1,
+				// 大头菜帖子总数
+				turnip_trade_count:1,
+				//diy交易贴数组
+				diy_trades:[],
+				diy_pagenum:1,
+				diy_trade_count:1,
+				//化石交易贴数组
+				fossil_trades:[],
+				fossil_pagenum:1,
+				fossil_trade_count:1,
+				//自由交易贴数组
+				free_trades:[],
+				free_pagenum:1,
+				free_trade_count:1,
 				//动态图片(临时)
 				img_test:"http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",
 				//发布动态的内容
@@ -105,12 +294,27 @@
 			};
 		},
 		onLoad() {
-			this.getTrends();
+			this.getTurnipTrades()
 		},
 		methods: {
 			//监听tabs change
 			changeTab(index) {
 				this.current_tab = index;
+				if(this.current_tab === 0 && this.turnip_trades.length === 0){
+					this.getTurnipTrades()
+				}else if(this.current_tab === 1 && this.diy_trades.length === 0){
+					this.getDiyTrades()
+				}else if(this.current_tab === 2 && this.fossil_trades.length === 0){
+					this.getFossilTrades()
+				}else if(this.current_tab === 3 && this.free_trades.length === 0){
+					this.getFreeTrades()
+				}
+			},
+			// 跳转到addTrade
+			clickToAddTrade(){
+				uni.navigateTo({
+					url:"addTrade/addTrade"
+				})
 			},
 			clickLike(){
 				console.log("click like")
@@ -121,20 +325,90 @@
 			clickShare(){
 				
 			},
-			//获取动态
-			async getTrends(){
+			//获取大头菜交易帖
+			async getTurnipTrades(){
 				const jwt = uni.getStorageSync("skey");
 				// console.log("jwt: "+jwt);
 				const head = {'Authorization':"Bearer "+jwt};
 				// console.log("header: "+head.Authorization);
 				const result = await this.$myRequest({
 					method: 'GET',
-					url: '/posts/',
+					url: '/trades/?topic=1&pagenum='+ this.turnip_pagenum,
 					header: head,
 				})
-				this.trends = [...this.trends, ...result.data.results]
-			}
-			,
+				this.turnip_trade_count = result.data.count
+				this.turnip_trades = [...this.turnip_trades, ...result.data.results]
+			},
+			//获取remain大头菜交易帖
+			async getRemainTurnipTrades(){
+				if(this.turnip_pagenum <= this.turnip_trade_count/10){
+					this.turnip_pagenum++;
+					this.getTurnipTrades()
+				}
+			},
+			//获取diy交易帖
+			async getDiyTrades(){
+				const jwt = uni.getStorageSync("skey");
+				// console.log("jwt: "+jwt);
+				const head = {'Authorization':"Bearer "+jwt};
+				// console.log("header: "+head.Authorization);
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/trades/?topic=2&pagenum=' + this.diy_pagenum,
+					header: head,
+				})
+				this.diy_trade_count = result.data.count
+				this.diy_trades = [...this.diy_trades, ...result.data.results]
+			},
+			// 获取remain diy交易帖
+			getRemainDiyTrades(){
+				if(this.diy_pagenum <= this.diy_trade_count/10){
+					this.diy_pagenum++;
+					this.getDiyTrades()
+				}
+			},
+			//获取fossil交易帖
+			async getFossilTrades(){
+				const jwt = uni.getStorageSync("skey");
+				// console.log("jwt: "+jwt);
+				const head = {'Authorization':"Bearer "+jwt};
+				// console.log("header: "+head.Authorization);
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/trades/?topic=3&pagenum=' + this.fossil_pagenum,
+					header: head,
+				})
+				this.fossil_trade_count = result.data.count
+				this.fossil_trades = [...this.fossil_trades, ...result.data.results]
+			},
+			// 获取remain fossil交易帖
+			getRemainFossilTrades(){
+				if(this.fossil_pagenum <= this.fossil_trade_count/10){
+					this.fossil_pagenum++;
+					this.getFossilTrades()
+				}
+			},
+			//获取自由交易帖
+			async getFreeTrades(){
+				const jwt = uni.getStorageSync("skey");
+				// console.log("jwt: "+jwt);
+				const head = {'Authorization':"Bearer "+jwt};
+				// console.log("header: "+head.Authorization);
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/trades/?topic=4&pagenum=' + this.free_pagenum,
+					header: head,
+				})
+				this.free_trade_count = result.data.count
+				this.free_trades = [...this.free_trades, ...result.data.results]
+			},
+			//获取remain自由交易帖
+			getRemainFreeTrades(){
+				if(this.free_pagenum <= this.free_trade_count/10){
+					this.free_pagenum++;
+					this.getFreeTrades()
+				}	
+			},
 			//提交动态
 			submitTrends(){
 				
@@ -144,7 +418,7 @@
 		}
 	}
 </script>
-
+	
 <style lang="scss">
 	.content {
 		// position: relative;
@@ -174,12 +448,28 @@
 		.search_outside {
 			width: 100%;
 		}
+		.add_trade_outside{
+			height: 75rpx;
+			background-color: transparent;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			width: 100%;
+			.btn_add_trade{
+				background-color: rgba(233, 130, 40, 0.9);
+				color: white;
+				height: 65rpx;
+				width: 140rpx;
+				font-size: 14px;
+				line-height: 65rpx;
+			}
+		}
 
 	}
 
 	//动态广场
 	.trends_square {
-		margin-top: 150rpx;
+		margin-top: 200rpx;
 		height: 1200rpx;
 		width: 90%;
 
@@ -201,7 +491,7 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-
+		
 			// 卡片头部
 			.trends_card_head {
 				margin-top: 25rpx;
@@ -209,7 +499,7 @@
 				height: 100rpx;
 				display: flex;
 				justify-content: flex-start;
-
+		
 				// background-color: red;
 				// 头像
 				.avator {
@@ -221,7 +511,6 @@
 					display: flex;
 					align-items: center;
 				}
-
 				// 名字
 				.name {
 					margin-left: 25rpx;
@@ -232,20 +521,25 @@
 					align-items: center;
 					justify-content: space-evenly;
 				}
-
+				.title{
+					margin-left: 35rpx;
+					height: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: space-evenly;
+				}
 				// 操作
 				.operate {
 					margin-left: auto;
 					padding: 25rpx;
 				}
 			}
-
 			// 卡片内容中部
 			.trends_card_content {
 				width: 96%;
-
 				// 文字内容
 				.content_text {
+					padding: 35rpx;
 					width: 100%;
 					// height: 150rpx;
 				}
@@ -254,18 +548,27 @@
 					margin: 25rpx 0;
 					width: 100%;
 					display: flex;
+					flex-wrap: wrap;
 					justify-content: space-evenly;
 					// height: 300rpx;
 					.content_img1 {
 						// max-width: 150rpx;
 						// max-height: 150rpx;
+						// border: solid 2rpx white;
+						border-radius: 26rpx;
+						box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+						width: 200rpx;
+						height: 200rpx;
 						image {
-							max-width: 300rpx;
-							max-height: 300rpx;
+							// border: solid 2rpx white;
+							border-radius: 26rpx;
+							box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+							max-width: 200rpx;
+							max-height: 200rpx;
 						}
 					}
 				}
-
+		
 			}
 			
 			// 卡片下部
@@ -286,6 +589,10 @@
 				// 评论
 				.comment{
 					display: flex;
+					text{
+						font-size: 24rpx;
+						margin-left: 10rpx;
+					}
 				}
 					
 			}

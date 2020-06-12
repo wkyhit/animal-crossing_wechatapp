@@ -10405,7 +10405,76 @@ var version = '1.2.7';var _default =
 
 /***/ }),
 
-/***/ 336:
+/***/ 34:
+/*!****************************************************************************************!*\
+  !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/config/zIndex.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // uniapp在H5中各API的z-index值如下：
+/**
+ * actionsheet: 999
+ * modal: 999
+ * navigate: 998
+ * tabbar: 998
+ */var _default =
+
+{
+  toast: 1090,
+  noNetwork: 1080,
+  // popup包含popup，actionsheet，keyboard，picker的值
+  popup: 1075,
+  mask: 1070,
+  navbar: 980,
+  topTips: 975,
+  sticky: 970,
+  indexListSticky: 965 };exports.default = _default;
+
+/***/ }),
+
+/***/ 35:
+/*!********************************************************!*\
+  !*** D:/wechatapp/develop/animal_crossing/util/api.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.myRequest = void 0; // 封装get请求
+var baseUrl = "http://47.240.8.112/api/v1/private";
+var myRequest = function myRequest(options) {
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      method: options.method,
+      data: options.data,
+      url: baseUrl + options.url,
+      header: options.header,
+      success: function success(res) {
+        // console.log("delelte"+res.statusCode)
+        // console.log("post"+res.statusCode)
+        if (res.statusCode !== 200 && res.statusCode !== 201 && res.statusCode !== 204) {
+          return uni.showToast({
+            title: '获取数据失败' + res.statusCode });
+
+        }
+        resolve(res);
+      },
+      fail: function fail(err) {
+        uni.showToast({
+          title: '获取数据失败' });
+
+        reject(err);
+      } });
+
+  });
+};exports.myRequest = myRequest;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 351:
 /*!**************************************************************************!*\
   !*** D:/wechatapp/develop/animal_crossing/components/uni-icons/icons.js ***!
   \**************************************************************************/
@@ -10544,75 +10613,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   "cloud-download-filled": "\uE8E9",
   "headphones": "\uE8BF",
   "shop": "\uE609" };exports.default = _default;
-
-/***/ }),
-
-/***/ 34:
-/*!****************************************************************************************!*\
-  !*** D:/wechatapp/develop/animal_crossing/node_modules/uview-ui/libs/config/zIndex.js ***!
-  \****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // uniapp在H5中各API的z-index值如下：
-/**
- * actionsheet: 999
- * modal: 999
- * navigate: 998
- * tabbar: 998
- */var _default =
-
-{
-  toast: 1090,
-  noNetwork: 1080,
-  // popup包含popup，actionsheet，keyboard，picker的值
-  popup: 1075,
-  mask: 1070,
-  navbar: 980,
-  topTips: 975,
-  sticky: 970,
-  indexListSticky: 965 };exports.default = _default;
-
-/***/ }),
-
-/***/ 35:
-/*!********************************************************!*\
-  !*** D:/wechatapp/develop/animal_crossing/util/api.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.myRequest = void 0; // 封装get请求
-var baseUrl = "http://47.240.8.112/api/v1/private";
-var myRequest = function myRequest(options) {
-  return new Promise(function (resolve, reject) {
-    uni.request({
-      method: options.method,
-      data: options.data,
-      url: baseUrl + options.url,
-      header: options.header,
-      success: function success(res) {
-        // console.log("delelte"+res.statusCode)
-        // console.log("post"+res.statusCode)
-        if (res.statusCode !== 200 && res.statusCode !== 201 && res.statusCode !== 204) {
-          return uni.showToast({
-            title: '获取数据失败' + res.statusCode });
-
-        }
-        resolve(res);
-      },
-      fail: function fail(err) {
-        uni.showToast({
-          title: '获取数据失败' });
-
-        reject(err);
-      } });
-
-  });
-};exports.myRequest = myRequest;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

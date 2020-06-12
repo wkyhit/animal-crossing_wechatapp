@@ -17,7 +17,8 @@
     "pages/map/mapDetail/villagerDetail",
     "pages/map/mapDetail/furniture-dressDetail",
     "pages/map/mapDetail/diyDetail",
-    "pages/circle_friends/comments/comments"
+    "pages/circle_friends/comments/comments",
+    "pages/market/addTrade/addTrade"
   ],
   "subPackages": [],
   "window": {
@@ -52,5 +53,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap37.json"
 }
