@@ -9,7 +9,7 @@
 		<view class="card">
 			<!-- <uni-card :is-shadow="true" > -->
 					<view class="wrap">
-						<u-swiper :list="list"></u-swiper>
+						<u-swiper :list="list" :title="true"></u-swiper>
 					</view>
 					<view class="grid_icon">
 						<u-grid :col="3" border >
@@ -68,16 +68,16 @@
 		data() {
 			return {
 				list: [{
-						image: '',
-						title: '蒹葭苍苍，白露为霜。所谓伊人，在水一方'
+						image: 'https://mmbiz.qpic.cn/mmbiz_png/JPyelFdp3GzFbT6pk7n6RhwtvQ2xYfIylqlCVVI1M07icVTqNQvorkzwNMfpelF3xFsPFGaXx5QKeX9q65J0e8w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1',
+						title: '动森新手攻略'
 					},
 					{
-						image: '',
-						title: '溯洄从之，道阻且长。溯游从之，宛在水中央'
+						image: 'https://mmbiz.qpic.cn/mmbiz_png/JPyelFdp3GyGK1lR5IfgutrLqwOBlcPBAYW2OlR3l9k07xKIud0B8XnDNSk2DlrfCyPU9BUCfcmsovGHCnnp1w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1',
+						title: '冬季攻略'
 					},
 					{
-						image: '',
-						title: '蒹葭萋萋，白露未晞。所谓伊人，在水之湄'
+						image: 'https://mmbiz.qpic.cn/mmbiz_png/JPyelFdp3GxZ0k5H31Kicl0Por1oibW4cjqWmMia82PRTibF77zhWKdZtbagYyibMibtCW1n8NqL95ILluLsMr7aFDJw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1',
+						title: '夏季攻略'
 					}
 				],
 				imageBase64:''

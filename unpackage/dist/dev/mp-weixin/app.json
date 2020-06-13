@@ -18,7 +18,9 @@
     "pages/map/mapDetail/furniture-dressDetail",
     "pages/map/mapDetail/diyDetail",
     "pages/circle_friends/comments/comments",
-    "pages/market/addTrade/addTrade"
+    "pages/market/addTrade/addTrade",
+    "pages/market/comments/comments",
+    "pages/mysite/changehz"
   ],
   "subPackages": [],
   "window": {

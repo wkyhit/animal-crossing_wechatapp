@@ -60,7 +60,7 @@
 					</view>
 					<!-- 评论 -->
 					<view class="comment">
-						<u-icon name="weixin-fill"  size="36" @click="clickComment(item)"></u-icon>
+						<u-icon name="weixin-fill"  size="36" @click="clickComment(item,'turnip')"></u-icon>
 						<text>{{item.comment_num}}</text>
 					</view>
 					<!-- 分享 -->
@@ -117,7 +117,7 @@
 					</view>
 					<!-- 评论 -->
 					<view class="comment">
-						<u-icon name="weixin-fill"  size="36" @click="clickComment(item)"></u-icon>
+						<u-icon name="weixin-fill"  size="36" @click="clickComment(item,'diy')"></u-icon>
 						<text>{{item.comment_num}}</text>
 					</view>
 					<!-- 分享 -->
@@ -174,7 +174,7 @@
 					</view>
 					<!-- 评论 -->
 					<view class="comment">
-						<u-icon name="weixin-fill"  size="36" @click="clickComment(item)"></u-icon>
+						<u-icon name="weixin-fill"  size="36" @click="clickComment(item,'fossil')"></u-icon>
 						<text>{{item.comment_num}}</text>
 					</view>
 					<!-- 分享 -->
@@ -231,7 +231,7 @@
 					</view>
 					<!-- 评论 -->
 					<view class="comment">
-						<u-icon name="weixin-fill"  size="36" @click="clickComment(item)"></u-icon>
+						<u-icon name="weixin-fill"  size="36" @click="clickComment(item,'free')"></u-icon>
 						<text>{{item.comment_num}}</text>
 					</view>
 					<!-- 分享 -->
@@ -429,22 +429,134 @@
 							thumbs_up_type:1,
 						},
 					})
+					// 判断帖子类型
+					if(this.current_tab === 0){ //大头菜
+						//对应的帖子点赞数+1
+						for(let i=0,len=this.turnip_trades.length; i<len; i++){
+							// 找到点赞对应的帖子id
+							if(id === this.turnip_trades[i].id){
+								let num = this.turnip_trades[i].thumbs_up + 1
+								this.$set(this.turnip_trades[i],'thumbs_up',num)
+								break
+							}
+						}
+					}else if(this.current_tab === 1){ //diy
+						//对应的帖子点赞数+1
+						for(let i=0,len=this.diy_trades.length; i<len; i++){
+							// 找到点赞对应的帖子id
+							if(id === this.diy_trades[i].id){
+								let num = this.diy_trades[i].thumbs_up + 1
+								this.$set(this.diy_trades[i],'thumbs_up',num)
+								break
+							}
+						}
+					}else if(this.current_tab === 2){ //fossil
+						//对应的帖子点赞数+1
+						for(let i=0,len=this.fossil_trades.length; i<len; i++){
+							// 找到点赞对应的帖子id
+							if(id === this.fossil_trades[i].id){
+								let num = this.fossil_trades[i].thumbs_up + 1
+								this.$set(this.fossil_trades[i],'thumbs_up',num)
+								break
+							}
+						}
+					}else if(this.current_tab === 3){ //free
+						//对应的帖子点赞数+1
+						for(let i=0,len=this.free_trades.length; i<len; i++){
+							// 找到点赞对应的帖子id
+							if(id === this.free_trades[i].id){
+								let num = this.free_trades[i].thumbs_up + 1
+								this.$set(this.free_trades[i],'thumbs_up',num)
+								break
+							}
+						}
+					}
 				}else{
 					//取消点赞
 					// this.like_icon[id] = "heart"
 					this.$set(this.like_icon,id,"heart")
 					const jwt = uni.getStorageSync("skey");
 					const head = {'Authorization':"Bearer "+jwt};
+					let like_id
+					//获取likes数组中帖子id(obj_liked)与要删除的帖子id匹配项的点赞id
+					for(let i=0,len=this.likes.length; i<len; i++){
+						if(this.likes[i].obj_liked === id){ //帖子id相匹配,
+							like_id = this.likes[i].id //取得对应点赞id
+							break
+						}
+					}
 					const result = await this.$myRequest({
 						method: 'DELETE',
-						url: '/likes/' +id+"/",
+						url: '/likes/' +like_id+"/",
 						header: head,
 					})
+					// 判断帖子类型
+					if(this.current_tab === 0){ //大头菜
+						//对应的帖子点赞数-1
+						for(let i=0,len=this.turnip_trades.length; i<len; i++){
+							// 找到点赞对应的帖子id
+							if(id === this.turnip_trades[i].id){
+								let num = this.turnip_trades[i].thumbs_up - 1
+								this.$set(this.turnip_trades[i],'thumbs_up',num)
+								break
+							}
+						}
+					}else if(this.current_tab === 1){ //diy
+						//对应的帖子点赞数-1
+						for(let i=0,len=this.diy_trades.length; i<len; i++){
+							// 找到点赞对应的帖子id
+							if(id === this.diy_trades[i].id){
+								let num = this.diy_trades[i].thumbs_up - 1
+								this.$set(this.diy_trades[i],'thumbs_up',num)
+								break
+							}
+						}
+					}else if(this.current_tab === 2){ //fossil
+						//对应的帖子点赞数-1
+						for(let i=0,len=this.fossil_trades.length; i<len; i++){
+							// 找到点赞对应的帖子id
+							if(id === this.fossil_trades[i].id){
+								let num = this.fossil_trades[i].thumbs_up - 1
+								this.$set(this.fossil_trades[i],'thumbs_up',num)
+								break
+							}
+						}
+					}else if(this.current_tab === 3){ //free
+						//对应的帖子点赞数-1
+						for(let i=0,len=this.free_trades.length; i<len; i++){
+							// 找到点赞对应的帖子id
+							if(id === this.free_trades[i].id){
+								let num = this.free_trades[i].thumbs_up - 1
+								this.$set(this.free_trades[i],'thumbs_up',num)
+								break
+							}
+						}
+					}
+					
 				}
 				// console.log("click like")
 			},
-			clickComment(){
-				
+			// 评论按钮点击事件
+			clickComment(trades,type){
+				const tradesInfo = trades
+				if(type === "turnip"){
+					uni.navigateTo({
+						url:"comments/comments?tradesInfo="+ encodeURIComponent(JSON.stringify(tradesInfo))+"&tradepic="+encodeURIComponent(JSON.stringify(this.turnipPicture[tradesInfo.id]))
+					})
+				}else if(type === "diy"){
+					uni.navigateTo({
+						url:"comments/comments?tradesInfo="+ encodeURIComponent(JSON.stringify(tradesInfo))+"&tradepic="+encodeURIComponent(JSON.stringify(this.diyPicture[tradesInfo.id]))
+					})
+				}else if(type === "fossil"){
+					uni.navigateTo({
+						url:"comments/comments?tradesInfo="+ encodeURIComponent(JSON.stringify(tradesInfo))+"&tradepic="+encodeURIComponent(JSON.stringify(this.fossilPicture[tradesInfo.id]))
+					})
+				}else if(type === "free"){
+					uni.navigateTo({
+						url:"comments/comments?tradesInfo="+ encodeURIComponent(JSON.stringify(tradesInfo))+"&tradepic="+encodeURIComponent(JSON.stringify(this.freePicture[tradesInfo.id]))
+					})
+				}
+
 			},
 			clickShare(){
 				

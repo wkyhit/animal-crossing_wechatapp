@@ -54,7 +54,9 @@
 		
         ,{
             "path" : "pages/setting/setting",
-            "style" : {}
+            "style" : {
+				"enablePullDownRefresh": true//下拉刷新
+			}
         }
         ,{
             "path" : "pages/map/mapDetail/artworkDetail",
@@ -84,6 +86,16 @@
         }
         ,{
             "path" : "pages/market/addTrade/addTrade",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/market/comments/comments",
+            "style" : {
+				"enablePullDownRefresh": true//下拉刷新
+			}
+        }
+        ,{
+            "path" : "pages/mysite/changehz",
             "style" : {}
         }
     ],

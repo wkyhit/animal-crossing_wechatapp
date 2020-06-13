@@ -94,22 +94,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uniNavBar: function() {
-    return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 194))
+    return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 202))
   },
   uIcon: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 201))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 209))
   },
   uBadge: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-badge/u-badge */ "node-modules/uview-ui/components/u-badge/u-badge").then(__webpack_require__.bind(null, /*! uview-ui/components/u-badge/u-badge.vue */ 208))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-badge/u-badge */ "node-modules/uview-ui/components/u-badge/u-badge").then(__webpack_require__.bind(null, /*! uview-ui/components/u-badge/u-badge.vue */ 216))
   },
   uSwiper: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-swiper/u-swiper */ "node-modules/uview-ui/components/u-swiper/u-swiper").then(__webpack_require__.bind(null, /*! uview-ui/components/u-swiper/u-swiper.vue */ 215))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-swiper/u-swiper */ "node-modules/uview-ui/components/u-swiper/u-swiper").then(__webpack_require__.bind(null, /*! uview-ui/components/u-swiper/u-swiper.vue */ 223))
   },
   uGrid: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid/u-grid */ "node-modules/uview-ui/components/u-grid/u-grid").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid/u-grid.vue */ 222))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid/u-grid */ "node-modules/uview-ui/components/u-grid/u-grid").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid/u-grid.vue */ 230))
   },
   uGridItem: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid-item/u-grid-item */ "node-modules/uview-ui/components/u-grid-item/u-grid-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid-item/u-grid-item.vue */ 229))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid-item/u-grid-item */ "node-modules/uview-ui/components/u-grid-item/u-grid-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid-item/u-grid-item.vue */ 237))
   }
 }
 var render = function() {
@@ -219,16 +219,16 @@ var _default =
   data: function data() {
     return {
       list: [{
-        image: '',
-        title: '蒹葭苍苍，白露为霜。所谓伊人，在水一方' },
+        image: 'https://mmbiz.qpic.cn/mmbiz_png/JPyelFdp3GzFbT6pk7n6RhwtvQ2xYfIylqlCVVI1M07icVTqNQvorkzwNMfpelF3xFsPFGaXx5QKeX9q65J0e8w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1',
+        title: '动森新手攻略' },
 
       {
-        image: '',
-        title: '溯洄从之，道阻且长。溯游从之，宛在水中央' },
+        image: 'https://mmbiz.qpic.cn/mmbiz_png/JPyelFdp3GyGK1lR5IfgutrLqwOBlcPBAYW2OlR3l9k07xKIud0B8XnDNSk2DlrfCyPU9BUCfcmsovGHCnnp1w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1',
+        title: '冬季攻略' },
 
       {
-        image: '',
-        title: '蒹葭萋萋，白露未晞。所谓伊人，在水之湄' }],
+        image: 'https://mmbiz.qpic.cn/mmbiz_png/JPyelFdp3GxZ0k5H31Kicl0Por1oibW4cjqWmMia82PRTibF77zhWKdZtbagYyibMibtCW1n8NqL95ILluLsMr7aFDJw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1',
+        title: '夏季攻略' }],
 
 
       imageBase64: '' };

@@ -94,13 +94,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uAvatar: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 292))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 300))
   },
   uniList: function() {
-    return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 320))
+    return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 307))
   },
   uniListItem: function() {
-    return __webpack_require__.e(/*! import() | components/uni-list-item/uni-list-item */ "components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/components/uni-list-item/uni-list-item.vue */ 327))
+    return __webpack_require__.e(/*! import() | components/uni-list-item/uni-list-item */ "components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/components/uni-list-item/uni-list-item.vue */ 314))
   }
 }
 var render = function() {
@@ -140,7 +140,29 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 54));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -167,9 +189,129 @@ var _default =
 {
   data: function data() {
     return {
-      portraitsrc: "http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg" };
+      current: '',
+      userinfo: [],
+      personinfo: ["星辰岛", "北半球", "你给的爱太假", "5-s1-9720479", "我就是我,颜色不一样的烟火", "女"],
+      settinginfo: ["12", '23', '45'],
+      aboutus: [
+      "我们都是来自五湖四海，为了一个共同的革命目标，走到一起来了。我们还要和全国大多数人民走这一条路。我们今天已经领导着有九千一百万人口的根据地⑷，但是还不够，还要更大些，才能取得全民族的解放。我们的同志在困难的时候，要看到成绩，要看到光明，要提高我们的勇气。中国人民正在受难，我们有责任解救他们，我们要努力奋斗。要奋斗就会有牺牲，死人的事是经常发生的。但是我们想到人民的利益，想到大多数人民的痛苦，我们为人民而死，就是死得其所。不过，我们应当尽量地减少那些不必要的牺牲。我们的干部要关心每一个战士，一切革命队伍的人都要互相关心，互相爱护，互相帮助。",
+      "反恐精英：全球攻势（CS:GO）2020年6月4日更新补丁大小96MB，主要内容为改进了纹理流送功能和科洛林、阿努比斯两张地图。游戏客户端版本：1.37.5.5渲染纹理流送现在会加载标记为no mip maps或no lod的完整分辨率贴图（应该是修复之前某些创意工坊地图贴图错误）。"],
 
-  } };exports.default = _default;
+      portraitsrc: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023235837,3703646437&fm=26&gp=0.jpg" };
+
+  },
+  methods: {
+    // 监听下拉刷新
+    onPullDownRefresh: function onPullDownRefresh() {var _this = this;
+      this.userinfo = "";
+      var jwt = uni.getStorageSync("skey");
+      setTimeout(function () {
+        // this.getuserInfo()
+        // if (jwt !== '') {
+        // 	this.current = 0
+        // 	this.getuserInfo()
+        // } else {
+        // 	this.current = 1
+        // }
+        //判断是否登录
+        _this.checkload();
+        uni.stopPullDownRefresh();
+      });
+    },
+    // 登录按钮点击事件
+    wxLogin: function wxLogin(e) {
+      var that = this;
+      that.logining = true;
+      // let userInfo = e.detail.userInfo;
+      uni.login({
+        provider: "weixin",
+        success: function success(login_res) {
+          var code = login_res.code;
+          // console.log("code" + code);
+          uni.request({
+            url: 'http://47.240.8.112/api/v1/private/wx_login/',
+            method: "POST",
+            header: {
+              'content-type': 'application/json' },
+
+            data: {
+              code: code
+              // user_info:userinfo
+              // user_info: info_res.rawData
+            },
+            success: function success(res) {
+              console.log(res);
+              // 保存jwt
+              uni.setStorageSync("skey", res.data.jwt);
+              // 保存id信息
+              uni.setStorageSync("sid", res.data.user.id);
+              // 刷新页面
+              uni.startPullDownRefresh();
+            },
+            fail: function fail(error) {
+              console.log(error);
+            } });
+
+        } });
+
+
+    },
+    openmysite: function openmysite() {
+      uni.navigateTo({
+        url: "../mysite/mysite" });
+
+    },
+    getuserInfo: function getuserInfo() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, user_id, result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = {
+                  'Authorization': "Bearer " + jwt };
+
+                user_id = uni.getStorageSync("sid");_context.next = 5;return (
+                  _this2.$myRequest({
+                    method: 'GET',
+                    url: '/users/' + user_id + '/',
+                    header: head }));case 5:result = _context.sent;
+
+                console.log(result);
+                _this2.userinfo = result.data;
+
+                // this.villagers = result.data.results;
+                // console.log("村民"+this.villagers[1].id)
+              case 8:case "end":return _context.stop();}}}, _callee);}))();},
+
+    openaboutus: function openaboutus() {
+      uni.navigateTo({
+        url: "./aboutus" });
+
+    },
+    openupdatelog: function openupdatelog() {
+      uni.navigateTo({
+        url: "./myupdate" });
+
+    },
+    onClickToMsg: function onClickToMsg() {
+      uni.navigateTo({
+        url: '/pages/Message/Message' });
+
+    },
+    // 判断是否登录
+    checkload: function checkload() {
+      var jwt = uni.getStorageSync("skey");
+      if (jwt !== '') {
+        this.current = 0;
+        this.getuserInfo();
+      } else {
+        this.current = 1;
+      }
+    },
+    onLoad: function onLoad() {
+      // this.getuserInfo();
+      this.checkload();
+    },
+    onShow: function onShow() {
+      this.checkload();
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

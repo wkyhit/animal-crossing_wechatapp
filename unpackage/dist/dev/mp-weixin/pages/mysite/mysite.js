@@ -93,26 +93,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
-  uAvatar: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 292))
-  },
-  uGrid: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid/u-grid */ "node-modules/uview-ui/components/u-grid/u-grid").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid/u-grid.vue */ 222))
-  },
-  uGridItem: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid-item/u-grid-item */ "node-modules/uview-ui/components/u-grid-item/u-grid-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid-item/u-grid-item.vue */ 229))
-  },
-  uIcon: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 201))
+  uTabs: function() {
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 244))
   },
   uDivider: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-divider/u-divider */ "node-modules/uview-ui/components/u-divider/u-divider").then(__webpack_require__.bind(null, /*! uview-ui/components/u-divider/u-divider.vue */ 278))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-divider/u-divider */ "node-modules/uview-ui/components/u-divider/u-divider").then(__webpack_require__.bind(null, /*! uview-ui/components/u-divider/u-divider.vue */ 286))
   },
   uCellGroup: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-group/u-cell-group */ "node-modules/uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-group/u-cell-group.vue */ 250))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-group/u-cell-group */ "node-modules/uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-group/u-cell-group.vue */ 258))
   },
   uCellItem: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-item/u-cell-item */ "node-modules/uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-item/u-cell-item.vue */ 257))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-item/u-cell-item */ "node-modules/uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-item/u-cell-item.vue */ 265))
+  },
+  uButton: function() {
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 272))
+  },
+  uAvatar: function() {
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 300))
+  },
+  uniList: function() {
+    return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 307))
+  },
+  uniListItem: function() {
+    return __webpack_require__.e(/*! import() | components/uni-list-item/uni-list-item */ "components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/components/uni-list-item/uni-list-item.vue */ 314))
   }
 }
 var render = function() {
@@ -152,7 +155,97 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 54));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -234,9 +327,25 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 var _default =
 {
-  data: function data() {var _ref;
-    return _ref = {
-      current: 1,
+  data: function data() {
+    return {
+
+      tablist: [{
+        name: '主页' },
+      {
+        name: '村民' },
+      {
+        name: '动态' }],
+
+      current: 0,
+      cns_name: '',
+      has_dwller_num: 0,
+      num: 0,
+      idspace: [],
+      namespace: [],
+      dwellers: [],
+      dwellers1: [],
+      dwpagenum: 3,
       src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023235837,3703646437&fm=26&gp=0.jpg',
       //图鉴类型
       srcman: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2841240923,204544880&fm=26&gp=0.jpg',
@@ -244,6 +353,8 @@ var _default =
       dexType: "fish",
       //已收集
       checked: false,
+      srcplus: "http://img3.imgtn.bdimg.com/it/u=1153547427,3148212040&fm=26&gp=0.jpg",
+
       list: [{
         name: '鱼类' },
 
@@ -254,24 +365,194 @@ var _default =
         name: '化石' },
 
       {
-        name: '艺术品' }] }, _defineProperty(_ref, "current",
+        name: '艺术品' },
+
+      {
+        name: '家具' },
+
+      {
+        name: 'DIY配方' },
+
+      {
+        name: '服饰' },
+
+      {
+        name: '唱片' }],
 
 
-    0), _defineProperty(_ref, "user_info",
-    []), _ref;
+
+      detailItem: '',
+      userinfo: {},
+
+      trendsdata: [{
+        name: '张三',
+        headimg: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=292115226,4263746039&fm=26&gp=0.jpg',
+        text: '六一快乐！感谢大家的礼物',
+        trendsrc1: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1721187296,2198904697&fm=15&gp=0.jpg',
+        trendsrc2: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3221258143,996744225&fm=26&gp=0.jpg',
+        trendsrc3: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3892000463,4208461964&fm=26&gp=0.jpg' },
+      {
+        name: 'wangwu',
+        headimg: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=292115226,4263746039&fm=26&gp=0.jpg',
+        text: '六一快乐！感谢大家的礼物',
+        trendsrc1: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1721187296,2198904697&fm=15&gp=0.jpg',
+        trendsrc2: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3221258143,996744225&fm=26&gp=0.jpg',
+        trendsrc3: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3892000463,4208461964&fm=26&gp=0.jpg' },
+      {
+        name: 'lisi',
+        headimg: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=292115226,4263746039&fm=26&gp=0.jpg',
+        text: '国庆节快乐！感谢大家的礼物',
+        trendsrc1: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=312066691,832315679&fm=26&gp=0.jpg',
+        trendsrc2: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3221258143,996744225&fm=26&gp=0.jpg',
+        trendsrc3: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3892000463,4208461964&fm=26&gp=0.jpg' },
+      {
+        name: 'wangwu',
+        headimg: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=292115226,4263746039&fm=26&gp=0.jpg',
+        text: '六一快乐1233333322222222222！感谢大家的礼物',
+        trendsrc1: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1721187296,2198904697&fm=15&gp=0.jpg',
+        trendsrc2: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3221258143,996744225&fm=26&gp=0.jpg',
+        trendsrc3: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3892000463,4208461964&fm=26&gp=0.jpg' },
+      {
+        name: 'lisi',
+        headimg: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=292115226,4263746039&fm=26&gp=0.jpg',
+        text: '国庆节快乐！感谢大家的礼物',
+        trendsrc1: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=312066691,832315679&fm=26&gp=0.jpg',
+        trendsrc2: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3221258143,996744225&fm=26&gp=0.jpg',
+        trendsrc3: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3892000463,4208461964&fm=26&gp=0.jpg' }],
+
+      src1: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3336249496,298027406&fm=26&gp=0.jpg' };
 
   },
   methods: {
-    //标签页tabs切换事件监听
     changecurrent: function changecurrent(index) {
       this.current = index;
+      //根据current判断处于哪个标签页
+      if (this.current == 1) {
+        this.complex();
+      }
+    },
+    //标签页tabs切换事件监听
+
+    openchangehz: function openchangehz() {
+      uni.navigateTo({
+        url: "changehz" });
+
+    },
+    openmap: function openmap(index) {//转到相应的图鉴界面
+      var app = getApp();
+      // var cate_id = event.currentTarget.dataset.cate_id;
+      if (index >= 4) {
+        index++;
+      }
+      if (index = 15) {
+        index = 4;
+      }
+      app.globalData.cate_id = index;
+
+      uni.switchTab({
+        url: "../map/map" });
+
+      console.log(app.globalData.cate_id);
+
+    },
+    //获取用户信息
+    getuserInfo: function getuserInfo() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = {
+                  'Authorization': "Bearer " + jwt };_context.next = 4;return (
+
+                  _this.$myRequest({
+                    method: 'GET',
+                    url: '/users/5/',
+                    header: head }));case 4:result = _context.sent;
+
+                _this.userinfo = result.data;
+
+                // this.villagers = result.data.results;
+                // console.log("村民"+this.villagers[1].id)
+              case 6:case "end":return _context.stop();}}}, _callee);}))();},
+    getposts: function getposts() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = {
+                  'Authorization': "Bearer " + jwt };_context2.next = 4;return (
+
+                  _this2.$myRequest({
+                    method: 'POST',
+                    url: '/posts/24/',
+                    header: head }));case 4:result = _context2.sent;
+
+                _this2.userinfo = result.data;
+
+                // this.villagers = result.data.results;
+                // console.log("村民"+this.villagers[1].id)
+              case 6:case "end":return _context2.stop();}}}, _callee2);}))();},
+    getdwellerinfo: function getdwellerinfo() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var jwt, head, result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0: //获得村民拥有的小动物的id
+                jwt = uni.getStorageSync("skey");
+                head = {
+                  'Authorization': "Bearer " + jwt };_context3.next = 4;return (
+
+                  _this3.$myRequest({
+                    method: 'GET',
+                    url: '/user_dweller/?pagenum=' + _this3.dwpagenum,
+                    header: head }));case 4:result = _context3.sent;
+
+                _this3.dwellers = result.data;
+                console.log(result.data);
+                // this.fish = result.data.results;
+              case 7:case "end":return _context3.stop();}}}, _callee3);}))();},
+    getdwellericon: function getdwellericon() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var jwt, head, result;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0: //根据小动物id获取动物的图片与姓名
+                jwt = uni.getStorageSync("skey");
+                head = {
+                  'Authorization': "Bearer " + jwt };_context4.next = 4;return (
+
+                  _this4.$myRequest({
+                    method: 'GET',
+                    url: '/dwellers/' + _this4.num + '/',
+                    header: head }));case 4:result = _context4.sent;
+
+                // console.log(this.num)
+                // console.log(result.data.cn_sname)
+
+                _this4.cns_name = result.data;
+                console.log(result.data);
+
+
+
+                // this.fish = result.data.results;
+              case 7:case "end":return _context4.stop();}}}, _callee4);}))();},
+    complex: function complex() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var i, _i;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0: //将获取动物id与动物名称整合
+
+                _this5.getdwellerinfo();
+                for (i = 0; i < _this5.dwellers.length; i++) {
+                  // console.log(this.getdwellericon(this.dwellers[i].id))
+                  _this5.idspace[i] = _this5.dwellers[i].dweller;
+
+                }
+                _i = 0;case 3:if (!(_i < _this5.idspace.length)) {_context5.next = 11;break;}
+                //  console.log(this.getdwellericon(this.dwellers[i].id))
+                _this5.num = _this5.idspace[_i];
+                //   console.log(this.num)
+                _context5.next = 7;return _this5.getdwellericon();case 7:
+                _this5.namespace[_i] = _this5.cns_name;case 8:_i++;_context5.next = 3;break;case 11:
+
+                console.log(_this5.namespace);
+
+                // return insect_checked_list;
+              case 12:case "end":return _context5.stop();}}}, _callee5);}))();},
+    onClickMoreInfo: function onClickMoreInfo(dex_type, item) {//跳转到详情界面
+      this.dexType = dex_type;
+      this.detailItem = item;
+      uni.navigateTo({
+        url: '/pages/map/mapDetail/villagerDetail?dexType=villager&item=' + encodeURIComponent(JSON.stringify(this.detailItem)) });
 
     } },
 
-  onLoad: function onLoad(option) {
-    this.user_info = JSON.parse(decodeURIComponent(option.userinfo));
-    // console.log(info);
+  onLoad: function onLoad() {
+    this.getuserInfo();
+    this.complex();
+
   } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

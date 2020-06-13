@@ -205,17 +205,43 @@
 							thumbs_up_type:2,
 						},
 					})
+					//对应的帖子点赞数+1
+					for(let i=0,len=this.trends.length; i<len; i++){
+						// 找到点赞对应的帖子id
+						if(id === this.trends[i].id){
+							let num = this.trends[i].thumbs_up + 1
+							this.$set(this.trends[i],'thumbs_up',num)
+							break
+						}
+					}
 				}else{
 					//取消点赞
 					// this.like_icon[id] = "heart"
 					this.$set(this.like_icon,id,"heart")
 					const jwt = uni.getStorageSync("skey");
 					const head = {'Authorization':"Bearer "+jwt};
+					let like_id
+					//获取likes数组中帖子id(obj_liked)与要删除的帖子id匹配项的点赞id
+					for(let i=0,len=this.likes.length; i<len; i++){
+						if(this.likes[i].obj_liked === id){ //帖子id相匹配,
+							like_id = this.likes[i].id //取得对应点赞id
+							break
+						}
+					}
 					const result = await this.$myRequest({
 						method: 'DELETE',
-						url: '/likes/' +id+"/",
+						url: '/likes/' +like_id+"/",
 						header: head,
 					})
+					//对应的帖子点赞数-1
+					for(let i=0,len=this.trends.length; i<len; i++){
+						// 找到点赞对应的帖子id
+						if(id === this.trends[i].id){
+							let num = this.trends[i].thumbs_up - 1
+							this.$set(this.trends[i],'thumbs_up',num)
+							break
+						}
+					}
 				}
 				// console.log("click like")
 			},

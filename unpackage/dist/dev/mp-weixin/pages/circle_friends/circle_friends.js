@@ -94,19 +94,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uTabs: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 236))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 244))
   },
   uSearch: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 243))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 251))
   },
   uAvatar: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 292))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 300))
   },
   uIcon: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 201))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 209))
   },
   uUpload: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-upload/u-upload */ "node-modules/uview-ui/components/u-upload/u-upload").then(__webpack_require__.bind(null, /*! uview-ui/components/u-upload/u-upload.vue */ 313))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-upload/u-upload */ "node-modules/uview-ui/components/u-upload/u-upload").then(__webpack_require__.bind(null, /*! uview-ui/components/u-upload/u-upload.vue */ 335))
   }
 }
 var render = function() {
@@ -335,9 +335,9 @@ var _default =
 
     },
     // 点赞按钮点击事件
-    clickLike: function clickLike(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result, _jwt, _head, _result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
+    clickLike: function clickLike(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result, i, len, num, _jwt, _head, like_id, _i, _len, _result, _i2, _len2, _num;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
 
-                _this2.like_icon[id] === "heart")) {_context.next = 9;break;}
+                _this2.like_icon[id] === "heart")) {_context.next = 18;break;}
                 // 点赞
                 // 调用Vue.set更新数组,使视图更新
                 _this2.$set(_this2.like_icon, id, "heart-fill");
@@ -350,7 +350,16 @@ var _default =
                     header: head,
                     data: {
                       obj_liked: id,
-                      thumbs_up_type: 2 } }));case 6:result = _context.sent;_context.next = 15;break;case 9:
+                      thumbs_up_type: 2 } }));case 6:result = _context.sent;
+
+
+
+                i = 0, len = _this2.trends.length;case 8:if (!(i < len)) {_context.next = 16;break;}if (!(
+
+                id === _this2.trends[i].id)) {_context.next = 13;break;}
+                num = _this2.trends[i].thumbs_up + 1;
+                _this2.$set(_this2.trends[i], 'thumbs_up', num);return _context.abrupt("break", 16);case 13:i++;_context.next = 8;break;case 16:_context.next = 41;break;case 18:
+
 
 
 
@@ -358,11 +367,28 @@ var _default =
                 // this.like_icon[id] = "heart"
                 _this2.$set(_this2.like_icon, id, "heart");
                 _jwt = uni.getStorageSync("skey");
-                _head = { 'Authorization': "Bearer " + _jwt };_context.next = 14;return (
+                _head = { 'Authorization': "Bearer " + _jwt };
+
+
+                _i = 0, _len = _this2.likes.length;case 22:if (!(_i < _len)) {_context.next = 29;break;}if (!(
+                _this2.likes[_i].obj_liked === id)) {_context.next = 26;break;} //帖子id相匹配,
+                like_id = _this2.likes[_i].id; //取得对应点赞id
+                return _context.abrupt("break", 29);case 26:_i++;_context.next = 22;break;case 29:_context.next = 31;return (
+
+
                   _this2.$myRequest({
                     method: 'DELETE',
-                    url: '/likes/' + id + "/",
-                    header: _head }));case 14:_result = _context.sent;case 15:case "end":return _context.stop();}}}, _callee);}))();
+                    url: '/likes/' + like_id + "/",
+                    header: _head }));case 31:_result = _context.sent;
+
+
+                _i2 = 0, _len2 = _this2.trends.length;case 33:if (!(_i2 < _len2)) {_context.next = 41;break;}if (!(
+
+                id === _this2.trends[_i2].id)) {_context.next = 38;break;}
+                _num = _this2.trends[_i2].thumbs_up - 1;
+                _this2.$set(_this2.trends[_i2], 'thumbs_up', _num);return _context.abrupt("break", 41);case 38:_i2++;_context.next = 33;break;case 41:case "end":return _context.stop();}}}, _callee);}))();
+
+
 
 
 
@@ -378,7 +404,7 @@ var _default =
 
     },
     //获取动态
-    getTrends: function getTrends() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result, i, len, j, _len;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+    getTrends: function getTrends() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result, i, len, j, _len3;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 // console.log("jwt: "+jwt);
                 head = { 'Authorization': "Bearer " + jwt };
@@ -396,7 +422,7 @@ var _default =
                   _this3.like_icon[_this3.trends[i].id] = "heart";
                 }
                 //处理该用户点赞信息
-                for (j = 0, _len = _this3.likes.length; j < _len; j++) {
+                for (j = 0, _len3 = _this3.likes.length; j < _len3; j++) {
                   if (_this3.likes[j].thumbs_up_type === 2) {
                     _this3.like_icon[_this3.likes[j].obj_liked] = "heart-fill";
                   }

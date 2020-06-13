@@ -94,16 +94,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uTabs: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 236))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 244))
   },
   uSearch: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 243))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 251))
   },
   uAvatar: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 292))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 300))
   },
   uIcon: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 201))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 209))
   }
 }
 var render = function() {
@@ -557,8 +557,8 @@ var _default =
 
     },
     // 点赞按钮点击事件
-    clickLike: function clickLike(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result, _jwt, _head, _result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
-                _this2.like_icon[id] === "heart")) {_context.next = 9;break;}
+    clickLike: function clickLike(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result, i, len, num, _i, _len, _num, _i2, _len2, _num2, _i3, _len3, _num3, _jwt, _head, like_id, _i4, _len4, _result, _i5, _len5, _num4, _i6, _len6, _num5, _i7, _len7, _num6, _i8, _len8, _num7;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
+                _this2.like_icon[id] === "heart")) {_context.next = 55;break;}
                 // 点赞
                 // 调用Vue.set更新数组,使视图更新
                 _this2.$set(_this2.like_icon, id, "heart-fill");
@@ -571,7 +571,49 @@ var _default =
                     header: head,
                     data: {
                       obj_liked: id,
-                      thumbs_up_type: 1 } }));case 6:result = _context.sent;_context.next = 15;break;case 9:
+                      thumbs_up_type: 1 } }));case 6:result = _context.sent;if (!(
+
+
+
+                _this2.current_tab === 0)) {_context.next = 19;break;}
+
+                i = 0, len = _this2.turnip_trades.length;case 9:if (!(i < len)) {_context.next = 17;break;}if (!(
+
+                id === _this2.turnip_trades[i].id)) {_context.next = 14;break;}
+                num = _this2.turnip_trades[i].thumbs_up + 1;
+                _this2.$set(_this2.turnip_trades[i], 'thumbs_up', num);return _context.abrupt("break", 17);case 14:i++;_context.next = 9;break;case 17:_context.next = 53;break;case 19:if (!(
+
+
+
+                _this2.current_tab === 1)) {_context.next = 31;break;}
+
+                _i = 0, _len = _this2.diy_trades.length;case 21:if (!(_i < _len)) {_context.next = 29;break;}if (!(
+
+                id === _this2.diy_trades[_i].id)) {_context.next = 26;break;}
+                _num = _this2.diy_trades[_i].thumbs_up + 1;
+                _this2.$set(_this2.diy_trades[_i], 'thumbs_up', _num);return _context.abrupt("break", 29);case 26:_i++;_context.next = 21;break;case 29:_context.next = 53;break;case 31:if (!(
+
+
+
+                _this2.current_tab === 2)) {_context.next = 43;break;}
+
+                _i2 = 0, _len2 = _this2.fossil_trades.length;case 33:if (!(_i2 < _len2)) {_context.next = 41;break;}if (!(
+
+                id === _this2.fossil_trades[_i2].id)) {_context.next = 38;break;}
+                _num2 = _this2.fossil_trades[_i2].thumbs_up + 1;
+                _this2.$set(_this2.fossil_trades[_i2], 'thumbs_up', _num2);return _context.abrupt("break", 41);case 38:_i2++;_context.next = 33;break;case 41:_context.next = 53;break;case 43:if (!(
+
+
+
+                _this2.current_tab === 3)) {_context.next = 53;break;}
+
+                _i3 = 0, _len3 = _this2.free_trades.length;case 45:if (!(_i3 < _len3)) {_context.next = 53;break;}if (!(
+
+                id === _this2.free_trades[_i3].id)) {_context.next = 50;break;}
+                _num3 = _this2.free_trades[_i3].thumbs_up + 1;
+                _this2.$set(_this2.free_trades[_i3], 'thumbs_up', _num3);return _context.abrupt("break", 53);case 50:_i3++;_context.next = 45;break;case 53:_context.next = 115;break;case 55:
+
+
 
 
 
@@ -579,16 +621,86 @@ var _default =
                 // this.like_icon[id] = "heart"
                 _this2.$set(_this2.like_icon, id, "heart");
                 _jwt = uni.getStorageSync("skey");
-                _head = { 'Authorization': "Bearer " + _jwt };_context.next = 14;return (
+                _head = { 'Authorization': "Bearer " + _jwt };
+
+
+                _i4 = 0, _len4 = _this2.likes.length;case 59:if (!(_i4 < _len4)) {_context.next = 66;break;}if (!(
+                _this2.likes[_i4].obj_liked === id)) {_context.next = 63;break;} //帖子id相匹配,
+                like_id = _this2.likes[_i4].id; //取得对应点赞id
+                return _context.abrupt("break", 66);case 63:_i4++;_context.next = 59;break;case 66:_context.next = 68;return (
+
+
                   _this2.$myRequest({
                     method: 'DELETE',
-                    url: '/likes/' + id + "/",
-                    header: _head }));case 14:_result = _context.sent;case 15:case "end":return _context.stop();}}}, _callee);}))();
+                    url: '/likes/' + like_id + "/",
+                    header: _head }));case 68:_result = _context.sent;if (!(
+
+
+                _this2.current_tab === 0)) {_context.next = 81;break;}
+
+                _i5 = 0, _len5 = _this2.turnip_trades.length;case 71:if (!(_i5 < _len5)) {_context.next = 79;break;}if (!(
+
+                id === _this2.turnip_trades[_i5].id)) {_context.next = 76;break;}
+                _num4 = _this2.turnip_trades[_i5].thumbs_up - 1;
+                _this2.$set(_this2.turnip_trades[_i5], 'thumbs_up', _num4);return _context.abrupt("break", 79);case 76:_i5++;_context.next = 71;break;case 79:_context.next = 115;break;case 81:if (!(
+
+
+
+                _this2.current_tab === 1)) {_context.next = 93;break;}
+
+                _i6 = 0, _len6 = _this2.diy_trades.length;case 83:if (!(_i6 < _len6)) {_context.next = 91;break;}if (!(
+
+                id === _this2.diy_trades[_i6].id)) {_context.next = 88;break;}
+                _num5 = _this2.diy_trades[_i6].thumbs_up - 1;
+                _this2.$set(_this2.diy_trades[_i6], 'thumbs_up', _num5);return _context.abrupt("break", 91);case 88:_i6++;_context.next = 83;break;case 91:_context.next = 115;break;case 93:if (!(
+
+
+
+                _this2.current_tab === 2)) {_context.next = 105;break;}
+
+                _i7 = 0, _len7 = _this2.fossil_trades.length;case 95:if (!(_i7 < _len7)) {_context.next = 103;break;}if (!(
+
+                id === _this2.fossil_trades[_i7].id)) {_context.next = 100;break;}
+                _num6 = _this2.fossil_trades[_i7].thumbs_up - 1;
+                _this2.$set(_this2.fossil_trades[_i7], 'thumbs_up', _num6);return _context.abrupt("break", 103);case 100:_i7++;_context.next = 95;break;case 103:_context.next = 115;break;case 105:if (!(
+
+
+
+                _this2.current_tab === 3)) {_context.next = 115;break;}
+
+                _i8 = 0, _len8 = _this2.free_trades.length;case 107:if (!(_i8 < _len8)) {_context.next = 115;break;}if (!(
+
+                id === _this2.free_trades[_i8].id)) {_context.next = 112;break;}
+                _num7 = _this2.free_trades[_i8].thumbs_up - 1;
+                _this2.$set(_this2.free_trades[_i8], 'thumbs_up', _num7);return _context.abrupt("break", 115);case 112:_i8++;_context.next = 107;break;case 115:case "end":return _context.stop();}}}, _callee);}))();
+
+
+
+
 
 
 
     },
-    clickComment: function clickComment() {
+    // 评论按钮点击事件
+    clickComment: function clickComment(trades, type) {
+      var tradesInfo = trades;
+      if (type === "turnip") {
+        uni.navigateTo({
+          url: "comments/comments?tradesInfo=" + encodeURIComponent(JSON.stringify(tradesInfo)) + "&tradepic=" + encodeURIComponent(JSON.stringify(this.turnipPicture[tradesInfo.id])) });
+
+      } else if (type === "diy") {
+        uni.navigateTo({
+          url: "comments/comments?tradesInfo=" + encodeURIComponent(JSON.stringify(tradesInfo)) + "&tradepic=" + encodeURIComponent(JSON.stringify(this.diyPicture[tradesInfo.id])) });
+
+      } else if (type === "fossil") {
+        uni.navigateTo({
+          url: "comments/comments?tradesInfo=" + encodeURIComponent(JSON.stringify(tradesInfo)) + "&tradepic=" + encodeURIComponent(JSON.stringify(this.fossilPicture[tradesInfo.id])) });
+
+      } else if (type === "free") {
+        uni.navigateTo({
+          url: "comments/comments?tradesInfo=" + encodeURIComponent(JSON.stringify(tradesInfo)) + "&tradepic=" + encodeURIComponent(JSON.stringify(this.freePicture[tradesInfo.id])) });
+
+      }
 
     },
     clickShare: function clickShare() {
@@ -627,7 +739,7 @@ var _default =
                 // return result.data
               case 6:case "end":return _context2.stop();}}}, _callee2);}))();},
     //获取大头菜交易帖
-    getTurnipTrades: function getTurnipTrades() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var jwt, head, result, i, len, j, _len;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+    getTurnipTrades: function getTurnipTrades() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var jwt, head, result, i, len, j, _len9;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 // console.log("jwt: "+jwt);
                 head = { 'Authorization': "Bearer " + jwt };
@@ -644,7 +756,7 @@ var _default =
                   _this4.like_icon[_this4.turnip_trades[i].id] = "heart";
                 }
                 //处理该用户点赞信息
-                for (j = 0, _len = _this4.likes.length; j < _len; j++) {
+                for (j = 0, _len9 = _this4.likes.length; j < _len9; j++) {
                   if (_this4.likes[j].thumbs_up_type === 1) {
                     _this4.like_icon[_this4.likes[j].obj_liked] = "heart-fill";
                   }
@@ -658,7 +770,7 @@ var _default =
                 }case 1:case "end":return _context4.stop();}}}, _callee4);}))();
     },
     //获取diy交易帖
-    getDiyTrades: function getDiyTrades() {var _this6 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var jwt, head, result, i, len, j, _len2;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:
+    getDiyTrades: function getDiyTrades() {var _this6 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var jwt, head, result, i, len, j, _len10;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 // console.log("jwt: "+jwt);
                 head = { 'Authorization': "Bearer " + jwt };
@@ -675,7 +787,7 @@ var _default =
                   _this6.like_icon[_this6.diy_trades[i].id] = "heart";
                 }
                 //处理该用户点赞信息
-                for (j = 0, _len2 = _this6.likes.length; j < _len2; j++) {
+                for (j = 0, _len10 = _this6.likes.length; j < _len10; j++) {
                   if (_this6.likes[j].thumbs_up_type === 1) {
                     _this6.like_icon[_this6.likes[j].obj_liked] = "heart-fill";
                   }
@@ -689,7 +801,7 @@ var _default =
       }
     },
     //获取fossil交易帖
-    getFossilTrades: function getFossilTrades() {var _this7 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6() {var jwt, head, result, i, len, j, _len3;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:
+    getFossilTrades: function getFossilTrades() {var _this7 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6() {var jwt, head, result, i, len, j, _len11;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 // console.log("jwt: "+jwt);
                 head = { 'Authorization': "Bearer " + jwt };
@@ -706,7 +818,7 @@ var _default =
                   _this7.like_icon[_this7.fossil_trades[i].id] = "heart";
                 }
                 //处理该用户点赞信息
-                for (j = 0, _len3 = _this7.likes.length; j < _len3; j++) {
+                for (j = 0, _len11 = _this7.likes.length; j < _len11; j++) {
                   if (_this7.likes[j].thumbs_up_type === 1) {
                     _this7.like_icon[_this7.likes[j].obj_liked] = "heart-fill";
                   }
@@ -720,7 +832,7 @@ var _default =
       }
     },
     //获取自由交易帖
-    getFreeTrades: function getFreeTrades() {var _this8 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7() {var jwt, head, result, i, len, j, _len4;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:
+    getFreeTrades: function getFreeTrades() {var _this8 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7() {var jwt, head, result, i, len, j, _len12;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 // console.log("jwt: "+jwt);
                 head = { 'Authorization': "Bearer " + jwt };
@@ -737,7 +849,7 @@ var _default =
                   _this8.like_icon[_this8.free_trades[i].id] = "heart";
                 }
                 //处理该用户点赞信息
-                for (j = 0, _len4 = _this8.likes.length; j < _len4; j++) {
+                for (j = 0, _len12 = _this8.likes.length; j < _len12; j++) {
                   if (_this8.likes[j].thumbs_up_type === 1) {
                     _this8.like_icon[_this8.likes[j].obj_liked] = "heart-fill";
                   }
