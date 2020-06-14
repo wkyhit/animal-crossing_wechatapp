@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uUpload: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-upload/u-upload */ "node-modules/uview-ui/components/u-upload/u-upload").then(__webpack_require__.bind(null, /*! uview-ui/components/u-upload/u-upload.vue */ 335))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-upload/u-upload */ "node-modules/uview-ui/components/u-upload/u-upload").then(__webpack_require__.bind(null, /*! uview-ui/components/u-upload/u-upload.vue */ 343))
   }
 }
 var render = function() {

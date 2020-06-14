@@ -268,7 +268,7 @@
 				})
 				// 获取动态总个数
 				this.trendsCount = result.data.count;
-				this.trends = [...this.trends, ...result.data.results.reverse()]
+				this.trends = [...this.trends, ...result.data.results]
 				// this.trends.reverse()
 				for(let i=0,len=this.trends.length; i<len; i++){
 					this.like_icon[this.trends[i].id] = "heart"

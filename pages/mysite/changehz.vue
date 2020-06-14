@@ -36,7 +36,7 @@
 				</span>
 
 				<span>
-					<u-field v-model="personsignature" label="个性签名" placeholder="请输入"></u-field>
+					<!-- <u-field v-model="personsignature" label="个性签名" placeholder="请输入"></u-field> -->
 				</span>
 				<span>
 					<u-radio-group v-model="hemisphere" @change="radioGroupChange">
@@ -92,7 +92,7 @@
 				],
 				value: '',
 				// 请求头部(上传照片)
-				head:{},
+				head: {},
 				// 头像
 				headimg: '',
 				// 名字
@@ -118,15 +118,15 @@
 		},
 		methods: {
 			//图片上传成功事件，lists为全部图片的数组集合
-			onUploaded(lists){
+			onUploaded(lists) {
 				let tmp_post_pic = ""
 				const filesArr = lists;
 				const reg = /http:\/\/47\.240\.8\.112\/media\//;
-				for(let i=0,len = lists.length; i < len; i++){
+				for (let i = 0, len = lists.length; i < len; i++) {
 					let array = JSON.parse(filesArr[i].response)
 					let str = array.file
-					str = str.replace(reg,"")
-					if (i === lists.length-1){
+					str = str.replace(reg, "")
+					if (i === lists.length - 1) {
 						tmp_post_pic += str
 						break;
 					}
@@ -152,18 +152,11 @@
 			},
 			async updatehz() {
 				if (this.gender == '男') {
-
-					this.sex = 0;
-
 				} else {
 					this.sex = 1;
-
 				}
-
 				if (this.hemisphere == '北半球') {
-
 					this.halfball = 0;
-
 				} else {
 					this.halfball = 1;
 				}
@@ -181,12 +174,11 @@
 						island: this.island,
 						friend_sw_number: this.friends,
 						hemisphere: this.halfball,
-						pic_profile: this.headimg
+						profile_pic: this.headimg
 					},
 				})
-
-				console.log(result)
-
+				console.log(this.headimg)
+				// console.log(result)
 				// this.villagers = result.data.results;
 				// console.log("村民"+this.villagers[1].id)
 			}
@@ -209,14 +201,12 @@
 		background-image: url("https://i0.hdslb.com/bfs/article/1bbad7cad546d3499317ea4607960f7465970140.jpg@1320w_2346h.webp");
 		background-size: 750rpx 1200rpx;
 	}
-
 	.personalInfo {
 		width: 100%;
 		height: 300rpx;
 		background-color: rgba(255, 255, 255, 0.7);
 		display: flex;
 		justify-content: space-evenly;
-
 		.portrait {
 			flex: 1;
 
@@ -233,9 +223,7 @@
 
 		}
 	}
-
 	.list {}
-
 	.settingtext {
 		font-size: medium;
 		height: 100rpx;
@@ -249,6 +237,5 @@
 		width: 100%;
 		background-image: url(https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1608273396,2211497957&fm=26&gp=0.jpg);
 	}
-
 	.upload_img {}
 </style>

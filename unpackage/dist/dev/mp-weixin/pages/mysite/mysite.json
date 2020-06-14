@@ -1,11 +1,11 @@
 {
   "usingComponents": {
+    "u-avatar": "/node-modules/uview-ui/components/u-avatar/u-avatar",
     "u-tabs": "/node-modules/uview-ui/components/u-tabs/u-tabs",
     "u-divider": "/node-modules/uview-ui/components/u-divider/u-divider",
     "u-cell-group": "/node-modules/uview-ui/components/u-cell-group/u-cell-group",
     "u-cell-item": "/node-modules/uview-ui/components/u-cell-item/u-cell-item",
     "u-button": "/node-modules/uview-ui/components/u-button/u-button",
-    "u-avatar": "/node-modules/uview-ui/components/u-avatar/u-avatar",
     "uni-list": "/components/uni-list/uni-list",
     "uni-list-item": "/components/uni-list-item/uni-list-item"
   }

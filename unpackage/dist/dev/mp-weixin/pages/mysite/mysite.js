@@ -93,29 +93,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
+  uAvatar: function() {
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 308))
+  },
   uTabs: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 244))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 252))
   },
   uDivider: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-divider/u-divider */ "node-modules/uview-ui/components/u-divider/u-divider").then(__webpack_require__.bind(null, /*! uview-ui/components/u-divider/u-divider.vue */ 286))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-divider/u-divider */ "node-modules/uview-ui/components/u-divider/u-divider").then(__webpack_require__.bind(null, /*! uview-ui/components/u-divider/u-divider.vue */ 294))
   },
   uCellGroup: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-group/u-cell-group */ "node-modules/uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-group/u-cell-group.vue */ 258))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-group/u-cell-group */ "node-modules/uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-group/u-cell-group.vue */ 266))
   },
   uCellItem: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-item/u-cell-item */ "node-modules/uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-item/u-cell-item.vue */ 265))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-item/u-cell-item */ "node-modules/uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-item/u-cell-item.vue */ 273))
   },
   uButton: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 272))
-  },
-  uAvatar: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 300))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 280))
   },
   uniList: function() {
-    return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 307))
+    return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 315))
   },
   uniListItem: function() {
-    return __webpack_require__.e(/*! import() | components/uni-list-item/uni-list-item */ "components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/components/uni-list-item/uni-list-item.vue */ 314))
+    return __webpack_require__.e(/*! import() | components/uni-list-item/uni-list-item */ "components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/components/uni-list-item/uni-list-item.vue */ 322))
   }
 }
 var render = function() {
@@ -290,57 +290,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
     return {
-
       tablist: [{
         name: '主页' },
+
       {
         name: '村民' },
+
       {
         name: '动态' }],
 
-      current: 0,
+
       cns_name: '',
       has_dwller_num: 0,
       num: 0,
+      myid: '6', //默认为6
       idspace: [],
       namespace: [],
       dwellers: [],
@@ -354,7 +321,6 @@ var _default =
       //已收集
       checked: false,
       srcplus: "http://img3.imgtn.bdimg.com/it/u=1153547427,3148212040&fm=26&gp=0.jpg",
-
       list: [{
         name: '鱼类' },
 
@@ -381,44 +347,41 @@ var _default =
 
 
 
+      current: 0,
       detailItem: '',
       userinfo: {},
-
       trendsdata: [{
         name: '张三',
         headimg: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=292115226,4263746039&fm=26&gp=0.jpg',
-        text: '六一快乐！感谢大家的礼物',
-        trendsrc1: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1721187296,2198904697&fm=15&gp=0.jpg',
-        trendsrc2: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3221258143,996744225&fm=26&gp=0.jpg',
-        trendsrc3: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3892000463,4208461964&fm=26&gp=0.jpg' },
+        text: '八月风高秋怒号，卷我屋上三重茅',
+        trendsrc1: 'http://t7.baidu.com/it/u=2661952130,1296888693&fm=193',
+        trendsrc2: 'http://img4.imgtn.bdimg.com/it/u=1291146037,1819202499&fm=26&gp=0.jpg',
+        trendsrc3: 'http://img2.imgtn.bdimg.com/it/u=3021422678,2509832092&fm=26&gp=0.jpg,4208461964&fm=26&gp=0.jpg' },
+
       {
-        name: 'wangwu',
+        name: '张三',
         headimg: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=292115226,4263746039&fm=26&gp=0.jpg',
-        text: '六一快乐！感谢大家的礼物',
-        trendsrc1: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1721187296,2198904697&fm=15&gp=0.jpg',
-        trendsrc2: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3221258143,996744225&fm=26&gp=0.jpg',
-        trendsrc3: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3892000463,4208461964&fm=26&gp=0.jpg' },
+        text: '风急天高猿啸哀，渚清沙白鸟飞回',
+        trendsrc1: 'http://img3.imgtn.bdimg.com/it/u=1197894792,798854049&fm=26&gp=0.jpg',
+        trendsrc2: 'http://img5.imgtn.bdimg.com/it/u=781827900,1402140107&fm=26&gp=0.jpg',
+        trendsrc3: 'http://img5.imgtn.bdimg.com/it/u=353269266,3932588513&fm=26&gp=0.jpg' },
+
       {
-        name: 'lisi',
+        name: '张三',
         headimg: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=292115226,4263746039&fm=26&gp=0.jpg',
-        text: '国庆节快乐！感谢大家的礼物',
-        trendsrc1: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=312066691,832315679&fm=26&gp=0.jpg',
-        trendsrc2: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3221258143,996744225&fm=26&gp=0.jpg',
-        trendsrc3: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3892000463,4208461964&fm=26&gp=0.jpg' },
+        text: '大漠孤烟直，长河落日圆',
+        trendsrc1: 'http://img2.imgtn.bdimg.com/it/u=1469125521,223562963&fm=26&gp=0.jpg',
+        trendsrc2: 'http://img1.imgtn.bdimg.com/it/u=1528978991,154283582&fm=26&gp=0.jpg',
+        trendsrc3: 'http://img3.imgtn.bdimg.com/it/u=34502088,49935255&fm=26&gp=0.jpg' },
+
       {
-        name: 'wangwu',
+        name: '张三',
         headimg: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=292115226,4263746039&fm=26&gp=0.jpg',
-        text: '六一快乐1233333322222222222！感谢大家的礼物',
-        trendsrc1: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1721187296,2198904697&fm=15&gp=0.jpg',
-        trendsrc2: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3221258143,996744225&fm=26&gp=0.jpg',
-        trendsrc3: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3892000463,4208461964&fm=26&gp=0.jpg' },
-      {
-        name: 'lisi',
-        headimg: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=292115226,4263746039&fm=26&gp=0.jpg',
-        text: '国庆节快乐！感谢大家的礼物',
-        trendsrc1: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=312066691,832315679&fm=26&gp=0.jpg',
-        trendsrc2: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3221258143,996744225&fm=26&gp=0.jpg',
-        trendsrc3: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3892000463,4208461964&fm=26&gp=0.jpg' }],
+        text: '情不知所起，一往而深',
+        trendsrc1: 'http://img4.imgtn.bdimg.com/it/u=2820278200,810556410&fm=26&gp=0.jpg',
+        trendsrc2: 'http://img1.imgtn.bdimg.com/it/u=1826642006,3233271951&fm=26&gp=0.jpg',
+        trendsrc3: 'http://img3.imgtn.bdimg.com/it/u=3624537353,3358560578&fm=26&gp=0.jpg' }],
+
 
       src1: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3336249496,298027406&fm=26&gp=0.jpg' };
 
@@ -427,15 +390,14 @@ var _default =
     changecurrent: function changecurrent(index) {
       this.current = index;
       //根据current判断处于哪个标签页
-      if (this.current == 1) {
-        this.complex();
-      }
+      // if (this.current == 1) {
+      // 	this.complex();
+      // }
     },
     //标签页tabs切换事件监听
-
     openchangehz: function openchangehz() {
       uni.navigateTo({
-        url: "changehz" });
+        url: "./changehz" });
 
     },
     openmap: function openmap(index) {//转到相应的图鉴界面
@@ -444,7 +406,7 @@ var _default =
       if (index >= 4) {
         index++;
       }
-      if (index = 15) {
+      if (index === 15) {
         index = 4;
       }
       app.globalData.cate_id = index;
@@ -453,7 +415,6 @@ var _default =
         url: "../map/map" });
 
       console.log(app.globalData.cate_id);
-
     },
     //获取用户信息
     getuserInfo: function getuserInfo() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
@@ -463,14 +424,12 @@ var _default =
 
                   _this.$myRequest({
                     method: 'GET',
-                    url: '/users/5/',
+                    url: '/users/' + _this.myid + '/',
                     header: head }));case 4:result = _context.sent;
 
                 _this.userinfo = result.data;
-
-                // this.villagers = result.data.results;
-                // console.log("村民"+this.villagers[1].id)
-              case 6:case "end":return _context.stop();}}}, _callee);}))();},
+                console.log(_this.userinfo.pic_profile);case 7:case "end":return _context.stop();}}}, _callee);}))();
+    },
     getposts: function getposts() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 jwt = uni.getStorageSync("skey");
                 head = {
@@ -482,7 +441,6 @@ var _default =
                     header: head }));case 4:result = _context2.sent;
 
                 _this2.userinfo = result.data;
-
                 // this.villagers = result.data.results;
                 // console.log("村民"+this.villagers[1].id)
               case 6:case "end":return _context2.stop();}}}, _callee2);}))();},
@@ -512,33 +470,30 @@ var _default =
 
                 // console.log(this.num)
                 // console.log(result.data.cn_sname)
-
                 _this4.cns_name = result.data;
                 console.log(result.data);
-
-
-
                 // this.fish = result.data.results;
               case 7:case "end":return _context4.stop();}}}, _callee4);}))();},
     complex: function complex() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var i, _i;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0: //将获取动物id与动物名称整合
-
-                _this5.getdwellerinfo();
+                // this.getdwellerinfo();
                 for (i = 0; i < _this5.dwellers.length; i++) {
                   // console.log(this.getdwellericon(this.dwellers[i].id))
                   _this5.idspace[i] = _this5.dwellers[i].dweller;
-
                 }
-                _i = 0;case 3:if (!(_i < _this5.idspace.length)) {_context5.next = 11;break;}
+                _i = 0;case 2:if (!(_i < _this5.idspace.length)) {_context5.next = 10;break;}
                 //  console.log(this.getdwellericon(this.dwellers[i].id))
                 _this5.num = _this5.idspace[_i];
                 //   console.log(this.num)
-                _context5.next = 7;return _this5.getdwellericon();case 7:
-                _this5.namespace[_i] = _this5.cns_name;case 8:_i++;_context5.next = 3;break;case 11:
+                _context5.next = 6;return _this5.getdwellericon();case 6:
+                _this5.namespace[_i] = _this5.cns_name;case 7:_i++;_context5.next = 2;break;case 10:
 
                 console.log(_this5.namespace);
 
                 // return insect_checked_list;
-              case 12:case "end":return _context5.stop();}}}, _callee5);}))();},
+              case 11:case "end":return _context5.stop();}}}, _callee5);}))();},
+    changemyid: function changemyid(index) {//调用这个方法更改访问的人的id，这个id是登陆者的。
+      this.myid = index;
+    },
     onClickMoreInfo: function onClickMoreInfo(dex_type, item) {//跳转到详情界面
       this.dexType = dex_type;
       this.detailItem = item;
@@ -547,10 +502,14 @@ var _default =
 
     } },
 
-  onLoad: function onLoad() {
+  onLoad: function onLoad() {var _this6 = this;
+    this.myid = uni.getStorageSync("sid");
     this.getuserInfo();
-    this.complex();
-
+    this.getdwellerinfo();
+    //等待user-dweller信息返回，才执行
+    setTimeout(function () {
+      _this6.complex();
+    }, 1000);
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

@@ -94,19 +94,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uTabs: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 244))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */ "node-modules/uview-ui/components/u-tabs/u-tabs").then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 252))
   },
   uSearch: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 251))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-search/u-search */ "node-modules/uview-ui/components/u-search/u-search").then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 259))
   },
   uAvatar: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 300))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 308))
   },
   uIcon: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 209))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 217))
   },
   uUpload: function() {
-    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-upload/u-upload */ "node-modules/uview-ui/components/u-upload/u-upload").then(__webpack_require__.bind(null, /*! uview-ui/components/u-upload/u-upload.vue */ 335))
+    return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-upload/u-upload */ "node-modules/uview-ui/components/u-upload/u-upload").then(__webpack_require__.bind(null, /*! uview-ui/components/u-upload/u-upload.vue */ 343))
   }
 }
 var render = function() {
@@ -416,7 +416,7 @@ var _default =
 
                 // 获取动态总个数
                 _this3.trendsCount = result.data.count;
-                _this3.trends = [].concat(_toConsumableArray(_this3.trends), _toConsumableArray(result.data.results.reverse()));
+                _this3.trends = [].concat(_toConsumableArray(_this3.trends), _toConsumableArray(result.data.results));
                 // this.trends.reverse()
                 for (i = 0, len = _this3.trends.length; i < len; i++) {
                   _this3.like_icon[_this3.trends[i].id] = "heart";
