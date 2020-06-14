@@ -1,1 +1,1 @@
-<view><scroll-view><uni-card vue-id="67bc4104-1" bind:__l="__l" vue-slots="{{['default']}}"><button data-event-opts="{{[['tap',[['wxLogin',['$event']]]]]}}" bindtap="__e">点击登录授权</button><button data-event-opts="{{[['tap',[['authorize',['$event']]]]]}}" bindtap="__e">权限授权</button><button data-event-opts="{{[['tap',[['uploadImg',['$event']]]]]}}" bindtap="__e">上传图片</button></uni-card></scroll-view></view>
+<view><web-view webview-styles="{{webviewStyles}}" src="{{webUrl}}"></web-view></view>

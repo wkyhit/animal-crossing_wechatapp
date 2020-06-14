@@ -347,6 +347,14 @@
 		},
 		onLoad() {
 			this.myid = uni.getStorageSync("sid");
+			// this.getuserInfo();
+			// this.getdwellerinfo()
+			// //等待user-dweller信息返回，才执行
+			// setTimeout(()=>{
+			// 	this.complex();
+			// },1000)
+		},
+		onShow() {
 			this.getuserInfo();
 			this.getdwellerinfo()
 			//等待user-dweller信息返回，才执行

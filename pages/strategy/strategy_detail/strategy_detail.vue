@@ -1,6 +1,7 @@
 <template>
 	<view>
-		<scroll-view>
+		<web-view :webview-styles="webviewStyles" :src="webUrl"></web-view>
+		<!-- <scroll-view>
 			<uni-card>
 				<button @click="wxLogin">
 					点击登录授权
@@ -10,7 +11,7 @@
 				</button>
 				<button @click="uploadImg">上传图片</button>
 			</uni-card>
-		</scroll-view>
+		</scroll-view> -->
 	</view>
 </template>
 
@@ -19,8 +20,16 @@
 		data() {
 			return {
 				logining: false,
-
+				webUrl:"",
+				webviewStyles: {
+					progress: {
+						color: '#FF3333'
+					}
+				}
 			};
+		},
+		onLoad(option) {
+			this.webUrl = option.weburl
 		},
 		methods: {
 			// authorize(e){
@@ -38,26 +47,28 @@
 			// 	    }
 			// 	})
 			// },
-			uploadImg(){
+			uploadImg() {
 				const jwt = uni.getStorageSync("skey");
-				const head = {'Authorization':"Bearer "+jwt};
+				const head = {
+					'Authorization': "Bearer " + jwt
+				};
 				uni.chooseImage({
-				        success: function (chooseImageRes) {
-				            const tempFilePaths = chooseImageRes.tempFilePaths;
-				            uni.uploadFile({
-				                url: 'http://47.240.8.112/api/v1/private/upload/', //仅为示例，非真实的接口地址
-				                filePath: tempFilePaths[0],
-				                name: 'file',
-				                header:head,
-								// formData: {
-				                //     'user': 'test'
-				                // },
-				                success: function (uploadFileRes) {
-				                    console.log(uploadFileRes.data);
-				                }
-				            });
-				        }
-				    });
+					success: function(chooseImageRes) {
+						const tempFilePaths = chooseImageRes.tempFilePaths;
+						uni.uploadFile({
+							url: 'http://47.240.8.112/api/v1/private/upload/', //仅为示例，非真实的接口地址
+							filePath: tempFilePaths[0],
+							name: 'file',
+							header: head,
+							// formData: {
+							//     'user': 'test'
+							// },
+							success: function(uploadFileRes) {
+								console.log(uploadFileRes.data);
+							}
+						});
+					}
+				});
 			},
 			wxLogin(e) {
 				const that = this;
@@ -68,7 +79,8 @@
 					success: (login_res => {
 						let code = login_res.code;
 						console.log("code" + code);
-						let userinfo = {"nickName": "mynick",
+						let userinfo = {
+							"nickName": "mynick",
 							"gender": "0",
 							"fansNum": 29,
 							"island": "island",
@@ -97,7 +109,7 @@
 								// 	// that.$store.commit('login', userInfo);
 								// 	uni.setStorageSync("userInfo",userInfo);
 
-									uni.setStorageSync("skey", res.data.jwt);
+								uni.setStorageSync("skey", res.data.jwt);
 								// } else {
 								// 	console.log('登录失败')
 								// 	console.log(res)

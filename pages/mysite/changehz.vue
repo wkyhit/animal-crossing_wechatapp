@@ -9,10 +9,7 @@
 					<u-upload ref="uUpload" :action="action" :header="head" name="file" :file-list="fileList" max-count="1"
 					 @on-uploaded="onUploaded"></u-upload>
 				</view>
-
-
 			</view>
-
 		</view>
 		<view class="arrow">
 			<u-cell-group>
@@ -32,9 +29,7 @@
 				</span>
 				<span>
 					<u-field v-model="friends" label="好友编号" maxlength="12" placeholder="请输入12位好友编号(纯数字)"></u-field>
-
 				</span>
-
 				<span>
 					<!-- <u-field v-model="personsignature" label="个性签名" placeholder="请输入"></u-field> -->
 				</span>
@@ -70,7 +65,6 @@
 						checked: false,
 						disabled: false
 					},
-
 				],
 				post_trends_form: {
 					title: "",
@@ -88,7 +82,6 @@
 						checked: false,
 						disabled: false
 					},
-
 				],
 				value: '',
 				// 请求头部(上传照片)
@@ -113,7 +106,6 @@
 				personinfo: ["星辰岛", "北半球", "你给的爱太假", "5-s1-9720479", "我就是我,颜色不一样的烟火", "女"],
 				settinginfo: ["12", '23', '45'],
 				portraitsrc: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023235837,3703646437&fm=26&gp=0.jpg",
-
 			};
 		},
 		methods: {
@@ -150,15 +142,48 @@
 			uploadChange(res) {
 				// console.log(res)
 			},
+			// 获取user-info
+			async getUserInfo(){
+				const jwt = uni.getStorageSync("skey");
+				const head = {
+					'Authorization': "Bearer " + jwt
+				};
+				const result = await this.$myRequest({
+					method: 'GET',
+					url: '/users/' + this.myid + '/',
+					header: head,
+				})
+				// console.log(result);
+				this.friends = result.data.friend_sw_number
+				this.island = result.data.island
+				this.kickname = result.data.nickname
+				if(result.data.gender === "0"){
+					this.$set(this.list1[0],'checked',true)
+					// this.list1[0].checked = true 
+				}else{
+					// this.list1[1].checked = true
+					this.$set(this.list1[1],'checked',true)
+				}
+				
+				if(result.data.hemisphere === "0"){
+					// this.list[0].checked = true
+					this.$set(this.list[0],'checked',true)
+				}else{
+					this.$set(this.list[1],'checked',true)
+					// this.list[1].checked = true
+				}
+			},
+			//提交表单
 			async updatehz() {
 				if (this.gender == '男') {
+					this.sex = '0'
 				} else {
-					this.sex = 1;
+					this.sex = '1';
 				}
 				if (this.hemisphere == '北半球') {
-					this.halfball = 0;
+					this.halfball = '0';
 				} else {
-					this.halfball = 1;
+					this.halfball = '1';
 				}
 				const jwt = uni.getStorageSync("skey");
 				const head = {
@@ -177,7 +202,22 @@
 						profile_pic: this.headimg
 					},
 				})
-				console.log(this.headimg)
+				this.kickname = ""
+				this.gender = ""
+				this.island = ""
+				this.friends = ""
+				this.$refs.uUpload.clear()
+				this.hemisphere = ""
+				uni.showToast({
+					title:"修改信息成功",
+					icon:"success"
+				})
+				setTimeout(()=>{
+					uni.navigateBack({
+						delta:1
+					})
+				},1000)
+				// console.log(this.headimg)
 				// console.log(result)
 				// this.villagers = result.data.results;
 				// console.log("村民"+this.villagers[1].id)
@@ -191,7 +231,11 @@
 			this.head = headers;
 		},
 		onShow() {
-			uni.startPullDownRefresh()
+			this.myid = uni.getStorageSync("sid")
+			setTimeout(()=>{
+				this.getUserInfo()
+			},1000)
+			// uni.startPullDownRefresh()
 		}
 	}
 </script>

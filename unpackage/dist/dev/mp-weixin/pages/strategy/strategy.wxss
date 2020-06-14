@@ -36,6 +36,7 @@ page {
 }
 .list {
   margin-top: 55rpx;
+  height: 1200rpx;
 }
 .u-card-wrap {
   background-color: #f3f4f6;

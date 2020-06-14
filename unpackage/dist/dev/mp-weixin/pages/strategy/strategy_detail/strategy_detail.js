@@ -90,11 +90,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components = {
-  uniCard: function() {
-    return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 329))
-  }
-}
+var components
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -148,13 +144,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
     return {
-      logining: false };
+      logining: false,
+      webUrl: "",
+      webviewStyles: {
+        progress: {
+          color: '#FF3333' } } };
 
 
+
+  },
+  onLoad: function onLoad(option) {
+    this.webUrl = option.weburl;
   },
   methods: {
     // authorize(e){
@@ -174,7 +179,9 @@ var _default =
     // },
     uploadImg: function uploadImg() {
       var jwt = uni.getStorageSync("skey");
-      var head = { 'Authorization': "Bearer " + jwt };
+      var head = {
+        'Authorization': "Bearer " + jwt };
+
       uni.chooseImage({
         success: function success(chooseImageRes) {
           var tempFilePaths = chooseImageRes.tempFilePaths;
@@ -202,7 +209,8 @@ var _default =
         success: function success(login_res) {
           var code = login_res.code;
           console.log("code" + code);
-          var userinfo = { "nickName": "mynick",
+          var userinfo = {
+            "nickName": "mynick",
             "gender": "0",
             "fansNum": 29,
             "island": "island",

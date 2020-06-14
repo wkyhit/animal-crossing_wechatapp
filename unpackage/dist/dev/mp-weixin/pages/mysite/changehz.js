@@ -199,11 +199,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
@@ -217,7 +212,6 @@ var _default =
         name: '南半球',
         checked: false,
         disabled: false }],
-
 
 
       post_trends_form: {
@@ -235,7 +229,6 @@ var _default =
         name: '女',
         checked: false,
         disabled: false }],
-
 
 
       value: '',
@@ -261,7 +254,6 @@ var _default =
       personinfo: ["星辰岛", "北半球", "你给的爱太假", "5-s1-9720479", "我就是我,颜色不一样的烟火", "女"],
       settinginfo: ["12", '23', '45'],
       portraitsrc: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3023235837,3703646437&fm=26&gp=0.jpg" };
-
 
   },
   methods: {
@@ -298,38 +290,86 @@ var _default =
     uploadChange: function uploadChange(res) {
       // console.log(res)
     },
-    updatehz: function updatehz() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                if (_this.gender == '男') {
+    // 获取user-info
+    getUserInfo: function getUserInfo() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var jwt, head, result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                jwt = uni.getStorageSync("skey");
+                head = {
+                  'Authorization': "Bearer " + jwt };_context.next = 4;return (
+
+                  _this.$myRequest({
+                    method: 'GET',
+                    url: '/users/' + _this.myid + '/',
+                    header: head }));case 4:result = _context.sent;
+
+                // console.log(result);
+                _this.friends = result.data.friend_sw_number;
+                _this.island = result.data.island;
+                _this.kickname = result.data.nickname;
+                if (result.data.gender === "0") {
+                  _this.$set(_this.list1[0], 'checked', true);
+                  // this.list1[0].checked = true 
                 } else {
-                  _this.sex = 1;
+                  // this.list1[1].checked = true
+                  _this.$set(_this.list1[1], 'checked', true);
                 }
-                if (_this.hemisphere == '北半球') {
-                  _this.halfball = 0;
+
+                if (result.data.hemisphere === "0") {
+                  // this.list[0].checked = true
+                  _this.$set(_this.list[0], 'checked', true);
                 } else {
-                  _this.halfball = 1;
+                  _this.$set(_this.list[1], 'checked', true);
+                  // this.list[1].checked = true
+                }case 10:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    //提交表单
+    updatehz: function updatehz() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var jwt, head, result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                if (_this2.gender == '男') {
+                  _this2.sex = '0';
+                } else {
+                  _this2.sex = '1';
+                }
+                if (_this2.hemisphere == '北半球') {
+                  _this2.halfball = '0';
+                } else {
+                  _this2.halfball = '1';
                 }
                 jwt = uni.getStorageSync("skey");
                 head = {
-                  'Authorization': "Bearer " + jwt };_context.next = 6;return (
+                  'Authorization': "Bearer " + jwt };_context2.next = 6;return (
 
-                  _this.$myRequest({
+                  _this2.$myRequest({
                     method: 'PUT',
-                    url: '/users/' + _this.myid + '/',
+                    url: '/users/' + _this2.myid + '/',
                     header: head,
                     data: {
-                      nickname: _this.kickname,
-                      gender: _this.sex,
-                      island: _this.island,
-                      friend_sw_number: _this.friends,
-                      hemisphere: _this.halfball,
-                      profile_pic: _this.headimg } }));case 6:result = _context.sent;
+                      nickname: _this2.kickname,
+                      gender: _this2.sex,
+                      island: _this2.island,
+                      friend_sw_number: _this2.friends,
+                      hemisphere: _this2.halfball,
+                      profile_pic: _this2.headimg } }));case 6:result = _context2.sent;
 
 
-                console.log(_this.headimg);
+                _this2.kickname = "";
+                _this2.gender = "";
+                _this2.island = "";
+                _this2.friends = "";
+                _this2.$refs.uUpload.clear();
+                _this2.hemisphere = "";
+                uni.showToast({
+                  title: "修改信息成功",
+                  icon: "success" });
+
+                setTimeout(function () {
+                  uni.navigateBack({
+                    delta: 1 });
+
+                }, 1000);
+                // console.log(this.headimg)
                 // console.log(result)
                 // this.villagers = result.data.results;
                 // console.log("村民"+this.villagers[1].id)
-              case 8:case "end":return _context.stop();}}}, _callee);}))();} },
+              case 15:case "end":return _context2.stop();}}}, _callee2);}))();} },
 
   onLoad: function onLoad() {
     var jwt = uni.getStorageSync("skey");
@@ -338,8 +378,12 @@ var _default =
 
     this.head = headers;
   },
-  onShow: function onShow() {
-    uni.startPullDownRefresh();
+  onShow: function onShow() {var _this3 = this;
+    this.myid = uni.getStorageSync("sid");
+    setTimeout(function () {
+      _this3.getUserInfo();
+    }, 1000);
+    // uni.startPullDownRefresh()
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

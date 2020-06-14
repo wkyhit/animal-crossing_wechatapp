@@ -5,13 +5,13 @@
 				<view class="portrait">
 					<u-avatar :src="userinfo.profile_pic" style="margin-left: 25rpx; column-span: 2;" mode="circle" size="large"></u-avatar>
 					<span>
-						<!-- <text style="margin-left: 25rpx;color: #55aaff;font-size: large;">{{personinfo[2]}}</text> -->
-						<!-- <br> -->
-						<!-- <br> -->
 						<p style="font-size: large;">
 							{{userinfo.nickname}}
 						</p>
 					</span>
+				</view>
+				<view class="logout">
+					<button class="btn_logout" @click="wxLogout">退出</button>
 				</view>
 			</view>
 			<view class="list">
@@ -29,9 +29,6 @@
 				<view class="portrait">
 					<u-avatar :src="portraitsrc" style="margin-left: 25rpx; column-span: 2;" mode="circle" size="large"></u-avatar>
 					<span>
-						<!-- <text style="margin-left: 25rpx;color: #55aaff;font-size: large;">{{personinfo[2]}}</text> -->
-						<!-- <br> -->
-						<!-- <br> -->
 						<p style="font-size: large;">
 							请登录
 						</p>
@@ -112,7 +109,17 @@
 						})
 					})
 				})
-				
+			},
+			// 退出按钮点击事件
+			wxLogout(){
+				// try {
+				//     uni.removeStorageSync('skey');
+				// 	uni.removeStorageSync('sid');
+				// } catch (e) {
+				// 	// error
+				// }
+				uni.clearStorage();
+				uni.startPullDownRefresh()
 			},
 			openmysite() {
 				uni.navigateTo({
@@ -187,12 +194,17 @@
 		justify-content: space-evenly;
 
 		.portrait {
-			flex: 1;
-
+			flex: 2;
 			display: flex;
 			justify-content: left;
 			align-items: center;
 
+		}
+		.logout{
+			flex: 1;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
 		}
 
 		.right_info {

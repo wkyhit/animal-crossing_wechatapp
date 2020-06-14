@@ -182,9 +182,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 var _default =
 {
   data: function data() {
@@ -254,7 +251,17 @@ var _default =
 
         } });
 
-
+    },
+    // 退出按钮点击事件
+    wxLogout: function wxLogout() {
+      // try {
+      //     uni.removeStorageSync('skey');
+      // 	uni.removeStorageSync('sid');
+      // } catch (e) {
+      // 	// error
+      // }
+      uni.clearStorage();
+      uni.startPullDownRefresh();
     },
     openmysite: function openmysite() {
       uni.navigateTo({
